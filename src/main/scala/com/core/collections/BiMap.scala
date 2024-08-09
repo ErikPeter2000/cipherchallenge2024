@@ -1,13 +1,12 @@
 package com.core.collections
 
-/** 
-  * A bidirectional map that allows for quick lookups in both directions.
+/** A bidirectional map that allows for quick lookups in both directions.
   * @tparam K
   *   The type of the keys.
   * @tparam V
   *   The type of the values.
   * @example
-  * {{{
+  *   {{{
   * val biMap = new BiMap[Char, Char](
   *    'A' -> 'Z',
   *    'B' -> 'Y',
@@ -16,7 +15,7 @@ package com.core.collections
   * biMap.getReverse('Y') // Some('B')
   * biMap.get('C') // None
   * biMap.get('C', 'C') // 'C'. You can specify default values.
-  * }}}
+  *   }}}
   */
 class BiMap[K, V] extends Iterable[(K, V)] {
 
@@ -31,16 +30,12 @@ class BiMap[K, V] extends Iterable[(K, V)] {
 
     def this(pairs: (K, V)*) = {
         this()
-        for ((k, v) <- pairs) {
-            addMapping(k, v)
-        }
+        pairs.foreach { case (k, v) => addMapping(k, v) }
     }
 
     def this(map: Map[K, V]) = {
         this()
-        for ((k, v) <- map) {
-            addMapping(k, v)
-        }
+        map.foreach { case (k, v) => addMapping(k, v) }
     }
 
     def apply(a: K): V = forwardMap(a);
@@ -50,12 +45,22 @@ class BiMap[K, V] extends Iterable[(K, V)] {
     def getReverse(b: V): Option[K] = reverseMap.get(b)
     def getReverse(b: V, default: K): K = reverseMap.getOrElse(b, default)
     def update(a: K, b: V): Unit = addMapping(a, b)
-    def remove(a: K): Unit = forwardMap.get(a).foreach { b =>
-        forwardMap.remove(a)
-        reverseMap.remove(b)
+
+    def remove(a: K) = {
+        forwardMap.remove(a).flatMap { b =>
+            reverseMap.remove(b)
+            Some(b)
+        }
     }
+    def removeReverse(b: V) = {
+        reverseMap.remove(b).flatMap { a =>
+            forwardMap.remove(a)
+            Some(a)
+        }
+    }
+
     def keys: Iterable[K] = forwardMap.keys
-    def values: Iterable[V] = forwardMap.values
+    def values: Iterable[V] = reverseMap.keys
 
     def iterator: Iterator[(K, V)] = forwardMap.iterator
     def containsKey(a: K): Boolean = forwardMap.contains(a)
@@ -65,16 +70,8 @@ class BiMap[K, V] extends Iterable[(K, V)] {
         addMapping(kv._1, kv._2)
         this
     }
-    def ++=(other: BiMap[K, V]): BiMap[K, V] = {
-        for ((k, v) <- other) {
-            addMapping(k, v)
-        }
-        this
-    }
-    def ++=(other: Seq[(K, V)]): BiMap[K, V] = {
-        for ((k, v) <- other) {
-            addMapping(k, v)
-        }
+    def ++=(other: Iterable[(K, V)]): BiMap[K, V] = {
+        other.iterator.foreach { case (k, v) => addMapping(k, v) }
         this
     }
 }

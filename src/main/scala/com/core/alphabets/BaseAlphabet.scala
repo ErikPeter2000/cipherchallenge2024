@@ -15,11 +15,9 @@ class BaseAlphabet[T] extends Iterable[(Int, T)] {
             biMap += (index -> letter)
         }
     }
-    def this(letters: BiMap[Int, T]) = {
+    def this(letters: Iterable[(Int, T)]) = {
         this()
-        for ((index, letter) <- letters) {
-            biMap += (index -> letter)
-        }
+        this.foreach(biMap += _)
     }
     override def iterator: Iterator[(Int, T)] = biMap.iterator
     def get(key: Int): Option[T] = biMap.get(key)
@@ -37,7 +35,7 @@ class BaseAlphabet[T] extends Iterable[(Int, T)] {
       */
     def createLetterMapAgainst(other: BaseAlphabet[T]): BiMap[T, T] = {
         val newMap = BiMap.empty[T, T]
-        for ((index, letter) <- this) {
+        this.foreach { case (index, letter) =>
             other.get(index) match {
                 case Some(otherLetter) => newMap += (letter -> otherLetter)
                 case None              =>
@@ -59,7 +57,7 @@ class BaseAlphabet[T] extends Iterable[(Int, T)] {
             throw new IllegalArgumentException("The other alphabet must contain at least as many letters as this alphabet.")
         }
         val newMap = BiMap.empty[T, T]
-        for ((index, letter) <- this) {
+        this.foreach { case (index, letter) =>
             newMap += (letter -> other(index))
         }
         return newMap
@@ -75,7 +73,7 @@ class BaseAlphabet[T] extends Iterable[(Int, T)] {
       */
     def createIndexMapAgainst(other: BaseAlphabet[T]): BiMap[Int, Int] = {
         val newMap = BiMap.empty[Int, Int]
-        for ((index, letter) <- this) {
+        this.foreach { case (index, letter) =>
             other.getReverse(letter) match {
                 case Some(otherIndex) => newMap += (index -> otherIndex)
                 case None             =>
@@ -94,5 +92,13 @@ class BaseAlphabet[T] extends Iterable[(Int, T)] {
         collection.sortBy(x => biMap.getReverse(x))
     }
 
-    def toBiMap: BiMap[Int, T] = biMap
+    /**
+      * Returns a copy of the alphabet as a bidirectional map.
+      * @return
+      */
+    def toBiMap: BiMap[Int, T] = {
+        val newBiMap = BiMap.empty[Int, T]
+        newBiMap ++= biMap
+        newBiMap
+    }
 }

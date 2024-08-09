@@ -22,11 +22,11 @@ object KeyFactory {
         val letters = new Array[Char](inputAlphabet.size)
         distinctPhrase.copyToArray(letters)
         var count = distinctPhrase.length
-        for ((index, letter) <- inputAlphabet) {
-            if (!letters.contains(letter)) {
-                letters(count) = letter
-                count += 1
-            }
+        inputAlphabet.foreach { case (index, letter) =>
+          if (!letters.contains(letter)) {
+            letters(count) = letter
+            count += 1
+          }
         }
         return inputAlphabet.createLetterMapAgainst(new BaseAlphabet[Char](letters))
     }
