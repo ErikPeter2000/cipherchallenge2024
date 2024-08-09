@@ -8,25 +8,20 @@ import com.core.alphabets.UppercaseLetters
 import com.core.ciphers.SubstitutionCipher
 import com.core.cipherdata.CipherDataBlock
 import com.core.keys.KeyFactory
+import com.core.alphabets.LowercaseLetters
+import com.core.ciphers.ColumnCipher
 
 object Main {
     def main(args: Array[String]): Unit = {
-        val orwellPath = Paths.get("resources\\data\\texts\\Orwell1984.txt").toAbsolutePath.toString
+        val path = Paths.get(".\\resources\\data\\texts\\Orwell1984.txt")
+        val text = Source.fromFile(path.toFile).getLines.take(100).mkString.toUpperCase.replaceAll("[^A-Z]", "")
+        println(text)
 
-        val plaintext = Source.fromFile(orwellPath, "UTF-8").getLines().take(50).mkString("\n").toUpperCase().replaceAll("[^A-Z]", "")
-        val plaintextBlock = new CipherDataBlock(plaintext, UppercaseLetters)
-        println(plaintext)
-        println()
-
-        val key = KeyFactory.createRandomSubstitutionKey(UppercaseLetters)
-        val result = SubstitutionCipher.encrypt(plaintextBlock, key)
+        val key = KeyFactory.createTranspositionKey("hello", LowercaseLetters)
+        println(key)
+        val block = new CipherDataBlock(text, UppercaseLetters)
+        val result = ColumnCipher.encrypt(block, key)
 
         println(result.outData.mkString)
-        println()
-
-        val ciphertextBlock = new CipherDataBlock(result.outData, UppercaseLetters)
-        val decryptedResult = SubstitutionCipher.decrypt(ciphertextBlock, key)
-
-        println(decryptedResult.outData.mkString)
     }
 }

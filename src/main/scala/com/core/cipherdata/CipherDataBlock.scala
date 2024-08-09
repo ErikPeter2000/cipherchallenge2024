@@ -18,18 +18,20 @@ class CipherDataBlock[T](val alphabet: BaseAlphabet[T]) extends Seq[T] {
     def iterator: Iterator[T] = data.iterator
     def length: Int = data.length
 
-    def padTo(length: Int, elem: T) = {
+    def padTo(length: Int, elem: T): CipherDataBlock[T] = {
         data = data.padTo(length, elem)
+        return this
     }
 
     /** Transposes the data block with the given pad character. This is the same as organising the data into a grid with
       * the specified width and/or height, padding it, and then reading along the columns.
+      * Performs the transpose in place, and returns itself.
       *
       * @param padCharacter
       * @param inputWidth
       * @param inputHeight
       */
-    def transpose(padCharacter: T, inputWidth: Option[Int] = None, inputHeight: Option[Int] = None) = {
+    def transpose(padCharacter: T, inputWidth: Option[Int] = None, inputHeight: Option[Int] = None): CipherDataBlock[T] = {
         if (inputWidth.isEmpty && inputHeight.isEmpty) {
             throw new IllegalArgumentException("Invalid input width or height")
         }
@@ -57,6 +59,7 @@ class CipherDataBlock[T](val alphabet: BaseAlphabet[T]) extends Seq[T] {
 
         // Transpose
         data = data.grouped(width).toSeq.transpose.flatten
+        return this
     }
 }
 
