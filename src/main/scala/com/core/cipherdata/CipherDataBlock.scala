@@ -30,7 +30,7 @@ class CipherDataBlock[T](val alphabet: BaseAlphabet[T]) extends Seq[T] {
       * @param inputHeight
       */
     def transpose(padCharacter: T, inputWidth: Option[Int] = None, inputHeight: Option[Int] = None) = {
-        if (inputWidth.isEmpty || inputHeight.isEmpty) {
+        if (inputWidth.isEmpty && inputHeight.isEmpty) {
             throw new IllegalArgumentException("Invalid input width or height")
         }
 
@@ -45,7 +45,7 @@ class CipherDataBlock[T](val alphabet: BaseAlphabet[T]) extends Seq[T] {
                     throw new IllegalArgumentException("Data length is greater than the target length")
                 }
             } else {
-                targetLength = (data.length + width - 1) / width
+                targetLength = (data.length + width - 1) / width * width
             }
         } else {
             width = (data.length + inputHeight.get - 1) / inputHeight.get
