@@ -27,4 +27,14 @@ class AlphabetTests extends munit.FunSuite {
         assertEquals(map.getReverse('a'), Some('A'))
         assertEquals(map.getReverse('z'), Some('Z'))
     }
+
+    test("CreateLetterMapAgainst should map correctly with Seq") {
+        val thisAlphabet = new BaseAlphabet[Char](IndexedSeq('A', 'B', 'C', 'D', 'E'))
+        val map = thisAlphabet.createLetterMapAgainst(Seq('a', 'b', 'c', 'd', 'e'))
+        assertEquals(map.size, 5)
+        assertEquals(map.get('A'), Some('a'))
+        assertEquals(map.get('E'), Some('e'))
+        assertEquals(map.getReverse('a'), Some('A'))
+        assertEquals(map.getReverse('e'), Some('E'))
+    }
 }

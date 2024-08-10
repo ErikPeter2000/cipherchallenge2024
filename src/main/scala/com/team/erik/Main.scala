@@ -19,7 +19,7 @@ object Main {
         
         val toCount = Set(
             "THE", "AND", "THAT", "HAVE", "FOR", "YOU", "WITH", "SAY", "THIS", "THEY", "FROM", "BUT", "WILL", "WHAT", "ABOUT", "WHEN", "MAKE", "LIKE", "TIME", "JUST", "KNOW", "TAKE", "PEOPLE", "INTO", "YEAR", "YOUR", "GOOD", "SOME", "COULD", "THEM", "THAN", "THEN", "LOOK", "ONLY", "COME", "OVER", "THINK", "ALSO", "BACK", "AFTER", "WORK", "FIRST", "WELL", "EVEN", "WANT", "BECAUSE", "ANYTHING", "THROUGH", "MUCH", "GREAT", "BEFORE", "MUST", "SAME", "LONG", "SUCH", "LITTLE", "WHERE", "PART", "AGAIN", "ANOTHER", "FIND", "STILL", "NEW", "PLACE", "WANT", "GIVE", "THINGS", "LIFE", "WAY", "DAY", "VERY"
-        ).map(_.toCharArray().toIterable)
+        ).map(_.toIterable)
 
         println(text.length)
 

@@ -28,7 +28,7 @@ object KeyFactory {
             count += 1
           }
         }
-        return inputAlphabet.createLetterMapAgainst(new BaseAlphabet[Char](letters))
+        return inputAlphabet.createLetterMapAgainst(letters)
     }
 
     /** Creates a random substitution key based on the given alphabet.

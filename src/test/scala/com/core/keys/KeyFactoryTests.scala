@@ -10,7 +10,11 @@ class KeyFactoryTests extends munit.FunSuite {
         val inputAlphabet = LowercaseLetters
         val key = KeyFactory.createSubstitutionKey(phrase, inputAlphabet)
         assertEquals(key.size, inputAlphabet.size)
-        assertEquals(key.values.mkString, expected)
+        assertEquals(key('a'), 'h')
+        assertEquals(key('b'), 'e')
+        assertEquals(key('c'), 'l')
+        assertEquals(key('d'), 'o')
+        assertEquals(key('e'), 'a')
     }
 
     test("Create random substitution key creates valid key") {
