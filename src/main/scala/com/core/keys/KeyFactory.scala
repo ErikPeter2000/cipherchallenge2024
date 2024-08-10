@@ -9,6 +9,7 @@ import com.core.alphabets.UppercaseLetters
 /** Utility functions for keys based on characters.
   */
 object KeyFactory {
+    val random = new Random()
 
     /** Creates a substitution key based on the given phrase.
       *
@@ -38,10 +39,22 @@ object KeyFactory {
       * @return
       *   A BiMap representing the substitution key.
       */
-    def createRandomSubstitutionKey(inputAlphabet: BaseAlphabet[Char]): BiMap[Char, Char] = {
+    def createRandomSubstitutionKey(inputAlphabet: BaseAlphabet[Char], seed: Option[Int] = None): BiMap[Char, Char] = {
+        seed.foreach(random.setSeed(_))
         val letters = inputAlphabet.iterator.map(_._2).toSeq
-        val shuffledLetters = Random.shuffle(letters)
+        val shuffledLetters = random.shuffle(letters)
         return inputAlphabet.createLetterMapAgainst(new BaseAlphabet[Char](shuffledLetters))
+    }
+
+    def createReverseSubstitutionKeyFromFrequencies[T](
+        inputAlphabet: BaseAlphabet[T],
+        currentFrequencies: Map[T, Double],
+        targetFrequencies: Map[T, Double],
+        seed: Option[Int] = None
+    ): BiMap[T, T] = {
+        val inKeys = currentFrequencies.keys.toSeq.sortBy(currentFrequencies(_))
+        val outKeys = targetFrequencies.keys.toSeq.sortBy(targetFrequencies(_))
+        new BiMap[T, T](outKeys.zip(inKeys))
     }
 
     /** Creates a transposition key based on the given phrase. Ignores characters not in the alphabet. Example: "hello"

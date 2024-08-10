@@ -1,15 +1,18 @@
 package com.core.analysers
 
+import scala.compiletime.uninitialized
 import scala.collection.mutable.Map
 import scala.collection.parallel.CollectionConverters._
 import com.core.cipherdata.CipherDataBlock
 
-/** Class for counting the frequency of elements in a contiguous data block.
+/** Class for counting the frequency of specific elements in a contiguous data block.
+  *
+  * For example, for counting the frequency of bigrams in a text block.
   */
 object FrequencyCounter {
     private class TrieNode {
         var children: Map[Char, TrieNode] = Map()
-        var fail: TrieNode = _
+        var fail: TrieNode = uninitialized
         var output: List[Iterable[Char]] = List()
     }
     private def buildTrie(phrases: Set[_ <: Iterable[Char]]): TrieNode = {

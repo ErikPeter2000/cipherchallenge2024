@@ -22,10 +22,11 @@ class BiMap[K, V] extends Iterable[(K, V)] {
     private val forwardMap = scala.collection.mutable.Map.empty[K, V]
     private val reverseMap = scala.collection.mutable.Map.empty[V, K]
 
-    def addMapping(a: K, b: V): Unit = {
+    def addMapping(a: K, b: V): BiMap[K, V] = {
         forwardMap.get(a).foreach(reverseMap.remove)
         forwardMap(a) = b
         reverseMap(b) = a
+        this
     }
 
     def this(pairs: (K, V)*) = {
@@ -33,7 +34,7 @@ class BiMap[K, V] extends Iterable[(K, V)] {
         pairs.foreach { case (k, v) => addMapping(k, v) }
     }
 
-    def this(map: Map[K, V]) = {
+    def this(map: Iterable[(K, V)]) = {
         this()
         map.foreach { case (k, v) => addMapping(k, v) }
     }

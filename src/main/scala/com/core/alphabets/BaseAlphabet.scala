@@ -20,6 +20,8 @@ class BaseAlphabet[T] extends Iterable[(Int, T)] {
         this.foreach(biMap += _)
     }
     override def iterator: Iterator[(Int, T)] = biMap.iterator
+    def values = biMap.values
+    def apply(index: Int): T = biMap(index)
     def get(key: Int): Option[T] = biMap.get(key)
     def getReverse(key: T): Option[Int] = biMap.getReverse(key)
     def contains(value: T): Boolean = biMap.containsValue(value)
@@ -36,10 +38,7 @@ class BaseAlphabet[T] extends Iterable[(Int, T)] {
     def createLetterMapAgainst(other: BaseAlphabet[T]): BiMap[T, T] = {
         val newMap = BiMap.empty[T, T]
         this.foreach { case (index, letter) =>
-            other.get(index) match {
-                case Some(otherLetter) => newMap += (letter -> otherLetter)
-                case None              =>
-            }
+            other.get(index).foreach(x => newMap += (letter -> x))
         }
         return newMap
     }
@@ -74,10 +73,7 @@ class BaseAlphabet[T] extends Iterable[(Int, T)] {
     def createIndexMapAgainst(other: BaseAlphabet[T]): BiMap[Int, Int] = {
         val newMap = BiMap.empty[Int, Int]
         this.foreach { case (index, letter) =>
-            other.getReverse(letter) match {
-                case Some(otherIndex) => newMap += (index -> otherIndex)
-                case None             =>
-            }
+            other.getReverse(letter).foreach(x => newMap += (index -> x))
         }
         return newMap
     }
