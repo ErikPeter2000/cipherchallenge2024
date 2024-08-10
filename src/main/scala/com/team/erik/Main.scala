@@ -14,7 +14,7 @@ import com.core.analysers.FrequencyCounter
 
 object Main {
     def job(args: Array[String]): Unit = {
-        val path = Paths.get(".\\resources\\data\\texts\\Orwell1984.txt")
+        val path = Paths.get(".\\resources\\text\\Orwell1984.txt")
         val text = Source.fromFile(path.toFile, "UTF-8").take(2000).mkString.toUpperCase.replaceAll("[^A-Z]", "")
         
         val toCount = Set(

@@ -74,6 +74,12 @@ class BiMap[K, V] extends Iterable[(K, V)] {
         other.iterator.foreach { case (k, v) => addMapping(k, v) }
         this
     }
+
+    override def clone(): BiMap[K, V] = {
+        val newMap = new BiMap[K, V]()
+        newMap ++= this
+        newMap
+    }
 }
 
 object BiMap {

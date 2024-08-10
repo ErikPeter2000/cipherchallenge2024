@@ -2,7 +2,7 @@ package com.core.collections
 
 // test file for the BiMap class
 class BiMapTest extends munit.FunSuite {
-    
+
     test("BiMap should have correct mappings") {
         val biMap = new BiMap[Int, String](
             0 -> "A",
@@ -17,8 +17,7 @@ class BiMapTest extends munit.FunSuite {
         assertEquals(biMap.getReverse("Z"), Some(3))
     }
 
-    test("Bimap concat should behave correctly")
-    {
+    test("Bimap concat should behave correctly") {
         val biMap1 = new BiMap[Int, String](
             0 -> "A",
             1 -> "B",
@@ -30,7 +29,7 @@ class BiMapTest extends munit.FunSuite {
             3 -> "D",
             22 -> "W",
             23 -> "X"
-        )        
+        )
         biMap1 += (2 -> "C")
         assertEquals(biMap1.size, 5)
         assertEquals(biMap1.get(2), Some("C"))

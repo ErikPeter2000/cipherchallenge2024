@@ -7,12 +7,12 @@ import com.core.cipherdata.CipherDataBlock
 /** Class for counting the frequency of elements in a contiguous data block.
   */
 object FrequencyCounter {
-    class TrieNode {
+    private class TrieNode {
         var children: Map[Char, TrieNode] = Map()
         var fail: TrieNode = _
         var output: List[Iterable[Char]] = List()
     }
-    def buildTrie(phrases: Set[_ <: Iterable[Char]]): TrieNode = {
+    private def buildTrie(phrases: Set[_ <: Iterable[Char]]): TrieNode = {
         val root = new TrieNode
         for (phrase <- phrases) {
             var node = root
@@ -26,7 +26,7 @@ object FrequencyCounter {
         }
         root
     }
-    def buildFailureLinks(root: TrieNode): Unit = {
+    private def buildFailureLinks(root: TrieNode): Unit = {
         val queue = scala.collection.mutable.Queue[TrieNode]()
         for (child <- root.children.values) {
             child.fail = root
@@ -50,7 +50,7 @@ object FrequencyCounter {
             }
         }
     }
-    def searchText(text: Iterable[Char], root: TrieNode): Map[Iterable[Char], Int] = {
+    private def searchText(text: Iterable[Char], root: TrieNode): Map[Iterable[Char], Int] = {
         var node = root
         val counts = scala.collection.mutable.Map[Iterable[Char], Int]().withDefaultValue(0)
 
@@ -69,6 +69,13 @@ object FrequencyCounter {
         }
         counts
     }
+
+    /** Calculate the frequency of phrases in the data block using the Aho-Corasick algorithm.
+      *
+      * @param data
+      * @param phrases
+      * @return
+      */
     def calculate(data: CipherDataBlock[Char], phrases: Set[_ <: Iterable[Char]]): Map[Iterable[Char], Int] = {
         var root = buildTrie(phrases)
         buildFailureLinks(root)
