@@ -15,16 +15,16 @@ import com.core.analysers.FrequencyCounter
 object Main {
     def job(args: Array[String]): Unit = {
         val path = Paths.get(".\\resources\\data\\texts\\Orwell1984.txt")
-        val text = Source.fromFile(path.toFile).take(2000).mkString.toUpperCase.replaceAll("[^A-Z]", "")
+        val text = Source.fromFile(path.toFile, "UTF-8").take(2000).mkString.toUpperCase.replaceAll("[^A-Z]", "")
         
         val toCount = Set(
             "THE", "AND", "THAT", "HAVE", "FOR", "YOU", "WITH", "SAY", "THIS", "THEY", "FROM", "BUT", "WILL", "WHAT", "ABOUT", "WHEN", "MAKE", "LIKE", "TIME", "JUST", "KNOW", "TAKE", "PEOPLE", "INTO", "YEAR", "YOUR", "GOOD", "SOME", "COULD", "THEM", "THAN", "THEN", "LOOK", "ONLY", "COME", "OVER", "THINK", "ALSO", "BACK", "AFTER", "WORK", "FIRST", "WELL", "EVEN", "WANT", "BECAUSE", "ANYTHING", "THROUGH", "MUCH", "GREAT", "BEFORE", "MUST", "SAME", "LONG", "SUCH", "LITTLE", "WHERE", "PART", "AGAIN", "ANOTHER", "FIND", "STILL", "NEW", "PLACE", "WANT", "GIVE", "THINGS", "LIFE", "WAY", "DAY", "VERY"
-        )
+        ).map(_.toCharArray().toIterable)
 
         println(text.length)
 
         val data = new CipherDataBlock(text, UppercaseLetters)
-        val stringData = data.mkString
+        val stringData = data
         val startTime = System.nanoTime()
         val result = FrequencyCounter.calculate(stringData, toCount)
         val endTime = System.nanoTime()
