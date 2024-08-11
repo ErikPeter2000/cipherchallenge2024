@@ -1,6 +1,7 @@
 package com.core.data
 
 import java.nio.file.Paths
+import scala.collection.immutable.WrappedString
 
 object DataTable {
     private def readFrequencyCsv(path: String): Map[String, Double] = {
@@ -32,5 +33,7 @@ object DataTable {
     lazy val bigramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Bigram.csv")
     lazy val trigramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Trigram.csv")
     lazy val quadgramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Quadgram.csv")
+    lazy val commonWords300: Set[WrappedString] = readListCsv("englishwords/google-10000-english-no-swears.txt").filter(_.size > 3).take(300).map(_.toUpperCase.toIterable).toSet
     def iterateCommonWords: Iterator[String] = readListCsv("englishwords/google-10000-english-no-swears.txt")
+
 }
