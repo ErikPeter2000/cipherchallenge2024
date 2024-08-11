@@ -16,6 +16,7 @@ import com.core.data.DataTable
 import com.core.analysers.FrequencyAnalysis
 import com.core.collections.MapExtensions._
 import com.core.collections.BiMapExtensions._
+import scala.util.control.Breaks._
 
 object Main {
     def loadData(): CipherDataBlock[Char] = {
@@ -34,56 +35,63 @@ object Main {
         val freqAnalysis = FrequencyAnalysis.calculateRelative(result).toMap
         // println(freqAnalysis.pretty)
 
-        val guessKey = KeyFactory.createReverseSubstitutionKeyFromFrequencies(UppercaseLetters, freqAnalysis, DataTable.unigramFrequenciesChar)
+        val guessKey = KeyFactory.createReverseSubstitutionKeyFromFrequencies(
+            UppercaseLetters,
+            freqAnalysis,
+            DataTable.unigramFrequenciesChar
+        )
         // println(guessKey.pretty)
 
-        val commonWords = DataTable.iterateCommonWords.filter(_.size > 3).take(200).map(_.toUpperCase.toSeq).toSet
+        val commonWords = DataTable.iterateCommonWords.filter(_.size > 3).take(300).map(_.toUpperCase.toIterable).toSet
 
         val decrypt = SubstitutionCipher.decrypt(result, guessKey).outData
         val freq2 = FrequencyAnalysis.calculateRelative(decrypt).toMap
         println(data.mkString)
-        println(decrypt.mkString)
+        println()
+        println(result.mkString)
 
-        val generations = 100
-        val children = 1000
-        val swaps = 2;
+        val generations = 80
+        val children = 100
+        val swaps = 6;
         val standardDeviation: Double = 10;
 
-        val source = DataTable.quadgramFrequencies
+        val sourceA = DataTable.trigramFrequencies.take(0).map(_._1.toIterable).toSet
+        val sourceB = DataTable.bigramFrequencies.take(0).map(_._1.toIterable).toSet
+        val sourceC = commonWords
+        val source = sourceA ++ sourceB ++ sourceC
         def evaluation(data: CipherDataBlock[Char]): Double = {
             val counts = FrequencyCounter.calculate(data, commonWords)
             val score = counts.map { case (word, count) =>
-                count.toDouble * word.size
+                count.toDouble * (word.size-2)*(word.size-2)
             }.sum
             return score
         }
-        
-        println(evaluation(data))
-        val originalScore = evaluation(result)-0.1
+
+        val originalScore = evaluation(data) - 0.1
         println(originalScore)
-        var currentKeyPair = (guessKey, originalScore)
-        for (i <- 0 until generations) {
-            val newKeys = (0 to children).par.map { _ =>
-                val newKey = currentKeyPair._1.clone().swapElementsGaussian(standardDeviation, swaps, UppercaseLetters)
-                val newResult = SubstitutionCipher.decrypt(result, newKey).outData
-                (newKey, evaluation(newResult))
-                val score = evaluation(newResult)
-                (newKey, score)
-            }.toList
-            val (newKey, newScore) = newKeys.maxBy(_._2)
-            if (newScore > currentKeyPair._2) {
-                println(s": $newScore")
-                currentKeyPair = (newKey, newScore) // ??
-            }
-            if (newScore > originalScore) {
-                return
+        var currentKeyPair = (guessKey, 0.0)
+        breakable {
+            for (i <- 0 until generations) {
+                val newKeys = (0 to children).par.map { i =>
+                    val numSwaps = i / children * (swaps - 1) + 1
+                    // val newKey = currentKeyPair._1.clone().swapElementsGaussian(standardDeviation, numSwaps, UppercaseLetters)
+                    val newKey = currentKeyPair._1.clone().swapElements(numSwaps)
+                    val newResult = SubstitutionCipher.decrypt(result, newKey).outData
+                    (newKey, evaluation(newResult))
+                    val score = evaluation(newResult)
+                    (newKey, score)
+                }.toList
+                val (newKey, newScore) = newKeys.maxBy(_._2)
+                if (newScore > currentKeyPair._2) {
+                    currentKeyPair = (newKey, newScore)
+                }
+                if (newScore > originalScore) {
+                    break()
+                }
             }
         }
-
         val finalResult = SubstitutionCipher.decrypt(result, currentKeyPair._1).outData
-        println(currentKeyPair._2)
         println(finalResult.mkString)
-
     }
 
     def main(args: Array[String]): Unit = {

@@ -46,7 +46,8 @@ object BiMapExtensions {
                 }
                 val value1 = biMap(key1)
                 val value2 = biMap(key2)
-                biMap.addMapping(key1, value2).addMapping(key2, value1)
+                biMap(key1) = value2
+                biMap(key2) = value1
             }
             biMap
         }
