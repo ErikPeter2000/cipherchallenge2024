@@ -2,10 +2,8 @@ package com.core.cipherdata
 
 import com.core.alphabets.BaseAlphabet
 
-object CipherResultStatus extends Enumeration {
-    type CipherResultStatus = Value
-    val Success, Failure, Unspecified = Value
-}
+enum CipherResultStatus:
+    case Success, Failure, Unspecified
 
 /** Represents the result of a cipher operation.
   * @tparam T
