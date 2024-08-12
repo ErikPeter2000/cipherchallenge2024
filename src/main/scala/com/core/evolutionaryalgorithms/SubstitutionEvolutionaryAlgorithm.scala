@@ -1,4 +1,4 @@
-package com.core.geneticalgorithms
+package com.core.evolutionaryalgorithms
 
 import com.core.collections.BiMap
 import com.core.ciphers.SubstitutionCipher
@@ -9,12 +9,12 @@ import com.core.collections.BiMapExtensions.swapElements
 import com.core.collections.TrieNode
 
 private object Constants {
-    val common = DataTable.iterateCommonWords.filter(_.size>3).take(1000).map(_.toUpperCase.toIterable).toSet
+    val common = DataTable.iterateCommonWords.filter(_.size > 3).take(1000).map(_.toUpperCase.toIterable).toSet
     val commonTrie = TrieNode.buildTrie(common)
 }
 
-class SubstitutionGeneticAlgorithm
-    extends BaseGeneticAlgorithm[Char, Char, BiMap[Char, Char]](
+class SubstitutionEvolutionaryAlgorithm
+    extends BaseEvolutionaryAlgorithm[Char, Char, BiMap[Char, Char]](
         SubstitutionCipher,
         (result) => {
             val counts = FrequencyCounter.calculate(result.outData, Constants.commonTrie)

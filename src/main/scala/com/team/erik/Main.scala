@@ -17,7 +17,7 @@ import com.core.analysers.FrequencyAnalysis
 import com.core.collections.MapExtensions._
 import com.core.collections.BiMapExtensions._
 import scala.util.control.Breaks._
-import com.core.geneticalgorithms.SubstitutionGeneticAlgorithm
+import com.core.evolutionaryalgorithms.SubstitutionEvolutionaryAlgorithm
 
 object Main {
     def loadData(): CipherDataBlock[Char] = {
@@ -43,7 +43,7 @@ object Main {
 
         val now = System.currentTimeMillis()
 
-        val algorithm = new SubstitutionGeneticAlgorithm()
+        val algorithm = new SubstitutionEvolutionaryAlgorithm()
         val key2 = algorithm.run(result, guessKey, generations, children)
         val decrypt2 = SubstitutionCipher.decrypt(result, key2).outData
 

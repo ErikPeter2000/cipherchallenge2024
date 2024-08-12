@@ -1,4 +1,4 @@
-package com.core.geneticalgorithms
+package com.core.evolutionaryalgorithms
 
 import scala.collection.parallel.CollectionConverters._
 
@@ -6,12 +6,14 @@ import com.core.ciphers.BaseCipher
 import com.core.cipherdata.CipherDataBlock
 import com.core.cipherdata.CipherResult
 
-/** Base genetic algorithm for use with ciphers. These algorithms are designed to break ciphers by slowly modifying a
-  * key until the correct key is found. They use an evaluation function or to determine how close a key is to the
-  * correct key. Higher scores are better, with the highest score being the correct key.
+/** Base evolutionary "1 + λ" algorithm for breaking ciphers.
+  *
+  * The 1 + λ evolutionary strategy is a simple evolutionary algorithm that generates λ children from the current key.
+  * The best child is then selected as the new key if it has a higher score than the current key. This process is
+  * repeated for a number of generations.
   *
   * @param cipher
-  *   The cipher to break. `Cipher.decrypt` will be called with a key, and the plaintext data evaluated for score.
+  *   The cipher to break. `Cipher.decrypt` will be called with a key, and the plaintext data evaluated for a score.
   * @param evaluationFunction
   *   A function that takes a `CipherResult` and returns a score for how close the key is to the correct key. This
   *   function could be the number of english words in the deciphered data, or the number of common frequent bigrams,
@@ -27,10 +29,17 @@ import com.core.cipherdata.CipherResult
   * @tparam V
   *   The type of the key used by the cipher.
   */
-class BaseGeneticAlgorithm[T, K, V](
+class BaseEvolutionaryAlgorithm[T, K, V](
     cipher: BaseCipher[T, K, V],
     evaluationFunction: (CipherResult[K, T]) => Double,
-    randomiser: (currentKey: V, currentScore: Double, generation: Int, childIndex: Int, maxGenerations: Int, maxChildren: Int) => V
+    randomiser: (
+        currentKey: V,
+        currentScore: Double,
+        generation: Int,
+        childIndex: Int,
+        maxGenerations: Int,
+        maxChildren: Int
+    ) => V
 ) {
     def run(data: CipherDataBlock[K], initialKey: V, generations: Int, children: Int): V = {
         var currentKey = initialKey
