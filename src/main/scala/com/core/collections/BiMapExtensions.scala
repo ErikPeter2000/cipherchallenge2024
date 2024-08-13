@@ -2,8 +2,11 @@ package com.core.collections
 
 import com.core.alphabets.BaseAlphabet
 import scala.util.Random
+import scala.annotation.switch
 
 object BiMapExtensions {
+    val MAX_DISPLAY_LINES = 10
+
     extension [T, K](biMap: BiMap[T, K]) {
 
         /** Shuffles the values of the BiMap. Performs the shuffle in-place.
@@ -52,9 +55,8 @@ object BiMapExtensions {
             biMap
         }
 
-        /**
-          * Shuffles the value of a BiMap using a Gaussian distribution to determine how far to swap the values.
-          * Does it in-place, and returns the BiMap instance.
+        /** Shuffles the value of a BiMap using a Gaussian distribution to determine how far to swap the values. Does it
+          * in-place, and returns the BiMap instance.
           *
           * @param standardDeviation
           * @param times
@@ -72,10 +74,6 @@ object BiMapExtensions {
                 biMap.addMapping(key1, value2).addMapping(key2, value1)
             }
             biMap
-        }
-
-        def pretty: String = {
-            biMap.map { case (k, v) => s"  $k: $v" }.mkString("{\n", ", \n", "\n}")
         }
     }
 
