@@ -18,38 +18,24 @@ import com.core.collections.MapExtensions._
 import com.core.collections.BiMapExtensions._
 import scala.util.control.Breaks._
 import com.core.evolutionaryalgorithms.SubstitutionEvolutionaryAlgorithm
+import com.core.ciphers.VigenereCipher
 
 object Main {
     def loadData(): CipherDataBlock[Char] = {
         val path = Paths.get(".\\resources\\text\\Orwell1984.txt")
-        val text = Source.fromFile(path.toFile, "UTF-8").take(2000).mkString.toUpperCase.replaceAll("[^A-Z]", "")
+        val text = Source.fromFile(path.toFile, "UTF-8").take(128).mkString.toUpperCase.replaceAll("[^A-Z]", "")
         new CipherDataBlock(text, UppercaseLetters)
     }
 
     def job(args: Array[String]): Unit = {
         val data = loadData()
-        val key = KeyFactory.createRandomSubstitutionKey(UppercaseLetters, Some(8))
-        val result = SubstitutionCipher.encrypt(data, key).outData
+        val key = "HELLO"
 
-        val freqAnalysis = FrequencyAnalysis.calculateRelative(result).toMap
-        val guessKey = KeyFactory.createReverseSubstitutionKeyFromFrequencies(
-            UppercaseLetters,
-            freqAnalysis,
-            DataTable.unigramFrequenciesChar
-        )
+        val encrypted = VigenereCipher.encrypt(data, key).outData
+        val decrypted = VigenereCipher.decrypt(encrypted, key).outData
 
-        val generations = 30
-        val children = 500
-
-        val now = System.currentTimeMillis()
-
-        val algorithm = new SubstitutionEvolutionaryAlgorithm()
-        val key2 = algorithm.run(result, guessKey, generations, children)
-        val decrypt2 = SubstitutionCipher.decrypt(result, key2).outData
-
-        println(s"Time taken: ${System.currentTimeMillis() - now}ms")
-
-        println(decrypt2.mkString)
+        println(encrypted.mkString)
+        println(decrypted.mkString)
     }
 
     def main(args: Array[String]): Unit = {

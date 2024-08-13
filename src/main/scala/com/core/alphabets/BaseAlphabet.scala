@@ -23,6 +23,7 @@ class BaseAlphabet[T] extends Iterable[(Int, T)] {
     def values = biMap.values
     def apply(index: Int): T = biMap(index)
     def get(key: Int): Option[T] = biMap.get(key)
+    def reverse(value: T): Int = biMap.getReverse(value).get
     def getReverse(key: T): Option[Int] = biMap.getReverse(key)
     def contains(value: T): Boolean = biMap.containsValue(value)
 

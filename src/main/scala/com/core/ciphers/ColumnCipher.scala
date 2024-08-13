@@ -4,17 +4,40 @@ import scala.math._
 import com.core.cipherdata._
 
 object ColumnCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
+
+    /** Encrypts the data using the Columnar Transposition cipher.
+      *
+      * Data should be padded to a multiple of the key size and made from digits 0 to key.size-1, else errors may occur.
+      * Use `data.padTo(targetLength, padCharacter)` to pad the data.
+      *
+      * @param data
+      *   The data to encrypt.
+      * @param key
+      *   A set of integers from 0 to key.size-1, representing the desired order of columns.
+      * @return
+      */
     def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherResult[Char, Char] = {
         val columnSize = (data.length + key.size - 1) / key.size
-        val columns = data.transpose('\u0000', inputWidth=Option(key.size), inputHeight=Option(columnSize)).grouped(columnSize).toList
+        val columns = data.grouped(key.size).toSeq.transpose
         val outData = key.map(columns).flatten
         CipherResult.create(data, outData, data.alphabet)
     }
 
+    /** Decrypts the data using the Columnar Transposition cipher.
+      *
+      * Data should be padded to a multiple of the key size and made from digits 0 to key.size-1, else errors may occur.
+      * Use `data.padTo(targetLength, padCharacter)` to pad the data.
+      *
+      * @param data
+      *   The data to decrypt.
+      * @param key
+      *   A set of integers from 0 to key.size-1, representing the current order of columns.
+      * @return
+      */
     def decrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherResult[Char, Char] = {
-        val columnSize = (data.length + key.size - 1) / key.size        
-        val columns = data.transpose('\u0000', inputWidth=Option(key.size), inputHeight=Option(columnSize)).grouped(columnSize).toList
-        val outData = key.map(x => columns(key.indexOf(x))).flatten
+        val columnSize = (data.length + key.size - 1) / key.size
+        val columns = data.grouped(columnSize).toSeq
+        val outData = (0 to key.size - 1).map(i => columns(key.indexOf(i))).transpose.flatten
         CipherResult.create(data, outData, data.alphabet)
-    }  
+    }
 }
