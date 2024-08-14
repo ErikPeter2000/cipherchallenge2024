@@ -1,5 +1,7 @@
 package com.core.cipherdata
 
+import scala.compiletime.uninitialized
+
 import com.core.alphabets.BaseAlphabet
 
 enum CipherResultStatus:
@@ -12,8 +14,8 @@ enum CipherResultStatus:
   *   The type of the output data in the cipher.
   */
 class CipherResult[T, K] {
-    var inData: CipherDataBlock[T] = _
-    var outData: CipherDataBlock[K] = _
+    var inData: CipherDataBlock[T] = uninitialized
+    var outData: CipherDataBlock[K] = uninitialized
     var status = CipherResultStatus.Unspecified
 }
 

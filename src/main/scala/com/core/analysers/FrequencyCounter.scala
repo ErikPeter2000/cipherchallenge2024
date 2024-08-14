@@ -1,6 +1,7 @@
 package com.core.analysers
 
 import scala.compiletime.uninitialized
+
 import scala.collection.mutable.Map
 import scala.collection.parallel.CollectionConverters._
 import com.core.cipherdata.CipherDataBlock
@@ -17,7 +18,7 @@ object FrequencyCounter {
       * @param phrases
       * @return
       */
-    def calculate(data: CipherDataBlock[Char], phrases: Set[_ <: Iterable[Char]]): Map[Iterable[Char], Int] = {
+    def calculate(data: CipherDataBlock[Char], phrases: Set[? <: Iterable[Char]]): Map[Iterable[Char], Int] = {
         var root = TrieNode.buildTrie(phrases)
         TrieNode.search(data, root)
     }

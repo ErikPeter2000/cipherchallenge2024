@@ -11,7 +11,7 @@ class TrieNode[T] {
     var output: List[Iterable[T]] = List()
 }
 object TrieNode {
-    def buildTrie[T](phrases: Set[_ <: Iterable[T]]): TrieNode[T] = {
+    def buildTrie[T](phrases: Set[? <: Iterable[T]]): TrieNode[T] = {
         val root = new TrieNode[T]
         for (phrase <- phrases) {
             var node = root
