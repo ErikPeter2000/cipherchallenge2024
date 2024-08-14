@@ -7,7 +7,11 @@ import com.core.cipherdata.CipherDataBlock
   *
   * `IoC = Σ(frequency of each letter * (frequency of each letter - 1)) / (n * (n - 1))`
   * 
-  * For pure alphabetic English text, the IoC is around 0.067. Transposition ciphers do not change the IoC.
+  * Where `n` is the length of the data block.
+  * 
+  * For pure alphabetic English text, the IoC is between 0.065 and 0.07. For random text, the IoC is 0.0385 (1/26).
+  * 
+  * Sometimes, the IoC is normalised by multiplying it by the size of the alphabet. This is not done here.
   */
 object IndexOfCoincidence {
     /**

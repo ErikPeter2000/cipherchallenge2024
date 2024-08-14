@@ -3,6 +3,9 @@ package com.core.ciphers
 import scala.math._
 import com.core.cipherdata._
 
+/**
+  * 
+  */
 object ColumnCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
 
     /** Encrypts the data using the Columnar Transposition cipher.

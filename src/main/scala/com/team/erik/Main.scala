@@ -19,26 +19,21 @@ import com.core.evolutionaryalgorithms.SubstitutionEvolutionaryAlgorithm
 import com.core.ciphers.VigenereCipher
 import com.core.collections.KeyPairOrder
 import com.core.collections.IterableExtensions.pretty
-import com.core.analysers.KasiskisTest
+import com.core.analysers._
 
 object Main {
     def loadData(): CipherDataBlock[Char] = {
-        val path = Paths.get(".\\resources\\text\\Orwell1984.txt")
-        val text = Source.fromFile(path.toFile, "UTF-8").take(2000).mkString.toUpperCase.replaceAll("[^A-Z]", "")
+        val path = Paths.get(".\\resources\\text\\DostoevskyCrimeAndPunishment.txt")
+        val text = Source.fromFile(path.toFile, "UTF-8").take(10000).mkString.toUpperCase.replaceAll("[^A-Z]", "")
         new CipherDataBlock(text, UppercaseLetters)
     }
 
     def job(args: Array[String]): Unit = {
         val data = loadData()
-        println(data.mkString)
 
         val key = "HELLOWORLD".toCharArray
         val encrypted = VigenereCipher.encrypt(data, key).outData
-        println(encrypted.mkString)
-
-        val kasiski = KasiskisTest.calculate[Char](encrypted)
-        print(kasiski.pretty(order=KeyPairOrder.ValueDesc, header=("Length", "Score"), roundTo=Option(6)))
-
+        val friedman = FriedmanTest.calculate(encrypted)
     }
 
     def main(args: Array[String]): Unit = {
