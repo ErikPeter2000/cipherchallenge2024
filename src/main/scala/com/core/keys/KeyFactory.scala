@@ -2,14 +2,44 @@ package com.core.keys
 
 import scala.util.Random
 
-import com.core.alphabets.BaseAlphabet
+import com.core.alphabets._
 import com.core.collections.BiMap
 import com.core.alphabets.UppercaseLetters
 
 /** Utility functions for keys based on characters.
   */
 object KeyFactory {
-    val random = new Random()
+    lazy val random = new Random()
+
+    /** Combines a phrase with an alphabet, to create a sequence of distinct letters.
+      *
+      * Useful for generating a different keys.
+      *
+      * @example
+      *   {{{
+      * KeyFactory.combinePhraseWithAlphabet("hello", LowercaseLetters) -> Seq('h', 'e', 'l', 'o', 'a', 'b', 'c', 'd', 'f', 'g', 'i', 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
+      *   }}}
+      *
+      * @param phrase
+      *   The input phrase. Duplicate letters are removed.
+      * @param alphabet
+      *   The target alphabet. All letters in the phrase should be in the alphabet, else errors will occur.
+      * @return
+      *   A sequence of distinct letters.
+      */
+    def combinePhraseWithAlphabet(phrase: String, alphabet: BiMapAlphabet[Char]): IndexedSeq[Char] = {
+        val distinctPhrase = phrase.distinct.filter(alphabet.contains)
+        val letters = new Array[Char](alphabet.size)
+        distinctPhrase.copyToArray(letters)
+        var count = distinctPhrase.length
+        alphabet.foreach { case (index, letter) =>
+            if (!letters.contains(letter)) {
+                letters(count) = letter
+                count += 1
+            }
+        }
+        letters
+    }
 
     /** Creates a substitution key based on the given phrase.
       *
@@ -18,17 +48,8 @@ object KeyFactory {
       * @return
       *   A BiMap representing the substitution key.
       */
-    def createSubstitutionKey(phrase: String, inputAlphabet: BaseAlphabet[Char]): BiMap[Char, Char] = {
-        val distinctPhrase = phrase.distinct.filter(inputAlphabet.contains)
-        val letters = new Array[Char](inputAlphabet.size)
-        distinctPhrase.copyToArray(letters)
-        var count = distinctPhrase.length
-        inputAlphabet.foreach { case (index, letter) =>
-          if (!letters.contains(letter)) {
-            letters(count) = letter
-            count += 1
-          }
-        }
+    def createSubstitutionKey(phrase: String, inputAlphabet: BiMapAlphabet[Char]): BiMap[Char, Char] = {
+        val letters = combinePhraseWithAlphabet(phrase, inputAlphabet)
         return inputAlphabet.createLetterMapAgainst(letters)
     }
 
@@ -39,15 +60,15 @@ object KeyFactory {
       * @return
       *   A BiMap representing the substitution key.
       */
-    def createRandomSubstitutionKey(inputAlphabet: BaseAlphabet[Char], seed: Option[Int] = None): BiMap[Char, Char] = {
+    def createRandomSubstitutionKey(inputAlphabet: BiMapAlphabet[Char], seed: Option[Int] = None): BiMap[Char, Char] = {
         seed.foreach(random.setSeed(_))
         val letters = inputAlphabet.iterator.map(_._2).toSeq
         val shuffledLetters = random.shuffle(letters)
-        return inputAlphabet.createLetterMapAgainst(new BaseAlphabet[Char](shuffledLetters))
+        return inputAlphabet.createLetterMapAgainst(new BiMapAlphabet[Char](shuffledLetters))
     }
 
     def createReverseSubstitutionKeyFromFrequencies[T](
-        inputAlphabet: BaseAlphabet[T],
+        inputAlphabet: Alphabet[T],
         currentFrequencies: Map[T, Double],
         targetFrequencies: Map[T, Double],
         seed: Option[Int] = None
@@ -67,7 +88,7 @@ object KeyFactory {
       * @return
       *   The transposition key.
       */
-    def createTranspositionKey(phrase: String, alphabet: BaseAlphabet[Char]): IndexedSeq[Int] = {
+    def createTranspositionKey(phrase: String, alphabet: BiMapAlphabet[Char]): IndexedSeq[Int] = {
         val phraseSorted = phrase.filter(alphabet.contains)
         val sortedPhrase = alphabet.sortCollection(phraseSorted).toArray
         val indices = phraseSorted.map(x => {
@@ -79,10 +100,9 @@ object KeyFactory {
     }
 
     /** Creates a transposition key based on the given phrase. Repeats the key to the given length. Ignores characters
-      * not in the alphabet.
-      * Length is expected to be a multiple of the key length for correct results.
+      * not in the alphabet. Length is expected to be a multiple of the key length for correct results.
       * @example
-      * {{{createTranspositionKey("hello", LowercaseLetters, 11) -> IndexedSeq(1, 0, 2, 3, 4, 6, 5, 7, 8, 9, 10)}}}
+      *   {{{createTranspositionKey("hello", LowercaseLetters, 11) -> IndexedSeq(1, 0, 2, 3, 4, 6, 5, 7, 8, 9, 10)}}}
       *
       * @param phrase
       *   The phrase to create the key from.
@@ -92,7 +112,7 @@ object KeyFactory {
       *   The length of the key.
       * @return
       */
-    def createTranspositionKey(phrase: String, alphabet: BaseAlphabet[Char], length: Int): IndexedSeq[Int] = {
+    def createTranspositionKey(phrase: String, alphabet: BiMapAlphabet[Char], length: Int): IndexedSeq[Int] = {
         val original = createTranspositionKey(phrase, alphabet)
         return (0 until length).map(i => original(i % original.length) + i / original.length * original.length)
     }

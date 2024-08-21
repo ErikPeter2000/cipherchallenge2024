@@ -53,21 +53,30 @@ class BiMap[K, V] extends Iterable[(K, V)] {
     def getReverse(b: V, default: K): K = reverseMap.getOrElse(b, default)
     def update(a: K, b: V): Unit = addMapping(a, b)
 
-    def remove(a: K) = {
+    def pop(a: K) = {
         forwardMap.remove(a).flatMap { b =>
             reverseMap.remove(b)
             Some(b)
         }
     }
-    def removeReverse(b: V) = {
+    def popReverse(b: V) = {
         reverseMap.remove(b).flatMap { a =>
             forwardMap.remove(a)
             Some(a)
         }
     }
 
+    def remove(a: K) = {
+        pop(a)
+        this
+    }
+    def removeReverse(b: V) = {
+        popReverse(b)
+        this
+    }
+
     def keys: Iterable[K] = forwardMap.keys
-    def values: Iterable[V] = reverseMap.keys
+    def values: Iterable[V] = forwardMap.values
 
     def iterator: Iterator[(K, V)] = forwardMap.iterator
     def containsKey(a: K): Boolean = forwardMap.contains(a)

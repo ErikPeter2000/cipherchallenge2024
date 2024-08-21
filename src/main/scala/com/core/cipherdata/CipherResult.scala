@@ -2,7 +2,7 @@ package com.core.cipherdata
 
 import scala.compiletime.uninitialized
 
-import com.core.alphabets.BaseAlphabet
+import com.core.alphabets.Alphabet
 
 enum CipherResultStatus:
     case Success, Failure, Unspecified
@@ -27,7 +27,7 @@ object CipherResult {
         result.status = CipherResultStatus.Success
         return result
     }
-    def create[T, K](inData: CipherDataBlock[T], outData: Seq[K], outAlphabet: BaseAlphabet[K]): CipherResult[T, K] = {
+    def create[T, K](inData: CipherDataBlock[T], outData: Seq[K], outAlphabet: Alphabet[K]): CipherResult[T, K] = {
         val result = new CipherResult[T, K]()
         result.inData = inData
         result.outData = new CipherDataBlock[K](outData, outAlphabet)

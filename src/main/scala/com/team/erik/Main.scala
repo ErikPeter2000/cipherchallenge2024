@@ -18,17 +18,14 @@ import com.core.cipherdata.CipherDataBlock
 
 object Main {
     def loadData(): CipherDataBlock[Char] = {
-        val path = Paths.get(".\\resources\\text\\DostoevskyCrimeAndPunishment.txt")
-        val text = Source.fromFile(path.toFile, "UTF-8").take(10000).mkString.toUpperCase.replaceAll("[^A-Z]", "")
+        val path = Paths.get(".\\resources\\text\\Orwell1984.txt")
+        val text = Source.fromFile(path.toFile, "UTF-8").take(100).mkString.toUpperCase.replaceAll("[^A-Z]", "")
         new CipherDataBlock(text, UppercaseLetters)
     }
 
     def job(args: Array[String]): Unit = {
         val data = loadData()
-
-        val key = "HELLOWORLD".toCharArray
-        val encrypted = VigenereCipher.encrypt(data, key).outData
-        val friedman = FriedmanTest.calculate(encrypted)
+        println(data.mkString)
     }
 
     def main(args: Array[String]): Unit = {

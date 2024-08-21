@@ -4,7 +4,7 @@ import com.core.cipherdata.CipherDataBlock
 
 class FrequencyCounterTests extends munit.FunSuite {
     test("FrequencyCounter.calculate") {
-        val data = CipherDataBlock.createFrom("ABCDABCDABCDABCD")
+        val data = CipherDataBlock.create("ABCDABCDABCDABCD")
         val keys = Set("AB".toIterable, "CD".toIterable)
         val result = FrequencyCounter.calculate(data, keys)
         val resultData = result.map { case (k, v) => (k.mkString, v) }

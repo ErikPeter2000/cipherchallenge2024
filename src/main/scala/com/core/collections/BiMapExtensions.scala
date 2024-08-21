@@ -1,6 +1,6 @@
 package com.core.collections
 
-import com.core.alphabets.BaseAlphabet
+import com.core.alphabets.BiMapAlphabet
 import scala.util.Random
 import scala.annotation.switch
 
@@ -63,7 +63,7 @@ object BiMapExtensions {
           * @param alphabet
           * @return
           */
-        def swapElementsGaussian(standardDeviation: Double, iterations: Int, alphabet: BaseAlphabet[T]): BiMap[T, K] = {
+        def swapElementsGaussian(standardDeviation: Double, iterations: Int, alphabet: BiMapAlphabet[T]): BiMap[T, K] = {
             for (_ <- 0 until iterations) {
                 val index1 = Random.nextInt(alphabet.size)
                 val index2 = Math.floorMod(index1 + (Random.nextGaussian() * standardDeviation).toInt, alphabet.size)

@@ -4,7 +4,7 @@ import com.core.collections.BiMap
 
 /** An alphabet containing uppercase letters and digits. A-Z (0-25) and 0-9 (26-35).
   */
-object UppercaseLettersDigits extends BaseAlphabet[Char] {
+object UppercaseLettersDigits extends BiMapAlphabet[Char] {
     protected override val biMap = new BiMap[Int, Char](
         0 -> 'A',
         1 -> 'B',

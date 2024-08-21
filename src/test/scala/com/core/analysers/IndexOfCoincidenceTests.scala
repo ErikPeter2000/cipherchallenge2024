@@ -1,7 +1,6 @@
 package com.core.analysers
 
 import com.core.cipherdata.CipherDataBlock
-import com.core.alphabets.BaseAlphabet
 import com.core.alphabets.UppercaseLetters
 
 class IndexOfCoincidenceTests extends munit.FunSuite {

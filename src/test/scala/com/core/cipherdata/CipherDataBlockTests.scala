@@ -5,15 +5,15 @@ import com.core.alphabets._
 class CipherDataBlockTest extends munit.FunSuite {
 
     test("CipherDataBlock should be initialized with a custom alphabet") {
-        val customAlphabet = new BaseAlphabet[Char] {
+        val BiMapAlphabet = new BiMapAlphabet[Char] {
             biMap ++= Seq(
                 0 -> 'A',
                 1 -> 'B',
                 2 -> 'C'
             )
         }
-        val cipherDataBlock = CipherDataBlock.empty(customAlphabet)
-        assertEquals(cipherDataBlock.alphabet, customAlphabet)
+        val cipherDataBlock = CipherDataBlock.empty(BiMapAlphabet)
+        assertEquals(cipherDataBlock.alphabet, BiMapAlphabet)
         assertEquals(cipherDataBlock.length, 0)
     }
 

@@ -4,7 +4,7 @@ import com.core.collections._
 
 /** Represents the lowercase alphabet. a-z (0-25).
   */
-object LowercaseLetters extends BaseAlphabet[Char] {
+object LowercaseLetters extends BiMapAlphabet[Char] {
     protected override val biMap: BiMap[Int, Char] = new BiMap(
         0 -> 'a',
         1 -> 'b',

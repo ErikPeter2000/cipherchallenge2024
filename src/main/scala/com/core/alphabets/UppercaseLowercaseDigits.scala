@@ -4,7 +4,7 @@ import com.core.collections._
 
 /** Represents the uppercase and lowercase letters, and digits of the English alphabet. A-Z (0-25) a-z (26-51) and 0-9 (52-61).
   */
-object UppercaseLowercaseDigits extends BaseAlphabet[Char] {
+object UppercaseLowercaseDigits extends BiMapAlphabet[Char] {
     protected override val biMap: BiMap[Int, Char] = new BiMap(
         0 -> 'A',
         1 -> 'B',

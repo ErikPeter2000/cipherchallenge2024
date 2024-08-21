@@ -29,7 +29,7 @@ class AlphabetTests extends munit.FunSuite {
     }
 
     test("CreateLetterMapAgainst should map correctly with Seq") {
-        val thisAlphabet = new BaseAlphabet[Char](IndexedSeq('A', 'B', 'C', 'D', 'E'))
+        val thisAlphabet = new BiMapAlphabet[Char](IndexedSeq('A', 'B', 'C', 'D', 'E'))
         val map = thisAlphabet.createLetterMapAgainst(Seq('a', 'b', 'c', 'd', 'e'))
         assertEquals(map.size, 5)
         assertEquals(map.get('A'), Some('a'))

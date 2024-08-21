@@ -7,10 +7,10 @@ import com.core.alphabets._
   * @tparam T
   *   The type of the data in the cipher, usually `Char`.
   */
-class CipherDataBlock[T](val alphabet: BaseAlphabet[T]) extends Seq[T] {
+class CipherDataBlock[T](val alphabet: Alphabet[T]) extends Seq[T] {
     private var data: Seq[T] = Seq.empty[T]
 
-    def this(data: Seq[T], alphabet: BaseAlphabet[T]) = {
+    def this(data: Seq[T], alphabet: Alphabet[T]) = {
         this(alphabet)
         this.data = data
     }
@@ -71,7 +71,7 @@ object CipherDataBlock {
       * @return
       *   A new CipherDataBlock with the given alphabet and data.
       */
-    def empty[T](alphabet: BaseAlphabet[T]): CipherDataBlock[T] = {
+    def empty[T](alphabet: Alphabet[T]): CipherDataBlock[T] = {
         new CipherDataBlock[T](alphabet)
     }
 
@@ -83,13 +83,13 @@ object CipherDataBlock {
         new CipherDataBlock[Char](UppercaseLetters)
     }
 
-    def createFrom[T](
-        alphabet: BaseAlphabet[T],
+    def create[T](
+        alphabet: Alphabet[T],
         data: Seq[T]
     ): CipherDataBlock[T] = {
         new CipherDataBlock[T](data, alphabet)
     }
-    def createFrom(data: String): CipherDataBlock[Char] = {
+    def create(data: String): CipherDataBlock[Char] = {
         new CipherDataBlock[Char](data, UppercaseLetters)
     }
 }
