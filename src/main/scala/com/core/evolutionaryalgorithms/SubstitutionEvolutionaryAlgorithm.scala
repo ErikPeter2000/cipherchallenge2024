@@ -17,7 +17,7 @@ class SubstitutionEvolutionaryAlgorithm
     extends BaseEvolutionaryAlgorithm[Char, Char, BiMap[Char, Char]](
         SubstitutionCipher,
         (result) => {
-            val counts = FrequencyCounter.calculate(result.outData, Constants.commonTrie)
+            val counts = FrequencyCounter.calculate(result, Constants.commonTrie)
             val score = counts.map { case (word, count) =>
                 count.toDouble * (word.size - 2) * (word.size - 2)
             }.sum

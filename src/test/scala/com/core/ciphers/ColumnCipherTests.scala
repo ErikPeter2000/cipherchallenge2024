@@ -11,7 +11,7 @@ class ColumnCipherTests extends munit.FunSuite {
         val expected = "GELTTBTDAAEKEKHESMIBRWAESGLIITOERGTINHYGERIAHDNLHCRITENSHORPNAIOYRDLWTNRWOTCEOLOWRCAPNCSSIINTIS"
 
         val data = new CipherDataBlock(plaintext, UppercaseLetters)
-        val result = ColumnCipher.encrypt(data, key).outData.mkString
+        val result = ColumnCipher.encrypt(data, key).mkString
 
         assertEquals(result, expected)
     }
@@ -22,7 +22,7 @@ class ColumnCipherTests extends munit.FunSuite {
         val expected = "BYGEORGEORWELLPARTONEITWASABRIGHTCOLDDAYINAPRILANDTHECLOCKSWERESTRIKINGTHIRTEENWINSTONSMITHHISC"
 
         val data = new CipherDataBlock(ciphertext, UppercaseLetters)
-        val result = ColumnCipher.decrypt(data, key).outData.mkString
+        val result = ColumnCipher.decrypt(data, key).mkString
 
         assertEquals(result, expected)
     }

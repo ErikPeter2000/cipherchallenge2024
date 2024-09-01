@@ -19,6 +19,8 @@ class CipherResult[T, K] {
     var status = CipherResultStatus.Unspecified
 }
 
+
+@deprecated("Return the CipherDataBlock instead.", "0.1")
 object CipherResult {
     def create[T, K](inData: CipherDataBlock[T], outData: CipherDataBlock[K]): CipherResult[T, K] = {
         val result = new CipherResult[T, K]()

@@ -16,7 +16,7 @@ class SubstitutionCipherTest extends FunSuite {
             'O' -> 'R'
         )
         val result = SubstitutionCipher.encrypt(data, key)
-        assertEquals(result.outData.mkString, "KHOOR")
+        assertEquals(result.mkString, "KHOOR")
     }
 
     test("SubstitutionCipher decrypts correctly with given key") {
@@ -28,7 +28,7 @@ class SubstitutionCipherTest extends FunSuite {
             'O' -> 'R'
         )
         val result = SubstitutionCipher.decrypt(data, key)
-        assertEquals(result.outData.mkString, "HELLO")
+        assertEquals(result.mkString, "HELLO")
     }
 
     test("SubstitutionCipher handles empty input") {
@@ -36,8 +36,8 @@ class SubstitutionCipherTest extends FunSuite {
         val key = new BiMap[Char, Char]()
         val encryptedResult = SubstitutionCipher.encrypt(data, key)
         val decryptedResult = SubstitutionCipher.decrypt(data, key)
-        assertEquals(encryptedResult.outData.mkString, "")
-        assertEquals(decryptedResult.outData.mkString, "")
+        assertEquals(encryptedResult.mkString, "")
+        assertEquals(decryptedResult.mkString, "")
     }
 
     test("SubstitutionCipher handles non-matching characters") {
@@ -48,7 +48,7 @@ class SubstitutionCipherTest extends FunSuite {
             // 'L' and 'O' are not in the key
         )
         val result = SubstitutionCipher.encrypt(data, key)
-        assertEquals(result.outData.mkString, "KHLLO") // 'L' and 'O' remain unchanged
+        assertEquals(result.mkString, "KHLLO") // 'L' and 'O' remain unchanged
     }
 
     test("SubstitutionCipher decrypts correctly with non-matching characters") {
@@ -59,6 +59,6 @@ class SubstitutionCipherTest extends FunSuite {
             // 'L' and 'O' are not in the key
         )
         val result = SubstitutionCipher.decrypt(data, key)
-        assertEquals(result.outData.mkString, "HEOOR") // 'O' and 'R' remain unchanged
+        assertEquals(result.mkString, "HEOOR") // 'O' and 'R' remain unchanged
     }
 }

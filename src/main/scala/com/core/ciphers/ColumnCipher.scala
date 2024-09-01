@@ -19,11 +19,11 @@ object ColumnCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
       *   A set of integers from 0 to key.size-1, representing the desired order of columns.
       * @return
       */
-    def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherResult[Char, Char] = {
+    def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherDataBlock[Char] = {
         val columnSize = (data.length + key.size - 1) / key.size
         val columns = data.grouped(key.size).toSeq.transpose
-        val outData = key.map(columns).flatten
-        CipherResult.create(data, outData, data.alphabet)
+        val encrypted = key.map(columns).flatten
+        CipherDataBlock.createFrom(encrypted, data.alphabet)
     }
 
     /** Decrypts the data using the Columnar Transposition cipher.
@@ -37,10 +37,10 @@ object ColumnCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
       *   A set of integers from 0 to key.size-1, representing the current order of columns.
       * @return
       */
-    def decrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherResult[Char, Char] = {
+    def decrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherDataBlock[Char] = {
         val columnSize = (data.length + key.size - 1) / key.size
         val columns = data.grouped(columnSize).toSeq
-        val outData = (0 to key.size - 1).map(i => columns(key.indexOf(i))).transpose.flatten
-        CipherResult.create(data, outData, data.alphabet)
+        val decrypted = (0 to key.size - 1).map(i => columns(key.indexOf(i))).transpose.flatten
+        CipherDataBlock.createFrom(decrypted, data.alphabet)
     }
 }

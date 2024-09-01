@@ -8,21 +8,21 @@ import com.core.cipherdata._
   * Like all transposition ciphers, the index of coincidence is the same as the plaintext. The frequency distribution is also the same as the plaintext.
   */
 object TranspositionCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
-    def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherResult[Char, Char] = {
+    def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherDataBlock[Char] = {
         val outData = data.grouped(key.size).flatMap { group =>
             key.indices.flatMap { i =>
                 group.lift(key(i))
             }
         }.toIndexedSeq
-        CipherResult.create(data, outData, data.alphabet)
+        CipherDataBlock.createFrom(outData, data.alphabet)
     }
 
-    def decrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherResult[Char, Char] = {
+    def decrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherDataBlock[Char] = {
         val outData = data.grouped(key.size).flatMap { group =>
             key.indices.flatMap { i =>
                 group.lift(key.indexOf(i))
             }
         }.toIndexedSeq
-        CipherResult.create(data, outData, data.alphabet)
+        CipherDataBlock.createFrom(outData, data.alphabet)
     }
 }

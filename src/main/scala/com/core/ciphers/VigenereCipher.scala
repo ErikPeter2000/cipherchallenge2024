@@ -14,7 +14,7 @@ import com.core.cipherdata.CipherResult
   * Where `L` is the key length, `K_p` is the IoC of the plaintext, `K_t` is the IoC of the text, and `K_o` is the IoC of the alphabet.
   */
 object VigenereCipher extends BaseCipher[Char, Char, Seq[Char]] {
-    def encrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherResult[Char, Char] = {
+    def encrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val encrypted = data.zipWithIndex.map { case (c, i) =>
             val shift = key(i % key.length)
@@ -22,9 +22,9 @@ object VigenereCipher extends BaseCipher[Char, Char, Seq[Char]] {
             val charIndex = alphabet.reverse(c)
             data.alphabet((charIndex + shiftIndex) % data.alphabet.size)
         }
-        CipherResult.create(data, encrypted, data.alphabet)
+        CipherDataBlock.createFrom(encrypted, alphabet)
     }
-    def decrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherResult[Char, Char] = {
+    def decrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val decrypted = data.zipWithIndex.map { case (c, i) =>
             val shift = key(i % key.length)
@@ -32,6 +32,6 @@ object VigenereCipher extends BaseCipher[Char, Char, Seq[Char]] {
             val charIndex = alphabet.reverse(c)
             data.alphabet((charIndex - shiftIndex + data.alphabet.size) % data.alphabet.size)
         }
-        CipherResult.create(data, decrypted, data.alphabet)
+        CipherDataBlock.createFrom(decrypted, alphabet)
     }
 }

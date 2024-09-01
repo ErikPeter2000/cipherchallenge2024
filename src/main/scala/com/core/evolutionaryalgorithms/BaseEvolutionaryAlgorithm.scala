@@ -23,15 +23,15 @@ import com.core.cipherdata.CipherResult
   *   passed **by reference** and should be **cloned** before modification.
   *
   * @tparam T
-  *   The type of the **plaintext** data; what comes out of the cipher.
+  *   The type of the **plaintext** data; what comes out of the algorithm.
   * @tparam K
-  *   The type of the **ciphertext** data; what goes into the cipher.
+  *   The type of the **ciphertext** data; what goes into the algorithm.
   * @tparam V
   *   The type of the key used by the cipher.
   */
 class BaseEvolutionaryAlgorithm[T, K, V](
     cipher: BaseCipher[T, K, V],
-    evaluationFunction: (CipherResult[K, T]) => Double,
+    evaluationFunction: (CipherDataBlock[T]) => Double,
     randomiser: (
         currentKey: V,
         currentScore: Double,

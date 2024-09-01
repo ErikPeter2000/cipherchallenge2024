@@ -27,7 +27,7 @@ object Main {
         val data = loadData()
 
         val key = "HELLOWORLD".toCharArray
-        val encrypted = VigenereCipher.encrypt(data, key).outData
+        val encrypted = VigenereCipher.encrypt(data, key)
         val friedman = FriedmanTest.calculate(encrypted)
     }
 

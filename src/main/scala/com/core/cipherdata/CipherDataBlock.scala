@@ -84,8 +84,8 @@ object CipherDataBlock {
     }
 
     def createFrom[T](
-        alphabet: BaseAlphabet[T],
-        data: Seq[T]
+        data: Seq[T],
+        alphabet: BaseAlphabet[T]
     ): CipherDataBlock[T] = {
         new CipherDataBlock[T](data, alphabet)
     }
