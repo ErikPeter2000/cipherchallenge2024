@@ -1,3 +1,5 @@
+package com.core.ciphers
+
 import munit.FunSuite
 
 import com.core.ciphers.SubstitutionCipher

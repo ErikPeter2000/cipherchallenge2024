@@ -13,7 +13,7 @@ import com.core.alphabets.UppercaseLetters
   * Polybius ciphertext can be converted to substitution plaintext by taking every two digits and converting them to a letter using the grid.
   */
 object PolybiusCipher extends BaseCipher[Char, Int, IndexedSeq[Char]] {
-    def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Char], width: Int): CipherResult[Char, Int] = {
+    def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Char], width: Int): CipherDataBlock[Int] = {
         var result = new scala.collection.mutable.ArrayBuffer[Int]()
         data.foreach { x =>
             val index = key.indexOf(x)
@@ -25,10 +25,10 @@ object PolybiusCipher extends BaseCipher[Char, Int, IndexedSeq[Char]] {
                 result += index % width
             }
         }
-        CipherResult.create(data, result.toSeq, PosIntAlphabet)
+        CipherDataBlock.createFrom(result.toSeq, PosIntAlphabet)
     }
 
-    def decrypt(data: CipherDataBlock[Int], key: IndexedSeq[Char], width: Int): CipherResult[Int, Char] = {
+    def decrypt(data: CipherDataBlock[Int], key: IndexedSeq[Char], width: Int): CipherDataBlock[Char] = {
         var result = new scala.collection.mutable.ArrayBuffer[Char]()
         data.grouped(2).foreach { x =>
             if (x(0) == -1 || x.size < 2) {
@@ -37,15 +37,15 @@ object PolybiusCipher extends BaseCipher[Char, Int, IndexedSeq[Char]] {
                 result += key(x(0) * width + x(1))
             }
         }
-        return CipherResult.create(data, result.toSeq, UppercaseLetters)
+        CipherDataBlock.createFrom(result.toSeq, UppercaseLetters)
     }
 
-    def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Char]): CipherResult[Char, Int] = {
+    def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Char]): CipherDataBlock[Int] = {
         val width = Math.ceil(Math.sqrt(key.size)).toInt
         return encrypt(data, key, width)
     }
 
-    def decrypt(data: CipherDataBlock[Int], key: IndexedSeq[Char]): CipherResult[Int, Char] = {
+    def decrypt(data: CipherDataBlock[Int], key: IndexedSeq[Char]): CipherDataBlock[Char] = {
         val width = Math.ceil(Math.sqrt(key.size)).toInt
         return decrypt(data, key, width)
     }
