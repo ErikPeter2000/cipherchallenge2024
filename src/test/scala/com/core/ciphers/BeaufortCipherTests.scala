@@ -10,7 +10,7 @@ class BeaufortCipherTests extends munit.FunSuite {
         val expected = "JGSGQHEAKTIUZTJKNFWRUCLCKMYJNQEXFIQNHBYMWLKPHCTYXBFDAWZQWAMCGNUSLHCUQXYFDWHRAUXIQXMFWRGYWFDXQSC"
 
         val data = new CipherDataBlock(plaintext, UppercaseLetters)
-        val result = BeaufortCipher.encrypt(data, key).outData.mkString
+        val result = BeaufortCipher.encrypt(data, key).mkString
 
         assertEquals(result, expected)
     }
@@ -20,7 +20,7 @@ class BeaufortCipherTests extends munit.FunSuite {
         val expected = "BYGEORGEORWELLPARTONEITWASABRIGHTCOLDDAYINAPRILANDTHECLOCKSWERESTRIKINGTHIRTEENWINSTONSMITHHISC"
 
         val data = new CipherDataBlock(ciphertext, UppercaseLetters)
-        val result = BeaufortCipher.decrypt(data, key).outData.mkString
+        val result = BeaufortCipher.decrypt(data, key).mkString
 
         assertEquals(result, expected)
     }

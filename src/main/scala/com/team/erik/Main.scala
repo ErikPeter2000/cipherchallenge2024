@@ -25,7 +25,15 @@ object Main {
 
     def job(args: Array[String]): Unit = {
         val data = loadData()
-        println(data.mkString)
+
+        val key = KeyFactory.createRandomSubstitutionKey(UppercaseLetters)
+        val encrypted = SubstitutionCipher.encrypt(data, key)
+
+        val frequencies = FrequencyAnalysis.relative(encrypted).toMap
+        val guessKey = KeyFactory.createSubstitutionKeyFromFrequencies(frequencies)
+        val breaker = new SubstitutionEvolutionaryAlgorithm()
+        val result = breaker.run(encrypted, guessKey, 30 , 500)
+        println(result.outData.mkString)
     }
 
     def main(args: Array[String]): Unit = {

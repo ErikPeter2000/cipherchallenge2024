@@ -23,15 +23,15 @@ import com.core.cipherdata.CipherResult
   *   passed **by reference** and should be **cloned** before modification.
   *
   * @tparam T
-  *   The type of the **plaintext** data; what comes out of the cipher.
+  *   The type of the **plaintext** data; what comes out of the algorithm.
   * @tparam K
-  *   The type of the **ciphertext** data; what goes into the cipher.
+  *   The type of the **ciphertext** data; what goes into the algorithm.
   * @tparam V
   *   The type of the key used by the cipher.
   */
-class BaseEvolutionaryAlgorithm[T, K, V](
+trait BaseEvolutionaryAlgorithm[T, K, V](
     cipher: BaseCipher[T, K, V],
-    evaluationFunction: (CipherResult[K, T]) => Double,
+    evaluationFunction: (CipherDataBlock[T]) => Double,
     randomiser: (
         currentKey: V,
         currentScore: Double,
@@ -41,25 +41,46 @@ class BaseEvolutionaryAlgorithm[T, K, V](
         maxChildren: Int
     ) => V
 ) {
-    def run(data: CipherDataBlock[K], initialKey: V, generations: Int, children: Int): V = {
+
+    /** Run the evolutionary algorithm to break the cipher.
+      * @param data
+      *   The encrypted ciphertext data to decrypt.
+      * @param initialKey
+      *   The initial key to start the algorithm with.
+      * @param generations
+      *   The number of generations to run the algorithm for.
+      * @param children
+      *   The number of children to generate each generation.
+      * @return
+      *   The key that was found to be the best.
+      */
+    def run(data: CipherDataBlock[K], initialKey: V, generations: Int, children: Int): EvolutionaryAlgorithmResult[T, V] = {
+        // Initial key, plaintext, and score
         var currentKey = initialKey
-        var currentScore = evaluationFunction(cipher.decrypt(data, currentKey))
+        var currentPlaintext = cipher.decrypt(data, currentKey)
+        var currentScore = evaluationFunction(currentPlaintext)
+
+        // Run the algorithm for the specified number of generations
         for (generation <- 0 until generations) {
+            // Iterate over children in parallel and select the best
             val newKeyScorePairs = (0 to children).par.map { childIndex =>
                 val childKey = randomiser(currentKey, currentScore, generation, childIndex, generations, children)
-                val childScore = evaluationFunction(cipher.decrypt(data, childKey))
-                if (childScore > currentScore) {
-                    currentKey = childKey
-                    currentScore = childScore
-                }
-                (childKey, childScore)
+                val childPlainText = cipher.decrypt(data, childKey)
+                val childScore = evaluationFunction(childPlainText)
+                // Return a tuple of the key, plaintext, and score
+                (childKey, childPlainText, childScore)
             }
-            val bestChild = newKeyScorePairs.maxBy(_._2)
-            if (bestChild._2 > currentScore) {
+
+            // Select the best child
+            val bestChild = newKeyScorePairs.maxBy(_._3)
+            if (bestChild._3 > currentScore) {
                 currentKey = bestChild._1
-                currentScore = bestChild._2
+                currentPlaintext = bestChild._2
+                currentScore = bestChild._3
             }
         }
-        currentKey
+
+        // Return the best key, plaintext, and score
+        new EvolutionaryAlgorithmResult[T, V](currentKey, currentPlaintext, currentScore)
     }
 }

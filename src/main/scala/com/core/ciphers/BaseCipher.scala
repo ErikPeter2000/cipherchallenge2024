@@ -10,7 +10,7 @@ import com.core.cipherdata._
   * @tparam V
   *   The type of the key used in the cipher.
   */
-trait BaseCipher[T, K, V] {
-    def encrypt(data: CipherDataBlock[T], key: V): CipherResult[T, K]
-    def decrypt(data: CipherDataBlock[K], key: V): CipherResult[K, T]
+abstract trait BaseCipher[T, K, V] {
+    def encrypt(data: CipherDataBlock[T], key: V): CipherDataBlock[K]
+    def decrypt(data: CipherDataBlock[K], key: V): CipherDataBlock[T]
 }

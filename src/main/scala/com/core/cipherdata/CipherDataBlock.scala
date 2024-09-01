@@ -83,9 +83,9 @@ object CipherDataBlock {
         new CipherDataBlock[Char](UppercaseLetters)
     }
 
-    def create[T](
-        alphabet: Alphabet[T],
-        data: Seq[T]
+    def createFrom[T](
+        data: Seq[T],
+        alphabet: BaseAlphabet[T]
     ): CipherDataBlock[T] = {
         new CipherDataBlock[T](data, alphabet)
     }

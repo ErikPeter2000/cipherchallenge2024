@@ -8,17 +8,17 @@ import com.core.cipherdata._
   * The Caesar cipher will have a similar frequency distribution to the plaintext, and an identical index of coincidence.
   */
 object CaesarCipher extends BaseCipher[Char, Char, Int] {
-    def encrypt(data: CipherDataBlock[Char], key: Int): CipherResult[Char, Char] = {
+    def encrypt(data: CipherDataBlock[Char], key: Int): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val plaintext = data.map(alphabet.getReverse)
-        val ciphertext = plaintext.map(x => (x.get + key) % alphabet.size).map(alphabet.get(_).get)
-        CipherResult.create(data, ciphertext, alphabet)
+        val encrypted = plaintext.map(x => (x.get + key) % alphabet.size).map(alphabet(_))
+        CipherDataBlock.createFrom(encrypted, alphabet)
     }
 
-    def decrypt(data: CipherDataBlock[Char], key: Int): CipherResult[Char, Char] = {
+    def decrypt(data: CipherDataBlock[Char], key: Int): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val ciphertext = data.map(alphabet.getReverse)
-        val plaintext = ciphertext.map(x => (x.get - key + alphabet.size) % alphabet.size).map(alphabet.get(_).get)
-        CipherResult.create(data, plaintext, alphabet)
+        val decrypted = ciphertext.map(x => (x.get - key + alphabet.size) % alphabet.size).map(alphabet(_))
+        CipherDataBlock.createFrom(decrypted, alphabet)
     }
 }

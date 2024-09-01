@@ -19,7 +19,7 @@ Scala is a statically-typed language that runs on the Java Virtual Machine (JVM)
  - Challenge solutions: [src/main/scala/com/challenges](./src/main/scala/com/challenges/)
  - Code for individual team members: [src/main/scala/com/team](./src/main/scala/com/team/)
  - Unit tests: [src/test/scala/com](./src/test/scala/com)
- - Data and Tables: [resources/data](./resources/data)
+ - Data, texts and tables: [resources/](./resources/)
 
 ## Code Standards
  `.scalafmt.conf` is used to enforce code standards. The metals extension can automatically format your code in VSCode with `Shift + Alt + F`.

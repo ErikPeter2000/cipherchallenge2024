@@ -5,6 +5,7 @@ import scala.util.Random
 import com.core.alphabets._
 import com.core.collections.BiMap
 import com.core.alphabets.UppercaseLetters
+import com.core.data.DataTable
 
 /** Utility functions for keys based on characters.
   */
@@ -67,15 +68,48 @@ object KeyFactory {
         return inputAlphabet.createLetterMapAgainst(new BiMapAlphabet[Char](shuffledLetters))
     }
 
-    def createReverseSubstitutionKeyFromFrequencies[T](
-        inputAlphabet: Alphabet[T],
+    /** Creates a substitution key based on the given frequencies.
+      *
+      * The input alphabet is assumed to be ciphertext. The BiMap produced will map data from **normalFrequencies** to
+      * **currentFrequencies**.
+      *
+      * This is useful for decrypting a substitution cipher using frequency analysis.
+      *
+      * @param inputAlphabet
+      *   The alphabet to create the key from.
+      * @param currentFrequencies
+      *   The frequencies of the current data.
+      * @param normalFrequencies
+      *   The frequencies of the target data.
+      * @return
+      *   A BiMap representing the substitution key.
+      */
+    def createSubstitutionKeyFromFrequencies[T](
+        inputAlphabet: BiMapAlphabet[T],
         currentFrequencies: Map[T, Double],
-        targetFrequencies: Map[T, Double],
-        seed: Option[Int] = None
+        normalFrequencies: Map[T, Double]
     ): BiMap[T, T] = {
         val inKeys = currentFrequencies.keys.toSeq.sortBy(currentFrequencies(_))
-        val outKeys = targetFrequencies.keys.toSeq.sortBy(targetFrequencies(_))
+        val outKeys = normalFrequencies.keys.toSeq.sortBy(normalFrequencies(_))
         new BiMap[T, T](outKeys.zip(inKeys))
+    }
+
+    /** Creates a substitution key based on the given frequencies.
+      *
+      * The input alphabet is assumed to be ciphertext. The BiMap produced will map data of **normalFrequencies** to
+      * **currentFrequencies**.
+      *
+      * The **normalFrequencies** are assumed to be the english letter frequencies.
+      * @param currentFrequencies
+      * @return
+      */
+    def createSubstitutionKeyFromFrequencies(
+        currentFrequencies: Map[Char, Double]
+    ): BiMap[Char, Char] = {
+        val inKeys = currentFrequencies.keys.toSeq.sortBy(currentFrequencies(_))
+        val targetFrequencies = DataTable.unigramFrequenciesChar
+        val outKeys = targetFrequencies.keys.toSeq.sortBy(targetFrequencies(_))
+        new BiMap[Char, Char](outKeys.zip(inKeys))
     }
 
     /** Creates a transposition key based on the given phrase. Ignores characters not in the alphabet. Example: "hello"

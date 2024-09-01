@@ -10,7 +10,7 @@ class VigenereCipherTests extends munit.FunSuite {
         val expected = "LCEOSPQIMBACVPNKVRYRCSXUKWYLVGQLRMSJNHYIMLKTPSPYXHRRIAVSAUWUOVCCXPSOGXKRRMPDICXAGXWRYRQWMRRLGCG"
 
         val data = new CipherDataBlock(plaintext, UppercaseLetters)
-        val result = VigenereCipher.encrypt(data, key).outData.mkString
+        val result = VigenereCipher.encrypt(data, key).mkString
 
         assertEquals(result, expected)
     }
@@ -20,7 +20,7 @@ class VigenereCipherTests extends munit.FunSuite {
         val expected = "BYGEORGEORWELLPARTONEITWASABRIGHTCOLDDAYINAPRILANDTHECLOCKSWERESTRIKINGTHIRTEENWINSTONSMITHHISC"
 
         val data = new CipherDataBlock(ciphertext, UppercaseLetters)
-        val result = VigenereCipher.decrypt(data, key).outData.mkString
+        val result = VigenereCipher.decrypt(data, key).mkString
 
         assertEquals(result, expected)
     }

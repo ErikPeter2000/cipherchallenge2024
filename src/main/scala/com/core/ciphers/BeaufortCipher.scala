@@ -8,7 +8,7 @@ import com.core.cipherdata.CipherResult
   * It is also susceptible to Kasiski examination.
   */
 object BeaufortCipher extends BaseCipher[Char, Char, Seq[Char]] {
-    def encrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherResult[Char, Char] = {
+    def encrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val encrypted = data.zipWithIndex.map { case (c, i) =>
             val shift = key(i % key.length)
@@ -16,9 +16,9 @@ object BeaufortCipher extends BaseCipher[Char, Char, Seq[Char]] {
             val charIndex = alphabet.reverse(c)
             data.alphabet((shiftIndex - charIndex + data.alphabet.size) % data.alphabet.size)
         }
-        CipherResult.create(data, encrypted, data.alphabet)
+        CipherDataBlock.createFrom(encrypted, alphabet)
     }
-    def decrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherResult[Char, Char] = {
+    def decrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val decrypted = data.zipWithIndex.map { case (c, i) =>
             val shift = key(i % key.length)
@@ -26,6 +26,6 @@ object BeaufortCipher extends BaseCipher[Char, Char, Seq[Char]] {
             val charIndex = alphabet.reverse(c)
             data.alphabet((shiftIndex - charIndex + data.alphabet.size) % data.alphabet.size)
         }
-        CipherResult.create(data, decrypted, data.alphabet)
+        CipherDataBlock.createFrom(decrypted, alphabet)
     }
 }

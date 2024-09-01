@@ -8,14 +8,14 @@ class CaesarCipherTest extends munit.FunSuite {
         val data = new CipherDataBlock("HELLO", UppercaseLetters)
         val key = 3
         val result = CaesarCipher.encrypt(data, key)
-        assert(result.outData.mkString == "KHOOR")
+        assert(result.mkString == "KHOOR")
     }
 
     test("CaesarCipher decrypts correctly with key 3") {
         val data = new CipherDataBlock("KHOOR", UppercaseLetters)
         val key = 3
         val result = CaesarCipher.decrypt(data, key)
-        assert(result.outData.mkString == "HELLO")
+        assert(result.mkString == "HELLO")
     }
 
     test("CaesarCipher handles empty input") {
@@ -23,21 +23,21 @@ class CaesarCipherTest extends munit.FunSuite {
         val key = 3
         val encryptedResult = CaesarCipher.encrypt(data, key)
         val decryptedResult = CaesarCipher.decrypt(data, key)
-        assert(encryptedResult.outData.mkString == "")
-        assert(decryptedResult.outData.mkString == "")
+        assert(encryptedResult.mkString == "")
+        assert(decryptedResult.mkString == "")
     }
 
     test("CaesarCipher handles key wrap around") {
         val data = new CipherDataBlock("XYZ", UppercaseLetters)
         val key = 3
         val result = CaesarCipher.encrypt(data, key)
-        assert(result.outData.mkString == "ABC")
+        assert(result.mkString == "ABC")
     }
 
     test("CaesarCipher decrypts correctly with key wrap around") {
         val data = new CipherDataBlock("ABC", UppercaseLetters)
         val key = 3
         val result = CaesarCipher.decrypt(data, key)
-        assert(result.outData.mkString == "XYZ")
+        assert(result.mkString == "XYZ")
     }
 }
