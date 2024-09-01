@@ -11,8 +11,8 @@ object BeaufortCipher extends BaseCipher[Char, Char, Seq[Char]] {
     def encrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val encrypted = data.zipWithIndex.map { case (c, i) =>
-            val shift = key(i % key.length)
-            val shiftIndex = alphabet.reverse(shift)
+            val shiftValue = key(i % key.length)
+            val shiftIndex = alphabet.reverse(shiftValue)
             val charIndex = alphabet.reverse(c)
             data.alphabet((shiftIndex - charIndex + data.alphabet.size) % data.alphabet.size)
         }
@@ -21,8 +21,8 @@ object BeaufortCipher extends BaseCipher[Char, Char, Seq[Char]] {
     def decrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val decrypted = data.zipWithIndex.map { case (c, i) =>
-            val shift = key(i % key.length)
-            val shiftIndex = alphabet.reverse(shift)
+            val shiftValue = key(i % key.length)
+            val shiftIndex = alphabet.reverse(shiftValue)
             val charIndex = alphabet.reverse(c)
             data.alphabet((shiftIndex - charIndex + data.alphabet.size) % data.alphabet.size)
         }

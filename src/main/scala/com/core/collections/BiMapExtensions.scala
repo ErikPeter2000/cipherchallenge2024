@@ -9,7 +9,7 @@ object BiMapExtensions {
 
     extension [T, K](biMap: BiMap[T, K]) {
 
-        /** Shuffles the values of the BiMap. Performs the shuffle in-place.
+        /** Shuffles the values of the BiMap. Performs the shuffle in-place, and returns the BiMap
           */
         def shuffleValues(): BiMap[T, K] = {
             val keys = biMap.keys.toSeq

@@ -19,7 +19,7 @@ import com.core.cipherdata.CipherResult
   *   function could be the number of english words in the deciphered data, or the number of common frequent bigrams,
   *   etc.
   * @param randomiser
-  *   A function that takes the current key and some other information, and should return a new key. The current key is
+  *   A function that takes the current key and some other information, and should return a new mutated key. The current key is
   *   passed **by reference** and should be **cloned** before modification.
   *
   * @tparam T

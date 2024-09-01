@@ -104,6 +104,19 @@ class BiMapAlphabet[T] extends Alphabet[T] {
         newBiMap
     }
 
+    /** Returns a new alphabet with only the given letters. Indices are recalculated.
+      * @return
+      */
+    def restrictLetters(letters: Seq[T]): BiMapAlphabet[T] = {
+        val newBiMap = BiMap.empty[Int, T]
+        this.foreach { case (index, letter) =>
+            if (letters.contains(letter)) {
+                newBiMap += (newBiMap.size -> letter)
+            }
+        }
+        return new BiMapAlphabet(newBiMap)
+    }
+
     /** Returns a new alphabet without the given letters. Indices are recalculated.
       * @return
       */
