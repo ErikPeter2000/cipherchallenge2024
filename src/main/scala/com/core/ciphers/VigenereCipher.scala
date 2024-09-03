@@ -22,7 +22,7 @@ object VigenereCipher extends BaseCipher[Char, Char, Seq[Char]] {
             val charIndex = alphabet.reverse(c)
             data.alphabet((charIndex + shiftIndex) % data.alphabet.size)
         }
-        CipherDataBlock.createFrom(encrypted, alphabet)
+        CipherDataBlock.create(encrypted, alphabet)
     }
     def decrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
@@ -32,6 +32,6 @@ object VigenereCipher extends BaseCipher[Char, Char, Seq[Char]] {
             val charIndex = alphabet.reverse(c)
             data.alphabet((charIndex - shiftIndex + data.alphabet.size) % data.alphabet.size)
         }
-        CipherDataBlock.createFrom(decrypted, alphabet)
+        CipherDataBlock.create(decrypted, alphabet)
     }
 }

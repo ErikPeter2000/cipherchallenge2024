@@ -13,11 +13,11 @@ object SubstitutionCipher extends BaseCipher[Char, Char, BiMap[Char, Char]] {
     def decrypt(data: CipherDataBlock[Char], key: BiMap[Char, Char]): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val ciphertext = data.map(x => key.getReverse(x, x))
-        CipherDataBlock.createFrom(ciphertext, alphabet)
+        CipherDataBlock.create(ciphertext, alphabet)
     }
     def encrypt(data: CipherDataBlock[Char], key: BiMap[Char, Char]): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val ciphertext = data.map(x => key.get(x, x))
-        CipherDataBlock.createFrom(ciphertext, alphabet)
+        CipherDataBlock.create(ciphertext, alphabet)
     }
 }

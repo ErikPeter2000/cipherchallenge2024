@@ -1,4 +1,4 @@
-package com.core.collections
+package com.core.extensions
 
 enum KeyPairOrder {
     case None, Key, KeyDesc, Value, ValueDesc

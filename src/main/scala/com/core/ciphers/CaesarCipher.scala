@@ -12,13 +12,13 @@ object CaesarCipher extends BaseCipher[Char, Char, Int] {
         val alphabet = data.alphabet
         val plaintext = data.map(alphabet.getReverse)
         val encrypted = plaintext.map(x => (x.get + key) % alphabet.size).map(alphabet(_))
-        CipherDataBlock.createFrom(encrypted, alphabet)
+        CipherDataBlock.create(encrypted, alphabet)
     }
 
     def decrypt(data: CipherDataBlock[Char], key: Int): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val ciphertext = data.map(alphabet.getReverse)
         val decrypted = ciphertext.map(x => (x.get - key + alphabet.size) % alphabet.size).map(alphabet(_))
-        CipherDataBlock.createFrom(decrypted, alphabet)
+        CipherDataBlock.create(decrypted, alphabet)
     }
 }

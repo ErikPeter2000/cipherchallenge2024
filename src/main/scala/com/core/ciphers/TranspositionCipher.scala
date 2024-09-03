@@ -19,7 +19,7 @@ object TranspositionCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
             columns.lift(i).get
         } // reorder columns
         .flatten // flatten into a single sequence
-        CipherDataBlock.createFrom(outData, data.alphabet)
+        CipherDataBlock.create(outData, data.alphabet)
     }
 
     def decrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherDataBlock[Char] = {
@@ -30,6 +30,6 @@ object TranspositionCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
         } // reorder columns
         .transpose// transpose back to rows
         .flatten // flatten into a single sequence
-        CipherDataBlock.createFrom(outData, data.alphabet)
+        CipherDataBlock.create(outData, data.alphabet)
     }
 }

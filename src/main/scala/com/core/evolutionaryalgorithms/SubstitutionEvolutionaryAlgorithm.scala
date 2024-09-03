@@ -22,13 +22,7 @@ class SubstitutionEvolutionaryAlgorithm
          // Cipher to use
         SubstitutionCipher,
         // Arbitrary fitness function: freq_of_word * (len_of_word - 2)^2
-        (result) => { 
-            val counts = FrequencyCounter.calculate(result, Constants.commonTrie)
-            val score = counts.map { case (word, count) =>
-                count.toDouble * (word.size - 2) * (word.size - 2)
-            }.sum
-            score
-        },
+        FitnessFunctions.EriksWordFitness,
         // Mutation function
         (currentKey, currentScore, generation, childIndex, maxGenerations, maxChildren) => { 
             // This swaps between 1 and 4 elements, depending on the child index. This varies the degree of mutation across children.

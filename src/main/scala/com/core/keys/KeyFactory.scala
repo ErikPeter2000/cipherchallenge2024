@@ -6,6 +6,8 @@ import com.core.alphabets._
 import com.core.collections.BiMap
 import com.core.alphabets.UppercaseLetters
 import com.core.data.DataTable
+import scala.collection.mutable.ListBuffer
+import scala.collection.mutable.Stack
 
 /** Utility functions for keys based on characters.
   */

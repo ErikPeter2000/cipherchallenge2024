@@ -1,6 +1,8 @@
 package com.core.cipherdata
 
 import com.core.alphabets._
+import com.core.extensions._
+import com.core.extensions.StringExtensions.cipherFormat
 
 /** Represents the plaintext or ciphertext data for a cipher. This class is mutable, and most methods will modify the
   * data in place.
@@ -23,15 +25,35 @@ class CipherDataBlock[T](val alphabet: Alphabet[T]) extends Seq[T] {
         return this
     }
 
+    /** Pads the data block to a multiple of the given length with the given element. Performs the padding in place, and
+      * returns itself.
+      *
+      * @param length
+      *   The length to pad to.
+      * @param elem
+      *   The element to pad with.
+      * @return
+      *   The data block itself.
+      */
+    def padToMultiple(length: Int, elem: T): CipherDataBlock[T] = {
+        val targetLength = (data.length + length - 1) / length * length
+        data = data.padTo(targetLength, elem)
+        return this
+    }
+
     /** Transposes the data block with the given pad character. This is the same as organising the data into a grid with
-      * the specified width and/or height, padding it, and then reading along the columns.
-      * Performs the transpose in place, and returns itself.
+      * the specified width and/or height, padding it, and then reading along the columns. Performs the transpose in
+      * place, and returns itself.
       *
       * @param padCharacter
       * @param inputWidth
       * @param inputHeight
       */
-    def transpose(padCharacter: T, inputWidth: Option[Int] = None, inputHeight: Option[Int] = None): CipherDataBlock[T] = {
+    def transpose(
+        padCharacter: T,
+        inputWidth: Option[Int] = None,
+        inputHeight: Option[Int] = None
+    ): CipherDataBlock[T] = {
         if (inputWidth.isEmpty && inputHeight.isEmpty) {
             throw new IllegalArgumentException("Invalid input width or height")
         }
@@ -83,13 +105,35 @@ object CipherDataBlock {
         new CipherDataBlock[Char](UppercaseLetters)
     }
 
-    def createFrom[T](
+    /** Creates a new CipherDataBlock with the given data and alphabet.
+      *
+      * @param data
+      *   The data for the cipher.
+      * @param alphabet
+      *   The alphabet for the cipher.
+      * @return
+      */
+    def create[T](
         data: Seq[T],
         alphabet: Alphabet[T]
     ): CipherDataBlock[T] = {
         new CipherDataBlock[T](data, alphabet)
     }
-    def create(data: String): CipherDataBlock[Char] = {
-        new CipherDataBlock[Char](data, UppercaseLetters)
+
+    /** Creates a new CipherDataBlock with the given data and alphabet.
+      *
+      * @param data
+      *   The data for the cipher.
+      * @param format
+      *   Whether to format the data before creating the CipherDataBlock. Removes non-alphabetic characters including
+      *   spaces and makes uppercase.
+      * @return
+      */
+    def create(data: String, format: Boolean = true): CipherDataBlock[Char] = {
+        if (format) {
+            new CipherDataBlock(data.cipherFormat, UppercaseLetters)
+        } else {
+            new CipherDataBlock[Char](data, UppercaseLetters)
+        }
     }
 }

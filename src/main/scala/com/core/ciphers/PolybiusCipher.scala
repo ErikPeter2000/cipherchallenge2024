@@ -25,7 +25,7 @@ object PolybiusCipher extends BaseCipher[Char, Int, IndexedSeq[Char]] {
                 result += index % width
             }
         }
-        CipherDataBlock.createFrom(result.toSeq, PosIntAlphabet)
+        CipherDataBlock.create(result.toSeq, PosIntAlphabet)
     }
 
     def decrypt(data: CipherDataBlock[Int], key: IndexedSeq[Char], width: Int): CipherDataBlock[Char] = {
@@ -37,7 +37,7 @@ object PolybiusCipher extends BaseCipher[Char, Int, IndexedSeq[Char]] {
                 result += key(x(0) * width + x(1))
             }
         }
-        CipherDataBlock.createFrom(result.toSeq, UppercaseLetters)
+        CipherDataBlock.create(result.toSeq, UppercaseLetters)
     }
 
     def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Char]): CipherDataBlock[Int] = {

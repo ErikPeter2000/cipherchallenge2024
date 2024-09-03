@@ -23,7 +23,7 @@ object ColumnCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
         val columnSize = (data.length + key.size - 1) / key.size
         val columns = data.grouped(key.size).toSeq.transpose
         val encrypted = key.map(columns).flatten
-        CipherDataBlock.createFrom(encrypted, data.alphabet)
+        CipherDataBlock.create(encrypted, data.alphabet)
     }
 
     /** Decrypts the data using the Columnar Transposition cipher.
@@ -41,6 +41,6 @@ object ColumnCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
         val columnSize = (data.length + key.size - 1) / key.size
         val columns = data.grouped(columnSize).toSeq
         val decrypted = (0 to key.size - 1).map(i => columns(key.indexOf(i))).transpose.flatten
-        CipherDataBlock.createFrom(decrypted, data.alphabet)
+        CipherDataBlock.create(decrypted, data.alphabet)
     }
 }
