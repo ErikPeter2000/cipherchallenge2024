@@ -15,6 +15,7 @@ import com.core.extensions._
 import com.core.analysers._
 import com.core.cipherdata._
 import com.core.breakerpresets._
+import com.core.extensions.IterableExtensions.pretty
 
 object Main {
     def loadData(): CipherDataBlock[Char] = {
@@ -24,13 +25,14 @@ object Main {
     }
 
     def job(args: Array[String]): Unit = {
-        val data = loadData().padToMultiple(6, 'X')
+        val data = loadData()
+        val freqOriginal = FrequencyAnalysis.relative(data)
 
-        val key = Vector(1,0,5,4,2,3)
-        val encrypted = TranspositionCipher.encrypt(data, key)
+        val key = "THEKEY"
+        val encrypted = VigenereCipher.encrypt(data, key)
 
-        val broken = TranspositionCipherBreaker.break(encrypted.mkString)
-        println(broken)
+        val decrypted = VigenereCipherBreaker.break(encrypted.mkString)
+        println(decrypted)
     }
 
     def main(args: Array[String]): Unit = {

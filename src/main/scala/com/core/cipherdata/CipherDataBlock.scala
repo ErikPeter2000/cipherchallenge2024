@@ -83,6 +83,10 @@ class CipherDataBlock[T](val alphabet: Alphabet[T]) extends Seq[T] {
         data = data.grouped(width).toSeq.transpose.flatten
         return this
     }
+
+    override def clone(): CipherDataBlock[T] = {
+        new CipherDataBlock[T](data, alphabet)
+    }
 }
 
 object CipherDataBlock {
