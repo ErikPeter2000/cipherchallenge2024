@@ -100,4 +100,9 @@ class BiMap[K, V] extends Iterable[(K, V)] {
 
 object BiMap {
     def empty[K, V]: BiMap[K, V] = new BiMap[K, V]()
+    def createFromSeq[V](seq: Seq[V]): BiMap[Int, V] = {
+        val biMap = new BiMap[Int, V]
+        seq.zipWithIndex.foreach { case (v, i) => biMap.addMapping(i, v) }
+        biMap
+    }
 }

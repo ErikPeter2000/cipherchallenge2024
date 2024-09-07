@@ -1,8 +1,9 @@
-package com.core.collections
+package com.core.extensions
 
 import com.core.alphabets.BiMapAlphabet
 import scala.util.Random
 import scala.annotation.switch
+import com.core.collections.BiMap
 
 object BiMapExtensions {
     val MAX_DISPLAY_LINES = 10

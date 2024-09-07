@@ -29,7 +29,7 @@ import com.core.cipherdata.CipherResult
   * @tparam V
   *   The type of the key used by the cipher.
   */
-trait BaseEvolutionaryAlgorithm[T, K, V](
+class BaseEvolutionaryAlgorithm[T, K, V](
     cipher: BaseCipher[T, K, V],
     evaluationFunction: (CipherDataBlock[T]) => Double,
     randomiser: (
