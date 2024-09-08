@@ -66,4 +66,12 @@ class CipherDataBlockTest extends munit.FunSuite {
         assertEquals(cipherDataBlock(2), 'B')
         assertEquals(cipherDataBlock(3), 'E')
     }
+
+    test("CipherDataBlock.swapValues should swap the values of two elements") {
+        val cipherDataBlock = new CipherDataBlock[Char](Seq('A', 'B', 'C', 'A'), UppercaseLetters)
+        cipherDataBlock.swapValues('A', 'C')
+        assertEquals(cipherDataBlock(0), 'C')
+        assertEquals(cipherDataBlock(2), 'A')
+        assertEquals(cipherDataBlock(3), 'C')
+    }
 }

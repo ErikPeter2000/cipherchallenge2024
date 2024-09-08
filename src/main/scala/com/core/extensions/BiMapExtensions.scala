@@ -7,6 +7,7 @@ import com.core.collections.BiMap
 
 object BiMapExtensions {
     val MAX_DISPLAY_LINES = 10
+    lazy val rng = new Random(0)
 
     extension [T, K](biMap: BiMap[T, K]) {
 
@@ -15,7 +16,7 @@ object BiMapExtensions {
         def shuffleValues(): BiMap[T, K] = {
             val keys = biMap.keys.toSeq
             val values = biMap.values.toSeq
-            val shuffledValues = scala.util.Random.shuffle(values)
+            val shuffledValues = rng.shuffle(values)
             keys.zip(shuffledValues).foreach { case (key, value) =>
                 biMap.addMapping(key, value)
             }
@@ -43,10 +44,10 @@ object BiMapExtensions {
         def swapElements(times: Int): BiMap[T, K] = {
             val keys = biMap.keys.toSeq
             for (_ <- 0 until times) {
-                val key1 = keys(scala.util.Random.nextInt(keys.size))
-                var key2 = keys(scala.util.Random.nextInt(keys.size))
+                val key1 = keys(rng.nextInt(keys.size))
+                var key2 = keys(rng.nextInt(keys.size))
                 while (key1 == key2) {
-                    key2 = keys(scala.util.Random.nextInt(keys.size))
+                    key2 = keys(rng.nextInt(keys.size))
                 }
                 val value1 = biMap(key1)
                 val value2 = biMap(key2)
@@ -66,8 +67,8 @@ object BiMapExtensions {
           */
         def swapElementsGaussian(standardDeviation: Double, iterations: Int, alphabet: BiMapAlphabet[T]): BiMap[T, K] = {
             for (_ <- 0 until iterations) {
-                val index1 = Random.nextInt(alphabet.size)
-                val index2 = Math.floorMod(index1 + (Random.nextGaussian() * standardDeviation).toInt, alphabet.size)
+                val index1 = rng.nextInt(alphabet.size)
+                val index2 = Math.floorMod(index1 + (rng.nextGaussian() * standardDeviation).toInt, alphabet.size)
                 val key1 = alphabet(index1)
                 val key2 = alphabet(index2)
                 val value1 = biMap(key1)

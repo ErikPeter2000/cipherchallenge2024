@@ -13,23 +13,18 @@ import com.core.cipherdata._
   */
 object TranspositionCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
     def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherDataBlock[Char] = {
-        val columnSize = data.size / key.size
-        val columns = data.grouped(key.size).toSeq.transpose // split into columns
-        val outData = key.map { i =>
-            columns.lift(i).get
-        } // reorder columns
-        .flatten // flatten into a single sequence
-        CipherDataBlock.create(outData, data.alphabet)
+        val groups = data.grouped(key.size)
+        val encrypted = groups.map { group =>
+            key.map(group(_))
+        }
+        new CipherDataBlock(encrypted.flatten.toSeq, data.alphabet)
     }
 
     def decrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherDataBlock[Char] = {
-        val columnSize = data.size / key.size
-        val columns = data.grouped(columnSize).toSeq // split into columns
-        val outData =  key.indices.map { i =>
-            columns.lift(key.indexOf(i)).get
-        } // reorder columns
-        .transpose// transpose back to rows
-        .flatten // flatten into a single sequence
-        CipherDataBlock.create(outData, data.alphabet)
+        val groups = data.grouped(key.size)
+        val decrypted = groups.map { group =>
+            key.indices.map(i => group(key.indexOf(i)))
+        }
+        new CipherDataBlock(decrypted.flatten.toSeq, data.alphabet)
     }
 }

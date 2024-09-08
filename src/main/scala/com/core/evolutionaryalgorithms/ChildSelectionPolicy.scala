@@ -1,7 +1,7 @@
 package com.core.evolutionaryalgorithms
 
 object ChildSelectionPolicy {
-    private val rng = new scala.util.Random()
+    private val rng = new scala.util.Random(3)
     def random(currentScore: Double, newScore: Double): Boolean = {
         rng.nextBoolean()
     }

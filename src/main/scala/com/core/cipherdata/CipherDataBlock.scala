@@ -84,6 +84,16 @@ class CipherDataBlock[T](val alphabet: Alphabet[T]) extends Seq[T] {
         return this
     }
 
+    def swapValues(item1: T, item2: T): CipherDataBlock[T] = {
+        data = data.map { item =>
+            item.match
+                case `item1` => item2
+                case `item2` => item1
+                case _       => item
+        }
+        return this
+    }
+
     override def clone(): CipherDataBlock[T] = {
         new CipherDataBlock[T](data, alphabet)
     }

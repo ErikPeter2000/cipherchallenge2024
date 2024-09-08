@@ -12,7 +12,7 @@ import scala.collection.mutable.Stack
 /** Utility functions for keys based on characters.
   */
 object KeyFactory {
-    lazy val random = new Random()
+    lazy val random = new Random(0)
 
     /** Combines a phrase with an alphabet, to create a sequence of distinct letters.
       *

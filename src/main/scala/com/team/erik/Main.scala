@@ -17,6 +17,7 @@ import com.core.cipherdata._
 import com.core.breakerpresets._
 import com.core.extensions.BiMapExtensions.shuffleValues
 import com.core.collections._
+import com.core.extensions.StringExtensions.highlight
 
 object Main {
     def loadData(): CipherDataBlock[Char] = {
@@ -33,7 +34,7 @@ object Main {
 
         val broken = SubstitutionCipherBreaker.break(encrypted)
 
-        println(broken)
+        println(broken.textData.highlight(Vector('J', 'Q', 'X', 'Z'), Console.RED))
     }
 
     def main(args: Array[String]): Unit = {
