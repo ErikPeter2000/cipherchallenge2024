@@ -24,7 +24,8 @@ object SubstitutionCipherBreaker extends BreakerPreset[Char, BiMap[Char, Char]] 
                 val swaps = childIndex * 4 / maxChildren + 1
                 newKey.swapElements(swaps)
                 newKey
-            }
+            },
+            ChildSelectionPolicy.expDfOverT(5)
         )
         val result = breaker.run(data, guessKey, 30, 500)
         new BreakerResult(
