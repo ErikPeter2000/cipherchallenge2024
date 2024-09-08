@@ -18,6 +18,7 @@ import com.core.breakerpresets._
 import com.core.extensions.BiMapExtensions.shuffleValues
 import com.core.collections._
 import com.core.extensions.StringExtensions.highlight
+import com.core.progressbar.ProgressBar
 
 object Main {
     def loadData(): CipherDataBlock[Char] = {
@@ -28,13 +29,10 @@ object Main {
 
     def job(args: Array[String]): Unit = {
         val data = loadData()
-
-        val key = KeyFactory.createRandomSubstitutionKey(UppercaseLetters)
-        val encrypted = SubstitutionCipher.encrypt(data, key)
-
-        val broken = SubstitutionCipherBreaker.break(encrypted)
-
-        println(broken.textData.highlight(Vector('J', 'Q', 'X', 'Z'), Console.RED))
+        val key = "HELLOWORLD"
+        val encrypted = VigenereCipher.encrypt(data, key)
+        val result = VigenereCipherBreaker.break(encrypted)
+        println(result.textData.highlight(Vector('J', 'Q', 'X', 'Z')))
     }
 
     def main(args: Array[String]): Unit = {

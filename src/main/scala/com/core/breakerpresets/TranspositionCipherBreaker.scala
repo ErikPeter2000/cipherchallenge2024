@@ -4,6 +4,7 @@ import com.core.cipherdata.CipherDataBlock
 import com.core.ciphers.TranspositionCipher
 import com.core.analysers.IndexOfCoincidence
 import com.core.evolutionaryalgorithms.FitnessFunctions
+import com.core.progressbar.ProgressBar
 
 object TranspositionCipherBreaker extends BreakerPreset[Char, IndexedSeq[Int]] {
     def break(text: String) = {
@@ -17,6 +18,7 @@ object TranspositionCipherBreaker extends BreakerPreset[Char, IndexedSeq[Int]] {
         var bestScore = 0.0
         var bestKey: IndexedSeq[Int] = null
         var bestDecryption: CipherDataBlock[Char] = null
+        val progressBar = new ProgressBar(maxKeyLength - 1, "TranspositionCipherBreaker")
         for (keyLength <- 1 to maxKeyLength) {
             (0 until keyLength).permutations.foreach { permutation =>
                 val result = TranspositionCipher.decrypt(data, permutation)
@@ -27,7 +29,9 @@ object TranspositionCipherBreaker extends BreakerPreset[Char, IndexedSeq[Int]] {
                     bestDecryption = result
                 }
             }
+            progressBar.increment()
         }
+        progressBar.finish()
         new BreakerResult(
             inData = data,
             outData = bestDecryption,

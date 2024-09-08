@@ -23,19 +23,6 @@ object BiMapExtensions {
             biMap
         }
 
-        /** Shuffles the values of the BiMap a number of times. Performs the shuffle in-place, and returns the BiMap
-          * instance.
-          * @param iterations
-          * @return
-          */
-        def shuffleValues(iterations: Int): BiMap[T, K] = {
-            var newBiMap = biMap
-            for (_ <- 0 until iterations) {
-                // ...
-            }
-            biMap
-        }
-
         /** Swaps the values of random keys in the BiMap. Does it in-place, and returns the BiMap instance.
           *
           * @param times
@@ -65,7 +52,11 @@ object BiMapExtensions {
           * @param alphabet
           * @return
           */
-        def swapElementsGaussian(standardDeviation: Double, iterations: Int, alphabet: BiMapAlphabet[T]): BiMap[T, K] = {
+        def swapElementsGaussian(
+            standardDeviation: Double,
+            iterations: Int,
+            alphabet: BiMapAlphabet[T]
+        ): BiMap[T, K] = {
             for (_ <- 0 until iterations) {
                 val index1 = rng.nextInt(alphabet.size)
                 val index2 = Math.floorMod(index1 + (rng.nextGaussian() * standardDeviation).toInt, alphabet.size)

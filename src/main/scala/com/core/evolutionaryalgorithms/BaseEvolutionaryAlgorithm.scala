@@ -5,6 +5,7 @@ import scala.collection.parallel.CollectionConverters._
 import com.core.ciphers.BaseCipher
 import com.core.cipherdata.CipherDataBlock
 import com.core.cipherdata.CipherResult
+import com.core.progressbar.ProgressBar
 
 /** Base evolutionary "1 + λ" algorithm for breaking ciphers.
   *
@@ -55,11 +56,13 @@ class BaseEvolutionaryAlgorithm[T, K, V](
       * @return
       *   The key that was found to be the best.
       */
-    def run(data: CipherDataBlock[K], initialKey: V, generations: Int, children: Int): EvolutionaryAlgorithmResult[T, V] = {
+    def run(data: CipherDataBlock[K], initialKey: V, generations: Int, children: Int, progressBarName: Option[String] = None): EvolutionaryAlgorithmResult[T, V] = {
         // Initial key, plaintext, and score
         var currentKey = initialKey
         var currentPlaintext = cipher.decrypt(data, currentKey)
         var currentScore = evaluationFunction(currentPlaintext)
+
+        val progressBar = progressBarName.map(x => new ProgressBar(generations, x))
 
         // Run the algorithm for the specified number of generations
         for (generation <- 0 until generations) {
@@ -79,8 +82,9 @@ class BaseEvolutionaryAlgorithm[T, K, V](
                 currentPlaintext = bestChild._2
                 currentScore = bestChild._3
             }
+            progressBar.foreach(_.update(generation))
         }
-
+        progressBar.foreach(_.finish())
         // Return the best key, plaintext, and score
         new EvolutionaryAlgorithmResult[T, V](currentKey, currentPlaintext, currentScore)
     }
