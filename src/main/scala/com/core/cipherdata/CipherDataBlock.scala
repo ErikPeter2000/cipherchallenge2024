@@ -2,21 +2,26 @@ package com.core.cipherdata
 
 import com.core.alphabets._
 import com.core.extensions._
-import com.core.extensions.StringExtensions.cipherFormat
+import scala.collection.mutable.ArrayBuffer
+import com.core.cipherdata.CipherDataBlockFormatExtensions.format
 
 /** Represents the plaintext or ciphertext data for a cipher. This class is mutable, and most methods will modify the
   * data in place.
   * @tparam T
   *   The type of the data in the cipher, usually `Char`.
   */
-class CipherDataBlock[T](val alphabet: Alphabet[T]) extends Seq[T] {
-    private var data: Seq[T] = Seq.empty[T]
-
+class CipherDataBlock[T](
+    var data: ArrayBuffer[T],
+    var alphabet: Alphabet[T]
+) extends Seq[T] {
     def this(data: Seq[T], alphabet: Alphabet[T]) = {
-        this(alphabet)
-        this.data = data
+        this(ArrayBuffer(data*), alphabet)
+    }
+    def this(alphabet: Alphabet[T]) = {
+        this(ArrayBuffer(), alphabet)
     }
     def apply(index: Int): T = data(index)
+    def update(index: Int, elem: T): Unit = data(index) = elem
     def iterator: Iterator[T] = data.iterator
     def length: Int = data.length
 
@@ -80,7 +85,7 @@ class CipherDataBlock[T](val alphabet: Alphabet[T]) extends Seq[T] {
         data = data.padTo(targetLength, padCharacter)
 
         // Transpose
-        data = data.grouped(width).toSeq.transpose.flatten
+        data = data.grouped(width).toSeq.transpose.flatten.to(ArrayBuffer)
         return this
     }
 
@@ -94,8 +99,21 @@ class CipherDataBlock[T](val alphabet: Alphabet[T]) extends Seq[T] {
         return this
     }
 
+    /** Removes the element at the given index.
+      */
+    def remove(index: Int): T = {
+        data.remove(index)
+    }
+
+    /** Removes the element at the given index.
+      */
+    def insert(index: Int, elem: T): Unit = {
+        data.insert(index, elem)
+    }
+
     override def clone(): CipherDataBlock[T] = {
-        new CipherDataBlock[T](data, alphabet)
+        val newData = data.clone()
+        new CipherDataBlock[T](newData, alphabet)
     }
 }
 
@@ -135,19 +153,22 @@ object CipherDataBlock {
     }
 
     /** Creates a new CipherDataBlock with the given data and alphabet.
+      */
+    def create(data: String, alphabet: Alphabet[Char]): CipherDataBlock[Char] = {
+        new CipherDataBlock(data, alphabet)
+    }
+
+    /** Creates a new CipherDataBlock with the given data and the default UppercaseAlphabet. Formats the data to remove
+      * any non-alphabetic characters and convert lowercase characters to uppercase.
       *
       * @param data
       *   The data for the cipher.
-      * @param format
-      *   Whether to format the data before creating the CipherDataBlock. Removes non-alphabetic characters including
-      *   spaces and makes uppercase.
       * @return
+      *   A tuple containing the new CipherDataBlock and the result of the formatting operation.
       */
-    def create(data: String, format: Boolean = true): CipherDataBlock[Char] = {
-        if (format) {
-            new CipherDataBlock(data.cipherFormat, UppercaseLetters)
-        } else {
-            new CipherDataBlock[Char](data, UppercaseLetters)
-        }
+    def formatAndCreate(data: String): (CipherDataBlock[Char], CipherFormatResult) = {
+        val instance = new CipherDataBlock(data, UppercaseLetters)
+        val formatResult = instance.format()
+        (instance, formatResult)
     }
 }

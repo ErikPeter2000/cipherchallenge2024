@@ -8,7 +8,7 @@ import com.core.alphabets.UppercaseLetters
 
 object CaesarCipherBreaker extends BreakerPreset[Char, Int] {
     def break(data: String) = {
-        val dataBlock = CipherDataBlock.create(data)
+        val dataBlock = CipherDataBlock.create(data, UppercaseLetters)
         break(dataBlock)
     }
 

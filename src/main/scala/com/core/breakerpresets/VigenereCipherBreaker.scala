@@ -10,7 +10,7 @@ import com.core.progressbar.ProgressBar
 
 object VigenereCipherBreaker extends BreakerPreset[Char, Seq[Char]] {
     def break(data: String) = {
-        break(CipherDataBlock.create(data))
+        break(CipherDataBlock.create(data, UppercaseLetters))
     }
     def break(data: CipherDataBlock[Char]) = {
         val kasiskiTest = KasiskisTest.calculate(data)
