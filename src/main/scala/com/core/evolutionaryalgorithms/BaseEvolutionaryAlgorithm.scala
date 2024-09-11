@@ -60,14 +60,15 @@ class BaseEvolutionaryAlgorithm[T, K, V](
         // Initial key, plaintext, and score
         var currentKey = initialKey
         var currentPlaintext = cipher.decrypt(data, currentKey)
-        var currentScore = evaluationFunction(currentPlaintext)
+        val initialScore = evaluationFunction(currentPlaintext)
+        var currentScore = initialScore
 
         val progressBar = progressBarName.map(x => new ProgressBar(generations, x))
 
         // Run the algorithm for the specified number of generations
         for (generation <- 0 until generations) {
             // Iterate over children in parallel and select the best
-            val newKeyScorePairs = (0 to children).par.map { childIndex =>
+            val newKeyScorePairs = (0 until children).par.map { childIndex =>
                 val childKey = randomiser(currentKey, currentScore, generation, childIndex, generations, children)
                 val childPlainText = cipher.decrypt(data, childKey)
                 val childScore = evaluationFunction(childPlainText)
@@ -81,8 +82,9 @@ class BaseEvolutionaryAlgorithm[T, K, V](
                 currentKey = bestChild._1
                 currentPlaintext = bestChild._2
                 currentScore = bestChild._3
+                progressBar.foreach(_.setDisplayData(f"$currentScore%.2f/$initialScore%.2f"))
             }
-            progressBar.foreach(_.update(generation))
+            progressBar.foreach(_.increment())
         }
         progressBar.foreach(_.finish())
         // Return the best key, plaintext, and score

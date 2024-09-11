@@ -15,7 +15,7 @@ import com.core.extensions._
 import com.core.analysers._
 import com.core.cipherdata._
 import com.core.breakerpresets._
-import com.core.extensions.BiMapExtensions.shuffleValues
+import com.core.extensions.BiMapExtensions._
 import com.core.collections._
 import com.core.extensions.StringExtensions.highlight
 import com.core.progressbar.ProgressBar
@@ -29,10 +29,41 @@ object Main {
 
     def job(args: Array[String]): Unit = {
         val data = loadData()
-        val key = "HELLOWORLD"
-        val encrypted = VigenereCipher.encrypt(data, key)
-        val result = VigenereCipherBreaker.break(encrypted)
-        println(result.textData.highlight(Vector('J', 'Q', 'X', 'Z')))
+        val noJ = UppercaseLetters.dropLetter('J')
+        val key = Vector(
+            noJ.toBiMap,
+            noJ.toBiMap.swapElements(26),
+            noJ.toBiMap.swapElements(26),
+            noJ.toBiMap,
+        )
+        val encrypted = FourSquareCipher.encrypt(data, key)
+
+        println(encrypted.mkString)
+
+        val breaker = new BaseEvolutionaryAlgorithm[Char, Char, Vector[BiMap[Int, Char]]](
+            FourSquareCipher,
+            FitnessFunctions.QuadgramFitness,
+            (currentKey, currentScore, generation, childIndex, maxGenerations, maxChildren) => {
+                val newKey = Vector(
+                    currentKey(0).clone(),
+                    currentKey(1).clone().swapElements(1),
+                    currentKey(2).clone().swapElements(1),
+                    currentKey(3).clone(),
+                )
+                newKey
+            },
+            ChildSelectionPolicy.expDfOverT(10)
+        )
+        
+        val startKey = Vector(
+            noJ.toBiMap,
+            noJ.toBiMap,
+            noJ.toBiMap,
+            noJ.toBiMap,
+        )
+
+        val result = breaker.run(encrypted, startKey, 50000, 5, Option("FourSquareCipherBreaker"))
+        println(result.outData.mkString)
     }
 
     def main(args: Array[String]): Unit = {
