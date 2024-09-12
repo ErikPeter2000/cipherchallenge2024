@@ -2,6 +2,7 @@ package com.core.breakerpresets
 
 import com.core.ciphers.BaseCipher
 import com.core.cipherdata.CipherDataBlock
+import com.core.collections.BiMap
 
 class BreakerResult[T, K, V](
     val inData: CipherDataBlock[T],
@@ -13,6 +14,7 @@ class BreakerResult[T, K, V](
     def textData: String = outData.mkString
     def toXml: String = {
         val keyString = key match {
+            case biMap: BiMap[_, _] => biMap.keys.toSeq.sortBy(_.toString).map(x => biMap(x))
             case seq: Seq[_] => seq.mkString(",")
             case _ => key.toString
         }

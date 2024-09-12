@@ -77,6 +77,7 @@ class BiMap[K, V] extends Iterable[(K, V)] {
 
     def keys: Iterable[K] = forwardMap.keys
     def values: Iterable[V] = forwardMap.values
+    import scala.math.Ordering.ordered
 
     def iterator: Iterator[(K, V)] = forwardMap.iterator
     def containsKey(a: K): Boolean = forwardMap.contains(a)

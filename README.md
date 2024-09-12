@@ -2,6 +2,23 @@
 
 Cipher challenge 2024 repository by Cambridge Maths School students, written in Scala.
 
+## Ciphers Written:
+ - [Beaufort Cipher](./src/main/scala/com/core/ciphers/BeaufortCipher.scala)
+ - [Caesar Cipher](./src/main/scala/com/core/ciphers/CaesarCipher.scala)
+ - [Columnar Transposition](./src/main/scala/com/core/ciphers/ColumnCipher.scala)
+ - [Four Square Cipher](./src/main/scala/com/core/ciphers/FourSquareCipher.scala)
+ - [Hill Cipher](./src/main/scala/com/core/ciphers/HillCipher.scala)
+ - [Polybius Square](./src/main/scala/com/core/ciphers/PolybiusCipher.scala)
+ - [Substitution Cipher](./src/main/scala/com/core/ciphers/SubstitutionCipher.scala)
+ - [Transposition Cipher](./src/main/scala/com/core/ciphers/TranspositionCipher.scala)
+ - [Vigenère Cipher](./src/main/scala/com/core/ciphers/VigenereCipher.scala)
+
+## Breakers Written:
+- [Caesar Breaker](./src/main/scala/com/core/breakerpresets/CaesarCipherBreaker.scala)
+- [Substitution Breaker](./src/main/scala/com/core/breakerpresets/SubstitutionCipherBreaker.scala)
+- [Transposition Breaker](./src/main/scala/com/core/breakerpresets/TranspositionCipherBreaker.scala)
+- [Vigenère Breaker](./src/main/scala/com/core/breakerpresets/VigenereCipherBreaker.scala)
+
 ## Getting Started
 
 1. Download a Java Development Kit (JDK) from [Oracle](https://www.oracle.com/uk/java/technologies/downloads/). Version 21 is the latest version supported by Scala.
