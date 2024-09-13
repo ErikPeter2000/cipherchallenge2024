@@ -12,5 +12,7 @@ public class Main {
         for(int i = 0; i < 26; i++) {
             System.out.println(CaesarCipher.decode(cipherText, i));
         }
+
+        System.out.println(Constants.alphabetMapInverse.get('g'));
     }
 }
