@@ -39,8 +39,18 @@ public class Constants {
 
     static void InitializePolygrams() throws IOException {
         System.out.println("Initializing monograms...");
+        initializePolygram("resources/polygrams/Unigram.csv", monogramMap, true);
+        System.out.println("Initializing bigrams...");
+        initializePolygram("resources/polygrams/Bigram.csv", bigramMap, false);
+        System.out.println("Initializing trigrams...");
+        initializePolygram("resources/polygrams/Trigram.csv", trigramMap, false);
+        System.out.println("Initializing tetragrams...");
+        initializePolygram("resources/polygrams/Quadgram.csv", tetragramMap, false);
+    }
+
+    static void initializePolygram(String path, Map<String, Double> map, boolean isMono) {
         {
-            File file = new File("resources/polygrams/Unigram.csv");
+            File file = new File(path);
             try (FileInputStream fis = new FileInputStream(file)) {
                 StringBuilder polygram = new StringBuilder();
                 StringBuilder floatString = new StringBuilder();
@@ -54,8 +64,8 @@ public class Constants {
                         continue;
                     }else if(r == 10){
                         isPolygram = true;
-                        monogramMap.put(polygram.toString(), parseDouble(floatString.toString()));
-                        monogramStatistics[index] = parseDouble(floatString.toString());
+                        map.put(polygram.toString(), parseDouble(floatString.toString()));
+                        if(isMono)monogramStatistics[index] = parseDouble(floatString.toString());
                         index++;
                         polygram = new StringBuilder();
                         continue;
@@ -66,92 +76,10 @@ public class Constants {
                         floatString.append((char) r);
                     }
                 }
-                monogramMap.put(polygram.toString(), parseDouble(floatString.toString()));
-                monogramStatistics[index] = parseDouble(floatString.toString());
-            }
-        }
-        System.out.println("Initializing bigrams...");
-        {
-            File file = new File("resources/polygrams/Bigram.csv");
-            try (FileInputStream fis = new FileInputStream(file)) {
-                StringBuilder polygram = new StringBuilder();
-                StringBuilder floatString = new StringBuilder();
-                int r;
-                boolean isPolygram=true;
-                while ((r = fis.read()) != -1) {
-                    if(r == 44){
-                        isPolygram = false;
-                        floatString = new StringBuilder();
-                        continue;
-                    }else if(r == 10){
-                        isPolygram = true;
-                        bigramMap.put(polygram.toString(), parseDouble(floatString.toString()));
-                        polygram = new StringBuilder();
-                        continue;
-                    }else if(r==13) continue;
-                    if(isPolygram){
-                        polygram.append((char) r);
-                    }else{
-                        floatString.append((char) r);
-                    }
-                }
-                bigramMap.put(polygram.toString(), parseDouble(floatString.toString()));
-            }
-        }
-        System.out.println("Initializing trigrams...");
-        {
-            File file = new File("resources/polygrams/Trigram.csv");
-            try (FileInputStream fis = new FileInputStream(file)) {
-                StringBuilder polygram = new StringBuilder();
-                StringBuilder floatString = new StringBuilder();
-                int r;
-                boolean isPolygram=true;
-                while ((r = fis.read()) != -1) {
-                    if(r == 44){
-                        isPolygram = false;
-                        floatString = new StringBuilder();
-                        continue;
-                    }else if(r == 10){
-                        isPolygram = true;
-                        trigramMap.put(polygram.toString(), parseDouble(floatString.toString()));
-                        polygram = new StringBuilder();
-                        continue;
-                    }else if(r==13) continue;
-                    if(isPolygram){
-                        polygram.append((char) r);
-                    }else{
-                        floatString.append((char) r);
-                    }
-                }
-                trigramMap.put(polygram.toString(), parseDouble(floatString.toString()));
-            }
-        }
-        System.out.println("Initializing tetragrams...");
-        {
-            File file = new File("resources/polygrams/Quadgram.csv");
-            try (FileInputStream fis = new FileInputStream(file)) {
-                StringBuilder polygram = new StringBuilder();
-                StringBuilder floatString = new StringBuilder();
-                int r;
-                boolean isPolygram=true;
-                while ((r = fis.read()) != -1) {
-                    if(r == 44){
-                        isPolygram = false;
-                        floatString = new StringBuilder();
-                        continue;
-                    }else if(r == 10){
-                        isPolygram = true;
-                        tetragramMap.put(polygram.toString(), parseDouble(floatString.toString()));
-                        polygram = new StringBuilder();
-                        continue;
-                    }else if(r==13) continue;
-                    if(isPolygram){
-                        polygram.append((char) r);
-                    }else{
-                        floatString.append((char) r);
-                    }
-                }
-                tetragramMap.put(polygram.toString(), parseDouble(floatString.toString()));
+                map.put(polygram.toString(), parseDouble(floatString.toString()));
+                if(isMono)monogramStatistics[index] = parseDouble(floatString.toString());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
