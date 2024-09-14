@@ -8,12 +8,12 @@ public class Main {
         //Constants.initialize(true);
 
         String cipherText = """
-                TSLCZFRCEFRPECCETNUMDTQCLKCVFRMWTQGFMGLNFBLBDCELBDCTHDMQFQNLQ
-                NLCEDCQFFQLRQWLYNCDQWNTQNCLDWELYLTNDIFXLVEZWTWCELHETHXLQHYFNN
-                CELBFLSTRNNCYTUCFPLCCFCELNDBLNTWL
+                AVLIDWDPDAVLIDWDPDXBLSBDPQBRGGLAJHVQSLDINVPDQJVSSDPGZRGJ
+                IDSJNPRAHZGLTDJVSBRVISDNDWDPHJPDOZKRGDRUUVQLIAQKDUSPDQJT
+                NDRNFILABSQLURIIJSGDRWDSBDDKLSZHZNDQKRLPAXLIDWDPD
                 """;
         cipherText = TextFormatter.formatText(cipherText);
 
-        System.out.println(AffineCipher.decipher(cipherText, 15, 3));
+        System.out.println(KeywordSubstitutionCipher.decipher(cipherText, "ROUNDTABLE", KeywordSubstitutionCipher.KeyFiller.LAST_LETTER, false));
     }
 }

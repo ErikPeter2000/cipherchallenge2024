@@ -5,7 +5,7 @@ import main.utils.ModularArithmetics;
 
 public class AffineCipher {
     public static boolean isKeyInvalid(int a){
-        return ModularArithmetics.gcd(a, Constants.monogramCount) != 1;
+        return !ModularArithmetics.isCoprime(a, Constants.monogramCount);
     }
 
     public static String convertToMAKey(int a, int b){
