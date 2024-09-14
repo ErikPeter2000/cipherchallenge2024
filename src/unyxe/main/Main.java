@@ -12,6 +12,7 @@ public class Main {
 
         System.out.println(cipherText);
         System.out.println(MonoAlphabeticCipher.likeliness(cipherText));
+        System.out.println(MonoAlphabeticCipher.inverseKey("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
         for(int i = 0; i < 26; i++) {
             //System.out.println(CaesarCipher.decode(cipherText, i));
             System.out.println(FitnessCalculator.MonogramChiFitness(CaesarCipher.decode(cipherText, i)) +" " +FitnessCalculator.MonogramABVFitness(CaesarCipher.decode(cipherText, i)) + " " + FitnessCalculator.TetragramFitness(CaesarCipher.decode(cipherText, i)) + " " + Analyser.getIndexOfCoincedence(CaesarCipher.decode(cipherText, i), true) + " " + Analyser.getEntropy(CaesarCipher.decode(cipherText, i)));
