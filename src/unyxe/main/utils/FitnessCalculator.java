@@ -11,7 +11,7 @@ public class FitnessCalculator {
         double fitness = 0;
         for(int i = 0; i < text.length()-3; i++){
             Double freq = Constants.tetragramMap.get(text.substring(i, i+4));
-            if(freq == null) return Double.MIN_VALUE;
+            if(freq == null) freq = 2.6043660326128424e-09;
             fitness += Math.log(freq);
         }
         return fitness/(text.length()-3);

@@ -5,7 +5,7 @@ public class Analyser {
         double[] monogramStatistic = new double[Constants.monogramCount];
         int N = text.length();
         for(int i = 0;i<N;i++){
-            monogramStatistic[Constants.alphabetMapInverse.get(text.charAt(i))] += 1.0/N;
+            monogramStatistic[text.charAt(i)-65] += 1.0/N;
         }
         return monogramStatistic;
     }
