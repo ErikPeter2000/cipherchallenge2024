@@ -1,6 +1,6 @@
 # Cipher Challenge 2024
 
-Cipher challenge 2024 repository by Cambridge Maths School students, written in Scala.
+Cipher challenge 2024 repository by Cambridge Maths School students, originally intended to be written in Scala.
 
 ## Ciphers Written:
  - [Beaufort Cipher](./src/main/scala/com/core/ciphers/BeaufortCipher.scala)
@@ -32,13 +32,19 @@ Scala is a statically-typed language that runs on the Java Virtual Machine (JVM)
 
 ## Project Structure
 
- - Shared code across challenges: [src/main/scala/com/core](./src/main/scala/com/core/)
- - Challenge solutions: [src/main/scala/com/challenges](./src/main/scala/com/challenges/)
- - Code for individual team members: [src/main/scala/com/team](./src/main/scala/com/team/)
- - Unit tests: [src/test/scala/com](./src/test/scala/com)
- - Data, texts and tables: [resources/](./resources/)
+#### Structure
 
-## Code Standards
+- Shared code across challenges: [src/main/scala/com/core](./src/main/scala/com/core/)
+- Saved challenge solutions: [src/main/scala/com/challenges/](./src/main/scala/com/challenges/)
+- Scala or Java code for individual team members: [src/main/scala/com/team/](./src/main/scala/com/team/)
+- Unit tests: [src/test/scala/com/](./src/test/scala/com)
+- Data, texts and tables: [resources/](./resources/)
+- Submissions: [submissions/](./submissions/)
+
+#### Individual Code and Other Languages
+ If you're writing personal code in Scala or Java, it goes in [src/main/scala/com/team/\<yourname\>](./src/main/scala/com/team/). This allows Java and Scala developers to share code. Any code that does not use the pre-existing Scala libraries can go in [src/main/\<language\>/team/\<yourname\>/](./src/main/).
+
+## Scala Code Standards
  `.scalafmt.conf` is used to enforce code standards. The metals extension can automatically format your code in VSCode with `Shift + Alt + F`.
  - **Indentation**: Use 4 spaces.
  - **Naming**:
