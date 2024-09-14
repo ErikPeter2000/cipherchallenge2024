@@ -9,7 +9,7 @@ import java.util.Map;
 import static java.lang.Double.parseDouble;
 
 public class Constants {
-    public static final String alphabet = "ABCDEFGHIJKLMONPQRSTUVWXYZ";
+    public static final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static Map<Integer, Character> alphabetMap = new HashMap<>();
     public static Map<Character, Integer> alphabetMapInverse = new HashMap<>();
     public static final int monogramCount = 26;
@@ -26,26 +26,27 @@ public class Constants {
 
     public static double[] monogramStatistics = new double[monogramCount];
 
-    public static void initialize(){
+    public static void initialize(boolean skipTetragrams){
         for(int i = 0; i < alphabet.length(); i++){
             alphabetMap.put(i, alphabet.charAt(i));
             alphabetMapInverse.put(alphabet.charAt(i), i);
         }
 
         try {
-            InitializePolygrams();
+            InitializePolygrams(skipTetragrams);
         }catch(IOException e){
             System.out.println("Polygram initialization failed: " + e.getMessage());
         }
     }
 
-    static void InitializePolygrams() throws IOException {
+    static void InitializePolygrams(boolean skipTetragrams) throws IOException {
         System.out.println("Initializing monograms...");
         initializePolygram(projectDir +"resources/polygrams/Unigram.csv", monogramMap, true);
         System.out.println("Initializing bigrams...");
         initializePolygram(projectDir +"resources/polygrams/Bigram.csv", bigramMap, false);
         System.out.println("Initializing trigrams...");
         initializePolygram(projectDir +"resources/polygrams/Trigram.csv", trigramMap, false);
+        if(skipTetragrams) return;
         System.out.println("Initializing tetragrams...");
         initializePolygram(projectDir +"resources/polygrams/Quadgram.csv", tetragramMap, false);
     }

@@ -12,7 +12,9 @@ public class MonoAlphabeticCipher {
     public static String inverseKey(String key){
         StringBuilder inverseKey = new StringBuilder();
         for(int i = 0; i < Constants.monogramCount; i++){
-            inverseKey.append(Constants.alphabet.charAt(key.indexOf(Constants.alphabet.charAt(i))));
+            int index = key.indexOf(Constants.alphabet.charAt(i));
+            char c = Constants.alphabet.charAt(index);
+            inverseKey.append(c);
         }
         return inverseKey.toString();
     }
