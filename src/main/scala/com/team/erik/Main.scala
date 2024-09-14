@@ -57,8 +57,6 @@ QFMJK, GBRTJL"""
     }
 
     def main(args: Array[String]): Unit = {
-        partA()
-        println()
-        partB()
+        println(Analyser.hello());
     }
 }
