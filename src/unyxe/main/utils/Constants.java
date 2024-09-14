@@ -17,6 +17,8 @@ public class Constants {
     //public static final int trigramCount = 17556;
     //public static final int tetragramCount = 274397;
 
+    public static final String projectDir = System.getProperty("user.dir") + "/";
+
     public static Map<String, Double> monogramMap = new HashMap<>();
     public static Map<String, Double> bigramMap = new HashMap<>();
     public static Map<String, Double> trigramMap = new HashMap<>();
@@ -39,13 +41,13 @@ public class Constants {
 
     static void InitializePolygrams() throws IOException {
         System.out.println("Initializing monograms...");
-        initializePolygram("resources/polygrams/Unigram.csv", monogramMap, true);
+        initializePolygram(projectDir +"resources/polygrams/Unigram.csv", monogramMap, true);
         System.out.println("Initializing bigrams...");
-        initializePolygram("resources/polygrams/Bigram.csv", bigramMap, false);
+        initializePolygram(projectDir +"resources/polygrams/Bigram.csv", bigramMap, false);
         System.out.println("Initializing trigrams...");
-        initializePolygram("resources/polygrams/Trigram.csv", trigramMap, false);
+        initializePolygram(projectDir +"resources/polygrams/Trigram.csv", trigramMap, false);
         System.out.println("Initializing tetragrams...");
-        initializePolygram("resources/polygrams/Quadgram.csv", tetragramMap, false);
+        initializePolygram(projectDir +"resources/polygrams/Quadgram.csv", tetragramMap, false);
     }
 
     static void initializePolygram(String path, Map<String, Double> map, boolean isMono) {
