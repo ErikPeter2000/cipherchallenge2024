@@ -1,30 +1,20 @@
 package main;
 
 
-import main.breakers.CipherBreakerOutput;
-import main.breakers.VariantBeaufortCipherBreaker;
+import main.ciphers.PortaCipher;
 import main.utils.*;
-import main.utils.periodanalysers.IOCPeriodAnalyser;
-import main.utils.periodanalysers.KasiskiExamination;
-import main.utils.periodanalysers.TwistMethodPeriodAnalyser;
-
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Constants.initialize(false, true);
+        Constants.initialize(true, true);
 
         String cipherText = """
-                ETWZQJLEGVORLBGWDJTPGEIUZXADQQTZSTAAPXQKAGEMYMUAQDGVFB
-                QFZMOBEFSOQJLESOMEOQFETRCQAVEGZAVBIBCAKMFEPQKWZRZROPUP
-                SNGZQJSULMMAOFZMAGSQJZQQCAKMEFSQZIPGHAUPUYODWVIUZIWZQY
-                TWWBTREIGZAFPFJMQFLZVWZRHMKKMYWQVAZBHIZQFRLZVBTRZFZMDE
-                ZEWZQQETWGIRCQSASBZPSVPULBHGMFMGKGMAOOZMQEQGDIERGQJBIB
-                NTATPEPZAVFUPIGZXQHQJMAAWKKVAJHTABQJLEEWDRBGAMFNYPYMZG
-                WQLPMACAKMDRODGAQEPPDQWRONWBFRCFGZGALNGCFVYFZMYRLPGEEN
-                YPXQQYOEKMQXTZYNXBHQJAMAOOSBOUTZYJGGEQJNXVPETCFFYAOETV
-                EQKIFNETGUQJTFZPQEXALPQELZVPQYAQVPQEHULPTRCTGCERHAJSAE
-                CQSLFBSQJETRYFZMDRHMKVAGSUFOFBOA
+                KNRVTOIJAQDBUEAEIJKETYDCHWHRDCFWZEIJCTTVDJWWLEJIPJXOLZ
+                UYNMYGHQXMTIPXRELAKQXHPBTNRSIBXNZSGQGRHJSWUINEWQMAIEOT
+                IEZXWJKJTHPGCLTVJUWCRSIBXNRXOGUEARPUUKFEQQUPNJYMQCIKYQ
+                IYQBWNHKROWSPCODIZQYOJAJRUOQSBCIPKHBZEIJSWFUIIISBPXVTI
+                HQXZTBMFYDTYTKRXLJYWH
+                
                 """;
         String plainText = """
                 ADALOVELACEANDCHARLESBABBAGEARETWOOFTHEMOSTIMPORTANTMEMBERSOFOURCOMMUNITYTHEYFEATUREDINTHEFIRSTNATIONALCIPHERCHALLENGEANDAGAINSOMEYEARSLATERWHENWEEXPLOREDTHEIREARLYMEETINGINTHISADVENTUREWEARERETURNINGTOTHEENDOFHERLIFEATLEASTTHEPARTRECORDEDINTHEARCHIVESATBOSSHEADQUARTERSIFOUNDTHISSTORYBYACCIDENTWHENIWASRESEARCHINGTHEROLEOFTHEROYALFAMILYINOURNATIONALSECURITYMANYOFTHEMSERVEDINTHEMILITARYANDAREFAMILIARWITHCODESANDCIPHERSANDIWONDEREDHOWFARBACKTHATINTERESTWENTTHATWASHOWISTUMBLEDACROSSANOTEFROMPRINCEALBERTTOLORDPALMERSTONANDTHATSTARTEDMEDOWNTHERABBITHOLETHATLEDUSHEREIHOPEYOUENJOYITASMUCHASIDIDWEWILLMEETSOMEFASCINATINGNEWCHARACTERSONTHEWAYANDTHESTORYTAKESATWISTORTWOOFCOURSEIKNOWHOWITENDSYOUDONTYETBUTIFYOUSTICKWITHITYOUWILLANDLIKEMEYOUWILLPROBABLYLEARNSOMETHINGONTHEWAYIHAVEPOSTEDASKETCHOFABULLETTHATWASSENTTOADABACKINONTHECASEFILESPAGETHATWASWHERETHESTORYBEGANANDWHATDREWADAINTAKEALOOKANDSEEIFYOUCANFIGUREOUTWHATITMIGHTHAVEMEANTITISNOTABADPLACETOSTART
@@ -36,11 +26,12 @@ public class Main {
         long startTime = System.currentTimeMillis();
 
 
-        System.out.println(Arrays.toString(KasiskiExamination.examine(cipherText)));
-        System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherText, 16)));
-        System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherText, 5, 16)));
+        //System.out.println(Arrays.toString(KasiskiExamination.examine(cipherText)));
+        //System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherText, 16)));
+        //System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherText, 5, 16)));
 
-        CipherBreakerOutput cbo2 = VariantBeaufortCipherBreaker.hillClimberAttack(cipherText, 6);
+        //CipherBreakerOutput cbo2 = VariantBeaufortCipherBreaker.hillClimberAttack(cipherText, 6);
+        System.out.println(PortaCipher.encipher(plainText, "LOVE", 1));
 
         long endTime = System.currentTimeMillis();
         System.out.println("Execution time: " + (endTime - startTime) + "ms");

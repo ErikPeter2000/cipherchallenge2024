@@ -1,5 +1,7 @@
 package main.utils;
 
+import main.ciphers.PortaCipher;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -38,6 +40,7 @@ public class Constants {
         }
 
 
+
         try {
             System.out.println("Initializing monograms...");
             initializePolygram(projectDir +"resources/polygrams/Unigram.csv", monogramMap, true);
@@ -46,8 +49,11 @@ public class Constants {
             if(!skipPolygrams)InitializePolygrams();
         }catch(IOException e){
             System.out.println("Polygram initialization failed: " + e.getMessage());
+            return;
         }
         if(!skipWordlist)initializeWordlist();
+
+        PortaCipher.generateTableu();
     }
 
     static void initializeWordlist(){
