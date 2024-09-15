@@ -1,23 +1,23 @@
 package main;
 
+import main.breakers.MonoAlphabeticCipherBreaker;
 import main.utils.*;
-import main.utils.periodanalysers.KasiskiExamination;
-
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Constants.initialize(true, true);
+        Constants.initialize(false, true);
 
         String cipherText = """
-                IYBIDTAXYIWTNQLFCIQHESZISHGLLBPOWROLAXCGSDPGIPQXBCIWWB
-                UXRWIBXXCVOTGSDCOCEJLFLQWWGVAKXDKCJBVYBWIGPZXWUBBFTGSD
-                RQOEOVVMBUFOBMBLKIBCBFYTWCBWIGPXBXWKKJAPGCVX
+                IDSIYUDHJZXIXTOQOXUSVOROMNSRMOREXOESGOMMSVOMNSRSUSDHJS
+                YSTNIJOUQSTSMKSREMNUDJTNIISRJNIDOUKQLHMNGUXLUINIXINHRG
+                NCDSTIDSUNQCUHRUZSOIXTSVOMNSRSUSNRHRSSCNUHVSIDSUSGTSIQ
+                SUUOESIHMVYNSJSTUIHJOIGDZXIXTOQOIDXTUVOKUOIISR
                 """;
         cipherText = TextFormatter.formatText(cipherText);
 
 
-
-        System.out.println(Arrays.toString(KasiskiExamination.examine(cipherText)));
-    }
+        long startTime = System.currentTimeMillis();
+        MonoAlphabeticCipherBreaker.evolutionaryAdvancedHillClimbingAttack(cipherText, 200, 200).displayPlaintext();
+        long endTime = System.currentTimeMillis();
+        System.out.println("Execution time: " + (endTime - startTime));    }
 }

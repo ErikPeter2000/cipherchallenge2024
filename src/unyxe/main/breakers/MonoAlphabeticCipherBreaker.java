@@ -4,6 +4,7 @@ import main.ciphers.MonoAlphabeticCipher;
 import main.utils.Constants;
 import main.utils.FitnessCalculator;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class MonoAlphabeticCipherBreaker {
@@ -45,6 +46,8 @@ public class MonoAlphabeticCipherBreaker {
         output.isSuccessfull = (output.plainText!=null);
         return output;
     }
+
+    //Not as consistent
     public static CipherBreakerOutput evolutionaryHillClimbingAttack(String cipherText, int genLimit, int keysPerGen){
         CipherBreakerOutput output = new CipherBreakerOutput("MonoAlphabeticCipher", cipherText);
         String parentKey = generateRandomKey();
@@ -56,8 +59,48 @@ public class MonoAlphabeticCipherBreaker {
                 double newFitness = FitnessCalculator.TetragramFitness(text);
                 if(newFitness > output.fitness){output.fitness = newFitness;output.key = childKey;output.plainText = text;}
             }
-            System.out.println("Gen " + i + " finished. " + output.plainText);
             parentKey = output.key;
+        }
+        output.isSuccessfull = (output.plainText!=null);
+        return output;
+    }
+
+    public static CipherBreakerOutput evolutionaryAdvancedHillClimbingAttack(String cipherText, int genLimit, int keysPerGen){
+        CipherBreakerOutput output = new CipherBreakerOutput("MonoAlphabeticCipher", cipherText);
+        output.fitness = -9999999;
+        String[] generation = new String[keysPerGen];
+        for(int i = 0; i < keysPerGen/10; i++){
+            generation[i] = generateRandomKey();
+        }
+        for(int i = 0 ; i < genLimit; i++){
+            for(int j = keysPerGen/10; j < keysPerGen; j++){
+                generation[j] = swapRandomInKey(generation[j/10 - 1]);
+            }
+            double[] topFitnesses = new double[keysPerGen/10];
+            String[] topKeys = new String[keysPerGen/10];
+            Arrays.fill(topFitnesses, -9999999);
+            int lowestIndex = 0;
+            for(int j = 0; j < keysPerGen; j++){
+                String text = MonoAlphabeticCipher.decipher(cipherText, generation[j]);
+                double newFitness = FitnessCalculator.TetragramFitness(text);
+                if(newFitness > output.fitness){output.fitness = newFitness;output.key = generation[j];output.plainText = text;}
+                if(newFitness > topFitnesses[lowestIndex]){
+                    topFitnesses[lowestIndex] = newFitness;
+                    topKeys[lowestIndex] = generation[j];
+                    double lowestFitness = 9999999;
+                    for(int h = 0; h < topFitnesses.length; h++){
+                        if(topFitnesses[h] == -9999999){
+                            lowestIndex = h;
+                            break;
+                        }
+                        if(topFitnesses[h] < lowestFitness){
+                            lowestIndex = h;
+                            lowestFitness = topFitnesses[h];
+                        }
+                    }
+                }
+            }
+            System.arraycopy(topKeys, 0, generation, 0, topFitnesses.length);
         }
         output.isSuccessfull = (output.plainText!=null);
         return output;
