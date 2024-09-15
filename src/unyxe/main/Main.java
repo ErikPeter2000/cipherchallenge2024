@@ -1,6 +1,6 @@
 package main;
 
-import main.breakers.KeywordSubstitutionCipherBreaker;
+import main.breakers.MonoAlphabeticCipherBreaker;
 import main.utils.*;
 
 public class Main {
@@ -8,13 +8,13 @@ public class Main {
         Constants.initialize();
 
         String cipherText = """
-                UHENTWVVENLCMCAONTAIOWTNETTYBTLIGHUEVWPFSOMYIUHINBNVIT
-                BYINBXIXIVYBCHOYUHEYHOLEWNIXESTEYBTMBVEWPOFPBSUIALETOF
-                MBUESIBLYHIAHNOMBUUESHOYVWLLBNVLIFELETTUHECMIGHUTEEMYE
-                SENEXESUHELETTFILLEVYIUHUHITINUENTEBNVXIUBLREBWUC
+                IDSIYUDHJZXIXTOQOXUSVOROMNSRMOREXOESGOMMSVOMNSRSUSDHJS
+                YSTNIJOUQSTSMKSREMNUDJTNIISRJNIDOUKQLHMNGUXLUINIXINHRG
+                NCDSTIDSUNQCUHRUZSOIXTSVOMNSRSUSNRHRSSCNUHVSIDSUSGTSIQ
+                SUUOESIHMVYNSJSTUIHJOIGDZXIXTOQOIDXTUVOKUOIISR
                 """;
         cipherText = TextFormatter.formatText(cipherText);
 
-        KeywordSubstitutionCipherBreaker.wordlistBruteforce(cipherText).displayPlaintext();
+        MonoAlphabeticCipherBreaker.evolutionaryHillClimbingAttack(cipherText, 100, 100).displayPlaintext();
     }
 }

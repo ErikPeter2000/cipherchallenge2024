@@ -41,7 +41,7 @@ public class Constants {
         }catch(IOException e){
             System.out.println("Polygram initialization failed: " + e.getMessage());
         }
-        initializeWordlist();
+        //initializeWordlist();
     }
 
     static void initializeWordlist(){
