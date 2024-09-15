@@ -41,4 +41,24 @@ public class VigenereCipherBreaker {
         output.isSuccessfull = (output.plainText!=null);
         return output;
     }
+
+    //TODO: Attack with cribs
+
+    public static CipherBreakerOutput bruteforceWithWordlist(String cipherText){
+        CipherBreakerOutput output = new CipherBreakerOutput("VigenereCipher", cipherText);
+        output.fitness = FitnessCalculator.TetragramFitness(cipherText);
+        for(int n = 0; n < Constants.wordlist.length; n++){
+            String key = Constants.wordlist[n];
+            String text = VigenereCipher.decipher(cipherText, key);
+            double newFitness = FitnessCalculator.TetragramFitness(text);
+            if (newFitness > output.fitness) {
+                output.fitness = newFitness;
+                output.key = key;
+                output.plainText = text;
+            }
+        }
+        output.isSuccessfull = (output.plainText!=null);
+        return output;
+    }
+
 }
