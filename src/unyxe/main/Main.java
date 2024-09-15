@@ -1,20 +1,23 @@
 package main;
 
-import main.breakers.MonoAlphabeticCipherBreaker;
 import main.utils.*;
+
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Constants.initialize();
+        Constants.initialize(true, true);
 
         String cipherText = """
-                IDSIYUDHJZXIXTOQOXUSVOROMNSRMOREXOESGOMMSVOMNSRSUSDHJS
-                YSTNIJOUQSTSMKSREMNUDJTNIISRJNIDOUKQLHMNGUXLUINIXINHRG
-                NCDSTIDSUNQCUHRUZSOIXTSVOMNSRSUSNRHRSSCNUHVSIDSUSGTSIQ
-                SUUOESIHMVYNSJSTUIHJOIGDZXIXTOQOIDXTUVOKUOIISR
+                THZBAROLASYZFKHFNYCEYXOQMWHXLELXLAUHNPMIAZTLVDWNNHRDOW
+                SIHUCCMGNTTTCWSIHUCCMHTEEDCBUGMHZBAROLTSONNSHUDWQFZXRP
+                NABMHTZDPRYHUCMMNTWADUBUKAOCCMUKELRSDREHULXIAYPECDPNZR
+                OFVTRTWOCCMUKLAWGILYHNLCBRGWYNYCEYXTLVSGUFIDDMEKW
                 """;
         cipherText = TextFormatter.formatText(cipherText);
 
-        MonoAlphabeticCipherBreaker.evolutionaryHillClimbingAttack(cipherText, 100, 100).displayPlaintext();
+
+
+        System.out.println(Arrays.toString(KasiskiExamination.examine(cipherText)));
     }
 }

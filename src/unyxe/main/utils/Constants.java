@@ -29,7 +29,7 @@ public class Constants {
 
     public static double[] monogramStatistics = new double[monogramCount];
 
-    public static void initialize(){
+    public static void initialize(boolean skipPolygrams, boolean skipWordlist){
         for(int i = 0; i < alphabet.length(); i++){
             alphabetMap.put(i, alphabet.charAt(i));
             alphabetMapInverse.put(alphabet.charAt(i), i);
@@ -37,11 +37,11 @@ public class Constants {
 
 
         try {
-            InitializePolygrams();
+            if(!skipPolygrams)InitializePolygrams();
         }catch(IOException e){
             System.out.println("Polygram initialization failed: " + e.getMessage());
         }
-        //initializeWordlist();
+        if(!skipWordlist)initializeWordlist();
     }
 
     static void initializeWordlist(){
