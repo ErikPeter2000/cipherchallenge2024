@@ -1,6 +1,7 @@
 package main;
 
 import main.utils.*;
+import main.utils.periodanalysers.KasiskiExamination;
 
 import java.util.Arrays;
 
@@ -9,10 +10,9 @@ public class Main {
         Constants.initialize(true, true);
 
         String cipherText = """
-                THZBAROLASYZFKHFNYCEYXOQMWHXLELXLAUHNPMIAZTLVDWNNHRDOW
-                SIHUCCMGNTTTCWSIHUCCMHTEEDCBUGMHZBAROLTSONNSHUDWQFZXRP
-                NABMHTZDPRYHUCMMNTWADUBUKAOCCMUKELRSDREHULXIAYPECDPNZR
-                OFVTRTWOCCMUKLAWGILYHNLCBRGWYNYCEYXTLVSGUFIDDMEKW
+                IYBIDTAXYIWTNQLFCIQHESZISHGLLBPOWROLAXCGSDPGIPQXBCIWWB
+                UXRWIBXXCVOTGSDCOCEJLFLQWWGVAKXDKCJBVYBWIGPZXWUBBFTGSD
+                RQOEOVVMBUFOBMBLKIBCBFYTWCBWIGPXBXWKKJAPGCVX
                 """;
         cipherText = TextFormatter.formatText(cipherText);
 

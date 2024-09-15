@@ -1,4 +1,6 @@
-package main.utils;
+package main.utils.periodanalysers;
+
+import main.utils.ModularArithmetics;
 
 import java.util.ArrayList;
 
