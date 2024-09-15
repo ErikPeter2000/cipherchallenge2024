@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ public class Constants {
     public static String[] wordlist;
 
     public static double[] monogramStatistics = new double[monogramCount];
+    public static double[] monogramSignature = new double[monogramCount];
 
     public static void initialize(boolean skipPolygrams, boolean skipWordlist){
         for(int i = 0; i < alphabet.length(); i++){
@@ -37,6 +39,10 @@ public class Constants {
 
 
         try {
+            System.out.println("Initializing monograms...");
+            initializePolygram(projectDir +"resources/polygrams/Unigram.csv", monogramMap, true);
+            System.arraycopy(monogramStatistics, 0, monogramSignature, 0, monogramCount);
+            Arrays.sort(monogramSignature);
             if(!skipPolygrams)InitializePolygrams();
         }catch(IOException e){
             System.out.println("Polygram initialization failed: " + e.getMessage());
@@ -72,8 +78,6 @@ public class Constants {
     }
 
     static void InitializePolygrams() throws IOException {
-        System.out.println("Initializing monograms...");
-        initializePolygram(projectDir +"resources/polygrams/Unigram.csv", monogramMap, true);
         System.out.println("Initializing bigrams...");
         initializePolygram(projectDir +"resources/polygrams/Bigram.csv", bigramMap, false);
         System.out.println("Initializing trigrams...");
