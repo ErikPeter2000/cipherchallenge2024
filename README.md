@@ -12,17 +12,17 @@ Cipher challenge 2024 repository by Cambridge Maths School students, originally 
  - [Substitution Cipher](./src/main/scala/com/core/ciphers/SubstitutionCipher.scala)
  - [Transposition Cipher](./src/main/scala/com/core/ciphers/TranspositionCipher.scala)
  - [Vigenère Cipher](./src/main/scala/com/core/ciphers/VigenereCipher.scala)
- - [Affine Cipher](./src/unyxe/main/ciphers/AffineCipher.java)
- - [Keyword Substitution Cipher](./src/unyxe/main/ciphers/KeywordSubstitutionCipher.java)
- - [Periodic Poly-alphabetic Substitution](./src/unyxe/main/ciphers/PeriodicPolyAlphabeticSubstitution.java)
+ - [Affine Cipher](src/main/java/unyxe/main/ciphers/AffineCipher.java)
+ - [Keyword Substitution Cipher](src/main/java/unyxe/main/ciphers/KeywordSubstitutionCipher.java)
+ - [Periodic Poly-alphabetic Substitution](src/main/java/unyxe/main/ciphers/PeriodicPolyAlphabeticSubstitution.java)
 
 ## Breakers Written:
 - [Caesar Breaker](./src/main/scala/com/core/breakerpresets/CaesarCipherBreaker.scala)
 - [Substitution Breaker](./src/main/scala/com/core/breakerpresets/SubstitutionCipherBreaker.scala)
 - [Transposition Breaker](./src/main/scala/com/core/breakerpresets/TranspositionCipherBreaker.scala)
 - [Vigenère Breaker](./src/main/scala/com/core/breakerpresets/VigenereCipherBreaker.scala)
-- [Affine Breaker](./src/unyxe/main/breakers/AffineCipherBreaker.java)
-- [Keyword Substitution Breaker](./src/unyxe/main/breakers/KeywordSubstitutionCipherBreaker.java)
+- [Affine Breaker](src/main/java/unyxe/main/breakers/AffineCipherBreaker.java)
+- [Keyword Substitution Breaker](src/main/java/unyxe/main/breakers/KeywordSubstitutionCipherBreaker.java)
 
 ## Getting Started
 
