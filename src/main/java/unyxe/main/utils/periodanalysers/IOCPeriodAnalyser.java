@@ -23,9 +23,9 @@ public class IOCPeriodAnalyser {
         return averageIOC/slices.length;
     }
 
-    public static int[] guessPeriod(String cipherText){
+    public static int[] guessPeriod(String cipherText, int periodLimit){
         ArrayList<Integer> periodList = new ArrayList<>();
-        for(int i = 1; i < 16; i++){
+        for(int i = 1; i < periodLimit; i++){
             double averageIOC = averageIOCOfSlices(splitText(cipherText, i));
             //System.out.println(i + ":" + averageIOC);
             if(1.65<averageIOC){periodList.add(i);}

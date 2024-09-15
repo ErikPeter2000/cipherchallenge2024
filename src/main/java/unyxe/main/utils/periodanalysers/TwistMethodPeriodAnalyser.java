@@ -34,11 +34,11 @@ public class TwistMethodPeriodAnalyser {
         return average;
     }
 
-    public static double[][] guessPeriod(String text, int outputLimit){
+    public static double[][] guessPeriod(String text, int outputLimit, int periodLimit){
         ArrayList<double[]> periodList = new ArrayList<>();
 
 
-        for(int n = 1; n < 16;n++){
+        for(int n = 1; n < periodLimit;n++){
             String[] slices = IOCPeriodAnalyser.splitText(text, n);
             double[] averageSig = averageSignature(slices);
             double twist = twist(Constants.monogramSignature, averageSig);
