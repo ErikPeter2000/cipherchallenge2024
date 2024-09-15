@@ -21,6 +21,7 @@ Cipher challenge 2024 repository by Cambridge Maths School students, originally 
 - [Substitution Breaker](./src/main/scala/com/core/breakerpresets/SubstitutionCipherBreaker.scala)
 - [Transposition Breaker](./src/main/scala/com/core/breakerpresets/TranspositionCipherBreaker.scala)
 - [Vigenère Breaker](./src/main/scala/com/core/breakerpresets/VigenereCipherBreaker.scala)
+- [Beaufort Breaker](src/main/java/unyxe/main/breakers/BeaufortCipherBreaker.java)
 - [Affine Breaker](src/main/java/unyxe/main/breakers/AffineCipherBreaker.java)
 - [Keyword Substitution Breaker](src/main/java/unyxe/main/breakers/KeywordSubstitutionCipherBreaker.java)
 
