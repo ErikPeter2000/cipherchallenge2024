@@ -3,6 +3,7 @@ package main.breakers;
 import main.ciphers.VigenereCipher;
 import main.utils.Constants;
 import main.utils.FitnessCalculator;
+import main.utils.periodanalysers.IOCPeriodAnalyser;
 
 public class VigenereCipherBreaker {
 
@@ -91,4 +92,23 @@ public class VigenereCipherBreaker {
         output.isSuccessfull = true;
         return output;
     }
+
+    public static CipherBreakerOutput monogramFreqAttack(String cipherText, int period){
+        CipherBreakerOutput output = new CipherBreakerOutput("VigenereCipher", cipherText);
+        output.fitness = FitnessCalculator.MonogramABVFitness(cipherText);
+        String[] slices = IOCPeriodAnalyser.splitText(cipherText, period);
+
+        StringBuilder keySB = new StringBuilder();
+        for(int i = 0; i < period; i++){
+            CipherBreakerOutput cbo = CaesarCipherBreaker.bruteforceMFA(slices[i]);
+            keySB.append((char) (Integer.parseInt(cbo.key) + 65));
+        }
+
+        output.key = keySB.toString();
+        output.plainText = VigenereCipher.decipher(cipherText, output.key);
+        output.fitness = FitnessCalculator.MonogramABVFitness(output.plainText);
+        output.isSuccessfull = true;
+        return output;
+    }
+
 }
