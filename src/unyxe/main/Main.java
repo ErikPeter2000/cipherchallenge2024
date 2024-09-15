@@ -1,19 +1,20 @@
 package main;
 
-import main.ciphers.*;
+import main.breakers.KeywordSubstitutionCipherBreaker;
 import main.utils.*;
 
 public class Main {
     public static void main(String[] args) {
-        //Constants.initialize(true);
+        Constants.initialize();
 
         String cipherText = """
-                AVLIDWDPDAVLIDWDPDXBLSBDPQBRGGLAJHVQSLDINVPDQJVSSDPGZRGJ
-                IDSJNPRAHZGLTDJVSBRVISDNDWDPHJPDOZKRGDRUUVQLIAQKDUSPDQJT
-                NDRNFILABSQLURIIJSGDRWDSBDDKLSZHZNDQKRLPAXLIDWDPD
+                UHENTWVVENLCMCAONTAIOWTNETTYBTLIGHUEVWPFSOMYIUHINBNVIT
+                BYINBXIXIVYBCHOYUHEYHOLEWNIXESTEYBTMBVEWPOFPBSUIALETOF
+                MBUESIBLYHIAHNOMBUUESHOYVWLLBNVLIFELETTUHECMIGHUTEEMYE
+                SENEXESUHELETTFILLEVYIUHUHITINUENTEBNVXIUBLREBWUC
                 """;
         cipherText = TextFormatter.formatText(cipherText);
 
-        System.out.println(KeywordSubstitutionCipher.decipher(cipherText, "ROUNDTABLE", KeywordSubstitutionCipher.KeyFiller.LAST_LETTER, false));
+        KeywordSubstitutionCipherBreaker.wordlistBruteforce(cipherText).displayPlaintext();
     }
 }
