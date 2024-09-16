@@ -25,4 +25,22 @@ public class PeriodicAffineCipherBreaker {
         output.isSuccessfull = true;
         return output;
     }
+
+    public static String[] getVigenereKeys(int[][] keys, boolean checkAgainstWordlist){
+        for(int i = 1; i < keys.length; i++){
+            if(keys[i][0] != keys[0][0]){
+                throw new IllegalArgumentException("Periodic affine key must contain the same multiplier for the vigenere key extractor to work properly.");
+            }
+        }
+
+        String[] vigenereKeys = new String[keys.length];
+        for(int i = 0; i < keys.length; i++){
+            StringBuilder key = new StringBuilder();
+            for (int[] ints : keys) {
+                key.append((char) ((ints[1] - keys[i][1] + 26) % 26 + 65));
+            }
+            vigenereKeys[i] = key.toString();
+        }
+        return vigenereKeys;
+    }
 }
