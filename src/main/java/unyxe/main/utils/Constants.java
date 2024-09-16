@@ -29,6 +29,10 @@ public class Constants {
     public static Map<String, Double> tetragramMap = new HashMap<>();
 
     public static String[] wordlist;
+    public static String[] smallWordlist;
+
+    public static String[][] wordlistSplitted;
+    public static String[][] smallWordlistSplitted;
 
     public static double[] monogramStatistics = new double[monogramCount];
     public static double[] monogramSignature = new double[monogramCount];
@@ -51,9 +55,58 @@ public class Constants {
             System.out.println("Polygram initialization failed: " + e.getMessage());
             return;
         }
-        if(!skipWordlist)initializeWordlist();
+        if(!skipWordlist){
+            initializeWordlist();
+            wordlistSplitted =  splitWordlistByLength(wordlist, 16);
+        }
+        initializeSmallerWordlist();
+        smallWordlistSplitted = splitWordlistByLength(smallWordlist, 19);
 
         PortaCipher.generateTableu();
+    }
+
+    static void initializeSmallerWordlist(){
+        System.out.println("Initializing small wordlist...");
+        File file = new File(projectDir + "resources/englishwords/google-10000-english-no-swears.txt");
+        ArrayList<String> stringList = new ArrayList<>();
+        putWordsFromFile(file, stringList);
+        smallWordlist = stringList.toArray(new String[0]);
+    }
+
+    static String[][] splitWordlistByLength(String[] wordlist, int maxLength){
+        String[][] splitWordlist = new String[maxLength][];
+        ArrayList<String>[] list = new ArrayList[maxLength];
+        for(int i = 0; i < maxLength; i++){
+            list[i] = new ArrayList<>();
+        }
+        for (String s : wordlist) {
+            list[s.length()].add(s);
+        }
+        for(int i = 0; i < maxLength; i++){
+            splitWordlist[i] = list[i].toArray(new String[0]);
+        }
+        return splitWordlist;
+    }
+
+    private static void putWordsFromFile(File file, ArrayList<String> stringList) {
+        try (FileInputStream fis = new FileInputStream(file)) {
+            StringBuilder word = new StringBuilder();
+            int r;
+            while ((r = fis.read()) != -1) {
+                if(r == 10){
+                    if(word.isEmpty())continue;
+                    stringList.add(word.toString());
+                    word = new StringBuilder();
+                    continue;
+                }
+                r -= 32;
+                if(r <65 || r > 90) continue;
+                word.append((char)r);
+            }
+            if(!word.isEmpty())stringList.add(word.toString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     static void initializeWordlist(){
@@ -61,24 +114,7 @@ public class Constants {
         for(int i = 3; i < 16; i++){
             System.out.println("Initializing wordlist..." + i);
             File file = new File(projectDir + "resources/englishwords/Eng" + i + ".csv");
-            try (FileInputStream fis = new FileInputStream(file)) {
-                StringBuilder word = new StringBuilder();
-                int r;
-                while ((r = fis.read()) != -1) {
-                    if(r == 10){
-                        if(word.isEmpty())continue;
-                        stringList.add(word.toString());
-                        word = new StringBuilder();
-                        continue;
-                    }
-                    r -= 32;
-                    if(r <65 || r > 90) continue;
-                    word.append((char)r);
-                }
-                if(!word.isEmpty())stringList.add(word.toString());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            putWordsFromFile(file, stringList);
         }
         wordlist = stringList.toArray(new String[0]);
     }
