@@ -15,6 +15,7 @@ Cipher challenge 2024 repository by Cambridge Maths School students, originally 
  - [Affine Cipher](src/main/java/unyxe/main/ciphers/AffineCipher.java)
  - [Keyword Substitution Cipher](src/main/java/unyxe/main/ciphers/KeywordSubstitutionCipher.java)
  - [Periodic Poly-alphabetic Substitution](src/main/java/unyxe/main/ciphers/PeriodicPolyAlphabeticSubstitution.java)
+ - [Porta](src/main/java/unyxe/main/ciphers/PortaCipher.java)
 
 ## Breakers Written:
 - [Caesar Breaker](./src/main/scala/com/core/breakerpresets/CaesarCipherBreaker.scala)
@@ -24,6 +25,7 @@ Cipher challenge 2024 repository by Cambridge Maths School students, originally 
 - [Beaufort Breaker](src/main/java/unyxe/main/breakers/BeaufortCipherBreaker.java)
 - [Affine Breaker](src/main/java/unyxe/main/breakers/AffineCipherBreaker.java)
 - [Keyword Substitution Breaker](src/main/java/unyxe/main/breakers/KeywordSubstitutionCipherBreaker.java)
+- [Porta](src/main/java/unyxe/main/breakers/PortaCipherBreaker.java)
 
 ## Getting Started
 
