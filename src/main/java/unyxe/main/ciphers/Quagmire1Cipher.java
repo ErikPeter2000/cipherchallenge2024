@@ -25,6 +25,13 @@ public class Quagmire1Cipher {
         return polyKeys;
     }
 
+    public static String[] getMonoSubstitutionAndVigenereKeys(String keywordAlphabet, String keywordShifts){
+        keywordAlphabet = KeywordSubstitutionCipher.generateKey(keywordAlphabet, KeywordSubstitutionCipher.KeyFiller.NORMAL, false);
+        String monoSubstitutionKey = MonoAlphabeticCipher.inverseKey(keywordAlphabet);
+        String vigenereKey = CaesarCipher.encipher(keywordShifts, 26 - keywordShifts.charAt(0)+65);
+        return new String[]{monoSubstitutionKey, vigenereKey};
+    }
+
     public static String encipher(String plainText, String keywordAlphabet, String keywordShifts){
         return PeriodicPolyAlphabeticSubstitution.encipher(plainText, getPolyKeys(keywordAlphabet, keywordShifts));
     }

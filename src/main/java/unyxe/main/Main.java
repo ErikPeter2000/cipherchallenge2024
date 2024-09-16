@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Constants.initialize(false, true);
+        Constants.initialize(true, true);
 
         String cipherText = """
                 VXUHEXTOLHJMJVCVCHQCQENAZOZWKOMQNHEJRGQUAOJVCYZFAGVFXA
@@ -35,8 +35,10 @@ public class Main {
         //System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherText, 16)));
         //System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherText, 5, 16)));
 
-        CipherBreakerOutput cbo1 = Quagmire1CipherBreaker.dictionaryAttack(cipherText, 5,5);
-        System.out.println(cbo1.key + " : " + cbo1.plainText);
+        //CipherBreakerOutput cbo1 = Quagmire1CipherBreaker.dictionaryAttack(cipherText, 5,5);
+        //System.out.println(cbo1.key + " : " + cbo1.plainText);
+
+        System.out.println(Arrays.toString(Quagmire1Cipher.getMonoSubstitutionAndVigenereKeys("QUAGMIRE", "CIPHER")));
 
 
         long endTime = System.currentTimeMillis();
