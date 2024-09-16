@@ -1,20 +1,22 @@
 package main;
 
 
-import main.ciphers.PortaCipher;
+import main.breakers.*;
+import main.utils.periodanalysers.*;
+import main.ciphers.*;
 import main.utils.*;
+
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        Constants.initialize(true, true);
+        Constants.initialize(false, false);
 
         String cipherText = """
-                KNRVTOIJAQDBUEAEIJKETYDCHWHRDCFWZEIJCTTVDJWWLEJIPJXOLZ
-                UYNMYGHQXMTIPXRELAKQXHPBTNRSIBXNZSGQGRHJSWUINEWQMAIEOT
-                IEZXWJKJTHPGCLTVJUWCRSIBXNRXOGUEARPUUKFEQQUPNJYMQCIKYQ
-                IYQBWNHKROWSPCODIZQYOJAJRUOQSBCIPKHBZEIJSWFUIIISBPXVTI
-                HQXZTBMFYDTYTKRXLJYWH
-                
+                IBPTSPAHRUDMEEESWPCGVONLETNDXATPPARNHAYQVZSGHDUFAVVULM
+                BRXGRXMESXSWDCQOYYVECVQOGYPJNDORJRXASOEVOHVFRNBDNVRMBK
+                OUVPOETDCRTEERSTNHBSVPNGVXGBNNBEOECDEUOJBWYDBZSQFDMQRE
+                BAIWREOZDQUYSIBDCSOSJGVGEUODUKWNBIZBAPSBAHF
                 """;
         String plainText = """
                 ADALOVELACEANDCHARLESBABBAGEARETWOOFTHEMOSTIMPORTANTMEMBERSOFOURCOMMUNITYTHEYFEATUREDINTHEFIRSTNATIONALCIPHERCHALLENGEANDAGAINSOMEYEARSLATERWHENWEEXPLOREDTHEIREARLYMEETINGINTHISADVENTUREWEARERETURNINGTOTHEENDOFHERLIFEATLEASTTHEPARTRECORDEDINTHEARCHIVESATBOSSHEADQUARTERSIFOUNDTHISSTORYBYACCIDENTWHENIWASRESEARCHINGTHEROLEOFTHEROYALFAMILYINOURNATIONALSECURITYMANYOFTHEMSERVEDINTHEMILITARYANDAREFAMILIARWITHCODESANDCIPHERSANDIWONDEREDHOWFARBACKTHATINTERESTWENTTHATWASHOWISTUMBLEDACROSSANOTEFROMPRINCEALBERTTOLORDPALMERSTONANDTHATSTARTEDMEDOWNTHERABBITHOLETHATLEDUSHEREIHOPEYOUENJOYITASMUCHASIDIDWEWILLMEETSOMEFASCINATINGNEWCHARACTERSONTHEWAYANDTHESTORYTAKESATWISTORTWOOFCOURSEIKNOWHOWITENDSYOUDONTYETBUTIFYOUSTICKWITHITYOUWILLANDLIKEMEYOUWILLPROBABLYLEARNSOMETHINGONTHEWAYIHAVEPOSTEDASKETCHOFABULLETTHATWASSENTTOADABACKINONTHECASEFILESPAGETHATWASWHERETHESTORYBEGANANDWHATDREWADAINTAKEALOOKANDSEEIFYOUCANFIGUREOUTWHATITMIGHTHAVEMEANTITISNOTABADPLACETOSTART
@@ -26,12 +28,15 @@ public class Main {
         long startTime = System.currentTimeMillis();
 
 
-        //System.out.println(Arrays.toString(KasiskiExamination.examine(cipherText)));
-        //System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherText, 16)));
-        //System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherText, 5, 16)));
+        System.out.println(Arrays.toString(KasiskiExamination.examine(cipherText)));
+        System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherText, 16)));
+        System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherText, 5, 16)));
 
-        //CipherBreakerOutput cbo2 = VariantBeaufortCipherBreaker.hillClimberAttack(cipherText, 6);
-        System.out.println(PortaCipher.encipher(plainText, "LOVE", 1));
+        CipherBreakerOutput cbo1 = PortaCipherBreaker.hillClimberAttack(cipherText, 7, 2);
+        System.out.println(cbo1.key + " : " + cbo1.plainText);
+
+        System.out.println(Arrays.toString(PortaCipherBreaker.guessTheKeyword(cbo1.key)));
+
 
         long endTime = System.currentTimeMillis();
         System.out.println("Execution time: " + (endTime - startTime) + "ms");
