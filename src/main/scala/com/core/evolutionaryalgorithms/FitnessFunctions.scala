@@ -24,7 +24,7 @@ object FitnessFunctions {
         (data: CipherDataBlock[Char]) => {
             val polygrams = data.sliding(n)
             val score = polygrams.map(
-                polygram => polygramFrequencies.getOrElse(polygram.mkString, -10.0)
+                polygram => polygramFrequencies.lookup(polygram)
             ).sum
             score
         }

@@ -8,6 +8,7 @@ import com.core.collections.BiMap
 import com.core.evolutionaryalgorithms._
 import com.core.extensions.BiMapExtensions.swapElements
 import com.core.alphabets.UppercaseLetters
+import breeze.linalg.max
 
 object SubstitutionCipherBreaker extends CipherBreaker[Char, BiMap[Char, Char]] {
     def break(text: String) = {
@@ -21,11 +22,12 @@ object SubstitutionCipherBreaker extends CipherBreaker[Char, BiMap[Char, Char]] 
             SubstitutionCipher,
             FitnessFunctions.polygramFitness(4),
             (currentKey, currentScore, generation, childIndex, maxGenerations, maxChildren) => {
-                currentKey.clone().swapElements(2)
+                val swaps = childIndex * 4 / maxChildren + 1
+                currentKey.clone().swapElements(swaps)
             },
-            ChildSelectionPolicy.expDfOverT(10, 0)
+            ChildSelectionPolicy.expDfOverT(2,0)
         )
-        val result = breaker.run(data, guessKey, 500, 100, Option("SubstitutionCipherBreaker"))
+        val result = breaker.run(data, guessKey, 30, 1000, Option("SubstitutionCipherBreaker"))
         new BreakerResult(
             inData = data,
             outData = result.outData,
