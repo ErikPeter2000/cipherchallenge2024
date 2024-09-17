@@ -19,14 +19,14 @@ object SubstitutionCipherBreaker extends BreakerPreset[Char, BiMap[Char, Char]] 
         val guessKey = KeyFactory.createSubstitutionKeyFromFrequencies(frequencies)
         val breaker = new BaseEvolutionaryAlgorithm[Char, Char, BiMap[Char, Char]](
             SubstitutionCipher,
-            FitnessFunctions.EriksWordFitness,
+            FitnessFunctions.eriksWordFitness,
             (currentKey, currentScore, generation, childIndex, maxGenerations, maxChildren) => {
                 val newKey = currentKey.clone()
                 val swaps = childIndex * 4 / maxChildren + 1
                 newKey.swapElements(swaps)
                 newKey
             },
-            ChildSelectionPolicy.expDfOverT(5)
+            ChildSelectionPolicy.expDfOverT(5, 0)
         )
         val result = breaker.run(data, guessKey, 30, 500, Option("SubstitutionCipherBreaker"))
         new BreakerResult(

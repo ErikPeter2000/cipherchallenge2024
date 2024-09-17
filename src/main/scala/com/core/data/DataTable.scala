@@ -35,5 +35,14 @@ object DataTable {
     lazy val quadgramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Quadgram.csv")
     lazy val commonWords300: Set[WrappedString] = readListCsv("englishwords/google-10000-english-no-swears.txt").filter(_.size > 3).take(300).map(_.toUpperCase.toIterable).toSet
     def iterateCommonWords: Iterator[String] = readListCsv("englishwords/google-10000-english-no-swears.txt")
-
+    def polygramFrequenciesLog(n: Int): Map[String, Double] = {
+        val polygramFrequencies = n match {
+            case 1 => unigramFrequencies
+            case 2 => bigramFrequencies
+            case 3 => trigramFrequencies
+            case 4 => quadgramFrequencies
+            case _ => throw new IllegalArgumentException("Only n-grams of size 1-4 are supported")
+        }
+        polygramFrequencies.map { case (k, v) => k -> math.log10(v) }
+    }
 }

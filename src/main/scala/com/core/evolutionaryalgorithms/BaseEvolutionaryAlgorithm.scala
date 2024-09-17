@@ -41,7 +41,7 @@ class BaseEvolutionaryAlgorithm[T, K, V](
         maxGenerations: Int,
         maxChildren: Int
     ) => V,
-    selectionPolicy: (currentScore: Double, newScore: Double) => Boolean = ChildSelectionPolicy.bestScore
+    selectionPolicy: (currentScore: Double, newScore: Double, generation: Int, maxGeneration: Int) => Boolean = ChildSelectionPolicy.bestScore
 ) {
 
     /** Run the evolutionary algorithm to break the cipher.
@@ -78,7 +78,7 @@ class BaseEvolutionaryAlgorithm[T, K, V](
 
             // Select the best child
             val bestChild = newKeyScorePairs.maxBy(_._3)
-            if (selectionPolicy(currentScore, bestChild._3)) {
+            if (selectionPolicy(currentScore, bestChild._3, generation, generations)) {
                 currentKey = bestChild._1
                 currentPlaintext = bestChild._2
                 currentScore = bestChild._3

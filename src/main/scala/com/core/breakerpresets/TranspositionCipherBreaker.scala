@@ -23,7 +23,7 @@ object TranspositionCipherBreaker extends BreakerPreset[Char, IndexedSeq[Int]] {
         for (keyLength <- 1 to maxKeyLength) {
             (0 until keyLength).permutations.foreach { permutation =>
                 val result = TranspositionCipher.decrypt(data, permutation)
-                val score = FitnessFunctions.EriksWordFitness(result)
+                val score = FitnessFunctions.eriksWordFitness(result)
                 if (score > bestScore) {
                     bestScore = score
                     bestKey = permutation

@@ -5,7 +5,7 @@ import com.core.cipherdata.CipherDataBlock
 import com.core.alphabets.UppercaseLetters
 import com.core.ciphers.CaesarCipher
 import com.core.ciphers.VigenereCipher
-import com.core.evolutionaryalgorithms.FitnessFunctions.EriksWordFitness
+import com.core.evolutionaryalgorithms.FitnessFunctions.eriksWordFitness
 import com.core.progressbar.ProgressBar
 
 object VigenereCipherBreaker extends BreakerPreset[Char, Seq[Char]] {
@@ -42,7 +42,7 @@ object VigenereCipherBreaker extends BreakerPreset[Char, Seq[Char]] {
             val decrypted = VigenereCipher.decrypt(data, shiftValues)
 
             // Measure the fitness of the decrypted text
-            val score = EriksWordFitness(decrypted)
+            val score = eriksWordFitness(decrypted)
 
             // Update the progress bar
             progressBar.increment()

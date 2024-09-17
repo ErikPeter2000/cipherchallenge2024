@@ -92,6 +92,16 @@ class BiMap[K, V] extends Iterable[(K, V)] {
         this
     }
 
+    def zipWithOther[T](other: BiMap[V, T]): BiMap[K, T] = {
+        val newMap = new BiMap[K, T]
+        this.iterator.foreach { case (k, v) =>
+            other.get(v).foreach { t =>
+                newMap.addMapping(k, t)
+            }
+        }
+        newMap
+    }
+
     override def clone(): BiMap[K, V] = {
         val newMap = new BiMap[K, V]()
         newMap ++= this
