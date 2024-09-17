@@ -50,7 +50,7 @@ Scala is a statically-typed language that runs on the Java Virtual Machine (JVM)
 - Submissions: [submissions/](./submissions/)
 
 #### Individual Code and Other Languages
- If you're writing personal code in Scala or Java, it goes in [src/main/scala/com/team/\<yourname\>](./src/main/scala/com/team/). This allows Java and Scala developers to share code. Any code that will not use the pre-existing Scala libraries (now or in the future) can go in [src/main/\<language\>/team/\<yourname\>/](./src/main/).
+ If you're writing personal code in Scala or Java, it goes in [src/main/scala/com/team/\<yourname\>](./src/main/scala/com/team/). This allows Java and Scala developers to share code. Any code that will not use the pre-existing Scala libraries can go in [src/main/\<language\>/team/\<yourname\>/](./src/main/).
 
 ## Scala Code Standards
  `.scalafmt.conf` is used to enforce code standards. The metals extension can automatically format your code in VSCode with `Shift + Alt + F`.
