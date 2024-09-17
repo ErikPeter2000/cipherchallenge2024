@@ -8,7 +8,7 @@ import com.core.evolutionaryalgorithms._
 import com.core.alphabets.UppercaseLetters
 
 object FourSquareCipherBreaker extends BreakerPreset[Char, Vector[BiMap[Int, Char]]] {
-    def break(data: CipherDataBlock[Char]): BreakerResult[Char, Char, Vector[BiMap[Int, Char]]] = {
+    def break(data: CipherDataBlock[Char], startTemperature: Double, generations: Int = 3000, children: Int = 10): BreakerResult[Char, Char, Vector[BiMap[Int, Char]]] = {
         val breaker = new BaseEvolutionaryAlgorithm[Char, Char, Vector[BiMap[Int, Char]]](
             FourSquareCipher,
             FitnessFunctions.polygramFitness(2),
@@ -36,7 +36,7 @@ object FourSquareCipherBreaker extends BreakerPreset[Char, Vector[BiMap[Int, Cha
                     )
                 }
             },
-            ChildSelectionPolicy.expDfOverT(200, 0)
+            ChildSelectionPolicy.expDfOverT(startTemperature, 0)
         );
         
         val alphabet = data.alphabet
@@ -45,11 +45,11 @@ object FourSquareCipherBreaker extends BreakerPreset[Char, Vector[BiMap[Int, Cha
         }
         val initialKey = Vector(
             alphabet.toBiMap,
-            alphabet.toBiMap.shuffleValues(),
-            alphabet.toBiMap.shuffleValues(),
+            alphabet.toBiMap,
+            alphabet.toBiMap,
             alphabet.toBiMap
         )
-        val result = breaker.run(data, initialKey, 2000, 10, Some("Breaking Four Square Cipher"))
+        val result = breaker.run(data, initialKey, generations, children, Some("Breaking Four Square Cipher"))
 
         new BreakerResult(
             inData = data,
@@ -60,7 +60,14 @@ object FourSquareCipherBreaker extends BreakerPreset[Char, Vector[BiMap[Int, Cha
         )
     }
 
+    def break(data: CipherDataBlock[Char]): BreakerResult[Char, Char, Vector[BiMap[Int, Char]]] = {
+        break(data, 10.0)
+    }
+
     def break(text: String): BreakerResult[Char, Char, Vector[BiMap[Int, Char]]] = {
-        break(CipherDataBlock.create(text, UppercaseLetters.dropLetter('J')))
+        break(CipherDataBlock.create(text, UppercaseLetters.dropLetter('J')), 10)
+    }
+    def break(text: String, startTemperature: Double): BreakerResult[Char, Char, Vector[BiMap[Int, Char]]] = {
+        break(CipherDataBlock.create(text, UppercaseLetters.dropLetter('J')), startTemperature)
     }
 }
