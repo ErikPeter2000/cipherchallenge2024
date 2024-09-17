@@ -1,4 +1,4 @@
-package com.core.breakerpresets
+package com.core.cipherbreakers
 
 import com.core.cipherdata.CipherDataBlock
 import com.core.ciphers.TranspositionCipher
@@ -7,7 +7,7 @@ import com.core.evolutionaryalgorithms.FitnessFunctions
 import com.core.progressbar.ProgressBar
 import com.core.alphabets.UppercaseLetters
 
-object TranspositionCipherBreaker extends BreakerPreset[Char, IndexedSeq[Int]] {
+object TranspositionCipherBreaker extends CipherBreaker[Char, IndexedSeq[Int]] {
     def break(text: String) = {
         val dataBlock = CipherDataBlock.create(text, UppercaseLetters)
         break(dataBlock, 6)

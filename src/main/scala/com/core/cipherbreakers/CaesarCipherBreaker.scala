@@ -1,4 +1,4 @@
-package com.core.breakerpresets
+package com.core.cipherbreakers
 
 import com.core.analysers.FrequencyAnalysis
 import com.core.cipherdata.CipherDataBlock
@@ -6,7 +6,7 @@ import com.core.data.DataTable
 import com.core.ciphers.CaesarCipher
 import com.core.alphabets.UppercaseLetters
 
-object CaesarCipherBreaker extends BreakerPreset[Char, Int] {
+object CaesarCipherBreaker extends CipherBreaker[Char, Int] {
     def break(data: String) = {
         val dataBlock = CipherDataBlock.create(data, UppercaseLetters)
         break(dataBlock)

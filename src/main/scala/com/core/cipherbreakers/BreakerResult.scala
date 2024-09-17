@@ -1,4 +1,4 @@
-package com.core.breakerpresets
+package com.core.cipherbreakers
 
 import com.core.ciphers.BaseCipher
 import com.core.cipherdata.CipherDataBlock

@@ -1,4 +1,4 @@
-package com.core.breakerpresets
+package com.core.cipherbreakers
 
 import com.core.collections.BiMap
 import com.core.cipherdata.CipherDataBlock
@@ -7,7 +7,7 @@ import com.core.extensions.BiMapExtensions._
 import com.core.evolutionaryalgorithms._
 import com.core.alphabets.UppercaseLetters
 
-object FourSquareCipherBreaker extends BreakerPreset[Char, Vector[BiMap[Int, Char]]] {
+object FourSquareCipherBreaker extends CipherBreaker[Char, Vector[BiMap[Int, Char]]] {
     def break(data: CipherDataBlock[Char], startTemperature: Double, generations: Int = 3000, children: Int = 10): BreakerResult[Char, Char, Vector[BiMap[Int, Char]]] = {
         val breaker = new BaseEvolutionaryAlgorithm[Char, Char, Vector[BiMap[Int, Char]]](
             FourSquareCipher,

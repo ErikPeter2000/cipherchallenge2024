@@ -8,5 +8,10 @@ object StringExtensions {
         else c.toString
       }.mkString
     }
+    def relativeMatch(other: String): Double = {
+      val length = str.length
+      val matches = str.zip(other).count { case (a, b) => a == b }
+      matches.toDouble / length
+    }
   }
 }
