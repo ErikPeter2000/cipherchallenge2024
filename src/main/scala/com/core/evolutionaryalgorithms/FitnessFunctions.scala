@@ -18,7 +18,7 @@ object FitnessFunctions {
         }.sum
         score
     }
-    // http://www.practicalcryptography.com/cryptanalysis/text-characterisation/quadgrams/
+    // http://www.practicalcryptography.com/cryptanalysis/text-characterisation/tetragrams/
     def polygramFitness(n: Int): (CipherDataBlock[Char]) => Double = {
         val polygramFrequencies = DataTable.polygramFrequenciesLog(n)
         (data: CipherDataBlock[Char]) => {

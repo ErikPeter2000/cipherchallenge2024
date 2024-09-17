@@ -32,7 +32,7 @@ object DataTable {
     lazy val unigramFrequenciesChar: Map[Char, Double] = unigramFrequencies.map { case (k, v) => k.head -> v }
     lazy val bigramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Bigram.csv")
     lazy val trigramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Trigram.csv")
-    lazy val quadgramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Quadgram.csv")
+    lazy val tetragramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Tetragram.csv")
     lazy val commonWords300: Set[WrappedString] = readListCsv("englishwords/google-10000-english-no-swears.txt").filter(_.size > 3).take(300).map(_.toUpperCase.toIterable).toSet
     def iterateCommonWords: Iterator[String] = readListCsv("englishwords/google-10000-english-no-swears.txt")
     def polygramFrequenciesLog(n: Int): Map[String, Double] = {
@@ -40,7 +40,7 @@ object DataTable {
             case 1 => unigramFrequencies
             case 2 => bigramFrequencies
             case 3 => trigramFrequencies
-            case 4 => quadgramFrequencies
+            case 4 => tetragramFrequencies
             case _ => throw new IllegalArgumentException("Only n-grams of size 1-4 are supported")
         }
         polygramFrequencies.map { case (k, v) => k -> math.log10(v) }

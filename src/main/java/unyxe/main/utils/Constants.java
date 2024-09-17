@@ -125,7 +125,7 @@ public class Constants {
         System.out.println("Initializing trigrams...");
         initializePolygram(projectDir +"resources/polygrams/Trigram.csv", trigramMap, false);
         System.out.println("Initializing tetragrams...");
-        initializePolygram(projectDir +"resources/polygrams/Quadgram.csv", tetragramMap, false);
+        initializePolygram(projectDir +"resources/polygrams/Tetragram.csv", tetragramMap, false);
     }
 
     static void initializePolygram(String path, Map<String, Double> map, boolean isMono) {
