@@ -15,10 +15,16 @@ public class Main {
         Constants.initialize();
 
         String cipherText = """
-                OHSRHJIURBYNPSWGTIMBOHFCMYNHECDEBJVUBPAAUNEJIOHFOCJLIM
-                TVEFKJORPKWYROCJGNAACELEFXFECRHRLPKWYR
+                MYCSWLPRQAJWJIFMPXASGCXCFUQNQRCQQSMZXXAPZXXTHLQMQVHYVY
+                CMQRCMZDZYPAYPTHQDRUYSSONWMIVQVRUNIFYCCPPLQMQVGASWPUCL
+                QUHXPNPZCPQBJEPTGFNSTFMPXZPZYLQVMPXSPOAPZAQTCIFDTCPPTW
+                ZSSYQBQAQCONPNQEYBSUDYHNQWIRCYRYBMFXSFUQNCSCDZUHRYNYWZ
+                XCPPHYLQVQPSFPCQQSVJDZYVMPSTHSSXYHAAXCSCWOESHSXWPPDOSF
+                DTXCULPFQAJTVQAPESIBQXCPWMCZYYDRMXBQFXSRUTWWTDDZYFMPSD
+                AJDVP
                 """;
         String plainText = """
+                THIS MESSAGE IS ENCRYPTED WITH A QUAGMIRE CIPHER
                 """;
         String key = "CSKTFVRMGQLEXDHPJIZANBOUWY";
         String[] periodicKeys = new String[]{"LBRUVCJAWZYSHXINOQEPFTGKDM","SLNAXDIGOBKCEYQHTMWJFUVPZR","IFWVBXNGKHZQYOELPCDTJRUSAM"};
@@ -37,12 +43,12 @@ public class Main {
         System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherTextBytes, 16)));
         System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherTextBytes, 5, 16)));
 
-        //printBytes(Quagmire3Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("DOLPHINS"), TextUtilities.formatAndConvertToBytes("FISHBOWL")));
+        printBytes(Quagmire4Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("FOUR"), TextUtilities.formatAndConvertToBytes("PIGMENT"), TextUtilities.formatAndConvertToBytes("COLOR")));
 
-        CipherBreakerOutput<byte[]> cbo = Quagmire3CipherBreaker.dictionaryAttack(cipherTextBytes, 5, 5);
-        cbo.displayPlaintext();
-        printBytes(cbo.key.get(0));
-        printBytes(cbo.key.get(1));
+        //CipherBreakerOutput<byte[]> cbo = Quagmire3CipherBreaker.dictionaryAttack(cipherTextBytes, 5, 5);
+        //cbo.displayPlaintext();
+        //printBytes(cbo.key.get(0));
+        //printBytes(cbo.key.get(1));
 
 
         long endTime = System.currentTimeMillis();
