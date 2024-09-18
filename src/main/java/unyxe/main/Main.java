@@ -32,12 +32,8 @@ public class Main {
         System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherText, 16)));
         System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherText, 5, 16)));
 
-        //CipherBreakerOutput cbo1 = Quagmire1CipherBreaker.twoStageAttack(cipherText, 10);
-        //System.out.println(cbo1.key + " : " + cbo1.plainText);
-        System.out.println(Quagmire2Cipher.decipher(cipherText, "PLANET", "EARTH"));
-
-        //System.out.println(Arrays.toString(Quagmire1Cipher.getMonoSubstitutionAndVigenereKeys("QUAGMIRE", "CIPHER")));
-        //System.out.println(Quagmire1CipherBreaker.checkTheKeyword("RABBITHOLE"));
+        CipherBreakerOutput cbo1 = Quagmire2CipherBreaker.dictionaryAttack(cipherText, 5,5);
+        System.out.println(cbo1.key + " : " + cbo1.plainText);
 
 
         long endTime = System.currentTimeMillis();

@@ -26,8 +26,10 @@ public class FitnessCalculator {
     public static double TetragramFitness(String text){
         double fitness = 0.;
         int g = text.length()-3;
-        for(int i = 0; i < g; i++) {
-            fitness = fitness + Constants.getTetragramFrequency(text.substring(i, i+4));
+        short i = 0;
+        while(i < g) {
+            fitness += Constants.getTetragramFrequency(text.substring(i, i+4));
+            i++;
         }
         return fitness/(text.length()-3);
     }
