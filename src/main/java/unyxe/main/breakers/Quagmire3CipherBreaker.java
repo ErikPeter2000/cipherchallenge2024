@@ -27,7 +27,7 @@ public class Quagmire3CipherBreaker {
                     output.plainText = text;
                 }
             }
-            if(n%10 == 0)System.out.println(n*100./alphabetKeyWordlist.length + "% done.");
+            if(n%100 == 0)System.out.println(n*100./alphabetKeyWordlist.length + "% done.");
             n++;
         }
         output.isSuccessful = (output.plainText!=null);
