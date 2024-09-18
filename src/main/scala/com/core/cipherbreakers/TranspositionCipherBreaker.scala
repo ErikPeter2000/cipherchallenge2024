@@ -1,4 +1,4 @@
-package com.core.breakerpresets
+package com.core.cipherbreakers
 
 import com.core.cipherdata.CipherDataBlock
 import com.core.ciphers.TranspositionCipher
@@ -7,7 +7,7 @@ import com.core.evolutionaryalgorithms.FitnessFunctions
 import com.core.progressbar.ProgressBar
 import com.core.alphabets.UppercaseLetters
 
-object TranspositionCipherBreaker extends BreakerPreset[Char, IndexedSeq[Int]] {
+object TranspositionCipherBreaker extends CipherBreaker[Char, IndexedSeq[Int]] {
     def break(text: String) = {
         val dataBlock = CipherDataBlock.create(text, UppercaseLetters)
         break(dataBlock, 6)
@@ -23,7 +23,7 @@ object TranspositionCipherBreaker extends BreakerPreset[Char, IndexedSeq[Int]] {
         for (keyLength <- 1 to maxKeyLength) {
             (0 until keyLength).permutations.foreach { permutation =>
                 val result = TranspositionCipher.decrypt(data, permutation)
-                val score = FitnessFunctions.EriksWordFitness(result)
+                val score = FitnessFunctions.eriksWordFitness(result)
                 if (score > bestScore) {
                     bestScore = score
                     bestKey = permutation

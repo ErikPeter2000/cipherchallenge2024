@@ -2,6 +2,7 @@ package com.core.data
 
 import java.nio.file.Paths
 import scala.collection.immutable.WrappedString
+import com.core.alphabets._
 
 object DataTable {
     private def readFrequencyCsv(path: String): Map[String, Double] = {
@@ -32,8 +33,44 @@ object DataTable {
     lazy val unigramFrequenciesChar: Map[Char, Double] = unigramFrequencies.map { case (k, v) => k.head -> v }
     lazy val bigramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Bigram.csv")
     lazy val trigramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Trigram.csv")
-    lazy val quadgramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Quadgram.csv")
+    lazy val tetragramFrequencies: Map[String, Double] = readFrequencyCsv("polygrams/Tetragram.csv")
     lazy val commonWords300: Set[WrappedString] = readListCsv("englishwords/google-10000-english-no-swears.txt").filter(_.size > 3).take(300).map(_.toUpperCase.toIterable).toSet
-    def iterateCommonWords: Iterator[String] = readListCsv("englishwords/google-10000-english-no-swears.txt")
 
+    // slow method to get the index of any n-gram
+    private def getPolygramIndex(polygram: Seq[Char], alphabet: Alphabet[Char]): Int = {
+        val length = polygram.length
+        if (length < 1 || length > 4)
+            throw new IllegalArgumentException("Only n-grams of size 1-4 are supported")
+        var index = 0;
+        for (i <- 0 until length) {
+            index += (math.pow(alphabet.size, i) * alphabet.reverse(polygram(i))).toInt
+        }
+        index
+    }
+
+    private def generatePolygramLogTable(n: Int, frequencies: Map[String, Double], alphabet: Alphabet[Char], default: Double = -10): Vector[Double] = {
+        val table = Array.fill(math.pow(alphabet.size, n).toInt)(default)
+        frequencies.foreach { case (k, v) =>
+            val index = getPolygramIndex(k, alphabet)
+            table(index) = math.log10(v)
+        }
+        table.toVector
+    }
+
+    lazy val unigramFrequenciesLog= new UnigramFrequencyTable(generatePolygramLogTable(1, unigramFrequencies, UppercaseLetters))
+    lazy val bigramFrequenciesLog = new BigramFrequencyTable(generatePolygramLogTable(2, bigramFrequencies, UppercaseLetters))
+    lazy val trigramFrequenciesLog = new TrigramFrequencyTable(generatePolygramLogTable(3, trigramFrequencies, UppercaseLetters))
+    lazy val tetragramFrequenciesLog = new TetragramFrequencyTable(generatePolygramLogTable(4, tetragramFrequencies, UppercaseLetters))
+
+    def iterateCommonWords: Iterator[String] = readListCsv("englishwords/google-10000-english-no-swears.txt")
+    def polygramFrequenciesLog(n: Int): PolygramLookupTable = {
+        val polygramFrequencies = n match {
+            case 1 => unigramFrequenciesLog
+            case 2 => bigramFrequenciesLog
+            case 3 => trigramFrequenciesLog
+            case 4 => tetragramFrequenciesLog
+            case _ => throw new IllegalArgumentException("Only n-grams of size 1-4 are supported")
+        }
+        polygramFrequencies
+    }
 }

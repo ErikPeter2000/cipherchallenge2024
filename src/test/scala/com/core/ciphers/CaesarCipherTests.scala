@@ -1,4 +1,5 @@
-import com.core.ciphers.CaesarCipher
+package com.core.ciphers
+
 import com.core.cipherdata._
 import com.core.alphabets.UppercaseLetters
 

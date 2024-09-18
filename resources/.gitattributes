@@ -16,7 +16,8 @@ Eng9.csv filter=lfs diff=lfs merge=lfs -text
 google-10000-english-no-swears.txt filter=lfs diff=lfs merge=lfs -text
 Bigram.csv filter=lfs diff=lfs merge=lfs -text
 Monogram.csv filter=lfs diff=lfs merge=lfs -text
-Quadgram.csv filter=lfs diff=lfs merge=lfs -text
+Tetragram.csv filter=lfs diff=lfs merge=lfs -text
 Trigram.csv filter=lfs diff=lfs merge=lfs -text
 Orwell1984.txt filter=lfs diff=lfs merge=lfs -text
 text/DostoevskyCrimeAndPunishment.txt filter=lfs diff=lfs merge=lfs -text
+polygrams/Tetragram.csv filter=lfs diff=lfs merge=lfs -text

@@ -16,12 +16,13 @@ Cipher challenge 2024 repository by Cambridge Maths School students, originally 
  - [Keyword Substitution Cipher](src/main/java/unyxe/main/ciphers/KeywordSubstitutionCipher.java)
  - [Periodic Poly-alphabetic Substitution](src/main/java/unyxe/main/ciphers/PeriodicPolyAlphabeticSubstitution.java)
  - [Porta](src/main/java/unyxe/main/ciphers/PortaCipher.java)
+ - [Quagmire1](src/main/java/unyxe/main/ciphers/Quagmire1Cipher.java)
 
 ## Breakers Written:
-- [Caesar Breaker](./src/main/scala/com/core/breakerpresets/CaesarCipherBreaker.scala)
-- [Substitution Breaker](./src/main/scala/com/core/breakerpresets/SubstitutionCipherBreaker.scala)
-- [Transposition Breaker](./src/main/scala/com/core/breakerpresets/TranspositionCipherBreaker.scala)
-- [Vigenère Breaker](./src/main/scala/com/core/breakerpresets/VigenereCipherBreaker.scala)
+- [Caesar Breaker](./src/main/scala/com/core/cipherbreakers/CaesarCipherBreaker.scala)
+- [Substitution Breaker](./src/main/scala/com/core/cipherbreakers/SubstitutionCipherBreaker.scala)
+- [Transposition Breaker](./src/main/scala/com/core/cipherbreakers/TranspositionCipherBreaker.scala)
+- [Vigenère Breaker](./src/main/scala/com/core/cipherbreakers/VigenereCipherBreaker.scala)
 - [Beaufort Breaker](src/main/java/unyxe/main/breakers/BeaufortCipherBreaker.java)
 - [Affine Breaker](src/main/java/unyxe/main/breakers/AffineCipherBreaker.java)
 - [Keyword Substitution Breaker](src/main/java/unyxe/main/breakers/KeywordSubstitutionCipherBreaker.java)
@@ -50,7 +51,7 @@ Scala is a statically-typed language that runs on the Java Virtual Machine (JVM)
 - Submissions: [submissions/](./submissions/)
 
 #### Individual Code and Other Languages
- If you're writing personal code in Scala or Java, it goes in [src/main/scala/com/team/\<yourname\>](./src/main/scala/com/team/). This allows Java and Scala developers to share code. Any code that does not use the pre-existing Scala libraries can go in [src/main/\<language\>/team/\<yourname\>/](./src/main/).
+ If you're writing personal code in Scala or Java, it goes in [src/main/scala/com/team/\<yourname\>](./src/main/scala/com/team/). This allows Java and Scala developers to share code. Any code that will not use the pre-existing Scala libraries can go in [src/main/\<language\>/team/\<yourname\>/](./src/main/).
 
 ## Scala Code Standards
  `.scalafmt.conf` is used to enforce code standards. The metals extension can automatically format your code in VSCode with `Shift + Alt + F`.

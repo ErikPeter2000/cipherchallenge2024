@@ -16,12 +16,13 @@ class CipherFormatResult(
     val originalAlphabet: Alphabet[Char]
 ) {
 
-    /** Reinserts the removed elements back into the data by inserting them at the index they were removed from.
+    /** Reinserts the removed elements back into the data by inserting them at the index they were removed from, and
+      * changes the case of the elements that were changed.
       *
       * @param data
       * @return
       */
-    def reinsertElements(data: CipherDataBlock[Char]): CipherDataBlock[Char] = {
+    def revertFormat(data: CipherDataBlock[Char]): CipherDataBlock[Char] = {
         val result = data.clone()
         result.alphabet = originalAlphabet
         removedElements.toSeq

@@ -1,14 +1,14 @@
-package com.core.breakerpresets
+package com.core.cipherbreakers
 
 import com.core.analysers.KasiskisTest
 import com.core.cipherdata.CipherDataBlock
 import com.core.alphabets.UppercaseLetters
 import com.core.ciphers.CaesarCipher
 import com.core.ciphers.VigenereCipher
-import com.core.evolutionaryalgorithms.FitnessFunctions.EriksWordFitness
+import com.core.evolutionaryalgorithms.FitnessFunctions.eriksWordFitness
 import com.core.progressbar.ProgressBar
 
-object VigenereCipherBreaker extends BreakerPreset[Char, Seq[Char]] {
+object VigenereCipherBreaker extends CipherBreaker[Char, Seq[Char]] {
     // The vulnerability of the Viginere cipher lies in the fact that if we know the key length 'n', we know that every nth letter has been encrypted with the same shift value. This means that we can treat each column as a Caesar cipher, and solve it using frequency analysis. 
     def break(data: String) = {
         break(CipherDataBlock.create(data, UppercaseLetters))
@@ -42,7 +42,7 @@ object VigenereCipherBreaker extends BreakerPreset[Char, Seq[Char]] {
             val decrypted = VigenereCipher.decrypt(data, shiftValues)
 
             // Measure the fitness of the decrypted text
-            val score = EriksWordFitness(decrypted)
+            val score = eriksWordFitness(decrypted)
 
             // Update the progress bar
             progressBar.increment()

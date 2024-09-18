@@ -30,17 +30,25 @@ object KeyFactory {
       * @return
       *   A sequence of distinct letters.
       */
-    def combinePhraseWithAlphabet(phrase: String, alphabet: BiMapAlphabet[Char]): IndexedSeq[Char] = {
+    def combinePhraseWithAlphabet(phrase: String, alphabet: BiMapAlphabet[Char], startAtLastLetter: Boolean = false): IndexedSeq[Char] = {
         val distinctPhrase = phrase.distinct.filter(alphabet.contains)
         val letters = new Array[Char](alphabet.size)
         distinctPhrase.copyToArray(letters)
+        var index = {
+            if (startAtLastLetter) {
+                alphabet.reverse(distinctPhrase.last) + 1
+            } else {
+                0
+            }
+        }
         var count = distinctPhrase.length
-        alphabet.foreach { case (index, letter) =>
+        (0 until alphabet.size).foreach(i => {
+            val letter = alphabet((i + index) % alphabet.size)
             if (!letters.contains(letter)) {
                 letters(count) = letter
                 count += 1
             }
-        }
+        })
         letters
     }
 
@@ -51,8 +59,8 @@ object KeyFactory {
       * @return
       *   A BiMap representing the substitution key.
       */
-    def createSubstitutionKey(phrase: String, inputAlphabet: BiMapAlphabet[Char]): BiMap[Char, Char] = {
-        val letters = combinePhraseWithAlphabet(phrase, inputAlphabet)
+    def createSubstitutionKey(phrase: String, inputAlphabet: BiMapAlphabet[Char], startAtLastLetter: Boolean = false): BiMap[Char, Char] = {
+        val letters = combinePhraseWithAlphabet(phrase, inputAlphabet, startAtLastLetter)
         return inputAlphabet.createLetterMapAgainst(letters)
     }
 
