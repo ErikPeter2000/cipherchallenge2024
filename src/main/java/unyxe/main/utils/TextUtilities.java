@@ -38,6 +38,22 @@ public class TextUtilities {
     public static void printBytes(byte[] bytes){
         System.out.println(convertToString(bytes, Constants.alphabet));
     }
+    public static void printBytes(byte[][] bytes){
+        for (byte[] aByte : bytes) {
+            System.out.println(convertToString(aByte, Constants.alphabet));
+        }
+    }
+    public static void printIntegers(int[] integers){
+        for (int anInt : integers) {
+            System.out.print(anInt + " ");
+        }
+        System.out.println();
+    }
+    public static void printIntegers(int[][] integers){
+        for (int[] integer : integers) {
+            printIntegers(integer);
+        }
+    }
     public static boolean isEqual(byte[] text1, byte[] text2){
         if(text1.length != text2.length) return false;
         for(int i = 0; i < text1.length; i++){

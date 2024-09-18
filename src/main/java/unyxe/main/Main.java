@@ -15,10 +15,12 @@ public class Main {
         Constants.initialize();
 
         String cipherText = """
-                THZBAROLASYZFKHFNYCEYXOQMWHXLELXLAUHNPMIAZTLVDWNNHRDOW
-                SIHUCCMGNTTTCWSIHUCCMHTEEDCBUGMHZBAROLTSONNSHUDWQFZXRP
-                NABMHTZDPRYHUCMMNTWADUBUKAOCCMUKELRSDREHULXIAYPECDPNZR
-                OFVTRTWOCCMUKLAWGILYHNLCBRGWYNYCEYXTLVSGUFIDDMEKW
+                UXDAPTKWHERHJUJPNESLUUHKUCGFKOKNQFDBZFKNXSFQGUAUGVDAUO
+                MBIPBBLUYGVMSEJOSHUVCJQVBNICDFLBWSYQRWUSKCRRBKQSWKJCDX
+                UTSLGEJIZFASRMKGOBPSGEJIKUDGYCJARLRHTFOWVBNGMMEKEOOVNA
+                KHXVPVQEUXGFHAZSRXCUDGJCUALBLLTZSHUSYDTGPJEFHUJPDAUGOA
+                XSIKKJJCSMSEGBZGTNTDCTWBTBKHCXSLGEDAUJYCTFDAUZPCQIJIEL
+                LKUESXGBLQT
                 """;
         String plainText = """
                 """;
@@ -43,9 +45,12 @@ public class Main {
         System.out.println(cbo1.key + " : " + cbo1.plainText);
          */
 
-        //printBytes(PeriodicPolyAlphabeticSubstitution.decipher(cipherTextBytes, keysBytes));
+        printBytes(Quagmire3Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("DOLPHINS"), TextUtilities.formatAndConvertToBytes("FISHBOWL")));
 
-        //MonoAlphabeticCipherBreaker.evolutionaryHillClimbingAttack(cipherTextBytes, 200, 200).displayPlaintext();
+        //CipherBreakerOutput<byte[]> cbo = Quagmire2CipherBreaker.dictionaryAttack(cipherTextBytes, 6, 5);
+        //cbo.displayPlaintext();
+        //printBytes(cbo.key.get(0));
+        //printBytes(cbo.key.get(1));
 
 
         long endTime = System.currentTimeMillis();

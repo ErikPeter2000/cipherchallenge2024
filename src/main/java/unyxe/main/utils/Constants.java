@@ -114,7 +114,7 @@ public class Constants {
     }
 
     static int getTetragramIndex(byte[] tetragramCA){
-        return (tetragramCA[0])*26*26*26 + (tetragramCA[1])*26*26 + (tetragramCA[2])*26 + (tetragramCA[3]);
+        return tetragramCA[0]*26*26*26 + tetragramCA[1]*26*26 + tetragramCA[2]*26 + tetragramCA[3];
     }
 
     static void initializePolygram(String path, int n) {
