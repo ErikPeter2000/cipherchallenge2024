@@ -6,5 +6,5 @@ import com.core.cipherdata.CipherDataBlock
   */
 abstract trait CipherBreaker[K, V] {
     def break(text: String): BreakerResult[Char, K, V]
-    def break(data: CipherDataBlock[Char]): BreakerResult[Char, K, V]
+    def break(data: CipherDataBlock[K]): BreakerResult[Char, K, V]
 }

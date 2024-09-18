@@ -35,11 +35,17 @@ object Main {
     }
 
     def job() = {
-        val cipherText = CipherDataBlock.formatAndCreate("WNUTGKUTGKVTSSHQKZGFTOZVQLQWKOUIZEGSRRQNOFQHKOSQFRZITESGEALVTKTLZKOAOFUZIOKZTTFVOFLZGFLDOZIIOLEIOFFXMMSTROFZGIOLWKTQLZOFQFTYYGKZZGTLEQHTZITCOSTVOFRLSOHHTRJXOEASNZIKGXUIZITUSQLLRGGKLGYCOEZGKNDQFLOGFLZIGXUIF")._1
+        val cipherText = "15142413354324133543531332324111434535341331455311441115433124254521353222221114313411414331321134224525132132352112445313431344454331123134244525".map(x => (x - '1')).toSeq
 
-        val result = SubstitutionCipherBreaker.break(cipherText)
+        val actualKey = KeyFactory.createSubstitutionKey("AKEY", UppercaseLetters.dropLetter('J')).values.toIndexedSeq
+        val cipherData = CipherDataBlock.create[Int](cipherText, PosIntAlphabet)
+        val temp = PolybiusCipher.decrypt(cipherData, actualKey)
+        println(temp.mkString)
+        println(FitnessFunctions.polygramFitness(4)(temp))
+
+        val result = PolybiusCipherBreaker.break(cipherData)
         println(result.textData.take(110))
-        println(result.key.values.mkString)
+        println(result.key.mkString)
     }
 
     def main(args: Array[String]): Unit = {
