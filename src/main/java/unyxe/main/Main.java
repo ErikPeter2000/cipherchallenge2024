@@ -15,12 +15,8 @@ public class Main {
         Constants.initialize();
 
         String cipherText = """
-                FAFSTXGTYRDWTCRESHFKTAUMCEVWWNRCHIMYMXTNHGBRHTJWFYCOXY
-                RDYWXEDSTXPISROHVKBGEHBYTWEZOOSDURXXEJNZYVBYTACBVNMMJB
-                LNYMBWIIVPRQXFPXHXAVJNXATCMRCFSTGFNNYIMWYFXYBQSMJPSYOG
-                NFNIURRTXVWWWAGTXSGMPGSBATYWIVHOMTJIFQVBWRPMATFEPFBXME
-                QWDMWEWRKDTNJODCBWXWAFFNRAETGIMYOFSSPQSXGJFEHAHYRDPGYS
-                MJHISQIVJQIVROCEVUIMWAFFHSSWYEAMWTEITWT
+                OHSRHJIURBYNPSWGTIMBOHFCMYNHECDEBJVUBPAAUNEJIOHFOCJLIM
+                TVEFKJORPKWYROCJGNAACELEFXFECRHRLPKWYR
                 """;
         String plainText = """
                 """;
@@ -43,7 +39,7 @@ public class Main {
 
         //printBytes(Quagmire3Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("DOLPHINS"), TextUtilities.formatAndConvertToBytes("FISHBOWL")));
 
-        CipherBreakerOutput<byte[]> cbo = Quagmire2CipherBreaker.dictionaryAttack(cipherTextBytes, 6, 5);
+        CipherBreakerOutput<byte[]> cbo = Quagmire3CipherBreaker.dictionaryAttack(cipherTextBytes, 5, 5);
         cbo.displayPlaintext();
         printBytes(cbo.key.get(0));
         printBytes(cbo.key.get(1));
