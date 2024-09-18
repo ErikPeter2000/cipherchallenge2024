@@ -85,8 +85,6 @@ object KeyFactory {
       *
       * This is useful for decrypting a substitution cipher using frequency analysis.
       *
-      * @param inputAlphabet
-      *   The alphabet to create the key from.
       * @param currentFrequencies
       *   The frequencies of the current data.
       * @param normalFrequencies
@@ -94,14 +92,13 @@ object KeyFactory {
       * @return
       *   A BiMap representing the substitution key.
       */
-    def createSubstitutionKeyFromFrequencies[T](
-        inputAlphabet: BiMapAlphabet[T],
-        currentFrequencies: Map[T, Double],
+    def createSubstitutionKeyFromFrequencies[T, K](
+        currentFrequencies: Map[K, Double],
         normalFrequencies: Map[T, Double]
-    ): BiMap[T, T] = {
-        val inKeys = currentFrequencies.keys.toSeq.sortBy(currentFrequencies(_))
+    ): BiMap[T, K] = {
+        val inKeys = currentFrequencies.keys.toSeq.sortBy(x => currentFrequencies.getOrElse(x, 0.0))
         val outKeys = normalFrequencies.keys.toSeq.sortBy(normalFrequencies(_))
-        new BiMap[T, T](outKeys.zip(inKeys))
+        new BiMap[T, K](outKeys.zip(inKeys))
     }
 
     /** Creates a substitution key based on the given frequencies.

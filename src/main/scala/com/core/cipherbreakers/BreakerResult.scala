@@ -5,8 +5,8 @@ import com.core.cipherdata.CipherDataBlock
 import com.core.collections.BiMap
 
 class BreakerResult[T, K, V](
-    val inData: CipherDataBlock[T],
-    val outData: CipherDataBlock[K],
+    val inData: CipherDataBlock[K],
+    val outData: CipherDataBlock[T],
     val cipherUsed: BaseCipher[T, K, V],
     val key: V,
     val score: Double
