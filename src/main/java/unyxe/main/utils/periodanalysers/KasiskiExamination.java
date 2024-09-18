@@ -37,7 +37,7 @@ public class KasiskiExamination {
         ArrayList<Integer> results = new ArrayList<>();
         for(int i = 5;i<10;i++){
             for(int j = 0; j < cipherText.length-i+1; j++){
-                byte[] targetPattern = Arrays.copyOfRange(cipherText, j, j+1);
+                byte[] targetPattern = Arrays.copyOfRange(cipherText, j, j+i);
                 for(int k = j+i; k < cipherText.length-i+1; k++){
                     byte[] currentPattern = Arrays.copyOfRange(cipherText, k, k+i);
                     if(TextUtilities.isEqual(targetPattern, currentPattern)){

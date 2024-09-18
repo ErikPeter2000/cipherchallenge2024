@@ -7,12 +7,14 @@ import java.util.ArrayList;
 public class IOCPeriodAnalyser {
     public static byte[][] splitText(byte[] text, int n) {
         byte[][] split = new byte[n][];
-        for(int i = 0; i < n-1;i++) {
-            split[i] = new byte[(int) Math.ceil((double) text.length /n)];
+        int c = (int) Math.floor((double) text.length /n);
+        int d = text.length - c*n;
+        for(int i = 0; i < d;i++) {
+            split[i] = new byte[c+1];
         }
-        int m = (text.length%n);
-        if(m==0) m = n;
-        split[n-1] = new byte[m];
+        for(int i = d; i < n; i++) {
+            split[i] = new byte[c];
+        }
         for(int i = 0; i < text.length; i++) {
             split[i%n][(int)Math.floor((double) i /n)] = text[i];
         }

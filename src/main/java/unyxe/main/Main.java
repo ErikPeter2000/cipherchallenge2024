@@ -1,13 +1,12 @@
 package main;
 
 
-import main.breakers.AffineCipherBreaker;
-import main.breakers.CaesarCipherBreaker;
-import main.breakers.KeywordSubstitutionCipherBreaker;
-import main.breakers.MonoAlphabeticCipherBreaker;
-import main.ciphers.CaesarCipher;
-import main.ciphers.MonoAlphabeticCipher;
+import main.ciphers.*;
+import main.breakers.*;
+import main.utils.periodanalysers.*;
 import main.utils.*;
+
+import java.util.Arrays;
 
 import static main.utils.TextUtilities.*;
 
@@ -16,33 +15,37 @@ public class Main {
         Constants.initialize();
 
         String cipherText = """
-                IDSIYUDHJZXIXTOQOXUSVOROMNSRMOREXOESGOMMSVOMNSRSUSDHJS
-                YSTNIJOUQSTSMKSREMNUDJTNIISRJNIDOUKQLHMNGUXLUINIXINHRG
-                NCDSTIDSUNQCUHRUZSOIXTSVOMNSRSUSNRHRSSCNUHVSIDSUSGTSIQ
-                SUUOESIHMVYNSJSTUIHJOIGDZXIXTOQOIDXTUVOKUOIISR
+                THZBAROLASYZFKHFNYCEYXOQMWHXLELXLAUHNPMIAZTLVDWNNHRDOW
+                SIHUCCMGNTTTCWSIHUCCMHTEEDCBUGMHZBAROLTSONNSHUDWQFZXRP
+                NABMHTZDPRYHUCMMNTWADUBUKAOCCMUKELRSDREHULXIAYPECDPNZR
+                OFVTRTWOCCMUKLAWGILYHNLCBRGWYNYCEYXTLVSGUFIDDMEKW
                 """;
         String plainText = """
                 """;
         String key = "CSKTFVRMGQLEXDHPJIZANBOUWY";
+        String[] periodicKeys = new String[]{"LBRUVCJAWZYSHXINOQEPFTGKDM","SLNAXDIGOBKCEYQHTMWJFUVPZR","IFWVBXNGKHZQYOELPCDTJRUSAM"};
 
         byte[] cipherTextBytes = formatAndConvertToBytes(cipherText);
         byte[] plainTextBytes = formatAndConvertToBytes(plainText);
         byte[] keyBytes = formatAndConvertToBytes(key);
+        byte[][] keysBytes = convertToByteArrays(periodicKeys, Constants.alphabet);
         byte[][] cribsBytes = convertToByteArrays(new String[]{"VICTORY", "SPAIN", "DISCO", "EUROVISION"},Constants.alphabet);
 
 
         long startTime = System.currentTimeMillis();
 
-        /*
-        System.out.println(Arrays.toString(KasiskiExamination.examine(cipherText)));
-        System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherText, 16)));
-        System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherText, 5, 16)));
 
+        System.out.println(Arrays.toString(KasiskiExamination.examine(cipherTextBytes)));
+        System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherTextBytes, 16)));
+        System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherTextBytes, 5, 16)));
+        /*
         CipherBreakerOutput cbo1 = Quagmire2CipherBreaker.dictionaryAttack(cipherText, 5,5);
         System.out.println(cbo1.key + " : " + cbo1.plainText);
          */
 
-        MonoAlphabeticCipherBreaker.evolutionaryHillClimbingAttack(cipherTextBytes, 200, 200).displayPlaintext();
+        //printBytes(PeriodicPolyAlphabeticSubstitution.decipher(cipherTextBytes, keysBytes));
+
+        //MonoAlphabeticCipherBreaker.evolutionaryHillClimbingAttack(cipherTextBytes, 200, 200).displayPlaintext();
 
 
         long endTime = System.currentTimeMillis();
