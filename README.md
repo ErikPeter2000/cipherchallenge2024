@@ -17,6 +17,8 @@ Cipher challenge 2024 repository by Cambridge Maths School students, originally 
  - [Periodic Poly-alphabetic Substitution](src/main/java/unyxe/main/ciphers/PeriodicPolyAlphabeticSubstitution.java)
  - [Porta](src/main/java/unyxe/main/ciphers/PortaCipher.java)
  - [Quagmire1](src/main/java/unyxe/main/ciphers/Quagmire1Cipher.java)
+ - [Quagmire2](src/main/java/unyxe/main/ciphers/Quagmire2Cipher.java)
+ - [Quagmire3](src/main/java/unyxe/main/ciphers/Quagmire3Cipher.java)
 
 ## Breakers Written:
 - [Caesar Breaker](./src/main/scala/com/core/cipherbreakers/CaesarCipherBreaker.scala)
@@ -28,6 +30,8 @@ Cipher challenge 2024 repository by Cambridge Maths School students, originally 
 - [Keyword Substitution Breaker](src/main/java/unyxe/main/breakers/KeywordSubstitutionCipherBreaker.java)
 - [Porta](src/main/java/unyxe/main/breakers/PortaCipherBreaker.java)
 - [Quagmire1](src/main/java/unyxe/main/breakers/Quagmire1CipherBreaker.java)
+- [Quagmire2](src/main/java/unyxe/main/breakers/Quagmire2CipherBreaker.java)
+- [Quagmire3](src/main/java/unyxe/main/breakers/Quagmire3CipherBreaker.java)
 
 ## Getting Started
 
