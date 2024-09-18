@@ -3,19 +3,18 @@ package main.ciphers;
 import main.utils.Constants;
 
 public class VigenereCipher {
-    public static String encipher(String plainText, String key){
-        StringBuilder cipherText = new StringBuilder();
-        for(int i = 0; i < plainText.length(); i++){
-            cipherText.append((char) ((plainText.charAt(i) - 65 + key.charAt(i%key.length())-65)% Constants.monogramCount + 65));
+    public static byte[] encipher(byte[] plainText, byte[] key){
+        byte[] cipherText = new byte[plainText.length];
+        for(int i = 0; i < plainText.length; i++){
+            cipherText[i] = (byte) ((plainText[i] + key[i%key.length])%Constants.monogramCount);
         }
-        return cipherText.toString();
+        return cipherText;
     }
-    public static String decipher(String cipherText, String key){
-        StringBuilder plainText = new StringBuilder();
-        for(int i = 0; i < cipherText.length(); i++){
-            plainText.append((char) ((cipherText.charAt(i) - key.charAt(i%key.length()) + Constants.monogramCount*10)% Constants.monogramCount + 65));
+    public static byte[] decipher(byte[] cipherText, byte[] key){
+        byte[] plainText = new byte[cipherText.length];
+        for(int i = 0; i < cipherText.length; i++){
+            plainText[i] = (byte) ((cipherText[i] - key[i%key.length] + Constants.monogramCount*10)% Constants.monogramCount);
         }
-        return plainText.toString();
+        return plainText;
     }
-
 }

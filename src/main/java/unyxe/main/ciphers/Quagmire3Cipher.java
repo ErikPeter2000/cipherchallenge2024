@@ -2,21 +2,13 @@ package main.ciphers;
 
 import main.utils.TextUtilities;
 
-public class Quagmire1Cipher {
+public class Quagmire3Cipher {
     public static byte[][] getPolyKeys(byte[] keywordAlphabet, byte[] keywordShifts){
         keywordAlphabet = KeywordSubstitutionCipher.generateKey(keywordAlphabet, KeywordSubstitutionCipher.KeyFiller.NORMAL, false);
-        int beginShift = TextUtilities.indexOf(keywordAlphabet, (byte) 0);
-        byte[][] keys = new byte[keywordShifts.length][];
-        for(int i = 0; i < keywordShifts.length; i++){
-            byte[] key = new byte[26];
-            for(int j = 0; j < key.length;j++){
-                key[j] = (byte) ((j - beginShift + (keywordShifts[i]) + 26 * 2) % 26);
-            }
-            keys[i] = key;
-        }
+        byte[][] keys = Quagmire2Cipher.getPolyKeys(keywordAlphabet, keywordShifts);
         byte[][] polyKeys = new byte[keywordShifts.length][26];
         for(int i = 0; i < 26;i++){
-            int shift = TextUtilities.indexOf(keywordAlphabet, (byte) i);
+            int shift = TextUtilities.indexOf(keywordAlphabet, (byte)i);
             for(int j = 0; j < keywordShifts.length; j++){
                 polyKeys[j][i] = keys[j][shift];
             }
@@ -25,10 +17,7 @@ public class Quagmire1Cipher {
     }
 
     public static byte[][] getMonoSubstitutionAndVigenereKeys(byte[] keywordAlphabet, byte[] keywordShifts){
-        keywordAlphabet = KeywordSubstitutionCipher.generateKey(keywordAlphabet, KeywordSubstitutionCipher.KeyFiller.NORMAL, false);
-        byte[] monoSubstitutionKey = MonoAlphabeticCipher.inverseKey(keywordAlphabet);
-        byte[] vigenereKey = CaesarCipher.encipher(keywordShifts, 26 - keywordShifts[0]);
-        return new byte[][]{monoSubstitutionKey, vigenereKey};
+        return null;
     }
 
     public static byte[] encipher(byte[] plainText, byte[] keywordAlphabet, byte[] keywordShifts){

@@ -4,72 +4,82 @@ import main.ciphers.VariantBeaufortCipher;
 import main.utils.Constants;
 import main.utils.FitnessCalculator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class VariantBeaufortCipherBreaker {
-    public static CipherBreakerOutput bruteforce(String cipherText, double maxLength){
-        CipherBreakerOutput output = new CipherBreakerOutput("VariantBeaufortCipher", cipherText);
+    public static CipherBreakerOutput<byte[]> bruteforce(byte[] cipherText, double maxLength){
+        CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("VariantBeaufortCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
+        byte[] bestKey = null;
         for(int n = 1; n <= maxLength; n++){
-            String[] possibleKeys = VigenereCipherBreaker.generateKeys(n);
-            for (String possibleKey : possibleKeys) {
-                String text = VariantBeaufortCipher.decipher(cipherText, possibleKey);
-                double newFitness = FitnessCalculator.TetragramFitness(text);
-                if (newFitness > output.fitness) {
-                    output.fitness = newFitness;
-                    output.key = possibleKey;
-                    output.plainText = text;
-                }
+            byte[][] possibleKeys = VigenereCipherBreaker.generateKeys(n);
+            for (byte[] possibleKey : possibleKeys) {
+                bestKey = updateBestKey(cipherText, output, bestKey, possibleKey);
             }
-            System.out.println("Key-length " + n + " finished. Best: " + output.plainText);
+            //System.out.println("Key-length " + n + " finished. Best: " + output.plainText);
         }
-        output.isSuccessfull = (output.plainText!=null);
+        output.isSuccessful = (output.plainText!=null);
+        output.key = new ArrayList<>();
+        output.key.add(bestKey);
         return output;
     }
 
-    public static CipherBreakerOutput bruteforceWithWordlist(String cipherText){
-        CipherBreakerOutput output = new CipherBreakerOutput("VariantBeaufortCipher", cipherText);
+    private static byte[] updateBestKey(byte[] cipherText, CipherBreakerOutput<byte[]> output, byte[] bestKey, byte[] possibleKey) {
+        byte[] text = VariantBeaufortCipher.decipher(cipherText, possibleKey);
+        double newFitness = FitnessCalculator.TetragramFitness(text);
+        if (newFitness > output.fitness) {
+            output.fitness = newFitness;
+            bestKey = Arrays.copyOf(possibleKey, possibleKey.length);
+            output.plainText = text;
+        }
+        return bestKey;
+    }
+
+    public static CipherBreakerOutput<byte[]> bruteforceWithWordlist(byte[] cipherText){
+        CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("VariantBeaufortCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
+        byte[] bestKey = null;
         for(int n = 0; n < Constants.wordlist.length; n++){
-            String key = Constants.wordlist[n];
-            String text = VariantBeaufortCipher.decipher(cipherText, key);
-            double newFitness = FitnessCalculator.TetragramFitness(text);
-            if (newFitness > output.fitness) {
-                output.fitness = newFitness;
-                output.key = key;
-                output.plainText = text;
-            }
+            byte[] key = Constants.wordlist[n];
+            bestKey = updateBestKey(cipherText, output, bestKey, key);
         }
-        output.isSuccessfull = (output.plainText!=null);
+        output.isSuccessful = (output.plainText!=null);
+        output.key = new ArrayList<>();
+        output.key.add(bestKey);
         return output;
     }
-    public static CipherBreakerOutput hillClimberAttack(String cipherText, int period){
-        CipherBreakerOutput output = new CipherBreakerOutput("VariantBeaufortCipher", cipherText);
+    public static CipherBreakerOutput<byte[]> hillClimberAttack(byte[] cipherText, int period){
+        CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("VariantBeaufortCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
 
+        byte[] bestKey;
 
-        char[] key = "A".repeat(period).toCharArray();
+        byte[] key = new byte[period];
         while(true){
             double oldFitness = output.fitness;
             for(int i = 0; i < period;i++){
                 double maxFitness = -999999;
-                char bestLetter = key[i];
+                byte bestLetter = key[i];
                 for(int j = 0; j < Constants.monogramCount; j++){
-                    key[i] = (char)(65+j);
-                    String keyString = new String(key);
-                    String text = VariantBeaufortCipher.decipher(cipherText, keyString);
+                    key[i] = (byte)(j);
+                    byte[] text = VariantBeaufortCipher.decipher(cipherText, key);
                     double newFitness = FitnessCalculator.TetragramFitness(text);
                     if (newFitness > maxFitness) {
                         maxFitness = newFitness;
-                        bestLetter = (char)(65+j);
+                        bestLetter = (byte)(j);
                     }
                 }
                 key[i] = bestLetter;
             }
-            output.key = new String(key);
-            output.plainText = VariantBeaufortCipher.decipher(cipherText, output.key);
+            bestKey = Arrays.copyOf(key, key.length);
+            output.plainText = VariantBeaufortCipher.decipher(cipherText, key);
             output.fitness = FitnessCalculator.TetragramFitness(output.plainText);
             if(output.fitness == oldFitness){break;}
         }
-        output.isSuccessfull = true;
+        output.isSuccessful = true;
+        output.key = new ArrayList<>();
+        output.key.add(bestKey);
         return output;
     }
 }

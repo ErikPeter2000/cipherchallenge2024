@@ -8,35 +8,35 @@ public class AffineCipher {
         return !ModularArithmetics.isCoprime(a, Constants.monogramCount);
     }
 
-    public static String convertToMAKey(int a, int b){
+    public static byte[] convertToMAKey(int a, int b){
         if(isKeyInvalid(a)) {
             throw new IllegalArgumentException("Key is not valid");
         }
-        StringBuilder key = new StringBuilder();
-        for(int i = 0; i < Constants.monogramCount; i++){
-            key.append((char) (65 + ((i * a + b) % 26)));
+        byte[] key = new byte[Constants.monogramCount];
+        for(int i = 0; i < key.length; i++){
+            key[i] = (byte) ((i * a + b) % 26);
         }
-        return key.toString();
+        return key;
     }
-    public static String encipher(String plainText, int a, int b){
+    public static byte[] encipher(byte[] plainText, int a, int b){
         if(isKeyInvalid(a)) {
             throw new IllegalArgumentException("Key is not valid");
         }
-        StringBuilder cipherText = new StringBuilder();
-        for(int i = 0; i < plainText.length(); i++){
-            cipherText.append((char) (65 + (((plainText.charAt(i)-65) * a + b) % 26)));
+        byte[] cipherText = new byte[plainText.length];
+        for(int i = 0; i < plainText.length; i++){
+            cipherText[i] = (byte) ((plainText[i] * a + b) % 26);
         }
-        return cipherText.toString();
+        return cipherText;
     }
-    public static String decipher(String cipherText, int a, int b){
+    public static byte[] decipher(byte[] cipherText, int a, int b){
         if(isKeyInvalid(a)) {
             throw new IllegalArgumentException("Key is not valid");
         }
         int inverseA = ModularArithmetics.inverse(a, Constants.monogramCount);
-        StringBuilder plainText = new StringBuilder();
-        for(int i = 0; i < cipherText.length(); i++){
-            plainText.append((char) (65 + Math.floorMod(((cipherText.charAt(i)-65) - b)*inverseA,26)));
+        byte[] plainText = new byte[cipherText.length];
+        for(int i = 0; i < cipherText.length; i++){
+            plainText[i] = (byte)(((cipherText[i] - b)*inverseA + 26*2000)%26);
         }
-        return plainText.toString();
+        return plainText;
     }
 }

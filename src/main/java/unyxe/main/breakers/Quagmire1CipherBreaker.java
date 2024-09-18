@@ -7,37 +7,47 @@ import main.ciphers.VigenereCipher;
 import main.utils.Analyser;
 import main.utils.Constants;
 import main.utils.FitnessCalculator;
+import main.utils.TextUtilities;
 import main.utils.periodanalysers.IOCPeriodAnalyser;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Quagmire1CipherBreaker {
 
-    public static boolean checkTheKeyword(String keyword){
+    public static boolean checkTheKeyword(byte[] keyword){
         for(int i = 0; i < Constants.wordlist.length; i++){
-            if(keyword.equals(Constants.wordlist[i])){return true;}
+            if(TextUtilities.isEqual(keyword, Constants.wordlist[i])){return true;}
         }
         return false;
     }
 
-    public static CipherBreakerOutput dictionaryAttack(String cipherText, int alphabetKeyLength, int shiftsKeyLength){
-        CipherBreakerOutput output = new CipherBreakerOutput("Quagmire1Cipher", cipherText);
+    public static CipherBreakerOutput<byte[]> dictionaryAttack(byte[] cipherText, int alphabetKeyLength, int shiftsKeyLength){
+        CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("Quagmire1Cipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
-        String[] alphabetKeyWordlist = Constants.smallWordlistSplitted[alphabetKeyLength];
-        String[] shiftsKeyWordlist = Constants.smallWordlistSplitted[shiftsKeyLength];
+        byte[] bestAKey = null;
+        byte[] bestSKey = null;
+        byte[][] alphabetKeyWordlist = Constants.smallWordlistSplitted[alphabetKeyLength];
+        byte[][] shiftsKeyWordlist = Constants.smallWordlistSplitted[shiftsKeyLength];
         int n = 0;
-        for (String alphabetKey : alphabetKeyWordlist) {
-            for (String shiftsKey : shiftsKeyWordlist) {
-                String text = Quagmire1Cipher.decipher(cipherText, alphabetKey, shiftsKey);
+        for (byte[] alphabetKey : alphabetKeyWordlist) {
+            for (byte[] shiftsKey : shiftsKeyWordlist) {
+                byte[] text = Quagmire1Cipher.decipher(cipherText, alphabetKey, shiftsKey);
                 double newFitness = FitnessCalculator.TetragramFitness(text);
                 if (newFitness > output.fitness) {
                     output.fitness = newFitness;
-                    output.key = alphabetKey + " " + shiftsKey;
+                    bestAKey = Arrays.copyOf(alphabetKey, alphabetKey.length);
+                    bestSKey = Arrays.copyOf(shiftsKey, shiftsKey.length);
                     output.plainText = text;
                 }
             }
             if(n%10 == 0)System.out.println(n*100./alphabetKeyWordlist.length + "% done.");
             n++;
         }
-        output.isSuccessfull = (output.plainText!=null);
+        output.isSuccessful = (output.plainText!=null);
+        output.key = new ArrayList<>();
+        output.key.add(bestAKey);
+        output.key.add(bestSKey);
         return output;
     }
 
@@ -49,11 +59,11 @@ public class Quagmire1CipherBreaker {
         array[array.length-1] = temp;
     }
 
-    public static CipherBreakerOutput twoStageAttack(String cipherText, int period){
-        CipherBreakerOutput output = new CipherBreakerOutput("Quagmire1Cipher", cipherText);
+    public static CipherBreakerOutput<byte[]> twoStageAttack(byte[] cipherText, int period){
+        CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("Quagmire1Cipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
 
-        String[] slices = IOCPeriodAnalyser.splitText(cipherText, period);
+        byte[][] slices = IOCPeriodAnalyser.splitText(cipherText, period);
         double[] pivotMonogramFreq = Analyser.getMonogramStatistic(slices[0]);
         int[] shifts = new int[slices.length];
         for(int i = 1; i < slices.length; i++){
@@ -71,34 +81,35 @@ public class Quagmire1CipherBreaker {
             shifts[i] = bestShift;
         }
         shifts[0] = 0;
-        StringBuilder vigenereKeySB = new StringBuilder();
-        for (int shift : shifts) {
-            vigenereKeySB.append((char) (shift + 65));
+        byte[] vigenereKey = new byte[shifts.length];
+        for (int i = 0; i < shifts.length; i++) {
+            vigenereKey[i] = (byte)shifts[i];
         }
-        String vigenereKey = vigenereKeySB.toString();
 
         boolean found = false;
         for(int i = 1; i < 26;i++){
-            String cKey = CaesarCipher.encipher(vigenereKey, i);
+            byte[] cKey = CaesarCipher.encipher(vigenereKey, i);
             if(checkTheKeyword(cKey)){
                 vigenereKey = cKey;
                 found = true;
-                System.out.println("[Quagmire1CipherBreaker] Shifts keyword found: " + cKey);
+                //System.out.println("[Quagmire1CipherBreaker] Shifts keyword found: " + cKey);
                 break;
             }
         }
         if(!found) System.out.println("[Quagmire1CipherBreaker] Shifts keyword not found.");
 
-        String substitutionCipher = VigenereCipher.decipher(cipherText, vigenereKey);
-        CipherBreakerOutput cbo = MonoAlphabeticCipherBreaker.evolutionaryAdvancedHillClimbingAttack(substitutionCipher, 100, 400);
+        byte[] substitutionCipher = VigenereCipher.decipher(cipherText, vigenereKey);
+        CipherBreakerOutput<byte[]> cbo = MonoAlphabeticCipherBreaker.evolutionaryHillClimbingAttack(substitutionCipher, 100, 400);
 
-        String alphabetKeyword = MonoAlphabeticCipher.inverseKey(cbo.key);
+        byte[] alphabetKeyword = MonoAlphabeticCipher.inverseKey(cbo.key.get(0));
 
         output.fitness = cbo.fitness;
-        output.key =vigenereKey + " " + alphabetKeyword;
+        output.key = new ArrayList<>();
+        output.key.add(alphabetKeyword);
+        output.key.add(vigenereKey);
         output.plainText = cbo.plainText;
 
-        output.isSuccessfull = (output.plainText!=null);
+        output.isSuccessful = (output.plainText!=null);
         return output;
     }
 }

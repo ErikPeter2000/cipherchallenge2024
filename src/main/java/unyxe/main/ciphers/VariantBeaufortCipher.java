@@ -1,10 +1,10 @@
 package main.ciphers;
 
 public class VariantBeaufortCipher {
-    public static String encipher(String plainText, String key){
+    public static byte[] encipher(byte[] plainText, byte[] key){
         return VigenereCipher.decipher(plainText, key);
     }
-    public static String decipher(String cipherText, String key){
+    public static byte[] decipher(byte[] cipherText, byte[] key){
         return VigenereCipher.encipher(cipherText, key);
     }
 }

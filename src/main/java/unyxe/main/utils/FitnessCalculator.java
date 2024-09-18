@@ -1,36 +1,23 @@
 package main.utils;
 
 public class FitnessCalculator {
-    public static double MonogramChiFitness(String text){
+    public static byte[][] bufferTetragrams = new byte[10000][4];
+    public static double MonogramChiFitness(byte[] text){
         return 1/Analyser.ChiSquaredStatistic(Analyser.getMonogramStatistic(text), Constants.monogramStatistics);
     }
-    public static double MonogramABVFitness(String text){
+    public static double MonogramABVFitness(byte[] text){
         return Analyser.AngleBetweenVectors(Analyser.getMonogramStatistic(text), Constants.monogramStatistics);
     }
-    /*
-    public static double TetragramFitnessOld(String text){
-        double fitness = 0;
-        for(int i = 0; i < text.length()-3; i++){
-            String sub = text.substring(i, i+4);
-            if(!Constants.tetragramMap.containsKey(sub)){
-                fitness -= 20;
-                continue;
-            }
-            Double freq = Constants.tetragramMap.get(sub);
-            fitness += freq;
-        }
-        return fitness/(text.length()-3);
-    }
-    */
 
-    public static double TetragramFitness(String text){
+    public static double TetragramFitness(byte[] text){
         double fitness = 0.;
-        int g = text.length()-3;
-        short i = 0;
-        while(i < g) {
-            fitness += Constants.getTetragramFrequency(text.substring(i, i+4));
-            i++;
+        int g = text.length-3;
+        for(int i = 0; i < g;i++){
+            System.arraycopy(text,i,bufferTetragrams[i],0,4);
         }
-        return fitness/(text.length()-3);
+        for (int i = 0; i < g; i++) {
+            fitness += Constants.getTetragramFrequency(bufferTetragrams[i]);
+        }
+        return fitness/g;
     }
 }

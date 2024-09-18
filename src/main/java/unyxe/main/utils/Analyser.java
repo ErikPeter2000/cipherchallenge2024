@@ -1,19 +1,19 @@
 package main.utils;
 
 public class Analyser {
-    public static double[] getMonogramStatistic(String text){
+    public static double[] getMonogramStatistic(byte[] text){
         double[] monogramStatistic = new double[Constants.monogramCount];
-        int N = text.length();
-        for(int i = 0;i<N;i++){
-            monogramStatistic[text.charAt(i)-65] += 1.0/N;
+        int N = text.length;
+        for (byte b : text) {
+            monogramStatistic[b] += 1.0 / N;
         }
         return monogramStatistic;
     }
 
-    public static double getIndexOfCoincedence(String text, boolean normalized){
+    public static double getIndexOfCoincedence(byte[] text, boolean normalized){
         double ioc = 0;
         double[] monogramStatistic = getMonogramStatistic(text);
-        int N = text.length();
+        int N = text.length;
         for(int i = 0; i < Constants.monogramCount; i++){
             ioc += monogramStatistic[i]*(monogramStatistic[i]*N-1)/(N-1);
         }
@@ -21,7 +21,7 @@ public class Analyser {
         return ioc;
     }
 
-    public static double getEntropy(String text){
+    public static double getEntropy(byte[] text){
         double[] monogramStatistic = getMonogramStatistic(text);
         double entropy = 0;
         for(int i = 0; i < Constants.monogramCount; i++){

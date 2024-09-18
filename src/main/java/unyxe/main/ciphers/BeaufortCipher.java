@@ -3,14 +3,14 @@ package main.ciphers;
 import main.utils.Constants;
 
 public class BeaufortCipher {
-    public static String encipher(String plainText, String key){
-        StringBuilder cipherText = new StringBuilder();
-        for(int i = 0; i < plainText.length(); i++){
-            cipherText.append((char) ((key.charAt(i%key.length()) - plainText.charAt(i) + Constants.monogramCount*10)% Constants.monogramCount + 65));
+    public static byte[] encipher(byte[] plainText, byte[] key){
+        byte[] cipherText = new byte[plainText.length];
+        for(int i = 0; i < plainText.length; i++){
+            cipherText[i] = (byte) ((key[i%key.length] - plainText[i] + Constants.monogramCount*10)% Constants.monogramCount);
         }
-        return cipherText.toString();
+        return cipherText;
     }
-    public static String decipher(String cipherText, String key){
+    public static byte[] decipher(byte[] cipherText, byte[] key){
         return encipher(cipherText, key);
     }
 }
