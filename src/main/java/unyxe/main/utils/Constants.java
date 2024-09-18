@@ -57,7 +57,7 @@ public class Constants {
         putWordsFromFile(filepath, stringList);
         smallWordlist = new byte[stringList.size()][];
         for(int i = 0; i < smallWordlist.length; i++){
-            smallWordlist[i] = TextUtilities.convertToByteArray(stringList.get(i), alphabet);
+            smallWordlist[i] = TextUtilities.formatAndConvertToBytes(stringList.get(i));
         }
         System.out.println("Done.");
     }
@@ -97,7 +97,7 @@ public class Constants {
         }
         wordlist = new byte[stringList.size()][];
         for(int i = 0; i < wordlist.length; i++){
-            wordlist[i] = TextUtilities.convertToByteArray(stringList.get(i), alphabet);
+            wordlist[i] = TextUtilities.formatAndConvertToBytes(stringList.get(i));
         }
     }
 

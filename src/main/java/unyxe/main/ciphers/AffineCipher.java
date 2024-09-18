@@ -35,7 +35,7 @@ public class AffineCipher {
         int inverseA = ModularArithmetics.inverse(a, Constants.monogramCount);
         byte[] plainText = new byte[cipherText.length];
         for(int i = 0; i < cipherText.length; i++){
-            plainText[i] = (byte)Math.floorMod((cipherText[i] - b)*inverseA,26);
+            plainText[i] = (byte)(((cipherText[i] - b)*inverseA + 26*2000)%26);
         }
         return plainText;
     }

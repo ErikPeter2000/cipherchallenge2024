@@ -29,9 +29,9 @@ public class CaesarCipherBreaker {
         int bestKey = 0;
 
         for(int i = 0; i < cipherText.length-crib.length+1; i++){
-            int key = Math.floorMod(cipherText[i] - crib[0], Constants.monogramCount);
+            int key = (cipherText[i] - crib[0] + 2*Constants.monogramCount)% Constants.monogramCount;
             for(int j = 1; j < crib.length; j++){
-                if(Math.floorMod(cipherText[i+j] - crib[j], Constants.monogramCount) != key){
+                if(((cipherText[i+j] - crib[j] + Constants.monogramCount*2)% Constants.monogramCount) != key){
                     key = -1;
                     break;
                 }

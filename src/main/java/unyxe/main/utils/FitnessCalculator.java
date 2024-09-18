@@ -1,8 +1,7 @@
 package main.utils;
 
-import java.util.Arrays;
-
 public class FitnessCalculator {
+    public static byte[][] bufferTetragrams = new byte[10000][4];
     public static double MonogramChiFitness(byte[] text){
         return 1/Analyser.ChiSquaredStatistic(Analyser.getMonogramStatistic(text), Constants.monogramStatistics);
     }
@@ -13,12 +12,11 @@ public class FitnessCalculator {
     public static double TetragramFitness(byte[] text){
         double fitness = 0.;
         int g = text.length-3;
-        byte[][] substrings = new byte[g][];
         for(int i = 0; i < g;i++){
-            substrings[i] = Arrays.copyOfRange(text, i, i+4);
+            System.arraycopy(text,i,bufferTetragrams[i],0,4);
         }
         for (int i = 0; i < g; i++) {
-            fitness += Constants.getTetragramFrequency(substrings[i]);
+            fitness += Constants.getTetragramFrequency(bufferTetragrams[i]);
         }
         return fitness/g;
     }

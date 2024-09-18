@@ -33,7 +33,7 @@ public class PeriodicAffineCipher {
         byte[] plainText = new byte[cipherText.length];
         for(int i = 0; i < cipherText.length; i++){
             int[] keypair = inverseAKeys[i%inverseAKeys.length];
-            plainText[i] = (byte) (Math.floorMod((cipherText[i] - keypair[1])*keypair[0],26));
+            plainText[i] = (byte) (((cipherText[i] - keypair[1])*keypair[0] + 26*2)%26);
         }
         return plainText;
     }

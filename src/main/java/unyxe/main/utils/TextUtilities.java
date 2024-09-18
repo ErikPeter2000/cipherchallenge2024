@@ -11,6 +11,9 @@ public class TextUtilities {
         }
         return formatted.toString();
     }
+    public static byte[] formatAndConvertToBytes(String text){
+        return convertToByteArray(formatText(text), Constants.alphabet);
+    }
     public static byte[] convertToByteArray(String text, String alphabet){
          byte[] bytes = new byte[text.length()];
          for (int i = 0; i < text.length(); i++){
@@ -18,12 +21,22 @@ public class TextUtilities {
          }
          return bytes;
     }
+    public static byte[][] convertToByteArrays(String[] texts, String alphabet){
+        byte[][] bytes = new byte[texts.length][];
+        for (int i = 0; i < texts.length; i++){
+            bytes[i] = convertToByteArray(texts[i], alphabet);
+        }
+        return bytes;
+    }
     public static String convertToString(byte[] bytes, String alphabet){
         StringBuilder formatted = new StringBuilder();
         for (byte aByte : bytes) {
             formatted.append(alphabet.charAt(aByte));
         }
         return formatted.toString();
+    }
+    public static void printBytes(byte[] bytes){
+        System.out.println(convertToString(bytes, Constants.alphabet));
     }
     public static boolean isEqual(byte[] text1, byte[] text2){
         if(text1.length != text2.length) return false;
