@@ -13,22 +13,12 @@ public class Main {
         Constants.initialize(false, false);
 
         String cipherText = """
-                TNBOWMQSCQFMFOBZVKYAVNUBJVKSLLKESDBGLJPVFNEFLHUGNKVRDO
-                QCVKNRKJFXWKIUDNVWBTBHPSESLTBJIVUHUIIAGGKMQCMINEOUAMYO
-                NMATPOJVSSLXLNOFJAVFDSDEXBGTUUENVNHDXILUDYXGFOJRNCHRJO
-                TVOZLBMCKJBUIUJRPNRGOPBTTCXIETUPBCJBWEWOVUAMVDAGEIKFZL
-                LPSJVHPSMLQSSSLNHKMKZSMLYACCKGPUZAEWKBBLLSXIXTPGMTCSCC
-                XEFQEXIPPGKJFSBCLKPFSWBTDXYMRIVPPSACLVPFSVFSGLICHFPHPS
-                ACLXLKGBFOBRVVEGDEBTACLKPRKGPXVMVPZSCAGPCMQSCEEGUPEHUU
-                PVNJBUETZWZGEIUPRTWDPREEYUPVYGEWAEUSKXNHZFFOMHWPUOYKDA
-                MFWNAKUEKSKFETZRZQTNJUWYBHNXNATUWHNOCPKOTFMTUMENTNJURX
-                UGUISOPMMZHHENVSDHMLVVENVWFCJTUUYSKCEFOMQOEXAEZXMKLVNF
-                SEHXKMQRFTWOBSOLHBRJFOMTRXIJPWAESFIGNHUIIETKMLHKXEGSBO
-                OIJREYIETKCGPIASEPFJALQSESFLHPEGHYLVYRPNWGLCSXAETKMUCS
-                DEJSKFXTZGPKTTXBAUHTPFVGPSIGPSXEIMBCIZLTFXKOKFZBYSLXXC
-                TBXIVQYXDEOUKMDODIDPUZACLUNKEOUCKELHZKIOQURXROCLFRIFIK
-                VVWGSBDOQLVAPJFGZVVZLFYIRTKTWFHBLMVGUPXNAQEGETPPVXVVEN
-                VDVQNHHFRWRSTKMALPMTRSUDB
+                FAFSTXGTYRDWTCRESHFKTAUMCEVWWNRCHIMYMXTNHGBRHTJWFYCOXY
+                RDYWXEDSTXPISROHVKBGEHBYTWEZOOSDURXXEJNZYVBYTACBVNMMJB
+                LNYMBWIIVPRQXFPXHXAVJNXATCMRCFSTGFNNYIMWYFXYBQSMJPSYOG
+                NFNIURRTXVWWWAGTXSGMPGSBATYWIVHOMTJIFQVBWRPMATFEPFBXME
+                QWDMWEWRKDTNJODCBWXWAFFNRAETGIMYOFSSPQSXGJFEHAHYRDPGYS
+                MJHISQIVJQIVROCEVUIMWAFFHSSWYEAMWTEITWT
                 """;
         String plainText = """
                 """;
@@ -42,8 +32,9 @@ public class Main {
         System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherText, 16)));
         System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherText, 5, 16)));
 
-        CipherBreakerOutput cbo1 = Quagmire1CipherBreaker.twoStageAttack(cipherText, 10);
-        System.out.println(cbo1.key + " : " + cbo1.plainText);
+        //CipherBreakerOutput cbo1 = Quagmire1CipherBreaker.twoStageAttack(cipherText, 10);
+        //System.out.println(cbo1.key + " : " + cbo1.plainText);
+        System.out.println(Quagmire2Cipher.decipher(cipherText, "PLANET", "EARTH"));
 
         //System.out.println(Arrays.toString(Quagmire1Cipher.getMonoSubstitutionAndVigenereKeys("QUAGMIRE", "CIPHER")));
         //System.out.println(Quagmire1CipherBreaker.checkTheKeyword("RABBITHOLE"));

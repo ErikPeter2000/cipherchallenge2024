@@ -119,7 +119,7 @@ public class Constants {
         System.out.println("Initializing trigrams...");
         initializePolygram(projectDir +"resources/polygrams/Trigram.csv", trigramMap, 3);
         System.out.println("Initializing tetragrams...");
-        initializePolygram(projectDir +"resources/polygrams/Quadgram.csv", tetragramMap, 4);
+        initializePolygram(projectDir +"resources/polygrams/Tetragram.csv", tetragramMap, 4);
         for(int i = 0; i < tetragramMapFast.length;i++){
             if(tetragramMapFast[i] == 0){tetragramMapFast[i] = -20;}
         }
