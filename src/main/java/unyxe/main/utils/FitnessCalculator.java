@@ -7,12 +7,29 @@ public class FitnessCalculator {
     public static double MonogramABVFitness(String text){
         return Analyser.AngleBetweenVectors(Analyser.getMonogramStatistic(text), Constants.monogramStatistics);
     }
-    public static double TetragramFitness(String text){
+    /*
+    public static double TetragramFitnessOld(String text){
         double fitness = 0;
         for(int i = 0; i < text.length()-3; i++){
-            Double freq = Constants.tetragramMap.get(text.substring(i, i+4));
-            if(freq == null) freq = 2.6043660326128424e-09;
-            fitness += Math.log(freq);
+            String sub = text.substring(i, i+4);
+            if(!Constants.tetragramMap.containsKey(sub)){
+                fitness -= 20;
+                continue;
+            }
+            Double freq = Constants.tetragramMap.get(sub);
+            fitness += freq;
+        }
+        return fitness/(text.length()-3);
+    }
+    */
+
+    public static double TetragramFitness(String text){
+        double fitness = 0.;
+        int g = text.length()-3;
+        short i = 0;
+        while(i < g) {
+            fitness += Constants.getTetragramFrequency(text.substring(i, i+4));
+            i++;
         }
         return fitness/(text.length()-3);
     }
