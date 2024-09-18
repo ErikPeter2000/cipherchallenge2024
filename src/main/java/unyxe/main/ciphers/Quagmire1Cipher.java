@@ -35,6 +35,12 @@ public class Quagmire1Cipher {
         return PeriodicPolyAlphabeticSubstitution.encipher(plainText, getPolyKeys(keywordAlphabet, keywordShifts));
     }
     public static byte[] decipher(byte[] cipherText, byte[] keywordAlphabet, byte[] keywordShifts){
-        return PeriodicPolyAlphabeticSubstitution.decipher(cipherText, getPolyKeys(keywordAlphabet, keywordShifts));
+        return MonoAlphabeticCipher.encipher(
+                VigenereCipher.decipher(
+                        cipherText,
+                        CaesarCipher.encipher(keywordShifts, 26 - keywordShifts[0])
+                ),
+                KeywordSubstitutionCipher.generateKey(keywordAlphabet, KeywordSubstitutionCipher.KeyFiller.NORMAL, false)
+        );
     }
 }

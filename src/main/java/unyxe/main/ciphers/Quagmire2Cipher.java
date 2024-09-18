@@ -24,6 +24,13 @@ public class Quagmire2Cipher {
         return PeriodicPolyAlphabeticSubstitution.encipher(plainText, getPolyKeys(keywordAlphabet, keywordShifts));
     }
     public static byte[] decipher(byte[] cipherText, byte[] keywordAlphabet, byte[] keywordShifts){
-        return PeriodicPolyAlphabeticSubstitution.decipher(cipherText, getPolyKeys(keywordAlphabet, keywordShifts));
+        byte[][] keys = getMonoSubstitutionAndVigenereKeys(keywordAlphabet, keywordShifts);
+        return VigenereCipher.decipher(
+                MonoAlphabeticCipher.decipher(
+                        cipherText,
+                        keys[1]
+                ),
+                keys[0]
+        );
     }
 }
