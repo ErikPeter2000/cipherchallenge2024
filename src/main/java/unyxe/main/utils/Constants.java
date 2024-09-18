@@ -2,8 +2,8 @@ package main.utils;
 
 import main.ciphers.PortaCipher;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,10 +23,11 @@ public class Constants {
 
     public static final String projectDir = System.getProperty("user.dir") + "/";
 
-    public static Map<String, Double> monogramMap = new HashMap<>();
-    public static Map<String, Double> bigramMap = new HashMap<>();
-    public static Map<String, Double> trigramMap = new HashMap<>();
-    public static Map<String, Double> tetragramMap = new HashMap<>();
+    public static HashMap<String, Double> monogramMap = new HashMap<>();
+    public static HashMap<String, Double> bigramMap = new HashMap<>();
+    public static HashMap<String, Double> trigramMap = new HashMap<>();
+    public static HashMap<String, Double> tetragramMap = new HashMap<>();
+    public static double[] tetragramMapFast = new double[475254];
 
     public static String[] wordlist;
     public static String[] smallWordlist;
@@ -47,7 +48,7 @@ public class Constants {
 
         try {
             System.out.println("Initializing monograms...");
-            initializePolygram(projectDir +"resources/polygrams/Unigram.csv", monogramMap, true);
+            initializePolygram(projectDir +"resources/polygrams/Unigram.csv", monogramMap, 1);
             System.arraycopy(monogramStatistics, 0, monogramSignature, 0, monogramCount);
             Arrays.sort(monogramSignature);
             if(!skipPolygrams)InitializePolygrams();
@@ -67,9 +68,9 @@ public class Constants {
 
     static void initializeSmallerWordlist(){
         System.out.println("Initializing small wordlist...");
-        File file = new File(projectDir + "resources/englishwords/google-10000-english-no-swears.txt");
+        String filepath = (projectDir + "resources/englishwords/google-10000-english-no-swears.txt");
         ArrayList<String> stringList = new ArrayList<>();
-        putWordsFromFile(file, stringList);
+        putWordsFromFile(filepath, stringList);
         smallWordlist = stringList.toArray(new String[0]);
     }
 
@@ -88,22 +89,15 @@ public class Constants {
         return splitWordlist;
     }
 
-    private static void putWordsFromFile(File file, ArrayList<String> stringList) {
-        try (FileInputStream fis = new FileInputStream(file)) {
-            StringBuilder word = new StringBuilder();
-            int r;
-            while ((r = fis.read()) != -1) {
-                if(r == 10){
-                    if(word.isEmpty())continue;
-                    stringList.add(word.toString());
-                    word = new StringBuilder();
-                    continue;
-                }
-                r -= 32;
-                if(r <65 || r > 90) continue;
-                word.append((char)r);
+    private static void putWordsFromFile(String filepath, ArrayList<String> stringList) {
+
+
+        try (FileReader fr = new FileReader(filepath)) {
+            BufferedReader br = new BufferedReader(fr);
+            String r;
+            while ((r = br.readLine()) != null) {
+                stringList.add(r.toUpperCase());
             }
-            if(!word.isEmpty())stringList.add(word.toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -113,51 +107,54 @@ public class Constants {
         ArrayList<String> stringList = new ArrayList<>();
         for(int i = 3; i < 16; i++){
             System.out.println("Initializing wordlist..." + i);
-            File file = new File(projectDir + "resources/englishwords/Eng" + i + ".csv");
-            putWordsFromFile(file, stringList);
+            String filepath = (projectDir + "resources/englishwords/Eng" + i + ".csv");
+            putWordsFromFile(filepath, stringList);
         }
         wordlist = stringList.toArray(new String[0]);
     }
 
     static void InitializePolygrams() throws IOException {
         System.out.println("Initializing bigrams...");
-        initializePolygram(projectDir +"resources/polygrams/Bigram.csv", bigramMap, false);
+        initializePolygram(projectDir +"resources/polygrams/Bigram.csv", bigramMap, 2);
         System.out.println("Initializing trigrams...");
-        initializePolygram(projectDir +"resources/polygrams/Trigram.csv", trigramMap, false);
+        initializePolygram(projectDir +"resources/polygrams/Trigram.csv", trigramMap, 3);
         System.out.println("Initializing tetragrams...");
-        initializePolygram(projectDir +"resources/polygrams/Quadgram.csv", tetragramMap, false);
+        initializePolygram(projectDir +"resources/polygrams/Quadgram.csv", tetragramMap, 4);
+        for(int i = 0; i < tetragramMapFast.length;i++){
+            if(tetragramMapFast[i] == 0){tetragramMapFast[i] = -20;}
+        }
     }
 
-    static void initializePolygram(String path, Map<String, Double> map, boolean isMono) {
+    static double getTetragramFrequency(String tetragram){
+        int i = getTetragramIndex(tetragram);
+        return tetragramMapFast[i];
+    }
+    static int getTetragramIndex(String tetragram){
+        char[] charArr = tetragram.toCharArray();
+        return (charArr[0]-65)*26*26*26 + (charArr[1]-65)*26*26 + (charArr[2]-65)*26 + (charArr[3]-65);
+    }
+
+    static void initializePolygram(String path, HashMap<String, Double> map, int n) {
         {
-            File file = new File(path);
-            try (FileInputStream fis = new FileInputStream(file)) {
-                StringBuilder polygram = new StringBuilder();
-                StringBuilder floatString = new StringBuilder();
-                int r;
+            try (FileReader fr = new FileReader(path)) {
+                BufferedReader br = new BufferedReader(fr);
+                String r;
                 int index = 0;
-                boolean isPolygram=true;
-                while ((r = fis.read()) != -1) {
-                    if(r == 44){
-                        isPolygram = false;
-                        floatString = new StringBuilder();
-                        continue;
-                    }else if(r == 10){
-                        isPolygram = true;
-                        map.put(polygram.toString(), parseDouble(floatString.toString()));
-                        if(isMono)monogramStatistics[index] = parseDouble(floatString.toString());
-                        index++;
-                        polygram = new StringBuilder();
-                        continue;
-                    }else if(r==13) continue;
-                    if(isPolygram){
-                        polygram.append((char) r);
+                while ((r = br.readLine()) != null) {
+                    String polygram = r.split(",")[0].toUpperCase();
+                    double freq = parseDouble(r.split(",")[1]);
+
+                    if(n==4){
+                        freq = Math.log(freq);
+                        int ind = getTetragramIndex(polygram);
+                        //map.put(tetragram, freq);
+                        tetragramMapFast[ind] = freq;
                     }else{
-                        floatString.append((char) r);
+                        map.put(polygram, freq);
                     }
+                    if(n==1)monogramStatistics[index] = freq;
+                    index++;
                 }
-                map.put(polygram.toString(), parseDouble(floatString.toString()));
-                if(isMono)monogramStatistics[index] = parseDouble(floatString.toString());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

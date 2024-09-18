@@ -90,7 +90,7 @@ public class Quagmire1CipherBreaker {
         if(!found) System.out.println("[Quagmire1CipherBreaker] Shifts keyword not found.");
 
         String substitutionCipher = VigenereCipher.decipher(cipherText, vigenereKey);
-        CipherBreakerOutput cbo = MonoAlphabeticCipherBreaker.evolutionaryAdvancedHillClimbingAttack(substitutionCipher, 100, 200);
+        CipherBreakerOutput cbo = MonoAlphabeticCipherBreaker.evolutionaryAdvancedHillClimbingAttack(substitutionCipher, 100, 400);
 
         String alphabetKeyword = MonoAlphabeticCipher.inverseKey(cbo.key);
 
