@@ -10,7 +10,7 @@ class ColumnCipherTests extends munit.FunSuite {
         val key = IndexedSeq(2, 0, 1, 4, 3)
         val expected = "GELTTBTDAAEKEKHESMIBRWAESGLIITOERGTINHYGERIAHDNLHCRITENSHORPNAIOYRDLWTNRWOTCEOLOWRCAPNCSSIINTIS"
 
-        val data = new CipherDataBlock(plaintext, UppercaseLetters)
+        val data = CipherDataBlock.create(plaintext)
         val result = ColumnCipher.encrypt(data, key).mkString
 
         assertEquals(result, expected)
@@ -21,7 +21,7 @@ class ColumnCipherTests extends munit.FunSuite {
         val key = IndexedSeq(2, 0, 1, 4, 3)
         val expected = "BYGEORGEORWELLPARTONEITWASABRIGHTCOLDDAYINAPRILANDTHECLOCKSWERESTRIKINGTHIRTEENWINSTONSMITHHISC"
 
-        val data = new CipherDataBlock(ciphertext, UppercaseLetters)
+        val data = CipherDataBlock.create(ciphertext)
         val result = ColumnCipher.decrypt(data, key).mkString
 
         assertEquals(result, expected)

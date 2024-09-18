@@ -57,10 +57,10 @@ object DataTable {
         table.toVector
     }
 
-    lazy val unigramFrequenciesLog= new UnigramFrequencyTable(generatePolygramLogTable(1, unigramFrequencies, UppercaseLetters))
-    lazy val bigramFrequenciesLog = new BigramFrequencyTable(generatePolygramLogTable(2, bigramFrequencies, UppercaseLetters))
-    lazy val trigramFrequenciesLog = new TrigramFrequencyTable(generatePolygramLogTable(3, trigramFrequencies, UppercaseLetters))
-    lazy val tetragramFrequenciesLog = new TetragramFrequencyTable(generatePolygramLogTable(4, tetragramFrequencies, UppercaseLetters))
+    lazy val unigramFrequenciesLog= new UnigramFrequencyTable(generatePolygramLogTable(1, unigramFrequencies, FastUppercaseLetters))
+    lazy val bigramFrequenciesLog = new BigramFrequencyTable(generatePolygramLogTable(2, bigramFrequencies, FastUppercaseLetters))
+    lazy val trigramFrequenciesLog = new TrigramFrequencyTable(generatePolygramLogTable(3, trigramFrequencies, FastUppercaseLetters))
+    lazy val tetragramFrequenciesLog = new TetragramFrequencyTable(generatePolygramLogTable(4, tetragramFrequencies, FastUppercaseLetters))
 
     def iterateCommonWords: Iterator[String] = readListCsv("englishwords/google-10000-english-no-swears.txt")
     def polygramFrequenciesLog(n: Int): PolygramLookupTable = {

@@ -4,7 +4,7 @@ package com.core.alphabets
   *
   * Only use this when you do not care about order. It is better to use a more specific alphabet.
   */
-object CharAlphabet extends Alphabet[Char] {
+object AsciiAlphabet extends Alphabet[Char] {
     def iterator: Iterator[(Int, Char)] = Iterator.from(0).map(x => (x, x.toChar))
     def values: Iterable[Char] = new Iterable[Char] {
         def iterator: Iterator[Char] = Iterator.from(0).map(_.toChar)

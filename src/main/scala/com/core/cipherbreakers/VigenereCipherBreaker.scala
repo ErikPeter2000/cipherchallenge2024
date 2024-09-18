@@ -2,7 +2,6 @@ package com.core.cipherbreakers
 
 import com.core.analysers.KasiskisTest
 import com.core.cipherdata.CipherDataBlock
-import com.core.alphabets.UppercaseLetters
 import com.core.ciphers.CaesarCipher
 import com.core.ciphers.VigenereCipher
 import com.core.evolutionaryalgorithms.FitnessFunctions.eriksWordFitness
@@ -11,7 +10,7 @@ import com.core.progressbar.ProgressBar
 object VigenereCipherBreaker extends CipherBreaker[Char, Seq[Char]] {
     // The vulnerability of the Viginere cipher lies in the fact that if we know the key length 'n', we know that every nth letter has been encrypted with the same shift value. This means that we can treat each column as a Caesar cipher, and solve it using frequency analysis. 
     def break(data: String) = {
-        break(CipherDataBlock.create(data, UppercaseLetters))
+        break(CipherDataBlock.create(data))
     }
     def break(data: CipherDataBlock[Char]) = {
         // Get possible key lengths
@@ -31,11 +30,12 @@ object VigenereCipherBreaker extends CipherBreaker[Char, Seq[Char]] {
                 .toVector
                 .dropRight(1) // drop in case the last group is not full length, otherwise transpose won't work
                 .transpose // Convert to a list of columns. Now, all elements of a column have been encrypted with the same shift value, so we can treat each column as a Caesar cipher, and is susceptible to frequency analysis.
+                //.map(x => CipherDataBlock.create(x, data.alphabet))
 
             // Get the shift value for each column by solving the Caesar cipher
             val shiftValues = columns.map { group =>
-                val shift = CaesarCipherBreaker.getKey(group)._1 // get the value
-                UppercaseLetters(shift) // return the letter at that shift value.
+                val shift = CaesarCipherBreaker.getKey(group, data.alphabet)._1 // get the value
+                data.alphabet(shift) // return the letter at that shift value.
             }
 
             // Decrypt the data using the shift values taken from this key length
