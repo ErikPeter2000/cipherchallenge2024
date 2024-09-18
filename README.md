@@ -27,6 +27,7 @@ Cipher challenge 2024 repository by Cambridge Maths School students, originally 
 - [Affine Breaker](src/main/java/unyxe/main/breakers/AffineCipherBreaker.java)
 - [Keyword Substitution Breaker](src/main/java/unyxe/main/breakers/KeywordSubstitutionCipherBreaker.java)
 - [Porta](src/main/java/unyxe/main/breakers/PortaCipherBreaker.java)
+- [Quagmire1](src/main/java/unyxe/main/breakers/Quagmire1CipherBreaker.java)
 
 ## Getting Started
 
