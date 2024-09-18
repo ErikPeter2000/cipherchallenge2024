@@ -12,13 +12,16 @@ Cipher challenge 2024 repository by Cambridge Maths School students, originally 
  - [Substitution Cipher](./src/main/scala/com/core/ciphers/SubstitutionCipher.scala)
  - [Transposition Cipher](./src/main/scala/com/core/ciphers/TranspositionCipher.scala)
  - [Vigenère Cipher](./src/main/scala/com/core/ciphers/VigenereCipher.scala)
+ - [Variant Beaufort Cipher](src/main/java/unyxe/main/ciphers/VariantBeaufortCipher.java)
  - [Affine Cipher](src/main/java/unyxe/main/ciphers/AffineCipher.java)
+ - [Periodic Affine Cipher](src/main/java/unyxe/main/ciphers/PeriodicAffineCipher.java)
  - [Keyword Substitution Cipher](src/main/java/unyxe/main/ciphers/KeywordSubstitutionCipher.java)
  - [Periodic Poly-alphabetic Substitution](src/main/java/unyxe/main/ciphers/PeriodicPolyAlphabeticSubstitution.java)
  - [Porta](src/main/java/unyxe/main/ciphers/PortaCipher.java)
  - [Quagmire1](src/main/java/unyxe/main/ciphers/Quagmire1Cipher.java)
  - [Quagmire2](src/main/java/unyxe/main/ciphers/Quagmire2Cipher.java)
  - [Quagmire3](src/main/java/unyxe/main/ciphers/Quagmire3Cipher.java)
+ - [Quagmire4](src/main/java/unyxe/main/ciphers/Quagmire4Cipher.java)
 
 ## Breakers Written:
 - [Caesar Breaker](./src/main/scala/com/core/cipherbreakers/CaesarCipherBreaker.scala)
@@ -26,12 +29,15 @@ Cipher challenge 2024 repository by Cambridge Maths School students, originally 
 - [Transposition Breaker](./src/main/scala/com/core/cipherbreakers/TranspositionCipherBreaker.scala)
 - [Vigenère Breaker](./src/main/scala/com/core/cipherbreakers/VigenereCipherBreaker.scala)
 - [Beaufort Breaker](src/main/java/unyxe/main/breakers/BeaufortCipherBreaker.java)
+- [Variant Beaufort Breaker](src/main/java/unyxe/main/breakers/VariantBeaufortCipherBreaker.java)
 - [Affine Breaker](src/main/java/unyxe/main/breakers/AffineCipherBreaker.java)
+- [Periodic Affine Breaker](src/main/java/unyxe/main/breakers/PeriodicAffineCipherBreaker.java)
 - [Keyword Substitution Breaker](src/main/java/unyxe/main/breakers/KeywordSubstitutionCipherBreaker.java)
 - [Porta](src/main/java/unyxe/main/breakers/PortaCipherBreaker.java)
 - [Quagmire1](src/main/java/unyxe/main/breakers/Quagmire1CipherBreaker.java)
 - [Quagmire2](src/main/java/unyxe/main/breakers/Quagmire2CipherBreaker.java)
 - [Quagmire3](src/main/java/unyxe/main/breakers/Quagmire3CipherBreaker.java)
+- [Quagmire4](src/main/java/unyxe/main/breakers/Quagmire4CipherBreaker.java)
 
 ## Getting Started
 
