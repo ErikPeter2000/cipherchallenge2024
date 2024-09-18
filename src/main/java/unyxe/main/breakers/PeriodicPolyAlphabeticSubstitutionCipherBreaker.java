@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class PeriodicPolyAlphabeticSubstitutionBreaker {
+public class PeriodicPolyAlphabeticSubstitutionCipherBreaker {
     static Random rand = new Random();
     public static CipherBreakerOutput<byte[][]> hillClimber(byte[] cipherText, int period, int limit){
         CipherBreakerOutput<byte[][]> output = new CipherBreakerOutput<>("PeriodicPolyAlphabeticSubstitutionCipher", cipherText);

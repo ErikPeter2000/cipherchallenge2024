@@ -1,12 +1,8 @@
 package main;
 
 
-import main.ciphers.*;
 import main.breakers.*;
-import main.utils.periodanalysers.*;
 import main.utils.*;
-
-import java.util.Arrays;
 
 import static main.utils.TextUtilities.*;
 
@@ -75,7 +71,7 @@ public class Main {
 
         //printBytes(Quagmire4Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("FOUR"), TextUtilities.formatAndConvertToBytes("PIGMENT"), TextUtilities.formatAndConvertToBytes("COLOR")));
 
-        CipherBreakerOutput<byte[][]> cbo = PeriodicPolyAlphabeticSubstitutionBreaker.hillClimber(cipherTextBytes, 4, 1000000);
+        CipherBreakerOutput<byte[][]> cbo = PeriodicPolyAlphabeticSubstitutionCipherBreaker.hillClimber(cipherTextBytes, 4, 1000000);
         cbo.displayPlaintext();
         printBytes(cbo.key.get(0));
 
