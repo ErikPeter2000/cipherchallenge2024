@@ -2,7 +2,7 @@ package main.ciphers;
 
 import main.utils.TextUtilities;
 
-public class PeriodicPolyAlphabeticSubstitution {
+public class PeriodicPolyAlphabeticSubstitutionCipher {
     public static byte[] encipher(byte[] plainText, byte[][] keys){
         byte[] cipherText = new byte[plainText.length];
         for(int i = 0; i < plainText.length; i++){
