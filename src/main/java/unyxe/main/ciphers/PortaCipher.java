@@ -1,51 +1,49 @@
 package main.ciphers;
 
 public class PortaCipher {
-    public static int[][] tableu = new int[26][26];
-    public static void generateTableu(){
+    public static int[][] tableU = new int[26][26];
+    public static void generateTableU(){
         for(int i = 0; i < 13;i++){
             for(int j = 0; j < 13;j++){
-                tableu[i][j] = 13 + (j - i + 26)%13;
+                tableU[i][j] = 13 + (j - i + 26)%13;
             }
             for(int j = 13; j < 26;j++){
-                tableu[i][j] = (j + i + 26)%13;
+                tableU[i][j] = (j + i + 26)%13;
             }
         }
         for(int i = 13; i < 26;i++){
             for(int j = 0; j < 13;j++){
-                tableu[i][j] = (i - j - 1)%13;
+                tableU[i][j] = (i - j - 1)%13;
             }
             for(int j = 13; j < 26;j++){
-                tableu[i][j] = 13 + (12 - j - i + 26 + 26)%13;
+                tableU[i][j] = 13 + (12 - j - i + 26 + 26)%13;
             }
         }
     }
 
-    public static String encipher(String plainText, String key, int version){
-        StringBuilder cipherText = new StringBuilder();
-        for(int i = 0; i < plainText.length(); i++){
+    public static byte[] encipher(byte[] plainText, byte[] key, int version){
+        byte[] cipherText = new byte[plainText.length];
+        for(int i = 0; i < plainText.length; i++){
             if(version == 2) {
-                cipherText.append((char) (tableu[(key.charAt(i % key.length()) - 65) / 2][plainText.charAt(i) - 65] + 65));
+                cipherText[i] = (byte) tableU[key[i % key.length] / 2][plainText[i]];
             }else if(version == 1) {
-                int u1 = (13 - (key.charAt(i % key.length()) - 65) / 2)%13;
-                int u2 = plainText.charAt(i) - 65;
-                cipherText.append((char) (tableu[u1][u2] + 65));
+                cipherText[i] = (byte) tableU[(13 - key[i % key.length]/2)%13][plainText[i]];
             }
         }
-        return cipherText.toString();
+        return cipherText;
     }
-    public static String decipher(String cipherText, String key, int version){
+    public static byte[] decipher(byte[] cipherText, byte[] key, int version){
         return encipher(cipherText, key, version);
     }
 
-    public static String encipherBellaso1552(String plainText, String key){
-        StringBuilder cipherText = new StringBuilder();
-        for(int i = 0; i < plainText.length(); i++){
-            cipherText.append((char) (tableu[key.charAt(i % key.length()) - 65][plainText.charAt(i) - 65] + 65));
+    public static byte[] encipherBellaso1552(byte[] plainText, byte[] key){
+        byte[] cipherText = new byte[plainText.length];
+        for(int i = 0; i < plainText.length; i++){
+            cipherText[i] = (byte) tableU[key[i % key.length]][plainText[i]];
         }
-        return cipherText.toString();
+        return cipherText;
     }
-    public static String decipherBellaco1552(String cipherText, String key){
+    public static byte[] decipherBellaso1552(byte[] cipherText, byte[] key){
         return encipherBellaso1552(cipherText, key);
     }
 }

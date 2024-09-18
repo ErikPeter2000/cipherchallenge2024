@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TwistMethodPeriodAnalyser {
-    public static double[] getSignature(String text){
+    public static double[] getSignature(byte[] text){
         double[] freq = Analyser.getMonogramStatistic(text);
         Arrays.sort(freq);
         return freq;
@@ -23,9 +23,9 @@ public class TwistMethodPeriodAnalyser {
         }
         return result;
     }
-    public static double[] averageSignature(String[] slices){
+    public static double[] averageSignature(byte[][] slices){
         double[] average = new double[Constants.monogramCount];
-        for (String slice : slices) {
+        for (byte[] slice : slices) {
             double[] signature = getSignature(slice);
             for (int j = 0; j < signature.length; j++) {
                 average[j] += signature[j] / slices.length;
@@ -34,12 +34,12 @@ public class TwistMethodPeriodAnalyser {
         return average;
     }
 
-    public static double[][] guessPeriod(String text, int outputLimit, int periodLimit){
+    public static double[][] guessPeriod(byte[] text, int outputLimit, int periodLimit){
         ArrayList<double[]> periodList = new ArrayList<>();
 
 
         for(int n = 1; n < periodLimit;n++){
-            String[] slices = IOCPeriodAnalyser.splitText(text, n);
+            byte[][] slices = IOCPeriodAnalyser.splitText(text, n);
             double[] averageSig = averageSignature(slices);
             double twist = twist(Constants.monogramSignature, averageSig);
             periodList.add(new double[]{n, twist});

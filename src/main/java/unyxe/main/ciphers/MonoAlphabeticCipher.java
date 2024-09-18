@@ -1,38 +1,31 @@
 package main.ciphers;
 
 import main.utils.Analyser;
-import main.utils.Constants;
+import main.utils.TextUtilities;
 
 public class MonoAlphabeticCipher {
-    public static boolean likeliness(String text){
+    public static boolean likeliness(byte[] text){
         double ioc = Analyser.getIndexOfCoincedence(text, true);
         return (ioc >= 0.85) || (ioc <= 0.93);
     }
 
-    public static String inverseKey(String key){
-        StringBuilder inverseKey = new StringBuilder();
-        for(int i = 0; i < Constants.monogramCount; i++){
-            int index = key.indexOf(Constants.alphabet.charAt(i));
-            char c = Constants.alphabet.charAt(index);
-            inverseKey.append(c);
+    public static byte[] inverseKey(byte[] key){
+        byte[] inverseKey = new byte[key.length];
+        for(int i = 0; i < key.length; i++){
+            inverseKey[i] = (byte)TextUtilities.indexOf(key, (byte)i);
         }
-        return inverseKey.toString();
+        return inverseKey;
     }
 
-    public static String encipher(String plainText, String key){
-        StringBuilder cipherText = new StringBuilder();
-        for(int i = 0; i < plainText.length(); i++){
-            cipherText.append(key.charAt(plainText.charAt(i)-65));
+    public static byte[] encipher(byte[] plainText, byte[] key){
+        byte[] cipherText = new byte[plainText.length];
+        for(int i = 0; i < plainText.length; i++){
+            cipherText[i] = key[plainText[i]];
         }
-        return cipherText.toString();
+        return cipherText;
     }
 
-    public static String decipher(String cipherText, String key){
-        StringBuilder plainText = new StringBuilder();
-        for(int i = 0; i < cipherText.length(); i++){
-            plainText.append((char)(key.indexOf(cipherText.charAt(i))+65));
-        }
-        return plainText.toString();
+    public static byte[] decipher(byte[] cipherText, byte[] key){
+        return encipher(cipherText, inverseKey(key));
     }
-
 }

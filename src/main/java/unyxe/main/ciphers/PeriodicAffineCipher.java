@@ -10,18 +10,18 @@ public class PeriodicAffineCipher {
         }
         return false;
     }
-    public static String encipher(String plainText, int[][] keys){
+    public static byte[] encipher(byte[] plainText, int[][] keys){
         if(areKeysInvalid(keys)) {
             throw new IllegalArgumentException("Keys are not valid");
         }
-        StringBuilder cipherText = new StringBuilder();
-        for(int i = 0; i < plainText.length(); i++){
+        byte[] cipherText = new byte[plainText.length];
+        for(int i = 0; i < plainText.length; i++){
             int[] keypair = keys[i% keys.length];
-            cipherText.append((char) (65 + (((plainText.charAt(i)-65) * keypair[0] + keypair[1]) % 26)));
+            cipherText[i] = (byte)((plainText[i] * keypair[0] + keypair[1]) % 26);
         }
-        return cipherText.toString();
+        return cipherText;
     }
-    public static String decipher(String cipherText, int[][] keys){
+    public static byte[] decipher(byte[] cipherText, int[][] keys){
         if(areKeysInvalid(keys)) {
             throw new IllegalArgumentException("Keys are not valid");
         }
@@ -30,11 +30,11 @@ public class PeriodicAffineCipher {
             inverseAKeys[i][0] = ModularArithmetics.inverse(keys[i][0], Constants.monogramCount);
             inverseAKeys[i][1] = keys[i][1];
         }
-        StringBuilder plainText = new StringBuilder();
-        for(int i = 0; i < cipherText.length(); i++){
+        byte[] plainText = new byte[cipherText.length];
+        for(int i = 0; i < cipherText.length; i++){
             int[] keypair = inverseAKeys[i%inverseAKeys.length];
-            plainText.append((char) (65 + Math.floorMod(((cipherText.charAt(i)-65) - keypair[1])*keypair[0],26)));
+            plainText[i] = (byte) (Math.floorMod((cipherText[i] - keypair[1])*keypair[0],26));
         }
-        return plainText.toString();
+        return plainText;
     }
 }

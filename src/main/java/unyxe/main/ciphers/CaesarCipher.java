@@ -1,14 +1,14 @@
 package main.ciphers;
 
 public class CaesarCipher {
-    public static String encipher(String plaintext, int offset){
-        StringBuilder ciphertext = new StringBuilder();
-        for(int i = 0; i < plaintext.length(); i++){
-            ciphertext.append((char)((plaintext.charAt(i)-65+offset)%26 +65));
+    public static byte[] encipher(byte[] plaintext, int offset){
+        byte[] cipherText = new byte[plaintext.length];
+        for(int i = 0; i < plaintext.length; i++){
+            cipherText[i] = (byte)((plaintext[i]+offset)%26);
         }
-        return ciphertext.toString();
+        return cipherText;
     }
-    public static String decipher(String ciphertext, int offset){
-        return encipher(ciphertext, 26-offset);
+    public static byte[] decipher(byte[] cipherText, int offset){
+        return encipher(cipherText, 26-offset);
     }
 }
