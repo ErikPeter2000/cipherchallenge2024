@@ -5,12 +5,11 @@ import munit.FunSuite
 import com.core.ciphers.SubstitutionCipher
 import com.core.cipherdata._
 import com.core.collections.BiMap
-import com.core.alphabets.UppercaseLetters
 
 class SubstitutionCipherTest extends FunSuite {
 
     test("SubstitutionCipher encrypts correctly with given key") {
-        val data = new CipherDataBlock("HELLO", UppercaseLetters)
+        val data = CipherDataBlock.create("HELLO")
         val key = new BiMap[Char, Char](
             'H' -> 'K',
             'E' -> 'H',
@@ -22,7 +21,7 @@ class SubstitutionCipherTest extends FunSuite {
     }
 
     test("SubstitutionCipher decrypts correctly with given key") {
-        val data = new CipherDataBlock("KHOOR", UppercaseLetters)
+        val data = CipherDataBlock.create("KHOOR")
         val key = new BiMap[Char, Char](
             'H' -> 'K',
             'E' -> 'H',
@@ -34,7 +33,7 @@ class SubstitutionCipherTest extends FunSuite {
     }
 
     test("SubstitutionCipher handles empty input") {
-        val data = new CipherDataBlock("", UppercaseLetters)
+        val data = CipherDataBlock.create("")
         val key = new BiMap[Char, Char]()
         val encryptedResult = SubstitutionCipher.encrypt(data, key)
         val decryptedResult = SubstitutionCipher.decrypt(data, key)
@@ -43,7 +42,7 @@ class SubstitutionCipherTest extends FunSuite {
     }
 
     test("SubstitutionCipher handles non-matching characters") {
-        val data = new CipherDataBlock("HELLO", UppercaseLetters)
+        val data = CipherDataBlock.create("HELLO")
         val key = new BiMap[Char, Char](
             'H' -> 'K',
             'E' -> 'H'
@@ -54,7 +53,7 @@ class SubstitutionCipherTest extends FunSuite {
     }
 
     test("SubstitutionCipher decrypts correctly with non-matching characters") {
-        val data = new CipherDataBlock("KHOOR", UppercaseLetters)
+        val data = CipherDataBlock.create("KHOOR")
         val key = new BiMap[Char, Char](
             'H' -> 'K',
             'E' -> 'H'

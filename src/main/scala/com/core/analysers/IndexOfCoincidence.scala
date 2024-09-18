@@ -23,7 +23,9 @@ object IndexOfCoincidence {
       */
     def calculate[T](data: CipherDataBlock[T]): Double = {
         val dataLength = data.length
-        val dataFrequency = data.groupBy(identity).mapValues(_.size)
+        val dataFrequency = data
+          .groupBy(identity)
+          .mapValues(_.size)
         val alphabetFrequency = data.alphabet.map(c => (c, dataFrequency.getOrElse(c._2, 0)))
         var sum = 0.0
 

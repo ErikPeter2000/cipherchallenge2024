@@ -1,7 +1,7 @@
 package com.core.analysers
 
 import com.core.cipherdata.CipherDataBlock
-import com.core.alphabets.UppercaseLetters
+import com.core.alphabets.Alphabet
 
 class IndexOfCoincidenceTests extends munit.FunSuite {
     test("IndexOfCoincidence.calculate") {
@@ -13,7 +13,7 @@ Or to take Arms against a Sea of troubles,
 And by opposing end them?
 William Shakespeare - Hamlet
 """.toUpperCase().replaceAll("[^A-Z]", "")
-        val data = new CipherDataBlock(text, UppercaseLetters)
+        val data = CipherDataBlock.create(text)
         val result = IndexOfCoincidence.calculate(data)
         assertEqualsDouble(result, 0.067, 0.001)
     }

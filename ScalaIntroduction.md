@@ -179,7 +179,7 @@ object Main {
     def loadData(): CipherDataBlock[Char] = {
         val path = Paths.get(".\\resources\\text\\DostoevskyCrimeAndPunishment.txt")
         val text = Source.fromFile(path.toFile, "UTF-8").take(2000).mkString.toUpperCase.replaceAll("[^A-Z]", "") // Take first 2000 chars, then remove non-alphabetic
-        new CipherDataBlock(text, UppercaseLetters) // return a CipherDataBlock for use in the ciphers, with the alphabet set to UppercaseLetters
+        CipherDataBlock.create(text) // return a CipherDataBlock for use in the ciphers
     }
 
     /**

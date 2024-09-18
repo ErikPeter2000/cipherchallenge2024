@@ -1,7 +1,6 @@
 package com.core.ciphers
 
 import com.core.cipherdata.CipherDataBlock
-import com.core.alphabets.UppercaseLetters
 
 class BeaufortCipherTests extends munit.FunSuite {
     test("BeaufortCipher encrypt") {
@@ -9,7 +8,7 @@ class BeaufortCipherTests extends munit.FunSuite {
         val key = "KEY"
         val expected = "JGSGQHEAKTIUZTJKNFWRUCLCKMYJNQEXFIQNHBYMWLKPHCTYXBFDAWZQWAMCGNUSLHCUQXYFDWHRAUXIQXMFWRGYWFDXQSC"
 
-        val data = new CipherDataBlock(plaintext, UppercaseLetters)
+        val data = CipherDataBlock.create(plaintext)
         val result = BeaufortCipher.encrypt(data, key).mkString
 
         assertEquals(result, expected)
@@ -19,7 +18,7 @@ class BeaufortCipherTests extends munit.FunSuite {
         val key = "KEY"
         val expected = "BYGEORGEORWELLPARTONEITWASABRIGHTCOLDDAYINAPRILANDTHECLOCKSWERESTRIKINGTHIRTEENWINSTONSMITHHISC"
 
-        val data = new CipherDataBlock(ciphertext, UppercaseLetters)
+        val data = CipherDataBlock.create(ciphertext)
         val result = BeaufortCipher.decrypt(data, key).mkString
 
         assertEquals(result, expected)

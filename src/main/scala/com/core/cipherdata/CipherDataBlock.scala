@@ -134,7 +134,7 @@ object CipherDataBlock {
       *   A new CipherDataBlock with the default UppercaseAlphabet.
       */
     def empty(): CipherDataBlock[Char] = {
-        new CipherDataBlock[Char](UppercaseLetters)
+        new CipherDataBlock[Char](Alphabet.default)
     }
 
     /** Creates a new CipherDataBlock with the given data and alphabet.
@@ -151,11 +151,20 @@ object CipherDataBlock {
     ): CipherDataBlock[T] = {
         new CipherDataBlock[T](data, alphabet)
     }
+    def create(
+        data: Seq[Char],
+    ): CipherDataBlock[Char] = {
+        new CipherDataBlock[Char](data, Alphabet.default)
+    }
 
     /** Creates a new CipherDataBlock with the given data and alphabet.
       */
     def create(data: String, alphabet: Alphabet[Char]): CipherDataBlock[Char] = {
         new CipherDataBlock(data, alphabet)
+    }
+
+    def create(data: String): CipherDataBlock[Char] = {
+        new CipherDataBlock(data, Alphabet.default)
     }
 
     /** Creates a new CipherDataBlock with the given data and the default UppercaseAlphabet. Formats the data to remove
@@ -167,7 +176,7 @@ object CipherDataBlock {
       *   A tuple containing the new CipherDataBlock and the result of the formatting operation.
       */
     def formatAndCreate(data: String): (CipherDataBlock[Char], CipherFormatResult) = {
-        val instance = new CipherDataBlock(data, UppercaseLetters)
+        val instance = new CipherDataBlock(data, Alphabet.default)
         val formatResult = instance.format()
         (instance, formatResult)
     }

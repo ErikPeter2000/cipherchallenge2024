@@ -2,7 +2,7 @@ package com.core.cipherdata
 
 import com.core.cipherdata.CipherDataBlock
 import com.core.cipherdata.CipherFormatResult
-import com.core.alphabets.UppercaseLetters
+import com.core.alphabets.Alphabet
 
 object CipherDataBlockFormatExtensions {
     private val charFilter = "[^A-Z]".r
@@ -21,7 +21,7 @@ object CipherDataBlockFormatExtensions {
                     data.remove(i)
                 }
             }
-            cipherDataBlock.alphabet = UppercaseLetters
+            cipherDataBlock.alphabet = Alphabet.default
             new CipherFormatResult(removedElements, caseSwapped.toList, cipherDataBlock.alphabet)
         }
     }

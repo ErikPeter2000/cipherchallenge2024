@@ -7,12 +7,11 @@ import com.core.ciphers.SubstitutionCipher
 import com.core.collections.BiMap
 import com.core.evolutionaryalgorithms._
 import com.core.extensions.BiMapExtensions.swapElements
-import com.core.alphabets.UppercaseLetters
 import breeze.linalg.max
 
 object SubstitutionCipherBreaker extends CipherBreaker[Char, BiMap[Char, Char]] {
     def break(text: String) = {
-        val dataBlock = CipherDataBlock.create(text, UppercaseLetters)
+        val dataBlock = CipherDataBlock.create(text)
         break(dataBlock)
     }
     def break(data: CipherDataBlock[Char]) = {

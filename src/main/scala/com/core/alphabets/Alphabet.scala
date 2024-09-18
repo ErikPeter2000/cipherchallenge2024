@@ -10,3 +10,7 @@ trait Alphabet[T] extends Iterable[(Int, T)] {
     def getReverse(key: T): Option[Int]
     def contains(value: T): Boolean
 }
+
+object Alphabet {
+  val default: Alphabet[Char] = FastUppercaseLetters
+}

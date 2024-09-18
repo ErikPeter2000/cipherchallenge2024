@@ -4,11 +4,13 @@ import com.core.analysers.FrequencyAnalysis
 import com.core.cipherdata.CipherDataBlock
 import com.core.data.DataTable
 import com.core.ciphers.CaesarCipher
-import com.core.alphabets.UppercaseLetters
+import com.core.alphabets.Alphabet
+import com.core.evolutionaryalgorithms.FitnessFunctions
+import com.core.extensions.IterableExtensions.pretty
 
 object CaesarCipherBreaker extends CipherBreaker[Char, Int] {
     def break(data: String) = {
-        val dataBlock = CipherDataBlock.create(data, UppercaseLetters)
+        val dataBlock = CipherDataBlock.create(data)
         break(dataBlock)
     }
 
@@ -24,10 +26,13 @@ object CaesarCipherBreaker extends CipherBreaker[Char, Int] {
         )
     }
 
-    def getKey(data: Iterable[Char]) = {
-        val dataAnalysis = FrequencyAnalysis.relative(data, UppercaseLetters)
-        val temp = dataAnalysis.toVector.sortBy(_._1);
-        val dataFrequencies = temp.map(x => x._2)
+    def getKey(data: CipherDataBlock[Char]): (Int, Double) = {
+        getKey(data, data.alphabet)
+    }
+
+    def getKey(data: Seq[Char], alphabet: Alphabet[Char]) = {
+        val dataAnalysis = FrequencyAnalysis.relative(data, alphabet)
+        val dataFrequencies = dataAnalysis.toVector.sortBy(x => alphabet.reverse(x._1)).map(x => x._2)
         val englishAnalysis = DataTable.unigramFrequenciesChar
         val englishFrequencies = englishAnalysis.toVector.sortBy(_._1).map(_._2)
         val shiftDiffs = (0 until 26).map { shift =>
@@ -38,6 +43,5 @@ object CaesarCipherBreaker extends CipherBreaker[Char, Int] {
             (shift, difference)
         }.sortBy(_._2)
         val bestShift = shiftDiffs.minBy(_._2)
-        bestShift
-    }
+        bestShift   }
 }
