@@ -4,6 +4,7 @@ package main;
 import main.breakers.*;
 import main.ciphers.*;
 import main.utils.periodanalysers.*;
+import main.utils.maths.*;
 import main.utils.*;
 
 import java.util.Arrays;
@@ -20,7 +21,24 @@ public class Main {
          */ //Decipher later
 
         String cipherText = """
-                
+                rlboy itdvs tennc rmaid toafl ubhle cneda nmoam nrdie
+                ficeh shoif sjmea hstsy nsiap sedsv mseel eopyl tndda
+                meoeb eopyl hndti ieedm artre eanne cettc oceyt hruea
+                yeebr iqrue ndrae eidrd tecdt eaokt hetsh asinp ndmie
+                aetmh uirng yenrd orocu damnm rdaan moeet frbka etohr
+                tdmie nrear nneaa eodst toeuk edadn yrsot hetsh fsiop
+                retfh fcehn aelte lotut etohn rproe gftao atemn tirnt
+                ihoet dorrl sisph etohn rpiom entca tionf pceer nntgi
+                eoalp hsocn eeisn teang tshsa drier tegar encco tirnn
+                rwhoe todfs rfhie rlsot ahdet repap ocaen ibfra ssthi
+                raqdu tionn dmhee reirt neaan oaics iintd woonn tchhi
+                tfhae ufeeo mpreo taaty oshmi dnmte deenp ruyao toest
+                eirna nrvye aveer ymnad rciun incso brdae zhlae ndair
+                cfeef intgi eetrh rnoof ouyno onrya mofuy ifaay oslya
+                liulw esawn hortt toenc arrya rotuy lrpie odafn oords
+                hgitn asihs yblel rroou irdge nnvoe dabro ietvh yocrt
+                rstio trhao lnieo onsco oomdm etrhe unvga ydabr amcmo
+                tonfd mahde lailr tdosr envci xxnxt
                 """;
         String plainText = """
                 THIS MESSAGE IS ENCRYPTED WITH A TRANSPOSITION CIPHER
@@ -46,11 +64,10 @@ public class Main {
 
         //printBytes(Quagmire4Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("FOUR"), TextUtilities.formatAndConvertToBytes("PIGMENT"), TextUtilities.formatAndConvertToBytes("COLOR")));
 
-        //CipherBreakerOutput<byte[][]> cbo = PeriodicPolyAlphabeticSubstitutionCipherBreaker.hillClimber(cipherTextBytes, 4, 1000000);
-        //cbo.displayPlaintext();
-        //printBytes(cbo.key.get(0));
-        byte[][] pos = PermutationCipher.generateAllPossiblePermutations(4);
-        printBytes(pos);
+        CipherBreakerOutput<byte[]> cbo = PermutationCipherBreaker.bruteforce(cipherTextBytes, 6);
+        cbo.displayPlaintext();
+
+
 
 
         long endTime = System.currentTimeMillis();
