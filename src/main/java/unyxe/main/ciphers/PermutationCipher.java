@@ -1,6 +1,7 @@
 package main.ciphers;
 
 import main.utils.Constants;
+import main.utils.maths.FactoradicNumbers;
 import main.utils.TextUtilities;
 
 import java.util.ArrayList;
@@ -40,6 +41,40 @@ public class PermutationCipher {
             pointer++;
         }
         return actualPermutation;
+    }
+    public static byte[][] generateAllPossiblePermutations(int length){ //based on Heap's algorithm
+        byte[] A = new byte[length];
+        byte[][] result = new byte[FactoradicNumbers.factorial(length)][];
+        for(int i = 0; i < length;i++){
+            A[i] = (byte)i;
+        }
+        result[0] = Arrays.copyOf(A, length);
+        int[] counters = new int[length];
+        int i = 0;
+        byte buffer;
+        int pointer = 1;
+        while(i < length) {
+            if (counters[i] < i) {
+                if (i % 2 == 0) {
+                    buffer = A[0];
+                    A[0] = A[i];
+                    A[i] = buffer;
+                } else {
+                    buffer = A[counters[i]];
+                    A[counters[i]] = A[i];
+                    A[i] = buffer;
+                }
+                result[pointer] = Arrays.copyOf(A, length);
+                pointer++;
+                counters[i]++;
+                i = 0;
+            }
+            if (counters[i] == i) {
+                counters[i] = 0;
+                i++;
+            }
+        }
+        return result;
     }
     public static byte[][] guessKeyword(byte[] permutation, boolean excludeRepeated){
         ArrayList<byte[]> possibleKeyword = new ArrayList<>();

@@ -49,7 +49,7 @@ public class Main {
         //CipherBreakerOutput<byte[][]> cbo = PeriodicPolyAlphabeticSubstitutionCipherBreaker.hillClimber(cipherTextBytes, 4, 1000000);
         //cbo.displayPlaintext();
         //printBytes(cbo.key.get(0));
-        byte[] pos = PermutationCipher.decipher(PermutationCipher.encipher(plainTextBytes, permutationKey), permutationKey);
+        byte[][] pos = PermutationCipher.generateAllPossiblePermutations(4);
         printBytes(pos);
 
 

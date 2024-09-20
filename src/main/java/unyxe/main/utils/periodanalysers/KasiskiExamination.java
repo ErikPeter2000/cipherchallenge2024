@@ -1,6 +1,6 @@
 package main.utils.periodanalysers;
 
-import main.utils.ModularArithmetics;
+import main.utils.maths.ModularArithmetics;
 import main.utils.TextUtilities;
 
 import java.util.ArrayList;

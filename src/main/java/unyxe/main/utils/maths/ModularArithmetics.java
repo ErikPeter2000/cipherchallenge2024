@@ -1,4 +1,4 @@
-package main.utils;
+package main.utils.maths;
 
 public class ModularArithmetics {
     public static int gcd(int a, int b) {

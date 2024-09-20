@@ -1,7 +1,7 @@
 package main.ciphers;
 
 import main.utils.Constants;
-import main.utils.ModularArithmetics;
+import main.utils.maths.ModularArithmetics;
 
 public class AffineCipher {
     public static boolean isKeyInvalid(int a){
