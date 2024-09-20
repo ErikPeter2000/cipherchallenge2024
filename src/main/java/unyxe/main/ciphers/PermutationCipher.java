@@ -49,14 +49,8 @@ public class PermutationCipher {
         }
         return possibleKeyword.toArray(new byte[0][]);
     }
-    public static byte[] appendToPlaintext(byte[] plainText, int period){
-        byte[] newText = new byte[(int) (Math.ceil((double) plainText.length /period)*period)];
-        Arrays.fill(newText, (byte)23);
-        System.arraycopy(plainText, 0, newText, 0, plainText.length);
-        return newText;
-    }
     public static byte[] encipher(byte[] plainText, byte[] permutation){
-        plainText = appendToPlaintext(plainText, permutation.length);
+        plainText = TranspositionCipher.appendToPlaintext(plainText, permutation.length);
         byte[] cipherText = new byte[plainText.length];
         for(int i = 0; i < plainText.length;i++){
             cipherText[permutation[i%permutation.length] + (i/permutation.length)*permutation.length] = plainText[i];
@@ -64,7 +58,7 @@ public class PermutationCipher {
         return cipherText;
     }
     public static byte[] decipher(byte[] cipherText, byte[] permutation){
-        if(cipherText.length % permutation.length != 0) cipherText = appendToPlaintext(cipherText, permutation.length);
+        if(cipherText.length % permutation.length != 0) cipherText = TranspositionCipher.appendToPlaintext(cipherText, permutation.length);
         byte[] plainText = new byte[cipherText.length];
         for(int i = 0; i < cipherText.length;i++){
             plainText[i] = cipherText[permutation[i%permutation.length] + (i/permutation.length)*permutation.length];

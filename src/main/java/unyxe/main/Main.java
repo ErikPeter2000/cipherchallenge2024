@@ -21,16 +21,10 @@ public class Main {
          */ //Decipher later
 
         String cipherText = """
-                STIOTASDGUTNINEFILMISTGEMEINNSATDESETASKSILUTTOLBSNLCI
-                TESYLNOELFVOETORMHRLYUCGIOVNEROOEKGTTPNETECOLERMOIRBDE
-                OMERGEITNTHERIPMWAIIDNRNKHEGMTOSESOWMNTNEHBETHCELSAKNO
-                DSHWULMNIDTEAEITDHVOUBWEOLDLNCGALITOLTESDTEHWEIMPAAIRA
-                GTUNSISJJPTTAUMHEOFTELNHTEADTSPNTATEHIOGTERWHHYTITRNOD
-                UHANUSROYOPOHUISYIYBORNGKEUSRNETHITNIGTSBTUITPVHIEELHS
-                CTTRUAETAHTRYILVLDRYIENSOUNESTAELOESTDTHERIPMWAAXAXGIN
+                TACISN HGRTPC IEYHOI SWPASP MATTIH ESERTE SEDAIR SNWNOX
                 """;
         String plainText = """
-                THIS MESSAGE IS ENCRYPTED WITH A TRANSPOSITION CIPHER
+                THIS MESSAGE WAS ENCRYPTED WITH A TRANSPOSITION CIPHER
                 """;
         String key = "CSKTFVRMGQLEXDHPJIZANBOUWY";
         String[] periodicKeys = new String[]{"LBRUVCJAWZYSHXINOQEPFTGKDM","SLNAXDIGOBKCEYQHTMWJFUVPZR","IFWVBXNGKHZQYOELPCDTJRUSAM"};
@@ -53,10 +47,10 @@ public class Main {
 
         //printBytes(Quagmire4Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("FOUR"), TextUtilities.formatAndConvertToBytes("PIGMENT"), TextUtilities.formatAndConvertToBytes("COLOR")));
 
-        CipherBreakerOutput<byte[]> cbo = PermutationCipherBreaker.bruteforceBlockSizeUsingHillClimb(cipherTextBytes, 10);
-        cbo.displayPlaintext();
-        printBytes(PermutationCipher.guessKeyword(cbo.key.get(0), true));
-        printBytes(PermutationCipher.guessKeyword(cbo.key.get(0), false));
+        //CipherBreakerOutput<byte[]> cbo = PermutationCipherBreaker.bruteforceBlockSizeUsingHillClimb(cipherTextBytes, 10);
+        //cbo.displayPlaintext();
+
+        MatrixTranspositionCipher.decipher(cipherTextBytes, 8, 6);
 
 
 
