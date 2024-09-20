@@ -21,14 +21,12 @@ public class Main {
          */ //Decipher later
 
         String cipherText = """
-                OONEOLDOSHEHMOSNKDDNISMTADIPFHEEHIHFEEIRRSAHEMFINITEDF
-                DEMRILORMTSEHAFLAAEMOROSOADINSYDNDWONMEARHSDEAYYWAKITL
-                HMIBDCBTLIVENRFOOSRITLOETEDGOTRUHOVIESGHDWWURRREWIOTLS
-                TAHHBAILANDNOIPHBAELNBIDBESCDIEOTNESLKAEDTOETSUSGDFEEL
-                LBHVOIITHRDOVBILYEEFFZHAERREATYABRFUEEPGEMRCTSREIALOLP
-                OAEMKLLCDTNLFPERMDIAEIHDAYYTLNSSINNHGEINMTHEEAHNHDEHSN
-                DOHESDMEHEICTIGSMIRSTSFILFOLNWEENELOAOSAHUYTAENCSYMWUB
-                YELDOSMTOTAE
+                OHVYLLINEYKBHEBHVMSUAMLRAFNATLNSABDRTPKONEETILEDAPSEED
+                EEEITLDEYIGLTFELDATYEWHPDHERRHTOHSWTIFHDHWWTBRETINAYHR
+                ROHDTHRAEETENELETWIHATXOASIAIHEEDHNHSIEIAWOBRESIHDORIF
+                ECLSSAYOWRBTNSNTATHETEHNDVBMTEATLSASTXGTWIEWFDOEEEUADO
+                LHUIERASEGOEIYHECEETHTAXHTOTAARGNGESTYFROEOFHERPWSWRGE
+                ANODNTAOLT
                 """;
         String plainText = """
                 THIS MESSAGE WAS ENCRYPTED WITH A TRANSPOSITION CIPHER
@@ -54,8 +52,12 @@ public class Main {
 
         //printBytes(Quagmire4Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("FOUR"), TextUtilities.formatAndConvertToBytes("PIGMENT"), TextUtilities.formatAndConvertToBytes("COLOR")));
 
-        CipherBreakerOutput<int[]> cbo = MatrixTranspositionCipherBreaker.bruteforce(cipherTextBytes);
-        cbo.displayPlaintext();
+        //CipherBreakerOutput<int[]> cbo = MatrixTranspositionCipherBreaker.bruteforce(cipherTextBytes);
+        //cbo.displayPlaintext();
+
+        byte[] p = TwistedScytaleCipher.decipher(cipherTextBytes, 7,2);
+        printBytes(p);
+        printBytes(TwistedScytaleCipher.encipher(p, 7, 2));
 
 
 

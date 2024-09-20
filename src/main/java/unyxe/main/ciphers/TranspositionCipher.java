@@ -12,8 +12,8 @@ public class TranspositionCipher {
         System.out.println("[Transposition cipher Identifier] IoC: " + ioc);
         return mFrequency > 0.9;
     }
-    public static byte[] appendToPlaintext(byte[] plainText, int period){
-        byte[] newText = new byte[(int) (Math.ceil((double) plainText.length /period)*period)];
+    public static byte[] appendToPlaintext(byte[] plainText, int blockSize){
+        byte[] newText = new byte[(int) (Math.ceil((double) plainText.length /blockSize)*blockSize)];
         Arrays.fill(newText, (byte)23);
         System.arraycopy(plainText, 0, newText, 0, plainText.length);
         return newText;
