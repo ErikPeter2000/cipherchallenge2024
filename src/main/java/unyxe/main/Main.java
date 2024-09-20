@@ -21,7 +21,14 @@ public class Main {
          */ //Decipher later
 
         String cipherText = """
-                TACISN HGRTPC IEYHOI SWPASP MATTIH ESERTE SEDAIR SNWNOX
+                OONEOLDOSHEHMOSNKDDNISMTADIPFHEEHIHFEEIRRSAHEMFINITEDF
+                DEMRILORMTSEHAFLAAEMOROSOADINSYDNDWONMEARHSDEAYYWAKITL
+                HMIBDCBTLIVENRFOOSRITLOETEDGOTRUHOVIESGHDWWURRREWIOTLS
+                TAHHBAILANDNOIPHBAELNBIDBESCDIEOTNESLKAEDTOETSUSGDFEEL
+                LBHVOIITHRDOVBILYEEFFZHAERREATYABRFUEEPGEMRCTSREIALOLP
+                OAEMKLLCDTNLFPERMDIAEIHDAYYTLNSSINNHGEINMTHEEAHNHDEHSN
+                DOHESDMEHEICTIGSMIRSTSFILFOLNWEENELOAOSAHUYTAENCSYMWUB
+                YELDOSMTOTAE
                 """;
         String plainText = """
                 THIS MESSAGE WAS ENCRYPTED WITH A TRANSPOSITION CIPHER
@@ -47,10 +54,8 @@ public class Main {
 
         //printBytes(Quagmire4Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("FOUR"), TextUtilities.formatAndConvertToBytes("PIGMENT"), TextUtilities.formatAndConvertToBytes("COLOR")));
 
-        //CipherBreakerOutput<byte[]> cbo = PermutationCipherBreaker.bruteforceBlockSizeUsingHillClimb(cipherTextBytes, 10);
-        //cbo.displayPlaintext();
-
-        MatrixTranspositionCipher.decipher(cipherTextBytes, 8, 6);
+        CipherBreakerOutput<int[]> cbo = MatrixTranspositionCipherBreaker.bruteforce(cipherTextBytes);
+        cbo.displayPlaintext();
 
 
 
