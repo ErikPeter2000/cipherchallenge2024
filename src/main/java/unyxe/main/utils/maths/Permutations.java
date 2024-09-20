@@ -3,6 +3,7 @@ package main.utils.maths;
 import java.util.Arrays;
 
 public class Permutations {
+
     public static byte[][] generateAllPossiblePermutations(int length){ //based on Heap's algorithm
         byte[] A = new byte[length];
         byte[][] result = new byte[FactoradicNumbers.factorial(length)][];
@@ -100,5 +101,31 @@ public class Permutations {
     }
     public static int findNOfPermutation(byte[] permutation){
         return FactoradicNumbers.toInteger(getFactoradicFromPermutation(permutation));
+    }
+    public static byte[] getRandomPermutation(int m){
+        return getNthPermutationOfMObjects(Random.random.nextInt(FactoradicNumbers.factorial(m)), m);
+    }
+
+    public static byte[] swapTwoRandomDigits(byte[] permutation){
+        byte[] newPermutation = Arrays.copyOf(permutation, permutation.length);
+        int x = Random.random.nextInt(permutation.length);
+        int y;
+        do{
+            y = Random.random.nextInt(permutation.length);
+        }while(y==x);
+        newPermutation[x] = permutation[y];
+        newPermutation[y] = permutation[x];
+        return newPermutation;
+    }
+    public static byte[] rollPermutation(byte[] permutation, int numberOfSteps){
+        if(numberOfSteps >= permutation.length)numberOfSteps %= permutation.length;
+        byte[] newPermutation = new byte[permutation.length];
+        if(numberOfSteps == 0) return Arrays.copyOf(permutation, permutation.length);
+        System.arraycopy(permutation, numberOfSteps, newPermutation, 0, permutation.length-numberOfSteps);
+        System.arraycopy(permutation, 0, newPermutation, permutation.length-numberOfSteps, numberOfSteps);
+        return newPermutation;
+    }
+    public static byte[] rollPermutationRandomly(byte[] permutation){
+        return rollPermutation(permutation, Random.random.nextInt(permutation.length));
     }
 }

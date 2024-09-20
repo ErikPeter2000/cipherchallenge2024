@@ -4,19 +4,18 @@ import main.ciphers.MonoAlphabeticCipher;
 import main.utils.Constants;
 import main.utils.FitnessCalculator;
 import main.utils.TextUtilities;
+import main.utils.maths.Random;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
 public class MonoAlphabeticCipherBreaker {
-    static Random rand = new Random();
     public static byte[] swapRandomInKey(byte[] key){
         byte[] newKey = Arrays.copyOf(key, key.length);
-        int x = rand.nextInt(key.length);
+        int x = Random.random.nextInt(key.length);
         int y;
         do{
-            y = rand.nextInt(key.length);
+            y = Random.random.nextInt(key.length);
         }while(y==x);
         newKey[x] = key[y];
         newKey[y] = key[x];

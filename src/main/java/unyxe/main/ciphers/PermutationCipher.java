@@ -64,6 +64,7 @@ public class PermutationCipher {
         return cipherText;
     }
     public static byte[] decipher(byte[] cipherText, byte[] permutation){
+        if(cipherText.length % permutation.length != 0) cipherText = appendToPlaintext(cipherText, permutation.length);
         byte[] plainText = new byte[cipherText.length];
         for(int i = 0; i < cipherText.length;i++){
             plainText[i] = cipherText[permutation[i%permutation.length] + (i/permutation.length)*permutation.length];

@@ -4,13 +4,12 @@ import main.ciphers.PeriodicPolyAlphabeticSubstitutionCipher;
 import main.utils.Constants;
 import main.utils.FitnessCalculator;
 import main.utils.TextUtilities;
+import main.utils.maths.Random;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
 public class PeriodicPolyAlphabeticSubstitutionCipherBreaker {
-    static Random rand = new Random();
     public static CipherBreakerOutput<byte[][]> hillClimber(byte[] cipherText, int period, int limit){
         CipherBreakerOutput<byte[][]> output = new CipherBreakerOutput<>("PeriodicPolyAlphabeticSubstitutionCipher", cipherText);
 
@@ -71,7 +70,7 @@ public class PeriodicPolyAlphabeticSubstitutionCipherBreaker {
         byte[] buffer = new byte[26];
         double bestFitness = FitnessCalculator.MonogramABVFitness(cipherText);
         for(int c = 0; c < 10000;c++){
-            int rInd = rand.nextInt(period);
+            int rInd = Random.random.nextInt(period);
             byte[] newKey = MonoAlphabeticCipherBreaker.swapRandomInKey(parentKey[rInd]);
             System.arraycopy(parentKey[rInd], 0, buffer, 0, 26);
             System.arraycopy(newKey, 0, parentKey[rInd], 0, 26);
