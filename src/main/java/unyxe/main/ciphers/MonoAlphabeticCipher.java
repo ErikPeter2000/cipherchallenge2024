@@ -4,7 +4,7 @@ import main.utils.Analyser;
 import main.utils.TextUtilities;
 
 public class MonoAlphabeticCipher {
-    public static boolean likeliness(byte[] text){
+    public static boolean isLikely(byte[] text){
         double ioc = Analyser.getIndexOfCoincedence(text, true);
         return (ioc >= 0.85) || (ioc <= 0.93);
     }

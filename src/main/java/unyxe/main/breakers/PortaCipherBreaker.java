@@ -13,7 +13,7 @@ public class PortaCipherBreaker {
         ArrayList<byte[]> potentialKeywords = new ArrayList<>();
         for(int i = 0; i < Constants.wordlist.length; i++){
             if(keyword.length != Constants.wordlist[i].length)continue;
-            byte[] word = Constants.wordlist[i];
+            byte[] word =Arrays.copyOf(Constants.wordlist[i], Constants.wordlist[i].length);
             boolean found = true;
             for(int j = 0; j < word.length; j++){
                 int u1 = word[j];

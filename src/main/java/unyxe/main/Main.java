@@ -2,7 +2,11 @@ package main;
 
 
 import main.breakers.*;
+import main.ciphers.*;
+import main.utils.periodanalysers.*;
 import main.utils.*;
+
+import java.util.Arrays;
 
 import static main.utils.TextUtilities.*;
 
@@ -10,56 +14,27 @@ public class Main {
     public static void main(String[] args) {
         Constants.initialize();
 
+        /*
+        LTRELAITNSIIAOHIETETLATCERRYNUOEIHQUNAGSFIEAETPREITAIN
+                DILTREELTNRSDWIO
+         */ //Decipher later
+
         String cipherText = """
-                PWNYPCGUUMYYUIAGGUGFEMWLRNYAHOGGHBAEWCXWPAQSXPAGNITNIX
-                WBQFKMLVIFHDTLSMADKMWWXXNYCQYBVWIKHWYARVTKXXAVGBGLVITN
-                WVNMKMUWRYQWRNEHYBCHUTNYQKYHIXWFWTQSLVYKRKZUHXZKVMQPHC
-                YALCRWHDKGJGTNOKSHXPAPHAGWQVGUHCXYUIAMXPKLXQRWKWNBXVTM
-                EMGGIXWYOMADHKGFWQQYQKYAHMHXRBYLRNYAHWRYXMZKFBEIXXIKWY
-                JWUCCARGTKNMNMLBGEHCXECDTVHLKIKMWQKWYSREOYOTYAHWWMLNAU
-                XVGPHBYAHTGLVTGMYCYYNMYALCTISXWMYVKMCVTQXXMKLVIHYBYQRY
-                GHSTGLXXIWXPGKWTQHAUGIOMALHDTXLBXMWYTEROKTHDJWWBYBIWOM
-                AWXIOWOWGXSMKMQNQWWLYBHYFMHYUDTHVXTGWCCWKWNYQDKULYAMHK
-                YAWDEHYGTNOKAUKQGPHCUYFMYKWFGEPEOAHWWELMWMKQXLKXZEGMDI
-                OWKGXPGYSYAKHVYYJMTXXPGYUDKXWLYYQKYAHLWNGMSWVCTXXPGEWV
-                INWOGQUQYMHVZIRVKMLDJYVCZXIMWWGDJWLUUYFDTXFXZGXTGLVUKU
-                UXRWXMTKVDJYXQRIWLYMKMQNQWWLYBHYFMOHQDKGYWQECNZKXPGKPX
-                WWXPGFHCXYJMCKLDYWQXSBXGALFXRIRCGVEIRSSBGVHLGLVXWLAPTQ
-                HBGEWBIWOIKZQXWYQDTXCXZKOWSZYWIWLUZLXWQLRWUHOXIBDMHHUD
-                JWGMQYCQSHYBKGXBTVYLYBRVXBQLGBXCUEWLGFHVYQKQQWWDYAWDYB
-                PMCWKWNIOWSGHKYHLVKMLWYWFXSMWLYBPUGVLWYWOIZIRVEHYBHBUC
-                YPLCKMXXEHYBUEWVGMVCAMHTQBXMKMKWNLLVOWXPAMXQRWEMGGGMOB
-                GMNMKWYQHCJHYTNGRDWWZMAEREWLHTBWVESMLTEHYBXHFQGMCPAVUM
-                AUKMNSHDAZUMAMHBQWZMQHIDGUKVTEROKUWTXHSPKLXQOYXQTGKXCW
-                ZMWSREWVLCOHZMWSRNYAHWWMLNAUXWSVGMOBSPGKPMSMRNKMKWXIUM
-                OBSQYYXMNMKQXBQDWHGEOMLXSBQDJWXQRWVQSUHDJWWBYBIWOMVLWW
-                WDKHQWSVSTAUHUGGXXSMKMQNQWWLYBHYFMCWKWBWEMGGAXWDLVIMRP
-                GESITNWLJBHFGMKWYMHLJGRTTZLLAEVXUALCYBFWYBRVTXAPKUKQXI
-                HWPBQBGUHVYVHLAVHCEHYBXHFQGMCPALHHUWUQGGFMNYQMDIRVGGXQ
-                AEJBTQXPKGXPGYUMALRNMBRLJWPQXMUIRWGQOBQMGGJQSWHBKGJYJS
-                VQOLWVNURUUNXWYBRVNNHQSEWBIWSWWMXXYAHQSCHLYBRVTXLKGYVW
-                SVXMOAQQVNHCKGXXEHYBXULMSMLNKUOQYWUWYNUMMSREWFHUMWUCYA
-                HCGYUMJHAMBWUUGKHTEMKMMWJQSGLVIHIGJYXGGUWVNHIXWSREWLRL
-                KWXIYHAQYQHPAPHWQLRAGWQWQOHQYLOXCECDTAHTUSRECBXPYAHQRI
-                UXBWPMSMRNTMKMWXWLGMVXHSREWLRLKWXIKMLCSHWLOBGMSMXPAMWK
-                BYQLGLLVYWFPSHOXISWBGYFLTFSWSBHKMSWKBYQLGLLVXNUFGBOTAG
-                FMKMLCCBXPXNFPAVZWSUHCYAWDCWKXUWXXJWOYEHYDTJYMQEXPGUKW
-                TLWVNNQYWWGQOMWAKELDEMKWYIOWINHCEHYBWYFMXMWAKELDEYQKOH
-                QDWHOWWWHCXWQDKYONTKYCJWUQSZEXYAREWIHXUEHCKGXXAGHGAZHX
-                HURXUWUWYBRVAGGYWHVYGKLDEYVQYLWIXHQDJWWBYBIWOMWVNYVGGQ
-                LTQYOGASVCASXXEHYGGURUGBQYGYFMCWRNHWUUAGCOKXXCYHCXZBQB
-                GMYBSQHXSECWXDCXZKRAGVLMSUH
+                
                 """;
         String plainText = """
+                THIS MESSAGE IS ENCRYPTED WITH A TRANSPOSITION CIPHER
                 """;
         String key = "CSKTFVRMGQLEXDHPJIZANBOUWY";
         String[] periodicKeys = new String[]{"LBRUVCJAWZYSHXINOQEPFTGKDM","SLNAXDIGOBKCEYQHTMWJFUVPZR","IFWVBXNGKHZQYOELPCDTJRUSAM"};
+
 
         byte[] cipherTextBytes = formatAndConvertToBytes(cipherText);
         byte[] plainTextBytes = formatAndConvertToBytes(plainText);
         byte[] keyBytes = formatAndConvertToBytes(key);
         byte[][] keysBytes = convertToByteArrays(periodicKeys, Constants.alphabet);
         byte[][] cribsBytes = convertToByteArrays(new String[]{"VICTORY", "SPAIN", "DISCO", "EUROVISION"},Constants.alphabet);
+        byte[] permutationKey = PermutationCipher.generatePermutationFromKeyword(formatAndConvertToBytes("REPETITION"), true);
 
 
         long startTime = System.currentTimeMillis();
@@ -71,9 +46,11 @@ public class Main {
 
         //printBytes(Quagmire4Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("FOUR"), TextUtilities.formatAndConvertToBytes("PIGMENT"), TextUtilities.formatAndConvertToBytes("COLOR")));
 
-        CipherBreakerOutput<byte[][]> cbo = PeriodicPolyAlphabeticSubstitutionCipherBreaker.hillClimber(cipherTextBytes, 4, 1000000);
-        cbo.displayPlaintext();
-        printBytes(cbo.key.get(0));
+        //CipherBreakerOutput<byte[][]> cbo = PeriodicPolyAlphabeticSubstitutionCipherBreaker.hillClimber(cipherTextBytes, 4, 1000000);
+        //cbo.displayPlaintext();
+        //printBytes(cbo.key.get(0));
+        byte[] pos = PermutationCipher.decipher(PermutationCipher.encipher(plainTextBytes, permutationKey), permutationKey);
+        printBytes(pos);
 
 
         long endTime = System.currentTimeMillis();
