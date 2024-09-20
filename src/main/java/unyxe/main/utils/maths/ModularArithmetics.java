@@ -1,4 +1,6 @@
-package main.utils;
+package main.utils.maths;
+
+import java.util.ArrayList;
 
 public class ModularArithmetics {
     public static int gcd(int a, int b) {
@@ -34,5 +36,15 @@ public class ModularArithmetics {
         if(r != 1) return -1;
         if(t < 0) t += m;
         return t;
+    }
+    public static int[][] findAllFactorPairs(int n){
+        ArrayList<int[]> factorPairsList = new ArrayList<>();
+        for(int i = 2; i < Math.sqrt(n)+1;i++){
+            if(n%i == 0){
+                factorPairsList.add(new int[]{i, n/i});
+                if(n/i != i)factorPairsList.add(new int[]{n/i, i});
+            }
+        }
+        return factorPairsList.toArray(new int[0][]);
     }
 }

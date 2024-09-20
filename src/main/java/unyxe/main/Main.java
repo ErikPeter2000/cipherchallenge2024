@@ -1,9 +1,10 @@
 package main;
 
 
-import main.ciphers.*;
 import main.breakers.*;
+import main.ciphers.*;
 import main.utils.periodanalysers.*;
+import main.utils.maths.*;
 import main.utils.*;
 
 import java.util.Arrays;
@@ -14,39 +15,50 @@ public class Main {
     public static void main(String[] args) {
         Constants.initialize();
 
+        /*
+        LTRELAITNSIIAOHIETETLATCERRYNUOEIHQUNAGSFIEAETPREITAIN
+                DILTREELTNRSDWIO
+         */ //Decipher later
+
         String cipherText = """
-                FAFSTXGTYRDWTCRESHFKTAUMCEVWWNRCHIMYMXTNHGBRHTJWFYCOXY
-                RDYWXEDSTXPISROHVKBGEHBYTWEZOOSDURXXEJNZYVBYTACBVNMMJB
-                LNYMBWIIVPRQXFPXHXAVJNXATCMRCFSTGFNNYIMWYFXYBQSMJPSYOG
-                NFNIURRTXVWWWAGTXSGMPGSBATYWIVHOMTJIFQVBWRPMATFEPFBXME
-                QWDMWEWRKDTNJODCBWXWAFFNRAETGIMYOFSSPQSXGJFEHAHYRDPGYS
-                MJHISQIVJQIVROCEVUIMWAFFHSSWYEAMWTEITWT
+                OONEOLDOSHEHMOSNKDDNISMTADIPFHEEHIHFEEIRRSAHEMFINITEDF
+                DEMRILORMTSEHAFLAAEMOROSOADINSYDNDWONMEARHSDEAYYWAKITL
+                HMIBDCBTLIVENRFOOSRITLOETEDGOTRUHOVIESGHDWWURRREWIOTLS
+                TAHHBAILANDNOIPHBAELNBIDBESCDIEOTNESLKAEDTOETSUSGDFEEL
+                LBHVOIITHRDOVBILYEEFFZHAERREATYABRFUEEPGEMRCTSREIALOLP
+                OAEMKLLCDTNLFPERMDIAEIHDAYYTLNSSINNHGEINMTHEEAHNHDEHSN
+                DOHESDMEHEICTIGSMIRSTSFILFOLNWEENELOAOSAHUYTAENCSYMWUB
+                YELDOSMTOTAE
                 """;
         String plainText = """
+                THIS MESSAGE WAS ENCRYPTED WITH A TRANSPOSITION CIPHER
                 """;
         String key = "CSKTFVRMGQLEXDHPJIZANBOUWY";
         String[] periodicKeys = new String[]{"LBRUVCJAWZYSHXINOQEPFTGKDM","SLNAXDIGOBKCEYQHTMWJFUVPZR","IFWVBXNGKHZQYOELPCDTJRUSAM"};
+
 
         byte[] cipherTextBytes = formatAndConvertToBytes(cipherText);
         byte[] plainTextBytes = formatAndConvertToBytes(plainText);
         byte[] keyBytes = formatAndConvertToBytes(key);
         byte[][] keysBytes = convertToByteArrays(periodicKeys, Constants.alphabet);
         byte[][] cribsBytes = convertToByteArrays(new String[]{"VICTORY", "SPAIN", "DISCO", "EUROVISION"},Constants.alphabet);
+        byte[] permutationKey = PermutationCipher.generatePermutationFromKeyword(formatAndConvertToBytes("REPETITION"), true);
 
 
         long startTime = System.currentTimeMillis();
 
 
-        System.out.println(Arrays.toString(KasiskiExamination.examine(cipherTextBytes)));
-        System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherTextBytes, 16)));
-        System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherTextBytes, 5, 16)));
+        //System.out.println(Arrays.toString(KasiskiExamination.examine(cipherTextBytes)));
+        //System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherTextBytes, 16)));
+        //System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherTextBytes, 5, 16)));
 
-        //printBytes(Quagmire3Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("DOLPHINS"), TextUtilities.formatAndConvertToBytes("FISHBOWL")));
+        //printBytes(Quagmire4Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("FOUR"), TextUtilities.formatAndConvertToBytes("PIGMENT"), TextUtilities.formatAndConvertToBytes("COLOR")));
 
-        CipherBreakerOutput<byte[]> cbo = Quagmire2CipherBreaker.dictionaryAttack(cipherTextBytes, 6, 5);
+        CipherBreakerOutput<int[]> cbo = MatrixTranspositionCipherBreaker.bruteforce(cipherTextBytes);
         cbo.displayPlaintext();
-        printBytes(cbo.key.get(0));
-        printBytes(cbo.key.get(1));
+
+
+
 
 
         long endTime = System.currentTimeMillis();
