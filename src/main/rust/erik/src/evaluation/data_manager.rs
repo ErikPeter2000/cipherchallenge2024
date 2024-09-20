@@ -2,7 +2,8 @@ use std::fs::File;
 use std::io::BufRead;
 use std::path::Path;
 
-pub fn read_csv_frequency_data<P: AsRef<Path>>(file_path: P) -> Vec<(String, f64)> {
+/// Reads a CSV file containing frequency data. Returns the log base 10 of the frequency.
+pub fn read_csv_frequency_data_log<P: AsRef<Path>>(file_path: P) -> Vec<(String, f64)> {
     let file = File::open(file_path).expect("File not found");
     std::io::BufReader::new(file)
         .lines()
