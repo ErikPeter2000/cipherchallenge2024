@@ -48,16 +48,16 @@ fn job(seed: u64) -> bool {
     let tetragram_table = evaluation::tetragram_table::TetragramsTable::new(tetragram_frequencies);
     let mut rng: utils::FastRandomUsize = utils::FastRandomUsize::new(seed);
 
-    let start = std::time::Instant::now();
+    // let start = std::time::Instant::now();
     let broken = ciphers::substitution_cipher::break_substitution_cipher(
         &encrypted,
         &tetragram_table,
         &mut rng,
         Some(10000),
     );
-    let end = std::time::Instant::now();
+    // let end = std::time::Instant::now();
     let decrypted = utils::alphabet_index_to_string(&broken.0);
-    println!("Time taken: {:?}", end - start);
+    // println!("Time taken: {:?}", end - start);
     // println!("Decrypted: {}", decrypted);
     return decrypted.starts_with("BYGEORGEORWELL");
 }
@@ -65,25 +65,24 @@ fn job(seed: u64) -> bool {
 fn main() {
     let binary_name = env!("CARGO_PKG_NAME");
     println!("Binary name: {}", binary_name);
-    job(0);
-    // let mut success = 0.0;
-    // let total = 100;
+    let mut success = 0.0;
+    let total = 100;
 
-    // let pb = ProgressBar::new(total);
-    // pb.set_style(
-    //     ProgressStyle::default_bar()
-    //         .template(
-    //             "{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {pos}/{len} ({eta})",
-    //         )
-    //         .unwrap()
-    //         .progress_chars("█▉▊▋▌▍▎▏  "),
-    // );
+    let pb = ProgressBar::new(total);
+    pb.set_style(
+        ProgressStyle::default_bar()
+            .template(
+                "{spinner:.green} [{elapsed_precise}] [{bar:40.cyan/blue}] {pos}/{len} ({eta})",
+            )
+            .unwrap()
+            .progress_chars("█▉▊▋▌▍▎▏  "),
+    );
 
-    // for i in 0..total {
-    //     if job(i) {
-    //         success += 1.0;
-    //     }
-    //     pb.inc(1);
-    // }
-    // println!("Accuracy: {}", success / total as f64);
+    for i in 0..total {
+        if job(i) {
+            success += 1.0;
+        }
+        pb.inc(1);
+    }
+    println!("Accuracy: {}", success / total as f32);
 }

@@ -2,13 +2,13 @@ use super::ngram_table::NGramTable;
 
 /// For fast access to tetragram data, such as tetragram frequencies.
 pub struct TetragramsTable {
-    table: Vec<f64>,
+    table: Vec<f32>,
 }
 
 impl NGramTable for TetragramsTable {
     /// Get the value of a tetragram.
     #[inline(always)]
-    fn get_value(&self, tetragram: &[u8]) -> f64 {
+    fn get_value(&self, tetragram: &[u8]) -> f32 {
         let index = TetragramsTable::get_index(tetragram);
         self.table[index]
     }
@@ -23,7 +23,7 @@ impl NGramTable for TetragramsTable {
         4
     }
     /// Create a new tetragram table.
-    fn new(tetragram_data: Vec<(String, f64)>) -> TetragramsTable {
+    fn new(tetragram_data: Vec<(String, f32)>) -> TetragramsTable {
         let mut table = vec![-10.0; 456976];
         tetragram_data.iter().for_each(|(tetragram, value)| {
             let slice: Vec<u8> = tetragram.as_bytes().into_iter().map(|&x| x - 65).collect(); // Convert the tetragram to a 0-indexed slice.
