@@ -1,6 +1,6 @@
 package com.core.data
 
-trait PolygramLookupTable(private val table: Vector[Double]) {
+trait PolygramLookupTable(val table: Vector[Double]) {
     def lookup(index: Int): Double = table(index)
     def lookup(polygram: Seq[Char]): Double
 }
