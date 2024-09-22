@@ -2,12 +2,9 @@ package main;
 
 
 import main.breakers.*;
-import main.ciphers.*;
-import main.utils.periodanalysers.*;
-import main.utils.maths.*;
+import main.breakers.transposition.TwistedScytaleCipherBreaker;
+import main.ciphers.transposition.PermutationCipher;
 import main.utils.*;
-
-import java.util.Arrays;
 
 import static main.utils.TextUtilities.*;
 
@@ -21,12 +18,29 @@ public class Main {
          */ //Decipher later
 
         String cipherText = """
-                OHVYLLINEYKBHEBHVMSUAMLRAFNATLNSABDRTPKONEETILEDAPSEED
-                EEEITLDEYIGLTFELDATYEWHPDHERRHTOHSWTIFHDHWWTBRETINAYHR
-                ROHDTHRAEETENELETWIHATXOASIAIHEEDHNHSIEIAWOBRESIHDORIF
-                ECLSSAYOWRBTNSNTATHETEHNDVBMTEATLSASTXGTWIEWFDOEEEUADO
-                LHUIERASEGOEIYHECEETHTAXHTOTAARGNGESTYFROEOFHERPWSWRGE
-                ANODNTAOLT
+                TsormynhemuitlThesynpddmrdtcryefclseanpinptbsslenednul
+                fteomatesdepaeestvsnysdsnmesirutnitgapsarmdxcdusrVerlr
+                nitestixpurhepobakmsiarieiyrettFGcpgalitdwideddihdeivp
+                otreesrtCFDdthaahthVaptetftddthrthapngteycitfehplceCra
+                ebinatektadrytioosorngoxihIecfgestnoeeIesphaaetoreeiec
+                aaabetvdrotliusiiWcrgmranhrnmuitiinongrvheenitiecrsicm
+                IhcohenhotiiTtrystdXcuyatehyfhtboseatoneietictysievenh
+                eraoomunnasctXsbyfafspelaeSxtiagsGwenepnefaanredsfwasl
+                eitenhotocoipscWiseemoncblsstetiniccsevrnstldtfwmomuoi
+                sTecinmwcTtirvrrheerneserrntchemofhooningiteoevecenaln
+                owncgsdraieddanesanysnalntrnasoymennhispiaADisssIltwor
+                hylsqnrsstnnhcaiTgsaeptelssrndsotndahrenairlaelinyoahc
+                amhfouodhdXatnbesioeryaeseysoybhtuftheoitsdtpesyeetees
+                sbgloianemachduimaertsrnonmocsyhaecoaetatimodeinsaseae
+                forieitontenhavntieiatcinorltttemcyevcgmgudpamufthypnt
+                garwtgetetnndFpuofclhorbesybudaitegfemlohuicdrineAtrei
+                ithealVeptmepatcyednfmemlealaltisVDctdXrenfdesltocotgr
+                uihrihelurhiehesphenomsecadsmmlsiatreerierisstdditpmat
+                sinmpncimoeruusnntasIluyhuetexafeelciserslontiocsnkuha
+                llsehaiustoietgesoreetderaeheleenegaaGhalaawekdosixiat
+                nsiptroudnedshbesgtDhesncessreanreorsnrtaptooplufnrptd
+                egrFTthecenloinaittufegatnesterfostmviTtiavaditarneane
+                linfiowvensx
                 """;
         String plainText = """
                 THIS MESSAGE WAS ENCRYPTED WITH A TRANSPOSITION CIPHER
@@ -52,12 +66,8 @@ public class Main {
 
         //printBytes(Quagmire4Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("FOUR"), TextUtilities.formatAndConvertToBytes("PIGMENT"), TextUtilities.formatAndConvertToBytes("COLOR")));
 
-        //CipherBreakerOutput<int[]> cbo = MatrixTranspositionCipherBreaker.bruteforce(cipherTextBytes);
-        //cbo.displayPlaintext();
-
-        byte[] p = TwistedScytaleCipher.decipher(cipherTextBytes, 7,2);
-        printBytes(p);
-        printBytes(TwistedScytaleCipher.encipher(p, 7, 2));
+        CipherBreakerOutput<int[]> cbo = TwistedScytaleCipherBreaker.bruteforce(cipherTextBytes);
+        cbo.displayPlaintext();
 
 
 

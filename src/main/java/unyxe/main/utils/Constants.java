@@ -1,6 +1,6 @@
 package main.utils;
 
-import main.ciphers.PortaCipher;
+import main.ciphers.periodicpolyalphabetic.PortaCipher;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
