@@ -18,6 +18,10 @@ public class CipherBreakerOutput<T> {
         this.cipherText = cipherText;
     }
     public void displayPlaintext() {
-        System.out.println(TextUtilities.convertToString(plainText, Constants.alphabet));
+        System.out.println(getStringPlaintext());
+    }
+    public String getStringPlaintext(){
+        if(plainText == null) return "null";
+        return TextUtilities.convertToString(plainText, Constants.alphabet);
     }
 }

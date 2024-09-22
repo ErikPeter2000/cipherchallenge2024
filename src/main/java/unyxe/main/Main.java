@@ -1,10 +1,9 @@
 package main;
 
+import main.attacks.AttackManager;
+import main.utils.Constants;
 
-import main.breakers.*;
-import main.breakers.transposition.TwistedScytaleCipherBreaker;
-import main.ciphers.transposition.PermutationCipher;
-import main.utils.*;
+import javax.accessibility.AccessibleTable;
 
 import static main.utils.TextUtilities.*;
 
@@ -12,66 +11,18 @@ public class Main {
     public static void main(String[] args) {
         Constants.initialize();
 
-        /*
-        LTRELAITNSIIAOHIETETLATCERRYNUOEIHQUNAGSFIEAETPREITAIN
-                DILTREELTNRSDWIO
-         */ //Decipher later
-
-        String cipherText = """
-                TsormynhemuitlThesynpddmrdtcryefclseanpinptbsslenednul
-                fteomatesdepaeestvsnysdsnmesirutnitgapsarmdxcdusrVerlr
-                nitestixpurhepobakmsiarieiyrettFGcpgalitdwideddihdeivp
-                otreesrtCFDdthaahthVaptetftddthrthapngteycitfehplceCra
-                ebinatektadrytioosorngoxihIecfgestnoeeIesphaaetoreeiec
-                aaabetvdrotliusiiWcrgmranhrnmuitiinongrvheenitiecrsicm
-                IhcohenhotiiTtrystdXcuyatehyfhtboseatoneietictysievenh
-                eraoomunnasctXsbyfafspelaeSxtiagsGwenepnefaanredsfwasl
-                eitenhotocoipscWiseemoncblsstetiniccsevrnstldtfwmomuoi
-                sTecinmwcTtirvrrheerneserrntchemofhooningiteoevecenaln
-                owncgsdraieddanesanysnalntrnasoymennhispiaADisssIltwor
-                hylsqnrsstnnhcaiTgsaeptelssrndsotndahrenairlaelinyoahc
-                amhfouodhdXatnbesioeryaeseysoybhtuftheoitsdtpesyeetees
-                sbgloianemachduimaertsrnonmocsyhaecoaetatimodeinsaseae
-                forieitontenhavntieiatcinorltttemcyevcgmgudpamufthypnt
-                garwtgetetnndFpuofclhorbesybudaitegfemlohuicdrineAtrei
-                ithealVeptmepatcyednfmemlealaltisVDctdXrenfdesltocotgr
-                uihrihelurhiehesphenomsecadsmmlsiatreerierisstdditpmat
-                sinmpncimoeruusnntasIluyhuetexafeelciserslontiocsnkuha
-                llsehaiustoietgesoreetderaeheleenegaaGhalaawekdosixiat
-                nsiptroudnedshbesgtDhesncessreanreorsnrtaptooplufnrptd
-                egrFTthecenloinaittufegatnesterfostmviTtiavaditarneane
-                linfiowvensx
+        String cipherText = """                
+                AXGVF AAXFG AAAVF XDDAX XFDGG AXFDD DXADX XFVVV AFXAF GAAVA XFDAX FAFGX FGAXA XVDFG XDGDV FGAGA XFDDF XVXAA GAAAF XXAFF GDGAV DXAFD VAGAF DXFDA GXAXA XGXGX DAFDF VFAAX DFGXF DXVAF XGFGX DAVAG AFXDA VFXVF AVAGF AFAFA DXVFD FFXAF GXFDA XAXGX XVAAA VAGAF FGFFA DGAFV DAFDX GAAVF FAFVX AAXAX FDAAG VAXFG FXAFX VDAFX FAXGG AFFGD FDAGX XFVGV ADFGA GAFFA DVAFV GFXAG FDFGA VVAXF DAAVF VAVFG GGAFV AAXFF AGFGX DFDGX DAFDG AFXFA FVAXX GFFGD FVVGD AVAVF GGAXF GAXAF VXAAA VFXDD AXXFD GFGFA GDVFA FXXFD GGAXX DFDXD AXDFV XVFVX AAFAG VAAXA FAVDA FGXDA AXFVA XVFVF DFFXG AFAVA XVAAG DFVAG FXGFA FGXFF DGGXV FDDGX GFGDV AXGAF XDFGX DVAFG FXFAA GXFFD XFDDF GFAFD XAFVA AVGGX DAAXX AGFGA VXAAA VAGAF XDVVG FFXGD XFFVG XDAFD GAFAX FFGAD XDAFA FGXFX GDAFV VGAFA GFDXF XFAGD GAAVA FXAAF AFGXA FAFFX VXGAF DFFDG GXAFD VAXXG XAGAX FDDFA GVAAX AFAVD AFVVF FDXFF GDFDF GAAAF XVDAG DAFGX GDFVA GXFXF DDFGF AGDAX FXFVF DXGAA VAGAX DXFFF GDFXA GDFVG VVFFF VFXFA AXVVF FDXFA FGDXF FADFD FVGXF GFGXD GAXFD DGAFX FDAGV FGAAX FFVGG XAFAF GAFAX GFXGA FAVAX VAAGD GXDAF DXAFA VDXGA DAVAG AXFXX XFDFD XXDAF DFFDG AFXGA AXDFG XDVAF GFXFA AXAXG XGXDA AFFAV AAXFF DAXAV VGAVD XGDDV AFVGG FAGVA AVDAA FXXAA FXXFX FFADF AGVAA GAXFD DDXVX AAGXF GXDAV AFGXF DXVAD VGFFD AAVXF DDFGF AFDXA GXDAF DFFGX AXGFD AAVAF AXFAG VAAFG FGXDA VVFGA GFAXA FVDAA FVGAX AXDFA XAXFV FVGAF FDAXF XVAGF GDVAV VGDFD FFGAF DFFGX VGAGA FFDGG DXFGV XFAVF VFXAA XVGAF AXXFD GFGXF AAAVF FXDAX FFGGA FFGXD GAXFD DDXAD XXFVV VAFXA FGAAV AXFDA GAVAX AXAVG AAXDF FGDAV AFGXF DXVAD VGFFD AAVXF DDFGF AFDGA AAXVF AFFDG AGAFX XGFAV DXFDG AXXXA GVFXA XDFDX VFVFD FGXGV ADFGV XAAAV AFGXG XFXDA AFAXF GFDXG AAAVF XDDAX XFDGD FVFAG GAFXA DVAVV DGXDV FDFGD GGAAV AAAXG FVFGA AFDFF GDAXV FDDFX VAXFF AFFAA VAGXD AAXGA VAFDX AXFFV GFGAA XXFDG VFGVA AVDFG ADXDF FGDAV AGAFX DGXDA FDFGA AVAXF DAVAX GAAXD FVFDA XFGAA FAGAX AVDFV ADGDA GAFFA DVAFV GFXAG FDFAV VFDAA FVVFV GXFFD AAXGF GGXAA FDDGA VAVFF DDGFA XFFVG FGAAA VFAFG GAFGA DVAXF VFFAA FAFGA FFGDD XFGDD VAFFD GGAXF DDXAA FAXAV FXDDA XXFDG XAVGA AXFFG ADFAA XAFFX FAFDV FFGDD GAGVA DFGFV DDFVA GAGAX XGXAA FGXFA AXFDX VFDFV AAXFF GADAF XFDFD XFGDD VAFFD GAFFA XXXAG FDAVF VXDFF DFVAG GDXFV FAXGX GXFDX GAAVG FFDGF AAXAF AGFFG DFAVX AA
                 """;
-        String plainText = """
-                THIS MESSAGE WAS ENCRYPTED WITH A TRANSPOSITION CIPHER
-                """;
-        String key = "CSKTFVRMGQLEXDHPJIZANBOUWY";
-        String[] periodicKeys = new String[]{"LBRUVCJAWZYSHXINOQEPFTGKDM","SLNAXDIGOBKCEYQHTMWJFUVPZR","IFWVBXNGKHZQYOELPCDTJRUSAM"};
-
-
-        byte[] cipherTextBytes = formatAndConvertToBytes(cipherText);
-        byte[] plainTextBytes = formatAndConvertToBytes(plainText);
-        byte[] keyBytes = formatAndConvertToBytes(key);
-        byte[][] keysBytes = convertToByteArrays(periodicKeys, Constants.alphabet);
-        byte[][] cribsBytes = convertToByteArrays(new String[]{"VICTORY", "SPAIN", "DISCO", "EUROVISION"},Constants.alphabet);
-        byte[] permutationKey = PermutationCipher.generatePermutationFromKeyword(formatAndConvertToBytes("REPETITION"), true);
+        AttackManager am = new AttackManager(cipherText);
 
 
         long startTime = System.currentTimeMillis();
 
-
-        //System.out.println(Arrays.toString(KasiskiExamination.examine(cipherTextBytes)));
-        //System.out.println(Arrays.toString(IOCPeriodAnalyser.guessPeriod(cipherTextBytes, 16)));
-        //System.out.println(Arrays.deepToString(TwistMethodPeriodAnalyser.guessPeriod(cipherTextBytes, 5, 16)));
-
-        //printBytes(Quagmire4Cipher.decipher(cipherTextBytes, TextUtilities.formatAndConvertToBytes("FOUR"), TextUtilities.formatAndConvertToBytes("PIGMENT"), TextUtilities.formatAndConvertToBytes("COLOR")));
-
-        CipherBreakerOutput<int[]> cbo = TwistedScytaleCipherBreaker.bruteforce(cipherTextBytes);
-        cbo.displayPlaintext();
-
-
-
-
+        am.guessCipherType();
+        am.performPeriodTesting(16);
+        am.tryMonoalphabeticBreakers();
+        am.tryTranspositionBreakers();
 
         long endTime = System.currentTimeMillis();
         System.out.println("Execution time: " + (endTime - startTime) + "ms");
