@@ -2,7 +2,7 @@ package com.core.cipherbreakers
 
 import com.core.analysers.FrequencyAnalysis
 import com.core.cipherdata.CipherDataBlock
-import com.core.data.DataTable
+import com.core.languagedata.DataTable
 import com.core.ciphers.CaesarCipher
 import com.core.alphabets.Alphabet
 import com.core.evolutionaryalgorithms.FitnessFunctions

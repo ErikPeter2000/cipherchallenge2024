@@ -2,7 +2,7 @@ package com.core.evolutionaryalgorithms
 
 import com.core.cipherdata.CipherDataBlock
 import com.core.analysers.FrequencyCounter
-import com.core.data.DataTable
+import com.core.languagedata.DataTable
 import com.core.collections.TrieNode
 
 

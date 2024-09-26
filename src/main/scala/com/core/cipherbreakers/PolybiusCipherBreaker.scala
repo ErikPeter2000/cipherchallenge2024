@@ -13,7 +13,7 @@ import com.core.evolutionaryalgorithms.FitnessFunctions
 import com.core.extensions.SeqExtensions._
 import com.core.evolutionaryalgorithms.ChildSelectionPolicy
 import com.core.keys.KeyFactory
-import com.core.data.DataTable
+import com.core.languagedata.DataTable
 
 object PolybiusCipherBreaker extends CipherBreaker[Int, IndexedSeq[Char]] {
     def break(text: String, isOneBased: Boolean): BreakerResult[Char, Int, IndexedSeq[Char]] = {
