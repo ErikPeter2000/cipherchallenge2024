@@ -5,9 +5,8 @@ import com.core.cipherdata.CipherFormatResult
 import com.core.alphabets.Alphabet
 
 object CipherDataBlockFormatExtensions {
-    private val charFilter = "[^A-Z]".r
     extension (cipherDataBlock: CipherDataBlock[Char]) {
-        def format(): CipherFormatResult = {
+        def format(alphabet: Alphabet[Char]): CipherFormatResult = {
             val removedElements = scala.collection.mutable.TreeMap[Int, Char]()
             val caseSwapped = scala.collection.mutable.ListBuffer[Int]()
             var data = cipherDataBlock.data
@@ -16,13 +15,16 @@ object CipherDataBlockFormatExtensions {
                     data(i) = data(i).toUpper
                     caseSwapped += i
                 }
-                if (charFilter.matches(data(i).toString)) {
+                if (!alphabet.contains(data(i))) {
                     removedElements += i -> data(i)
                     data.remove(i)
                 }
             }
             cipherDataBlock.alphabet = Alphabet.default
             new CipherFormatResult(removedElements, caseSwapped.toList, cipherDataBlock.alphabet)
+        }
+        def format(): CipherFormatResult = {
+            format(Alphabet.default)
         }
     }
 }

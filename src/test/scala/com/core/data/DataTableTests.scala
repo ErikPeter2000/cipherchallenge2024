@@ -1,4 +1,4 @@
-package com.core.data
+package com.core.languagedata
 
 class DataTablesTests extends munit.FunSuite {
     test("Can access all data tables") {

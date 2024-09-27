@@ -8,7 +8,7 @@ import java.nio.file.{Files, Paths, StandardOpenOption}
 import com.core._
 import com.core.alphabets._
 import com.core.keys.KeyFactory
-import com.core.data.DataTable
+import com.core.languagedata.DataTable
 import com.core.evolutionaryalgorithms._
 import com.core.ciphers._
 import com.core.extensions._
@@ -27,7 +27,7 @@ object Main {
     def loadData(): (CipherDataBlock[Char], CipherFormatResult) = {
         val path = Paths.get(".\\resources\\text\\Orwell1984.txt")
         val text = Source.fromFile(path.toFile, "UTF-8").take(1000).mkString
-        CipherDataBlock.formatAndCreate(text)
+        CipherDataBlock.formatAndCreate(text, UppercaseLettersNoJ)
     }
 
     def saveText(text: String, path: String): Unit = {
@@ -35,11 +35,13 @@ object Main {
     }
 
     def job() = {
-        val data = "GSRQ"
+        val cipherData = loadData()._1
+        println(cipherData.mkString)
 
-        val cipherData = CipherDataBlock.create(data)
-        val fitness = FitnessFunctions.polygramFitness(4)(cipherData)
-        println(fitness)
+        val key = KeyFactory.combinePhraseWithAlphabet("KEYWORD", UppercaseLettersNoJ)
+        println(key.mkString)
+        val encrypted = PlayfairCipher.encrypt(cipherData, key)
+        println(encrypted.mkString)
 
         println(DataTable.tetragramFrequenciesLog.table.take(10))
     }

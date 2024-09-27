@@ -5,7 +5,7 @@ import scala.util.Random
 import com.core.alphabets._
 import com.core.collections.BiMap
 import com.core.alphabets.UppercaseLetters
-import com.core.data.DataTable
+import com.core.languagedata.DataTable
 import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.Stack
 
