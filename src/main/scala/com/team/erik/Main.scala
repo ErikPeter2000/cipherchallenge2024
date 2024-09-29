@@ -35,15 +35,15 @@ object Main {
     }
 
     def job() = {
-        val cipherData = loadData()._1
+        val cipherData = CipherDataBlock.create("BYGEORGEORWELLPARTONEITWASABRIGHTCOLDDAYINAPRILAND", UppercaseLettersNoJ)
         println(cipherData.mkString)
 
         val key = KeyFactory.combinePhraseWithAlphabet("KEYWORD", UppercaseLettersNoJ)
-        println(key.mkString)
         val encrypted = PlayfairCipher.encrypt(cipherData, key)
-        println(encrypted.mkString)
 
-        println(DataTable.tetragramFrequenciesLog.table.take(10))
+        val decrypted = PlayfairCipher.decrypt(encrypted, key)
+        println(encrypted.mkString)
+        println(decrypted.mkString)
     }
 
     def main(args: Array[String]): Unit = {

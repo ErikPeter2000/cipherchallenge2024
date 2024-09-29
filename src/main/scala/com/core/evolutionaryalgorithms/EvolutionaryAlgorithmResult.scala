@@ -23,4 +23,6 @@ class EvolutionaryAlgorithmResult[T, V] {
         this.outData = outData
         this.score = score
     }
+
+    def textData: String = outData.mkString
 }

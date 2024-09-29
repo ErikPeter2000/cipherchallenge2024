@@ -21,12 +21,15 @@ object KeyFactory {
       * @example
       *   {{{
       * KeyFactory.combinePhraseWithAlphabet("hello", LowercaseLetters) -> Seq('h', 'e', 'l', 'o', 'a', 'b', 'c', 'd', 'f', 'g', 'i', 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
+      * KeyFactory.combinePhraseWithAlphabet("hello", LowercaseLetters, true) -> Seq('h', 'e', 'l', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'f', 'g', 'i', 'j', 'k', 'm', 'n')
       *   }}}
       *
       * @param phrase
       *   The input phrase. Duplicate letters are removed.
       * @param alphabet
       *   The target alphabet. All letters in the phrase should be in the alphabet, else errors will occur.
+      * @param startAtLastLetter
+      *  If true, the sequence will start at the last letter of the phrase.
       * @return
       *   A sequence of distinct letters.
       */
