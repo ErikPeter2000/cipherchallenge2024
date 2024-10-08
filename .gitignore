@@ -5,6 +5,10 @@
 .scala-build/
 project/metals.sbt
 
+# Java
+lib/
+.jar
+
 # vs code
 .vscode/
 
