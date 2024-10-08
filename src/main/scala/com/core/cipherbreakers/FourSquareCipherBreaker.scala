@@ -11,7 +11,7 @@ object FourSquareCipherBreaker extends CipherBreaker[Char, Vector[BiMap[Int, Cha
     def break(data: CipherDataBlock[Char], startTemperature: Double, generations: Int = 3000, children: Int = 10): BreakerResult[Char, Char, Vector[BiMap[Int, Char]]] = {
         val breaker = new BaseEvolutionaryAlgorithm[Char, Char, Vector[BiMap[Int, Char]]](
             FourSquareCipher,
-            FitnessFunctions.polygramFitness(2),
+            FitnessFunctions.ngramFitness(2),
             (
                 currentKey: Vector[BiMap[Int, Char]],
                 currentScore: Double,

@@ -38,7 +38,7 @@ object Main {
         val data = "GSRQ"
 
         val cipherData = CipherDataBlock.create(data)
-        val fitness = FitnessFunctions.polygramFitness(4)(cipherData)
+        val fitness = FitnessFunctions.ngramFitness(4)(cipherData)
         println(fitness)
 
         println(DataTable.tetragramFrequenciesLog.table.take(10))

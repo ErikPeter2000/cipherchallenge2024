@@ -45,7 +45,7 @@ object PolybiusCipherBreaker extends CipherBreaker[Int, IndexedSeq[Char]] {
         val initialKey = initialMap.keys.toIndexedSeq.sortBy(x => initialMap(x))
         val evolutionaryAlgo = new BaseEvolutionaryAlgorithm[Char, Int, IndexedSeq[Char]](
             PolybiusCipher,
-            FitnessFunctions.polygramFitness(4),
+            FitnessFunctions.ngramFitness(4),
             (currentKey, currentScore, generation, childIndex, maxGenerations, maxChildren) => {
                 val result = currentKey.swapRandom(1)
                 result.toIndexedSeq

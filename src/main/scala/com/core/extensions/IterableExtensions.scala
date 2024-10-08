@@ -37,23 +37,26 @@ object IterableExtensions {
         )(implicit ordKey: Ordering[K], ordValue: Ordering[V]): String = {
             var pairs = iterable.toSeq
             if pairs.isEmpty then return iterable.toString()
-            // Sort the pairs
+            // Sort the pairs based on the provided order parameter
             order.match
                 case KeyPairOrder.Key       => pairs = pairs.sortBy(_._1)
                 case KeyPairOrder.KeyDesc   => pairs = pairs.sortBy(_._1).reverse
                 case KeyPairOrder.Value     => pairs = pairs.sortBy(_._2)
                 case KeyPairOrder.ValueDesc => pairs = pairs.sortBy(_._2).reverse
                 case _                      =>
+            
             // Round the pairs if necessary
             var pairsStringIter = iterable.map { case (k, v) => (s"$k",s"$v") }
             if roundTo.isDefined && roundTo.get > 0 && pairs.head._2.isInstanceOf[Double] then {
                 pairsStringIter = pairs.map { case (k, v) => (k.toString, v.asInstanceOf[Double].formatted(s"%.${roundTo.get}f")) }
             }
             val pairsString=pairsStringIter.toSeq
+
             // Separate the pairs into paired columns to fit the display
             val pairColumns = pairsString.grouped(MAX_DISPLAY_LINES).toSeq
             val columnsCount = if (columnLimit.isDefined) columnLimit.get min pairColumns.size else pairColumns.size
             val tallestColumnSize = pairColumns.map(_.size).max
+
             // Calculate the width of each column
             val columnPairWidths: Seq[(Int, Int)] = pairColumns.map { column =>
                 val keyWidth = Math.max(column.map(_._1.toString.length).max, header._1.size)
@@ -61,7 +64,7 @@ object IterableExtensions {
                 (keyWidth, valueWidth)
             }
 
-            val gap: Int = Math.max(padding, 0)
+            val columnMargin: Int = Math.max(padding, 0)
             val sb = new StringBuilder()
 
             if title.size > 0 then sb.append(s" ${title}:\n")
@@ -110,7 +113,7 @@ object IterableExtensions {
                         sb.append(" " * (keyWidth + valueWidth + 8))
                     }
                     if (x < columnsCount - 1) { // Padding between column pairs
-                        sb.append(" " * gap)
+                        sb.append(" " * columnMargin)
                     } else { // Line break if last column pair
                         sb.append("\n")
                     }

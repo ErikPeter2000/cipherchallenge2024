@@ -5,7 +5,7 @@ import scala.compiletime.uninitialized
 import com.core.cipherdata.CipherDataBlock
 
 /**
-  * Represents the result of an evolutionary algorithm, after an attempt at breaking.
+  * Represents the result of an evolutionary algorithm, after an attempt at breaking a cipher.
   * 
   * @tparam T
   *  The type of the input data in the cipher.
