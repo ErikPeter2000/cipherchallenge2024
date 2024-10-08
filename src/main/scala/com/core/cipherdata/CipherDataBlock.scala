@@ -176,8 +176,20 @@ object CipherDataBlock {
       *   A tuple containing the new CipherDataBlock and the result of the formatting operation.
       */
     def formatAndCreate(data: String): (CipherDataBlock[Char], CipherFormatResult) = {
+        formatAndCreate(data, Alphabet.default)
+    }
+
+    /** Creates a new CipherDataBlock with the given data and the default UppercaseAlphabet. Formats the data to remove
+      * any non-alphabetic characters and convert lowercase characters to uppercase.
+      *
+      * @param data
+      *   The data for the cipher.
+      * @return
+      *   A tuple containing the new CipherDataBlock and the result of the formatting operation.
+      */
+    def formatAndCreate(data: String, alphabet: Alphabet[Char]): (CipherDataBlock[Char], CipherFormatResult) = {
         val instance = new CipherDataBlock(data, Alphabet.default)
-        val formatResult = instance.format()
+        val formatResult = instance.format(alphabet)
         (instance, formatResult)
     }
 }

@@ -1,4 +1,4 @@
-package com.core.data
+package com.core.languagedata
 
 trait PolygramLookupTable(val table: Vector[Double]) {
     def lookup(index: Int): Double = table(index)

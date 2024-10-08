@@ -1,4 +1,4 @@
-package com.core.data
+package com.core.languagedata
 
 import java.nio.file.Paths
 import scala.collection.immutable.WrappedString
