@@ -2,6 +2,8 @@
 
 Cipher challenge 2024 repository by Cambridge Maths School students, originally intended to be written in Scala.
 
+Deciphered Story: [Submissions](submissions/Submissions.md).
+
 ## Ciphers Written:
 - [Affine Cipher](src/main/java/unyxe/main/ciphers/monoalphabetic/AffineCipher.java)
 - [Beaufort Cipher](./src/main/scala/com/core/ciphers/BeaufortCipher.scala)
