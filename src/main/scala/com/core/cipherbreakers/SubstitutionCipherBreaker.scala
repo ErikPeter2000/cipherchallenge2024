@@ -19,7 +19,7 @@ object SubstitutionCipherBreaker extends CipherBreaker[Char, BiMap[Char, Char]] 
         val guessKey = KeyFactory.createSubstitutionKeyFromFrequencies(frequencies)
         val breaker = new BaseEvolutionaryAlgorithm[Char, Char, BiMap[Char, Char]](
             SubstitutionCipher,
-            FitnessFunctions.polygramFitness(4),
+            FitnessFunctions.ngramFitness(4),
             (currentKey, currentScore, generation, childIndex, maxGenerations, maxChildren) => {
                 val swaps = childIndex * 4 / maxChildren + 1
                 currentKey.clone().swapElements(swaps)

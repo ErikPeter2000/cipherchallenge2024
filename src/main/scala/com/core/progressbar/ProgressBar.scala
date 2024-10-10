@@ -23,18 +23,18 @@ import java.util.concurrent.locks.ReentrantLock
   */
 class ProgressBar {
     private val width = 32
-    private var progress = 0
-    private var total = 0
-    private var lastPrinted = 0
     private val lock = new ReentrantLock()
-    private var name = "Progress"
     private val spinnerChars = Array("|", "/", "-", "\\")
-    private var spinner = 0
     private val spaceChar = "░"
     private val blockChar = "█"
+    private var lastPrinted = 0
+    private var total = 0
+    private var progress = 0
+    private var spinner = 0
+    private var name = "Progress"
     private var displayData: Any = null
 
-    @volatile var isCancelled = false
+    @volatile private var isCancelled = false
     private var thread = Thread.currentThread()
 
     private val cleaner = Cleaner.create()
@@ -57,7 +57,8 @@ class ProgressBar {
         val spaces = width - blocks
         val spinnerChar = spinnerChars(spinner)
         spinner = (spinner + 1) % spinnerChars.length
-        val sb = new StringBuilder()
+
+        val sb = new StringBuilder()        
         sb.append(s"$spinnerChar")
         sb.append(" ")
         sb.append(s"[$name]")
@@ -66,11 +67,13 @@ class ProgressBar {
         sb.append(blockChar * blocks)
         sb.append(spaceChar * spaces)
         sb.append(s"${Console.RESET} ${percent}%")
+
         if (displayData != null) {
             sb.append(s" ${displayData}")
         }
         print(s"\r${sb}")
         lastPrinted = progress
+
         if (progress >= total) {
             isCancelled = true
             println()
@@ -107,7 +110,7 @@ class ProgressBar {
       *
       * @param amount
       */
-    def update(amount: Int) = {
+    def update(amount: Int = 1) = {
         try {
             lock.lock()
             progress += amount
@@ -118,9 +121,7 @@ class ProgressBar {
 
     /** Increment the progress by 1.
       */
-    def increment() = {
-        update(1)
-    }
+    def increment() = update(1)
 
     /** Set the display data for the progress bar.
       *
