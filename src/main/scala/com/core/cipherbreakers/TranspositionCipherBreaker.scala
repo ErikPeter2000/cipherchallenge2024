@@ -21,7 +21,8 @@ object TranspositionCipherBreaker extends CipherBreaker[Char, IndexedSeq[Int]] {
         val progressBar = new ProgressBar(maxKeyLength - 1, "TranspositionCipherBreaker")
         for (keyLength <- 1 to maxKeyLength) {
             (0 until keyLength).permutations.foreach { permutation =>
-                val result = TranspositionCipher.decrypt(data, permutation)
+                val padded = data.clone().padToMultiple(permutation.length, 'X')
+                val result = TranspositionCipher.decrypt(padded, permutation)
                 val score = FitnessFunctions.eriksWordFitness(result)
                 if (score > bestScore) {
                     bestScore = score
