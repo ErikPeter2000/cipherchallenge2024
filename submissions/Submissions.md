@@ -129,3 +129,43 @@ I am aware of the sensitivities in this matter. With the display of the Koh-i-No
 With my very best wishes,
 Babbage
 
+## Challenge 4A - "Imperious"
+
+Mr. Charles Babbage
+Dorset Street, Marylebone
+London
+
+My dearest Charles,
+
+Our dinner with Herr Kaiser and his entourage was a success measured in terms of diplomacy, though less so in terms of intelligence. Our guest spoke at length about his ambition to serve Her Majesty, and his interest in the subcontinent was more than evident. It is clear that he is a man of singular will, and his desire to establish Imperial Arms as, in his words, “a truly global company” was asserted more than once. He is a man of many interests, and in that, he reminded me of Wheatstone—though unlike our taciturn friend, Herr Kaiser is rather keen to ensure that everyone knows it. I suspect that whatever our topic had been, he would have made sure to be the principal interlocutor.
+
+I mean no offense, but it is hard in any company for a woman’s voice to be heard, and in his company, I suspect that it is impossible. Fortunately, my dear husband William was able to play his part, and with surprising subtlety, was able to press our questions about the Imperial shipment. William did his very best to interrogate Herr Kaiser along the lines you suggested, with questions concerning the barrel, the firing mechanism, and the cartridge design, and the answers seemed assured and persuasive to all who listened. Yet here, just a few hours later, we find ourselves unable to recall a single innovation in the design.
+
+Herr Kaiser’s enthusiasm cannot be doubted. His commitment to the Exhibition is paralleled only by that of the dear Prince, and I worry that our government might be seduced by his charm and intensity of will. Should they really be considering a transatlantic partnership at the cost of our own manufacturers? That does not seem to me to be in the spirit of the Great Exhibition.
+
+On the issue of security of the shipment, William trod very carefully. He was careful not to indicate any concern on our part, but managed to enquire discreetly about the company’s own arrangements. Herr Kaiser was open in his praise for the port’s authority, but spoke at length, as you might expect, about the superior quality of American security arrangements, hinting that the cargo had been secure throughout its journey. I think we can take it that he was not aware of Kate’s investigations.
+
+Which brings me to my final point. I awoke this morning to find a letter addressed to us both from Miss Warne. She has departed for Liverpool with the intention of examining the Imperial Arms cargo for herself, though I am unsure what she expects to find. Let us hope that she returns with something useful to our deliberations.
+
+With my fondest regards,
+Ada
+
+## Challenge 4B - "Counting for the Countess"
+
+For the Attention of Mrs. Ada Lovelace and Mr. Charles Babbage
+Horsley Towers, East Horsley
+Surrey, England
+
+My dear Countess and Mr. Babbage,
+
+I have completed my investigations at the Imperial Arms customs warehouse and will return forthwith. But knowing just how long that journey may take, and how remarkably swift your Royal Mail can be, I thought it best to send you my report by letter.
+
+My new friends in Liverpool were real helpful and provided me with the shipping papers, although I am not sure how much assistance they will provide. All I can see is that the crates all left the United States together, and each weighed the same, suggesting that nothing had been taken. I find it mighty unlikely that anyone interested in stealing the contents of a single crate would take the trouble to replace them with a carefully calibrated weight of rubble or other nonsense. And in any case, the seal had been replaced—that seems like an awful lot of trouble for a few rifles and boxes of ammunition.
+
+With the crates in storage, the seals have been removed, presumably to allow your customs officials to inspect them, and that gave me an opportunity to examine the contents. It took me a long time to work through them all, but it’s the darnedest thing: there is nothing missing, and I mean nothing—not even a single bullet. And we know that at least one was left on the floor of the warehouse in Erin.
+
+My friends tell me that a Hindu gentleman had been seen in the vicinity of the shed the past night, but I am minded to think that is just scuttlebutt. Folks in Erin talk like that about strangers all the time, and with nothing to connect him to the cargo and no way to track him down, I think we can ignore, if not forget, the gossip.
+
+I hope to be with you again in three days and look forward to discussing this mystery with you then.
+
+Miss Kate Warne
