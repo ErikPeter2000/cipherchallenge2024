@@ -169,3 +169,62 @@ My friends tell me that a Hindu gentleman had been seen in the vicinity of the s
 I hope to be with you again in three days and look forward to discussing this mystery with you then.
 
 Miss Kate Warne
+
+## Challenge 5A - "Stranger, danger?"
+
+My Dear Charles,
+
+Kate has returned covered in grease and dirt and barely able to talk after her journey. Once she had recovered, and my maid had found her a change of clothing, we discussed her discoveries at length. She is a most thoughtful young woman, and her rough speech and manners disguise a keen eye and a sharp intellect.
+
+She provided me with the following details concerning Herr Kaiser’s arms shipment:
+
+Crate Types:
+The shipment is comprised of two styles of crate:
+
+Long and narrow crates, each containing six rifles manufactured by the Imperial Arms Company. The guns are packed in straw and protected with a mineral oil rust inhibitor. Kate noted that she is more used to seeing guns shipped in tallow and, I think in jest, remarked that this was the only new element in the manufacture of the guns. I do not recall this being mentioned by Herr Kaiser, but then it is such a trivial point.
+Tea chest-style crates, each containing two hundred boxes of cartridges.
+Cartridge Details:
+Kate sketched the contents for me, but there is nothing remarkable about them except the quantity. I will show you the sketches when you visit, as they are too large to enclose.
+
+Seals and Inspection:
+The seals of several crates had been removed for inspection by the customs officials, and others had been subsequently removed by the warehouse staff at the request of the company. This allowed Kate to inspect all of them. She spent a night removing all the contents and checking them. Each crate contained the same number of boxes, and each box contained the same number of cartridges, protected with a mineral grease (again, in preference to tallow). Each box was full, as was each crate, so I think we can be sure that nothing had been tampered with.
+
+You can reassure Palmerston that there is no reason for concern about the security of the shipment. I understand that it is already on its way to the exhibition, accompanied by staff from Imperial Arms.
+
+The Gentleman in the Vicinity:
+I did ask Kate about the gentleman who had been spied in the vicinity of the warehouse, but she had little to add apart from the fact that he wore a peculiar gem in his turban. I believe these are known as sarpechs, and we can take it from this description that he was, in fact, a Sikh, not a Hindu. A peculiarity lay in the fact that the gems adorning it were all black. I do not think she had appreciated the full significance. These decorations are only worn by those of royal descent.
+I would think it a mere curiosity were it not for the fact that the Great Diamond will play such a significant role in the exhibition. I know that not all of the Sikhs were in favour of Maharajah Duleep Singh’s magnificent gift to Her Majesty, and while I cannot at present make a connection between the Koh-i-Noor and Herr Kaiser, it must at least be possible that there is one.
+
+May I request that you consult with Palmerston on this matter? Are any of his staff familiar with the gentleman spied in Liverpool? And are the security services confident that the diamond will be safe?
+
+With so many questions arising from Kate’s report, I feel that we ought to take a little more care in our communications from this time on. May I take the liberty of suggesting that your reply should be secured with a Vigenère cipher using my personal key?
+
+I look forward to your reply, as always.
+
+Ada
+
+## Challenge 5B - "Troublemaker"
+
+My Dear Ada,
+
+I am sorry for the delay in my reply. I have found the last few days remarkably busy. Before I could respond to your letter, I was called to Whitehall Place to deal with an incident that had occurred at Kaiser’s lodgings.
+
+A young woman had been apprehended outside the property carrying a large bag in which were found photographic equipment and plates. Not believing her story of being a journalist and recognizing her accent as American, the constable placed her under arrest. Fortunately, recognizing the potential for a diplomatic incident, he transported the suspect to headquarters, whereupon she requested that I should be called.
+
+I am still unclear what prompted Miss Warne in her actions, but she clearly believes that Herr Kaiser has something to hide and apparently took it upon herself to break into his lodge and to take photographs of documents she found there. She apparently borrowed the equipment from Wheatstone, who has been experimenting with faster exposure imaging. What he thought he was doing in assisting the young lady, I am at a loss to explain. Miss Warne seems to possess a charm that is lost on me but which persuades others to join her in her mad adventures.
+
+The delay has been caused in part by the need to process the plates and to consider their contents. Unfortunately, our amateur photographer failed to protect the images, and they were badly overexposed. I suspect she had not realized just how sensitive Wheatstone’s formula is. The only legible part of any of the images was the phrase "Janus Project." According to Miss Warne, this was written on the cover of a file containing encrypted documents, which she had also attempted to copy.
+
+It has taken all my persuasion, and an intervention by Palmerston, to get her released, and I am afraid that the police have confiscated all of the equipment. I foresee a disagreeable conversation with Wheatstone in my near future.
+
+I do not know what we are to make of this. Palmerston has made it clear that Miss Warne cannot be allowed to continue in this irresponsible way. She risks jeopardizing the delicate negotiations between the government and Herr Kaiser’s company. And yet, I think she may be onto something.
+
+I asked Palmerston about the Sikh with the black sarpech, and he immediately knew who I meant. The gentleman in question is a prince and high-ranking official in Duleep Singh’s entourage. He is visiting the Great Exhibition as the official representative of the Maharajah and has been heavily involved in discussions about the display of the diamond. The Maharajah is deeply concerned that the gem should be fully appreciated by Her Majesty’s subjects but shares her concern at our ability to ensure its safety.
+
+Not wishing to stir up more ill feeling over the gift of the diamond, those discussions have been at the highest level, and I was not made aware of them until now. Palmerston was also not aware that the prince had left London, but he was not unduly surprised nor was he alarmed that there might be a connection between the Maharajah and Herr Kaiser, given that the latter is sponsoring the India Pavilion.
+
+While I agree that we need to continue our investigations, can I ask you please to do your very best to tame Miss Warne? The little time I have available is better spent contemplating her discoveries than dealing with the authorities on her behalf.
+
+With my best wishes, as always, to you and your husband,
+Babbage
+
