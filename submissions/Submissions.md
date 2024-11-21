@@ -228,3 +228,59 @@ While I agree that we need to continue our investigations, can I ask you please 
 With my best wishes, as always, to you and your husband,
 Babbage
 
+## Challenge 6A - "Re-ordered thoughts"
+
+My dear Charles,
+
+Please accept my sincerest apologies for the trouble caused by your guest. I know that your current travails occupy most of your time, and we are all so very grateful that you have given your time to support Miss Warne.
+
+She is, I will admit, unconventional—at least by the standards of our usual company. You no doubt find her tiresome, with some justification, given the effort you have had to expend in order to extract her from the clutches of our friends at police HQ. If her adventures were purely recreational, then I would share your frustration. But she has fully convinced me that there is something here for us to investigate, and I most urgently beg you to give this matter your attention.
+
+While we do not have the photographic evidence that Miss Warne set out to obtain, she has the most extraordinary gift of being able to recall the images she attempted to record in the most incredible detail. I would not have believed this claim if it were not for the fact that the text she described is clearly encrypted, and I do not believe that she would have been able to invent it.
+
+I have taken the liberty of transcribing the Janus Project document as dictated by Miss Warne and will turn my attention to its decipherment, as I am sure that you are too busy to attend to that matter. Wheatstone will be visiting this afternoon to test our new telegraphic equipment, so I may send you the decryption that way, if that is agreeable to you.
+
+In the meantime, I would be most grateful if you could spare the time to consider the following question: If the Imperial Arms cargo had not been stolen, then where did the bullet come from? I can believe that a few bullets might not be missed in such a large cargo, but Kate is most scrupulous and certain that was not possible. The crates were full.
+
+Did Herr Kaiser not notice, or did he not care? And if opened, why were the crates resealed? Petty thieves are unlikely to take such trouble. Oh, but in rereading that paragraph, a thought has occurred to me. It is too fantastical to share in its infant state, and I will need to ponder it a little before it matures into something worth offering for your consideration.
+
+Let it suffice that I think the answer is not that Herr Kaiser failed to notice or to care, but that he took great pains to ensure that we would not notice and therefore that we would not care. Perhaps I have said enough for you to chance across the same thought. I will be most intrigued to see if you do.
+
+In the meantime, could I ask you to make the following inquiry of your contacts in the Customs and Excise department: How were the crates in the shipment labelled, and how were they inspected?
+
+May I conclude by suggesting that we should increase our security a little? If my suspicions are correct, then Herr Kaiser may be taking an interest in your communications, and it would be a pity to alert him to our concerns. Since the Vigenère cipher continues to resist attack even by you, it should provide a level of secrecy suitable for our purposes.
+
+I suggest that we use the chapter titles from The Copperfield Disclosures for keys, though I would welcome your thoughts on our future arrangements.
+
+Yours excitedly,
+Ada
+
+## Challenge 6B - "Witchcraft?"
+
+My dear Ada,
+
+It is I who should apologise to you. Our guest is certainly trouble, but not more trouble than she is worth, and I share your view that she has cause for her suspicions.
+
+While the discussions between Herr Kaiser and the Prince may well be innocent, the fact that a dealer in armaments is spending such a considerable amount of time and money ingratiating himself with Duleep Singh should concern us. While I do not believe that the Maharajah is interested in stirring conflict, it is my experience that those who benefit most from instability are the merchants of weaponry. It is certainly not in Herr Kaiser’s financial interests to encourage peace.
+
+Even a hint of trouble in the northern territories could lead to pressure on the government to reinforce the existing EIC armies, at great cost to us and enormous gain to him. I am only glad that the discussions are with the Sikh community. They at least pay lip service to Her Majesty’s authority, as evidenced by the gift of the diamond.
+
+If there were any suggestion that Herr Kaiser is engaged in discussions with the Hindu leadership, then I think we would be in a much more dangerous position. Their loyalty is at best precarious, and it would not take much to trigger a war that might be in the interests of the Imperial Arms Manufacturing Company, but it would not be in ours.
+
+I must admit to being curious as to the hints you gave at the end of your last letter concerning your fantastical thought. I cannot claim to have had any insight into the strange matter of the shipment, but I did make the enquiries you requested of me, and so I will close with the answers.
+
+The rifle crates were labelled with letters, while the bullet crates were numbered from I to XXIII. The customs officials called for a random sample to be delivered to the office for inspection, one at a time. Each was opened, inspected, and returned to the floor, and the next was summoned.
+
+In all, the officers inspected seven crates: numbered II, IV, VII, IX, XII, XV, XVIII, and XXII. Each was recorded by the officials as holding two hundred boxes of cartridges, each of which was full, just as reported by Miss Warne.
+
+There was nothing remarkable about the cargo, and the customs officer was happy to release it to the company charged with shipping it on to London. Unless our friend has some magical power of which I am not aware, I cannot see how this shipment can have concealed a secret.
+
+Can it be that this is in any way helpful? It seems only to confirm what we both already knew: the crates were full of the curios shipped by Herr Kaiser for his stand at the exhibition. The bullets themselves are of little use, and, despite my suspicions, I cannot find anything in this account to suggest that the shipment was in any way unusual.
+
+I look forward to our meeting on Thursday. I am hoping that, at the very least, you will be able to share the Janus Project file with me. If you feel able to share your deliberations on the shipment too, then I will consider the trip more than worthwhile.
+
+Your intrigued friend,
+Babbage
+
+P.S. While I agree that the present cipher provides reasonable security, I do have an idea that may eventually lead to its demise. Wheatstone is experimenting with a new idea that may well lead to its replacement. Inspired by the ancients, I wonder if the Polybius cipher, in its various forms, might provide us with a useful alternative.
+
