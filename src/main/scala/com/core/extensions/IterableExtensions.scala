@@ -46,7 +46,7 @@ object IterableExtensions {
                 case _                      =>
             
             // Round the pairs if necessary
-            var pairsStringIter = iterable.map { case (k, v) => (s"$k",s"$v") }
+            var pairsStringIter = pairs.map { case (k, v) => (s"$k",s"$v") }
             if roundTo.isDefined && roundTo.get > 0 && pairs.head._2.isInstanceOf[Double] then {
                 pairsStringIter = pairs.map { case (k, v) => (k.toString, v.asInstanceOf[Double].formatted(s"%.${roundTo.get}f")) }
             }

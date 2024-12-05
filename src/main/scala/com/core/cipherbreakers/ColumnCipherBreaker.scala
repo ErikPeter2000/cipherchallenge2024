@@ -37,7 +37,7 @@ object ColumnCipherBreaker extends CipherBreaker[Char, IndexedSeq[Int]] {
         new BreakerResult(
             inData = data,
             outData = bestDecryption,
-            cipherUsed = ColumnCipherBreaker,
+            cipherUsed = ColumnCipher,
             key = bestKey,
             score = bestScore
         )

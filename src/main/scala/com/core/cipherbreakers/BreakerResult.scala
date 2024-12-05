@@ -10,7 +10,8 @@ class BreakerResult[T, K, V](
     val cipherUsed: BaseCipher[T, K, V],
     val key: V,
     val score: Double
-) {
+    ) {
+    var notes: String = ""
     def textData: String = outData.mkString
     def toXml: String = {
         val keyString = key match {
@@ -23,6 +24,7 @@ class BreakerResult[T, K, V](
            |  <outData>${outData.mkString}</outData>
            |  <cipherUsed>${cipherUsed.getClass.getName}</cipherUsed>
            |  <key>$keyString</key>
+           |  <notes>$notes</notes>
            |  <score>$score</score>
            |</BreakerResult>""".stripMargin
     }

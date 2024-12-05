@@ -344,3 +344,22 @@ While I am sure that they contain the key to this mystery, I still have no insig
 Yours,
 Ada
 
+## Challenge 8A - "Low down, dirty, two faced dog"
+
+The most delicate aspect of control in the region is that the Company relies heavily upon troops recruited from among the indigenous population. These so-called sepoys are effective warriors, and their presence in the Presidency Armies both bolsters and weakens the East India Company.
+
+On the one hand, it allows for a standing army much larger than could be provided by British soldiers alone. On the other hand, it risks internal division between the troops from the subcontinent and their officers, recruited from the British upper classes. There is also the constant worry of an armed uprising staffed by soldiers trained and armed by the EIC.
+
+Much effort and money is expended on heading off that danger, and I see no reason why the Imperial Arms Company should not benefit from that largesse. It is well known that Hindu warriors are at best reluctant to pollute themselves with animal products extracted from the cow.
+
+The common practice of lubricating ammunition with tallow has led to some unrest, and our introduction of mineral oils and greases in our weapons may go some way to alleviating their concerns.
+
+I need hardly say that the contract to arm the East India Company regiments would be highly valuable.
+
+All of this is pure speculation, and I think it would be wise for us to consult with the leaders of the Hindu and Sikh communities in order to establish whether our understanding of their concerns is correct, and if so, to what extent we have managed to address them.
+
+Support from those quarters would provide the Board of the IAC with the assurance that it needs to make the required investments.
+
+With this in mind, you are authorized to discreetly approach the courts of Duleep Singh and the Hindu Rajas to discern whether or not our plan would meet their approval.
+
+Kaiser

@@ -8,7 +8,7 @@ import com.core.evolutionaryalgorithms.FitnessFunctions.eriksWordFitness
 import com.core.progressbar.ProgressBar
 
 object VigenereCipherBreaker extends CipherBreaker[Char, Seq[Char]] {
-    // The vulnerability of the Viginere cipher lies in the fact that if we know the key length 'n', we know that every nth letter has been encrypted with the same shift value. This means that we can treat each column as a Caesar cipher, and solve it using frequency analysis. 
+    // The vulnerability of the Vigenere cipher lies in the fact that if we know the key length 'n', we know that every nth letter has been encrypted with the same shift value. This means that we can treat each column as a Caesar cipher, and solve it using frequency analysis. 
     def break(data: String) = {
         break(CipherDataBlock.create(data))
     }
