@@ -284,3 +284,63 @@ Babbage
 
 P.S. While I agree that the present cipher provides reasonable security, I do have an idea that may eventually lead to its demise. Wheatstone is experimenting with a new idea that may well lead to its replacement. Inspired by the ancients, I wonder if the Polybius cipher, in its various forms, might provide us with a useful alternative.
 
+## Challenge 7A - "Palmerston is surprised and alarmed"
+
+My Dear Babbage,
+
+I must admit to some surprise at your request, but know from our history that I cannot afford to ignore it. Nonetheless, please take this advice:
+
+The Prime Minister is deeply concerned that your actions may jeopardize our delicate negotiations with the Imperial Arms Manufacturing Company about supplying our troops. It is not yet public knowledge, but the innovation in this process lies in the simple replacement of tallow with mineral oils and grease in the design and manufacturing of the weapons.
+
+The Company armies, which conquered and control much of the Indian subcontinent, are staffed with men of all faiths, and to many in that great land, the tallow on our current weapons is at best distasteful and at worst an intolerable insult to their religion.
+
+The government benefits greatly from the fees paid by the Company to enhance its own Presidency Armies with regiments of our own. Between them, they need to arm over three hundred uniformed men, and a deal to arm them with Kaiser’s weapons will be of great mutual benefit.
+
+The announcement of the deal is planned as a highlight of the World Fair, establishing our military and commercial supremacy and cementing our control of the region.
+
+With that in mind, I urge you to tread carefully and to think carefully about how you use the information I have provided below.
+
+You asked me to elaborate on the processes and procedures used by the Customs and Excise officials at the Port of Liverpool. I take it you have in mind the inspection of the Imperial Arms shipment, and so I arranged for a report from the agents themselves.
+
+As with all shipments, they were examined before the shipping company were allowed to unpack them, guarded until that point by port officials supervised by the local customs officers. A sample of crates was summoned one at a time from the warehouse floor to the Excise office, where they were opened and unloaded, their contents checked against the manifest, and returned.
+
+With only a few rifle crates to inspect, they were all checked, while, as you reported, only a select sample of the bullet crates were opened. These were identical, each containing two hundred boxes of bullets, which were themselves full.
+
+The officials noted only that it was difficult to check the bullet boxes as they were randomly packed the right way up and upside down, meaning that they had to be removed and turned to allow them to be opened for inspection. The company manager was very apologetic and insisted on repacking the crates himself.
+
+Apart from that, nothing unusual was noted in their report.
+
+Having read your description of Miss Warne’s investigations and Mrs. Lovelace’s notes on the findings, I am afraid I cannot work out for myself why they are so concerned about this shipment, but I am sure that you will enlighten me at the appropriate time.
+
+May I politely request that you only do so if, firstly, you are certain in your conclusions, and secondly, that your concerns merit the disruption that you are likely to cause to a significant strategic relationship.
+
+With my very best,
+Etc., Palmerston
+
+## Challenge 7B - "Sometimes you need to look at something from a different angle to understand it ..."
+
+My Dearest Charles,
+
+I am so very grateful to you for writing to Lord Palmerston. I know that it must have been difficult for you to do so, given the delicacy of the matter, but I can assure you that it was certainly worth the risk. Everything we have learned confirmed my fears.
+
+I think I can tell you now with complete certainty that we have not seen everything brought into the country in Herr Kaiser’s shipment. While it did not seem possible for the crates to contain anything in addition to the bullets, the report from the customs officials, together with Kate’s own findings, have revealed to me just how that could have been done.
+
+I had thought that perhaps the smuggled cargo had been removed before the customs inspection, but I now believe that was not the case. The use of Roman numerals to label the crates seemed like a conceit relating to the names of the company and its proprietor, and echoing the use of the numerals on the bullets themselves. But I now believe that this was the intention:
+
+The real reason for it was that certain of the numerals can be read upside down. The crates themselves were entirely symmetrical except for the numbers on them. But that meant that, by the artifice of inverting crates Nine and Eleven, they could be swapped without detection.
+
+I am not sure whether the contraband was contained in crate Nine or Eleven, but whichever it was, if the officials summoned that crate, then the other was brought upside down, ready for inspection. In the unlikely event that both were requested, the safe crate would be furnished on both occasions.
+
+The fact that the bullet boxes were randomly placed right way up and upside down in the crate meant that the trick would not be evident, and the contraband crate would never be inspected.
+
+I was confused by the fact that when Kate inspected the crates, they were all full of bullet boxes, when throughout the journey, one of them had contained contraband. Where did the additional bullets come from? But that too is elementary, and I think you will enjoy discovering the ruse for yourself, so I will refrain from spoiling it for you.
+
+We are left with the singular mystery of the smuggled goods. While I am certain in my own mind that something other than guns and bullets was shipped with the Kaiser armaments, I find myself at a loss to discern what that might have been.
+
+Despite our very best efforts and Kate’s ingenuity, we have yet to find good evidence that Herr Kaiser was involved in any deception. I have spent many hours perusing the Janus Project files, with no clear insight into the nature of the encryption.
+
+While I am sure that they contain the key to this mystery, I still have no insight into how we might best attack them. I am most eager to hear your own thoughts on this matter, and though I know you are busy, I would beg you, please, to meet with me at your very earliest convenience.
+
+Yours,
+Ada
+
