@@ -25,6 +25,8 @@ Yours,
 Albert
 
 ## Challenge 1A - "Curio(u)s"
+Caesar: `21`
+
 Mr. Charles Babbage
 Dorset Street, Marylebone, London
 
@@ -42,6 +44,7 @@ Yours, as always,
 Ada, Countess of Lovelace
 
 ## Challenge 1B - "The Cypher(s)"
+Substitution: `TUVWXYZABSDEFGHIQKLMNOPCRJ`
 
 Horsley Towers, East Horsley, Surrey, England
 
@@ -59,6 +62,7 @@ With my gratitude,
 Miss Kate Warne
 
 ## Challenge 2A - "A letter addressed to Ada"
+Substitution: `VMDULCTKBSJARIZQHYPGXOFWNE`
 
 Mrs. Ada Lovelace  
 Horsley Towers  
@@ -81,6 +85,7 @@ With my fondest wishes for you and your husband,
 Charles Babbage
 
 ## Challenge 2B - "Don't forget the stamp"
+Substitution: `STAMPQRUVWXYZBCDEFGHIJKLNO`
 
 Dear Miss Warne,
 
@@ -96,6 +101,7 @@ With our very best wishes,
 Ada Lovelace and Charles Babbage
 
 ## Challenge 3A - "Roman-a clef?"
+Permutation: `ROMANPQSTCVWXYZBLDEFGHIJKU`
 
 My dear Charles,
 
@@ -111,6 +117,7 @@ With my fondest regards,
 Ada
 
 ## Challenge 3B - "A rough diamond"
+Permutation: `201354`
 
 My dear Palmerston,
 
@@ -130,6 +137,7 @@ With my very best wishes,
 Babbage
 
 ## Challenge 4A - "Imperious"
+Permutation: `142053`
 
 Mr. Charles Babbage
 Dorset Street, Marylebone
@@ -151,6 +159,8 @@ With my fondest regards,
 Ada
 
 ## Challenge 4B - "Counting for the Countess"
+Substitution: `CUSTOMNPQRVWXYZALDEFGHIJKB`
+
 
 For the Attention of Mrs. Ada Lovelace and Mr. Charles Babbage
 Horsley Towers, East Horsley
@@ -171,6 +181,7 @@ I hope to be with you again in three days and look forward to discussing this my
 Miss Kate Warne
 
 ## Challenge 5A - "Stranger, danger?"
+Permutation: `435201`
 
 My Dear Charles,
 
@@ -204,6 +215,7 @@ I look forward to your reply, as always.
 Ada
 
 ## Challenge 5B - "Troublemaker"
+Vigenere: `ADA`
 
 My Dear Ada,
 
@@ -229,6 +241,7 @@ With my best wishes, as always, to you and your husband,
 Babbage
 
 ## Challenge 6A - "Re-ordered thoughts"
+Vigenere: `DAA`
 
 My dear Charles,
 
@@ -256,6 +269,7 @@ Yours excitedly,
 Ada
 
 ## Challenge 6B - "Witchcraft?"
+Vigenere: `SALEM`
 
 My dear Ada,
 
@@ -285,6 +299,7 @@ Babbage
 P.S. While I agree that the present cipher provides reasonable security, I do have an idea that may eventually lead to its demise. Wheatstone is experimenting with a new idea that may well lead to its replacement. Inspired by the ancients, I wonder if the Polybius cipher, in its various forms, might provide us with a useful alternative.
 
 ## Challenge 7A - "Palmerston is surprised and alarmed"
+Column: `054231`
 
 My Dear Babbage,
 
@@ -318,6 +333,7 @@ With my very best,
 Etc., Palmerston
 
 ## Challenge 7B - "Sometimes you need to look at something from a different angle to understand it ..."
+Polybius: `ABCDEFGHIJKLMNOPQRSTUVWXY`
 
 My Dearest Charles,
 
@@ -345,6 +361,7 @@ Yours,
 Ada
 
 ## Challenge 8A - "Low down, dirty, two faced dog"
+Vigenere with text reversed: `ORTHUS`
 
 The most delicate aspect of control in the region is that the Company relies heavily upon troops recruited from among the indigenous population. These so-called sepoys are effective warriors, and their presence in the Presidency Armies both bolsters and weakens the East India Company.
 
@@ -365,6 +382,7 @@ With this in mind, you are authorized to discreetly approach the courts of Dulee
 Kaiser
 
 ## Challenge 8B - "Kate writes to Charles"
+Modified Polybius: `RQPOMLKIHGFEDCBYXWVTSUNAJ`
 
 My dear Charles,
 
@@ -380,6 +398,7 @@ With my fond regards,
 Kate Warne
 
 ## 9A - "The Rule of Three"
+Vigenere: `TRIPLECROSSDEVIL`
 
 The worst outcome for the maintenance of peace in the Indian subcontinent would, without doubt, arise from a three-way conflict between the Hindu, Sikh, and British parties.
 
