@@ -438,3 +438,33 @@ Ada Lovelace
 P.S. I realise now that I should have taken care to encypher this message before encoding it on the new telegraphy system. However, given the urgency of this message and since we are the only parties to the upgraded machines, I have decided to risk sending it without further effort. In the unlikely event that Kaiser or his co-conspirators intercept our communications and decode them, then at worst they will surely realise that the game is up, bringing an end to their plans.
 
 If my suspicions are correct, that would be a victory of sorts. Preventing the forthcoming disaster is surely more important than establishing proof that Herr Kaiser is behind it.
+
+## 10A - "The best laid plans..."
+
+JANUS PROJECT FILES, PART THREE: THE DETONATORS
+
+Enclosed in the shipment are of our own design, and each can produce a shockwave equivalent to that of a small rifle cartridge. Accordingly, they take up a similar space, though the absence of any projectile means that more can fit into the crate.
+
+The deployment of these devices should be relatively routine. Being small and unobtrusive, they are extremely unlikely to be discovered under casual inspection, especially since we have been able to colour their cases using the exact paint specified for the India Pavilion steelwork. This is due, of course, to the influence of our patron, Herr Kaiser, to whom we owe our deepest thanks.
+
+The charges are too small to cause much damage to the steelwork itself, but since it is not our intention to destroy the pavilion, but only to clear it, this is not a significant issue. A suitably coordinated discharge should achieve our aims, and the ingenious new timing mechanisms—employing the marvellous miniaturised clock mechanisms developed by the company—will ensure maximum impact.
+
+## 10B - "The report"
+
+MY DEAR LORD PALMERSTON,
+
+It is with relief that I am able to report that our efforts to thwart Kaiser’s plot have been successful. Following the successful decipherment of the final page in the Janus Project files, the detonators were discovered and retrieved without incident.
+
+I must admit that when the Countess and Miss Warne first outlined the plot to me, I was skeptical. My skepticism was fully shared by Wheatstone, who, as an experienced engineer, remarked that the quantity of explosives contained within a single crate would have only the slightest effect on the integrity of the steel frame housing the pavilion. As you may imagine, the ladies pressed their point, and Wheatstone turned a peculiar colour when they explained that, under the cumulative effect of thousands of charges, the steel might survive, but the glass canopy most certainly would not. The vibrations across the structure would have set up shockwaves that would, in turn, have led to a rain of glass shards upon the crowds beneath. I shudder to think of the casualties.
+
+It now seems clear that the terror following such an explosion was intended to lead to chaos in the hall. It would have been easy for conspirators to steal away the Koh-i-Noor diamond in the guise of bystanders rushing to aid the wounded. Things would have been dramatically worse had our Queen or her family been in attendance at the time of the explosions. She has already indicated that she will visit the exhibition regularly throughout the season, and even the urging of King Ernest has failed to dissuade her. His letter outlining the threat seemed persuasive to me, almost prescient in his assertion that I am astonished the ministers themselves do not insist on her at least going to Osbourne during the exhibition, as no human being can possibly answer for what may occur on the occasion.
+
+Nonetheless, we feel that this was not the intention of the plotters. The assassination of our treasured monarch would have enraged her subjects and provoked a deep and wide investigation, increasing the risk to the conspirators. In any case, the little proof we do have of Kaiser’s intentions suggests a more mercantile approach. The efforts to implicate the Hindu community in the theft would undoubtedly have resulted in much unrest in India. The loss of the diamond would have also infuriated the Maharajah, increasing the likelihood of an uprising that would have been, at best, difficult to manage. Herr Kaiser stood to gain significantly from any ensuing drawn-out conflict, as he equipped all sides. A war would have been more vicious but, in all likelihood, much shorter, and he stood to gain far less from it.
+
+It is only because of the tenacity and curiosity of Kate Warne that this plot was ever uncovered, and we owe her an enormous debt. The Countess has done her very best to persuade Miss Warne to remain here and to continue working with us, but I am afraid that even she could not prevent our American friend from returning to the places she knows best. We are very reluctant to see her leave; however, I understand that our friend Mr. Allan Pinkerton is setting up an agency that may have use for her particular skills. I wonder if we should perhaps write to him.
+
+As for Kaiser, we have wrestled mightily to determine what would be best. The evidence against him as an individual is, at best, circumstantial. No court would allow us to adduce documents reproduced only from Kate’s recollection, and it is highly unlikely that we will be able to obtain the originals now. We are left, therefore, with the unpleasant conclusion that he and his co-conspirators are likely to escape punishment. He will not, however, avoid the consequences of his treachery. You have already agreed to cancel the contract of supply with his firm, and I believe that the India Company has agreed to follow your lead. Kaiser may be free to sell his weapons in his own country, but we will continue to use more traditional rifles and ammunition, unsullied with the mineral oils and greases of which he is so proud. Tallow has provided a suitable lubricant for us until now, and Wheatstone assures us that there is no good reason to change that.
+
+With our best wishes to you and the government, and our loyal best wishes to Her Majesty,
+Your humble servants,
+Charles Babbage, Ada Lovelace, Kate Warne, Charles Wheatstone
