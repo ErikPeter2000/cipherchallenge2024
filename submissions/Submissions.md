@@ -451,7 +451,7 @@ The charges are too small to cause much damage to the steelwork itself, but sinc
 
 ## 10B - "The report"
 
-MY DEAR LORD PALMERSTON,
+My dear Lord Palmerstone,
 
 It is with relief that I am able to report that our efforts to thwart Kaiser’s plot have been successful. Following the successful decipherment of the final page in the Janus Project files, the detonators were discovered and retrieved without incident.
 
