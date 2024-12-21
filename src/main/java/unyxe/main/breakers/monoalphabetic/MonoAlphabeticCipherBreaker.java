@@ -73,4 +73,49 @@ public class MonoAlphabeticCipherBreaker {
         output.key.add(bestKey);
         return output;
     }
+
+
+    public static CipherBreakerOutput<byte[]> evolutionaryHillClimbingAttackMF(byte[] cipherText, int genLimit, int keysPerGen){
+        CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("MonoAlphabeticCipher", cipherText);
+        byte[] bestKey = null;
+        output.fitness = -9999999;
+        byte[][] generation = new byte[keysPerGen][];
+        for(int i = 0; i < keysPerGen/10; i++){
+            generation[i] = generateRandomKey();
+        }
+        for(int i = 0 ; i < genLimit; i++){
+            for(int j = keysPerGen/10; j < keysPerGen; j++){
+                generation[j] = swapRandomInKey(generation[j/10 - 1]);
+            }
+            double[] topFitness = new double[keysPerGen/10];
+            byte[][] topKeys = new byte[keysPerGen/10][];
+            Arrays.fill(topFitness, -9999999);
+            int lowestIndex = 0;
+            for(int j = 0; j < keysPerGen; j++){
+                byte[] text = MonoAlphabeticCipher.decipher(cipherText, generation[j]);
+                double newFitness = FitnessCalculator.MonogramABVFitness(text);
+                if(newFitness > output.fitness){output.fitness = newFitness;bestKey=Arrays.copyOf(generation[j], generation[j].length);output.plainText = text;}
+                if(newFitness > topFitness[lowestIndex]){
+                    topFitness[lowestIndex] = newFitness;
+                    topKeys[lowestIndex] = Arrays.copyOf(generation[j], generation[j].length);
+                    double lowestFitness = 9999999;
+                    for(int h = 0; h < topFitness.length; h++){
+                        if(topFitness[h] == -9999999){
+                            lowestIndex = h;
+                            break;
+                        }
+                        if(topFitness[h] < lowestFitness){
+                            lowestIndex = h;
+                            lowestFitness = topFitness[h];
+                        }
+                    }
+                }
+            }
+            System.arraycopy(topKeys, 0, generation, 0, topFitness.length);
+        }
+        output.isSuccessful = (output.plainText!=null);
+        output.key = new ArrayList<>();
+        output.key.add(bestKey);
+        return output;
+    }
 }
