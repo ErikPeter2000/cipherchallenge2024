@@ -11,6 +11,15 @@ public class TextUtilities {
         }
         return formatted.toString();
     }
+    public static String filterText(String text, String alphabet){
+        StringBuilder formatted = new StringBuilder();
+        for (int i = 0; i < text.length(); i++){
+            char c = text.charAt(i);
+            if(alphabet.indexOf(c) == -1)continue;
+            formatted.append(c);
+        }
+        return formatted.toString();
+    }
     public static byte[] formatAndConvertToBytes(String text){
         return convertToByteArray(formatText(text), Constants.alphabet);
     }
