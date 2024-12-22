@@ -16,9 +16,9 @@ public class challenge10b {
         byte[] cipherText = TextUtilities.convertToByteArray(TextUtilities.filterText(input,"\\|/"), "\\|/");
 
         // Brute force all possible permutations of length 2-7 of the ciphertext and return permutations which have 23-27 unique blocks of length 4-11
-        foundPermutation[] foundPermutations = bruteForcePermutations(cipherText, (byte)2, (byte)8, (byte)5);
+        FoundPermutation[] foundPermutations = bruteForcePermutations(cipherText, (byte)2, (byte)8, (byte)5);
         // Print the found permutations
-        for(foundPermutation foundPermutation : foundPermutations){
+        for(FoundPermutation foundPermutation : foundPermutations){
             byte[] key = foundPermutation.key();
             byte[][] lengths = foundPermutation.lengths();
             System.out.println("Permutation Key: " + Arrays.toString(key));
@@ -57,8 +57,8 @@ public class challenge10b {
     }
 
     // Function to brute force all possible permutations of length 2-7 of a ciphertext and return permutations which have 23-27 unique blocks of length 4-11
-    static foundPermutation[] bruteForcePermutations(byte[] cipherText, byte lowerBound, byte upperBound, byte outputLimit){
-        foundPermutation[] foundPermutations = new foundPermutation[outputLimit];
+    static FoundPermutation[] bruteForcePermutations(byte[] cipherText, byte lowerBound, byte upperBound, byte outputLimit){
+        FoundPermutation[] foundPermutations = new FoundPermutation[outputLimit];
         byte pointer = 0;
         for(int i = lowerBound; i < upperBound;i++){
             if(cipherText.length % i != 0)continue;
@@ -66,7 +66,7 @@ public class challenge10b {
             for(byte[] permutation : permutations){
                 byte[][] testResult = testAllLengths(PermutationCipher.decipher(cipherText, permutation), (byte)4, (byte)12);
                 if(testResult.length > 0){
-                    foundPermutations[pointer] = new foundPermutation(permutation, testResult);
+                    foundPermutations[pointer] = new FoundPermutation(permutation, testResult);
                     pointer++;
                     if(pointer == outputLimit)return Arrays.copyOf(foundPermutations, pointer);
                 }
@@ -129,4 +129,4 @@ public class challenge10b {
 }
 
 // Class to store a permutation key and lengths of unique blocks
-record foundPermutation(byte[] key, byte[][] lengths) {}
+record FoundPermutation(byte[] key, byte[][] lengths) {}
