@@ -49,3 +49,8 @@ bin/
 
 # Personal files
 samuel/
+
+# Python stuff
+__pycache__/
+.mypy_cache/
+*.py[cod]
