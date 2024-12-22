@@ -9,7 +9,7 @@ import main.utils.maths.Permutations;
 
 import java.util.Arrays;
 
-public class challenge10b {
+public class Challenge10B {
     // Main function for deciphering the ciphertext from challenge 10b
     public static String decipher(String input) {
         // Filter the input ciphertext and convert it to a byte array
@@ -79,10 +79,10 @@ public class challenge10b {
     static byte[][] testAllLengths(byte[] cipherText, byte start, byte end){
         byte[][] possibleLengths = new byte[end - start][];
         byte pointer = 0;
-        for(byte i = start; i < end;i++){
-            byte[] testResult = testAmountOfUniqueBlocksOfLength(cipherText, i, (byte)23, (byte)28);
+        for(int i = start; i < end;i++){
+            byte[] testResult = testAmountOfUniqueBlocksOfLength(cipherText, (byte)i, (byte)23, (byte)28);
             if(testResult[0] == 1) {
-                possibleLengths[pointer] = new byte[]{i, testResult[1]};
+                possibleLengths[pointer] = new byte[]{(byte)i, testResult[1]};
                 pointer++;
             }
         }

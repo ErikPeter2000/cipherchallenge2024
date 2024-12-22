@@ -1,6 +1,6 @@
 package main;
 import main.utils.Constants;
-import main.cipherchallengebreakers.challenge10b;
+import main.cipherchallengebreakers.Challenge10B;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +13,7 @@ public class Main {
 
         long startTime = System.currentTimeMillis();
 
-        System.out.println(challenge10b.decipher(cipherText));
+        System.out.println(Challenge10B.decipher(cipherText));
 
         long endTime = System.currentTimeMillis();
         System.out.println("Execution time: " + (endTime - startTime) + "ms");
