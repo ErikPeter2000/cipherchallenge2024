@@ -1,6 +1,7 @@
 package main.utils;
 
 import main.ciphers.periodicpolyalphabetic.PortaCipher;
+import main.core.text.Alphabet;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,7 +12,6 @@ import java.util.Arrays;
 import static java.lang.Double.parseDouble;
 
 public class Constants {
-    public static final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static final int monogramCount = 26;
     //public static final int bigramCount = 676;
     //public static final int trigramCount = 17556;
@@ -57,7 +57,7 @@ public class Constants {
         putWordsFromFile(filepath, stringList);
         smallWordlist = new byte[stringList.size()][];
         for(int i = 0; i < smallWordlist.length; i++){
-            smallWordlist[i] = TextUtilities.formatAndConvertToBytes(stringList.get(i));
+            smallWordlist[i] = TextUtilities.filterAndConvertToBytes(stringList.get(i).toUpperCase(), Alphabet.UPPER_CASE);
         }
         System.out.println("Done.");
     }
@@ -97,7 +97,7 @@ public class Constants {
         }
         wordlist = new byte[stringList.size()][];
         for(int i = 0; i < wordlist.length; i++){
-            wordlist[i] = TextUtilities.formatAndConvertToBytes(stringList.get(i));
+            wordlist[i] = TextUtilities.filterAndConvertToBytes(stringList.get(i).toUpperCase(), Alphabet.UPPER_CASE);
         }
     }
 
@@ -124,7 +124,7 @@ public class Constants {
                 String r;
                 int index = 0;
                 while ((r = br.readLine()) != null) {
-                    byte[] polygram = TextUtilities.convertToByteArray(r.split(",")[0].toUpperCase(), alphabet);
+                    byte[] polygram = TextUtilities.convertToByteArray(r.split(",")[0].toUpperCase(), Alphabet.UPPER_CASE);
                     double freq = parseDouble(r.split(",")[1]);
                     if(n==4){
                         freq = Math.log(freq);

@@ -1,9 +1,11 @@
 package main.cipherchallengebreakers;
 
+import com.unyxe.FunctionalJava.FunctionalArray;
 import main.breakers.CipherBreakerOutput;
 import main.breakers.monoalphabetic.MonoAlphabeticCipherBreaker;
 import main.ciphers.transposition.PermutationCipher;
 import main.utils.Constants;
+import main.core.text.Alphabet;
 import main.utils.TextUtilities;
 import main.utils.maths.Permutations;
 
@@ -13,7 +15,8 @@ public class Challenge10B {
     // Main function for deciphering the ciphertext from challenge 10b
     public static String decipher(String input) {
         // Filter the input ciphertext and convert it to a byte array
-        byte[] cipherText = TextUtilities.convertToByteArray(TextUtilities.filterText(input,"\\|/"), "\\|/");
+        Alphabet alphabet = new Alphabet("\\|/");
+        byte[] cipherText = TextUtilities.convertToByteArray(TextUtilities.filterText(input,alphabet), alphabet);
 
         // Brute force all possible permutations of length 2-7 of the ciphertext and return permutations which have 23-27 unique blocks of length 4-11
         FoundPermutation[] foundPermutations = bruteForcePermutations(cipherText, (byte)2, (byte)8, (byte)5);
@@ -54,6 +57,12 @@ public class Challenge10B {
             }
         }
         return substitutionCipherText;
+    }
+
+    static byte[] convertToSubstitutionCipherTextLINQ(byte[] cipherText, byte[][] distinctBlocks, byte blockLength){
+        FunctionalArray<Byte> cipherTextFunctional = new FunctionalArray<>(cipherText.length);
+        cipherTextFunctional.set();
+        return FunctionalArray.range(0, cipherText.length/blockLength).select(i -> ).toArray();
     }
 
     // Function to brute force all possible permutations of length 2-7 of a ciphertext and return permutations which have 23-27 unique blocks of length 4-11

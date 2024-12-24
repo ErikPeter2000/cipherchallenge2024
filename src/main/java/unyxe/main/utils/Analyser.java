@@ -10,7 +10,7 @@ public class Analyser {
         return monogramStatistic;
     }
 
-    public static double getIndexOfCoincedence(byte[] text, boolean normalized){
+    public static double getIndexOfCoincidence(byte[] text, boolean normalized){
         double ioc = 0;
         double[] monogramStatistic = getMonogramStatistic(text);
         int N = text.length;

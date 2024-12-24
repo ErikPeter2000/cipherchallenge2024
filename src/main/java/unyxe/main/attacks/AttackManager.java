@@ -2,20 +2,19 @@ package main.attacks;
 
 import main.breakers.CipherBreakerOutput;
 import main.ciphers.monoalphabetic.*;
-import main.ciphers.periodicpolyalphabetic.*;
 import main.ciphers.transposition.*;
 import main.breakers.monoalphabetic.*;
-import main.breakers.periodicpolyalphabetic.*;
 import main.breakers.transposition.*;
 import main.utils.periodanalysers.*;
-import main.utils.*;
+import main.core.text.Alphabet;
+import main.utils.TextUtilities;
 
 import java.util.Arrays;
 
 public class AttackManager {
     byte[] currentCipherText = null;
     public AttackManager(String cipherText){
-        currentCipherText = TextUtilities.formatAndConvertToBytes(cipherText);
+        currentCipherText = TextUtilities.filterAndConvertToBytes(cipherText, Alphabet.UPPER_CASE);
     }
     public void printCurrentCipherText(){
         TextUtilities.printBytes(currentCipherText);
@@ -37,9 +36,9 @@ public class AttackManager {
         CipherBreakerOutput<Integer> cboAffine = AffineCipherBreaker.bruteforceTF(currentCipherText);
         System.out.println("[Affine Breaker] Key: "+cboAffine.key.get(0) + " " +cboAffine.key.get(1)+" Fitness: "+cboAffine.fitness + " Plaintext: " + cboAffine.getStringPlaintext());
         CipherBreakerOutput<byte[]> cboKeyword = KeywordSubstitutionCipherBreaker.wordlistBruteforce(currentCipherText);
-        System.out.println("[Keyword Substitution Breaker] Key: "+TextUtilities.convertToString(cboKeyword.key.get(0), Constants.alphabet) + " Filler type: " + cboKeyword.key.get(1)[0] + " Fitness: "+cboKeyword.fitness + " Plaintext: " + cboKeyword.getStringPlaintext());
+        System.out.println("[Keyword Substitution Breaker] Key: "+TextUtilities.convertToString(cboKeyword.key.get(0), Alphabet.UPPER_CASE) + " Filler type: " + cboKeyword.key.get(1)[0] + " Fitness: "+cboKeyword.fitness + " Plaintext: " + cboKeyword.getStringPlaintext());
         CipherBreakerOutput<byte[]> cboMono = MonoAlphabeticCipherBreaker.evolutionaryHillClimbingAttack(currentCipherText, 200, 200);
-        System.out.println("[Monoalphabetic Breaker] Key: "+TextUtilities.convertToString(cboMono.key.get(0), Constants.alphabet) + " Fitness: "+cboMono.fitness + " Plaintext: " + cboMono.getStringPlaintext());
+        System.out.println("[Monoalphabetic Breaker] Key: "+TextUtilities.convertToString(cboMono.key.get(0), Alphabet.UPPER_CASE) + " Fitness: "+cboMono.fitness + " Plaintext: " + cboMono.getStringPlaintext());
     }
     public void tryTranspositionBreakers(){
         CipherBreakerOutput<byte[]> permutationCbo = PermutationCipherBreaker.bruteforceBlockSizeUsingHillClimb(currentCipherText, 16);

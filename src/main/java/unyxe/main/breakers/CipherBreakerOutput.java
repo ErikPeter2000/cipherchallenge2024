@@ -1,6 +1,6 @@
 package main.breakers;
 
-import main.utils.Constants;
+import main.core.text.Alphabet;
 import main.utils.TextUtilities;
 
 import java.util.ArrayList;
@@ -22,6 +22,6 @@ public class CipherBreakerOutput<T> {
     }
     public String getStringPlaintext(){
         if(plainText == null) return "null";
-        return TextUtilities.convertToString(plainText, Constants.alphabet);
+        return TextUtilities.convertToString(plainText, Alphabet.UPPER_CASE);
     }
 }

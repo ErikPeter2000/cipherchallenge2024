@@ -24,7 +24,7 @@ public class IOCPeriodAnalyser {
     public static double averageIOCOfSlices(byte[][] slices){
         double averageIOC = 0;
         for (byte[] slice : slices) {
-            averageIOC += Analyser.getIndexOfCoincedence(slice, true);
+            averageIOC += Analyser.getIndexOfCoincidence(slice, true);
         }
         return averageIOC/slices.length;
     }
