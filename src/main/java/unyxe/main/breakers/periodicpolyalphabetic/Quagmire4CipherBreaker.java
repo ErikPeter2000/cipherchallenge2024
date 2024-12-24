@@ -2,6 +2,7 @@ package main.breakers.periodicpolyalphabetic;
 
 import main.breakers.CipherBreakerOutput;
 import main.ciphers.periodicpolyalphabetic.Quagmire4Cipher;
+import main.core.text.Alphabet;
 import main.utils.Constants;
 import main.utils.FitnessCalculator;
 import main.utils.TextUtilities;
@@ -29,7 +30,7 @@ public class Quagmire4CipherBreaker {
                     output.plainText = text;
                 }
             }
-            if(n%100==0)System.out.println(n*100./alphabetCiphertextKeyWordlist.length + "% done. " + TextUtilities.convertToString(output.plainText, Constants.alphabet) + " " + TextUtilities.convertToString(alphabetKeyKnown, Constants.alphabet) + " " + TextUtilities.convertToString(bestCKey, Constants.alphabet) + " " +  TextUtilities.convertToString(bestSKey, Constants.alphabet));
+            if(n%100==0)System.out.println(n*100./alphabetCiphertextKeyWordlist.length + "% done. " + TextUtilities.convertToString(output.plainText, Alphabet.UPPER_CASE) + " " + TextUtilities.convertToString(alphabetKeyKnown, Alphabet.UPPER_CASE) + " " + TextUtilities.convertToString(bestCKey, Alphabet.UPPER_CASE) + " " +  TextUtilities.convertToString(bestSKey, Alphabet.UPPER_CASE));
             n++;
         }
 
@@ -64,7 +65,7 @@ public class Quagmire4CipherBreaker {
                     }
                 }
             }
-            System.out.println(n*100./alphabetCiphertextKeyWordlist.length + "% done. " + TextUtilities.convertToString(output.plainText, Constants.alphabet) + " " + TextUtilities.convertToString(bestAKey, Constants.alphabet) + " " + TextUtilities.convertToString(bestCKey, Constants.alphabet) + " " +  TextUtilities.convertToString(bestSKey, Constants.alphabet));
+            System.out.println(n*100./alphabetCiphertextKeyWordlist.length + "% done. " + TextUtilities.convertToString(output.plainText, Alphabet.UPPER_CASE) + " " + TextUtilities.convertToString(bestAKey, Alphabet.UPPER_CASE) + " " + TextUtilities.convertToString(bestCKey, Alphabet.UPPER_CASE) + " " +  TextUtilities.convertToString(bestSKey, Alphabet.UPPER_CASE));
             n++;
         }
 

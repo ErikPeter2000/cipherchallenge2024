@@ -2,6 +2,7 @@ package main.breakers.monoalphabetic;
 
 import main.breakers.CipherBreakerOutput;
 import main.ciphers.monoalphabetic.MonoAlphabeticCipher;
+import main.core.text.Alphabet;
 import main.utils.Constants;
 import main.utils.FitnessCalculator;
 import main.utils.TextUtilities;
@@ -23,7 +24,7 @@ public class MonoAlphabeticCipherBreaker {
         return newKey;
     }
     public static byte[] generateRandomKey(){
-        byte[] randomKey = TextUtilities.convertToByteArray(Constants.alphabet, Constants.alphabet);
+        byte[] randomKey = TextUtilities.convertToByteArray(Alphabet.UPPER_CASE.getAlphabet(), Alphabet.UPPER_CASE);
         for(int i = 0; i < 1000;i++){
             randomKey = swapRandomInKey(randomKey);
         }

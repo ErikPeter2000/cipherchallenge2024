@@ -3,6 +3,7 @@ package main.breakers.periodicpolyalphabetic;
 import main.breakers.CipherBreakerOutput;
 import main.breakers.monoalphabetic.MonoAlphabeticCipherBreaker;
 import main.ciphers.periodicpolyalphabetic.PeriodicPolyAlphabeticSubstitutionCipher;
+import main.core.text.Alphabet;
 import main.utils.Constants;
 import main.utils.FitnessCalculator;
 import main.utils.TextUtilities;
@@ -54,7 +55,7 @@ public class PeriodicPolyAlphabeticSubstitutionCipherBreaker {
                     globalCounter++;
                 }
             }
-            if(globalCounter%100 <50)System.out.println(globalCounter*100./limit/period/period + "% Done. Best fitness: " + bestFitness + " " + TextUtilities.convertToString(bestPlaintext, Constants.alphabet));
+            if(globalCounter%100 <50)System.out.println(globalCounter*100./limit/period/period + "% Done. Best fitness: " + bestFitness + " " + TextUtilities.convertToString(bestPlaintext, Alphabet.UPPER_CASE));
         }
         output.fitness = bestFitness;
         output.isSuccessful = true;

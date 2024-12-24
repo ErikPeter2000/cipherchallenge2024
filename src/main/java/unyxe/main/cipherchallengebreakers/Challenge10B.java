@@ -42,7 +42,7 @@ public class Challenge10B {
         // Perform an evolutionary hill climbing attack on the substitution cipher
         CipherBreakerOutput<byte[]> cbo = MonoAlphabeticCipherBreaker.evolutionaryHillClimbingAttack(substitutionCipherText, 400, 400);
         // Convert the plaintext to a string and return it
-        return TextUtilities.convertToString(cbo.plainText, Constants.alphabet);
+        return TextUtilities.convertToString(cbo.plainText, Alphabet.UPPER_CASE);
     }
 
     // Function to convert a ciphertext to a substitution cipher given distinct blocks and block length
@@ -57,12 +57,6 @@ public class Challenge10B {
             }
         }
         return substitutionCipherText;
-    }
-
-    static byte[] convertToSubstitutionCipherTextLINQ(byte[] cipherText, byte[][] distinctBlocks, byte blockLength){
-        FunctionalArray<Byte> cipherTextFunctional = new FunctionalArray<>(cipherText.length);
-        cipherTextFunctional.set();
-        return FunctionalArray.range(0, cipherText.length/blockLength).select(i -> ).toArray();
     }
 
     // Function to brute force all possible permutations of length 2-7 of a ciphertext and return permutations which have 23-27 unique blocks of length 4-11
