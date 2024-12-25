@@ -9,7 +9,12 @@ import com.core.evolutionaryalgorithms._
 import com.core.extensions.BiMapExtensions.swapElements
 import breeze.linalg.max
 
-object SubstitutionCipherBreaker extends CipherBreaker[Char, BiMap[Char, Char]] {
+/** Breaker for the mono-alphabetic substitution cipher.
+  *
+  * Uses frequency analysis in combination with an evolutionary algorithm to determine the key for the mono-alphabetic
+  * substitution cipher.
+  */
+object MonoAlphabeticSubstitutionCipherBreaker extends CipherBreaker[Char, BiMap[Char, Char]] {
     def break(text: String) = {
         val dataBlock = CipherDataBlock.create(text)
         break(dataBlock)
@@ -24,7 +29,7 @@ object SubstitutionCipherBreaker extends CipherBreaker[Char, BiMap[Char, Char]] 
                 val swaps = childIndex * 4 / maxChildren + 1
                 currentKey.clone().swapElements(swaps)
             },
-            ChildSelectionPolicy.expDfOverT(2,0)
+            ChildSelectionPolicy.expDfOverT(2, 0)
         )
         val result = breaker.run(data, guessKey, 30, 1000, Option("SubstitutionCipherBreaker"))
         new BreakerResult(
@@ -32,7 +37,7 @@ object SubstitutionCipherBreaker extends CipherBreaker[Char, BiMap[Char, Char]] 
             outData = result.outData,
             cipherUsed = SubstitutionCipher,
             key = result.key,
-            score = result.score,
+            score = result.score
         )
     }
 }

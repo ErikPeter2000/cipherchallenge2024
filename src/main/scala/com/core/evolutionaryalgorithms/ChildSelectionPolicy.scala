@@ -25,7 +25,7 @@ object ChildSelectionPolicy {
 
     /** Select the new child noisily based on the "temperature" of the system.
       *
-      * If the new child has a better score, it is always selected. However, a worse child has a probability of also
+      * If the new child has a better score, it is always selected. However, a worse child has a possibility of also
       * being selected. The greater the difference between the current score and the child score, the less likely it is
       * to be selected. Increasing the temperature will increase the probability of selecting a worse child.
       *

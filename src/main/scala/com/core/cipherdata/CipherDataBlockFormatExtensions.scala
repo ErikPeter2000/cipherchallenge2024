@@ -4,6 +4,8 @@ import com.core.cipherdata.CipherDataBlock
 import com.core.cipherdata.CipherFormatResult
 import com.core.alphabets.Alphabet
 
+/** Extensions for formatting cipher data blocks.
+  */
 object CipherDataBlockFormatExtensions {
     extension (cipherDataBlock: CipherDataBlock[Char]) {
         def format(alphabet: Alphabet[Char]): CipherFormatResult = {

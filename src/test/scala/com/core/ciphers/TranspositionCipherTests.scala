@@ -1,6 +1,6 @@
 package com.core.ciphers
 
-import com.core.ciphers.TranspositionCipher
+import com.core.ciphers.PermutationCipher
 import com.core.cipherdata._
 
 class TranspositionCipherTest extends munit.FunSuite {
@@ -9,7 +9,7 @@ class TranspositionCipherTest extends munit.FunSuite {
         val data = CipherDataBlock.create("BYGEORGEORWELLPARTONEITWASABRIGHTCOLDDAYINAPRILANDTHECLOCKSWERESTRIKINGTHIR")
         val expected = "GBYOEERGROLWEPLTARNOTEIAWBSAIRTGHOCDLDYAAINRPAILDNETHLCKOCWSEERTSKRINIHGTRI"
         val key = IndexedSeq(2, 0, 1, 4, 3)
-        val result = TranspositionCipher.encrypt(data, key)
+        val result = PermutationCipher.encrypt(data, key)
         assertEquals(result.mkString, expected)
     }
 
@@ -17,7 +17,7 @@ class TranspositionCipherTest extends munit.FunSuite {
         val data = CipherDataBlock.create("GBYOEERGROLWEPLTARNOTEIAWBSAIRTGHOCDLDYAAINRPAILDNETHLCKOCWSEERTSKRINIHGTRI")
         val expected = "BYGEORGEORWELLPARTONEITWASABRIGHTCOLDDAYINAPRILANDTHECLOCKSWERESTRIKINGTHIR"
         val key = IndexedSeq(2, 0, 1, 4, 3)
-        val result = TranspositionCipher.decrypt(data, key)
+        val result = PermutationCipher.decrypt(data, key)
         assertEquals(result.mkString, expected)
     }
 }

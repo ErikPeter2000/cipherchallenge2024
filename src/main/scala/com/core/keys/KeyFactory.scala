@@ -20,8 +20,10 @@ object KeyFactory {
       *
       * @example
       *   {{{
-      * KeyFactory.combinePhraseWithAlphabet("hello", LowercaseLetters) -> Seq('h', 'e', 'l', 'o', 'a', 'b', 'c', 'd', 'f', 'g', 'i', 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z')
-      * KeyFactory.combinePhraseWithAlphabet("hello", LowercaseLetters, true) -> Seq('h', 'e', 'l', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'f', 'g', 'i', 'j', 'k', 'm', 'n')
+      * KeyFactory.combinePhraseWithAlphabet("hello", LowercaseLetters)
+      *  -> Seq('h', 'e', 'l', 'o', 'a', 'b', 'c', 'd', 'f', 'g', 'i', ..., 'z')
+      * KeyFactory.combinePhraseWithAlphabet("hello", LowercaseLetters, true)
+      *  -> Seq('h', 'e', 'l', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', ..., 'g')
       *   }}}
       *
       * @param phrase
@@ -29,11 +31,15 @@ object KeyFactory {
       * @param alphabet
       *   The target alphabet. All letters in the phrase should be in the alphabet, else errors will occur.
       * @param startAtLastLetter
-      *  If true, the sequence will start at the last letter of the phrase.
+      *   If true, the sequence will start at the last letter of the phrase.
       * @return
       *   A sequence of distinct letters.
       */
-    def combinePhraseWithAlphabet(phrase: String, alphabet: BiMapAlphabet[Char], startAtLastLetter: Boolean = false): IndexedSeq[Char] = {
+    def combinePhraseWithAlphabet(
+        phrase: String,
+        alphabet: BiMapAlphabet[Char],
+        startAtLastLetter: Boolean = false
+    ): IndexedSeq[Char] = {
         val distinctPhrase = phrase.distinct.filter(alphabet.contains)
         val letters = new Array[Char](alphabet.size)
         distinctPhrase.copyToArray(letters)
@@ -62,7 +68,11 @@ object KeyFactory {
       * @return
       *   A BiMap representing the substitution key.
       */
-    def createSubstitutionKey(phrase: String, inputAlphabet: BiMapAlphabet[Char], startAtLastLetter: Boolean = false): BiMap[Char, Char] = {
+    def createSubstitutionKey(
+        phrase: String,
+        inputAlphabet: BiMapAlphabet[Char],
+        startAtLastLetter: Boolean = false
+    ): BiMap[Char, Char] = {
         val letters = combinePhraseWithAlphabet(phrase, inputAlphabet, startAtLastLetter)
         return inputAlphabet.createLetterMapAgainst(letters)
     }

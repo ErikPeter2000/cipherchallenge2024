@@ -1,12 +1,16 @@
 package com.core.cipherbreakers
 
 import com.core.cipherdata.CipherDataBlock
-import com.core.ciphers.TranspositionCipher
+import com.core.ciphers.PermutationCipher
 import com.core.analysers.IndexOfCoincidence
 import com.core.evolutionaryalgorithms.FitnessFunctions
 import com.core.progressbar.ProgressBar
 import com.core.ciphers.ColumnCipher
 
+/** Breaker for the Columnar Transposition cipher.
+  *
+  * Performs a brute-force attack to determine the key for the Columnar Transposition cipher.
+  */
 object ColumnCipherBreaker extends CipherBreaker[Char, IndexedSeq[Int]] {
     def break(text: String) = {
         val dataBlock = CipherDataBlock.create(text)

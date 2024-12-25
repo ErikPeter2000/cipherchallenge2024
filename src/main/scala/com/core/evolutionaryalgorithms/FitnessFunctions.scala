@@ -11,7 +11,7 @@ import com.core.collections.TrieNode
   */
 object FitnessFunctions {
     private lazy val commonWords =
-        DataTable.iterateCommonWords.filter(_.size > 3).take(1000).map(_.toUpperCase.toIterable).toSet
+        DataTable.iteratorCommonWords.filter(_.size > 3).take(1000).map(_.toUpperCase.toIterable).toSet
     private lazy val commonTrie = TrieNode.buildTrie(commonWords)
     private var polygramCache: Map[Int, Vector[Double]] = Map()
 

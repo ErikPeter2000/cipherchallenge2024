@@ -2,13 +2,13 @@ package com.core.analysers
 
 import com.core.cipherdata.CipherDataBlock
 
-/** Performs a Kasiski test on a given data block, to determine the key length of a Polyalphabetic Substitution Cipher,
+/** Performs a Kasiski test on a given data block, to estimate the key length of a Polyalphabetic Substitution Cipher,
   * such as the Vigenere cipher.
   */
 object KasiskisTest {
-    // The Kasiski test works by identifying repeating sections of cipher in text in the ciphertext. The distance between blocks should be a multiple of the key length. If we take enough samples, we can determine the most common factors of the distances, which should help us find the key length. 
+    // The Kasiski test works by identifying repeating sections of cipher in text in the ciphertext. The distance between blocks should be a multiple of the key length. If we take enough samples, we can determine the most common factors of the distances, which should help us find the key length.
 
-    def _getFactors(n: Int): Seq[Int] = {
+    def getFactors(n: Int): Seq[Int] = {
         (1 to n).filter(n % _ == 0)
     }
 
@@ -30,26 +30,27 @@ object KasiskisTest {
         // For every possible key length 'n'...
         (minLength to maxLength).foreach(sliceLength => {
             data.sliding(sliceLength) // Group the data into slices of length 'n'
-            .zipWithIndex // Convert from a list of just slices to a list of (slice, index) tuples, so we can work with the index too
-            .foreach { case (slice, index) => // now for every slice...
-                val sliceString = slice.mkString // Convert the slice to a string
-                val positions = substringPositions(sliceString) 
-                substringPositions(sliceString) = positions :+ index // Record the position of the occurrence of the slice 
-            }
+                .zipWithIndex // Convert from a list of just slices to a list of (slice, index) tuples, so we can work with the index too
+                .foreach { case (slice, index) => // now for every slice...
+                    val sliceString = slice.mkString // Convert the slice to a string
+                    val positions = substringPositions(sliceString)
+                    substringPositions(sliceString) =
+                        positions :+ index // Record the position of the occurrence of the slice
+                }
         })
 
         // Now work out the distances between the occurrences of each substring
-        val distances = substringPositions
-            .values // Take only the substring slices.
+        val distances = substringPositions.values // Take only the substring slices.
             .filter(_.length > 1) // Only consider substrings that appear more than once
             .flatMap { positions => // from two consecutive positions, calculate the distance between them
-                positions.sliding(2)
-                .collect { case Seq(a, b) => b - a }
+                positions
+                    .sliding(2)
+                    .collect { case Seq(a, b) => b - a }
             } // flatten the list of lists of distances into a single list
 
         // Now get the factors of the distances
         val factors = distances
-            .flatMap(_getFactors) // get the factors of each distance, and un-flatten this into one big list.
+            .flatMap(getFactors) // get the factors of each distance, and un-flatten this into one big list.
             .filter(x => x >= minLength && x <= maxFactor) // filter out factors that are too small or too large
             .groupBy(identity) // count the occurrences of each factor
             .mapValues(_.size) // convert the list of factors into a map of (factor -> frequency of specific factor)

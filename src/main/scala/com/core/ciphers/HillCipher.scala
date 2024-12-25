@@ -11,6 +11,9 @@ import com.core.cipherdata.CipherResult
   */
 
 object HillCipher extends BaseCipher[Char, Char, DenseMatrix[Int]] {
+
+    /** Encrypt the data using the Hill cipher.
+      */
     def encrypt(data: CipherDataBlock[Char], key: DenseMatrix[Int]): CipherDataBlock[Char] = {
         val keySize = key.rows
         val dataLength = data.length
@@ -22,6 +25,9 @@ object HillCipher extends BaseCipher[Char, Char, DenseMatrix[Int]] {
         }
         CipherDataBlock.create(encrypted, data.alphabet)
     }
+
+    /** Decrypt the data using the Hill cipher.
+      */
     def decrypt(data: CipherDataBlock[Char], key: DenseMatrix[Int]): CipherDataBlock[Char] = {
         val inverse = inv(key).map(_.toInt)
         encrypt(data, inverse)

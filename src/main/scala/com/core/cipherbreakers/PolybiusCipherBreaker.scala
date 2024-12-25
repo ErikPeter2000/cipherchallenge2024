@@ -15,6 +15,10 @@ import com.core.evolutionaryalgorithms.ChildSelectionPolicy
 import com.core.keys.KeyFactory
 import com.core.languagedata.DataTable
 
+/** Breaker for the Polybius cipher.
+  *
+  * Converts to a mono-alphabetic substitution cipher and uses an evolutionary algorithm to determine the key.
+  */
 object PolybiusCipherBreaker extends CipherBreaker[Int, IndexedSeq[Char]] {
     def break(text: String, isOneBased: Boolean): BreakerResult[Char, Int, IndexedSeq[Char]] = {
         val offset = if (isOneBased) 1 else 0
@@ -41,7 +45,10 @@ object PolybiusCipherBreaker extends CipherBreaker[Int, IndexedSeq[Char]] {
                 frequencies(i) = 0
             }
         }
-        val initialMap = KeyFactory.createSubstitutionKeyFromFrequencies[Char, Int](frequencies.toMap, DataTable.unigramFrequenciesChar.removed(missingLetter))
+        val initialMap = KeyFactory.createSubstitutionKeyFromFrequencies[Char, Int](
+            frequencies.toMap,
+            DataTable.unigramFrequenciesChar.removed(missingLetter)
+        )
         val initialKey = initialMap.keys.toIndexedSeq.sortBy(x => initialMap(x))
         val evolutionaryAlgo = new BaseEvolutionaryAlgorithm[Char, Int, IndexedSeq[Char]](
             PolybiusCipher,

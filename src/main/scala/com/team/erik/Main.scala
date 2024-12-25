@@ -73,9 +73,7 @@ object Main {
             .map(permutationKey => { // For each possible permutation key...
                 val transposedCiphertext = ciphertext
                     .grouped(permutationKey.size) // Group into blocks of the key size
-                    .flatMap(block =>
-                        permutationKey.map(block(_))
-                    ) // Rearrange the blocks according to the permutation key
+                    .flatMap(block => permutationKey.map(block(_))) // Rearrange the blocks according to the permutation key
                     .toSeq
 
                 // Count the number of distinct blocks in the transposed ciphertext.
@@ -98,7 +96,7 @@ object Main {
             transposedCiphertext.grouped(6).map(letter => (alphabet.indexOf(letter) + 'A').toChar).mkString
 
         // Decrypt the text using a hill-climbing algorithm.
-        val brokenData = SubstitutionCipherBreaker.break(textInEnglishAlphabet)
+        val brokenData = MonoAlphabeticSubstitutionCipherBreaker.break(textInEnglishAlphabet)
         println(brokenData.textData)
 
         return brokenData

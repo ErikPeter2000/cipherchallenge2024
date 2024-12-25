@@ -2,7 +2,7 @@ package com.core.alphabets
 
 import com.core.collections.BiMap
 
-/** An alphabet containing uppercase letters and digits. A-Z (0-25) and 0-9 (26-35).
+/** Represents uppercase letters and digits of the English alphabet. A-Z (0-25) and 0-9 (26-35).
   */
 object UppercaseLettersDigits extends BiMapAlphabet[Char] {
     protected override val biMap = new BiMap[Int, Char](

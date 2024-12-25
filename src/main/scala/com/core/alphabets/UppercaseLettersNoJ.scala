@@ -2,7 +2,9 @@ package com.core.alphabets
 
 import com.core.collections._
 
-/** Represents the uppercase letters of the English alphabet. A-I, K-Z (0-8, 9-24).
+/** Represents the uppercase letters of the English alphabet, excluding the letter J. A-I, K-Z (0-8, 9-24).
+  *
+  * This is useful for grid ciphers with only 25 letters, where the letter J is omitted.
   */
 object UppercaseLettersNoJ extends BiMapAlphabet[Char] {
     protected override val biMap: BiMap[Int, Char] = new BiMap(

@@ -2,7 +2,7 @@ package com.core.alphabets
 
 import com.core.collections._
 
-/** Represents the Morse alphabet. A-Z are represented by 0-25, and 1-9, 0 are represented by 26-35.
+/** Represents the International Morse alphabet. A-Z are represented by 0-25, and 1-9, 0 are represented by 26-35.
   */
 object MorseAlphabet extends BiMapAlphabet[String] {
     protected override val biMap = new BiMap[Int, String](

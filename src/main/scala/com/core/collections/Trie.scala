@@ -5,11 +5,29 @@ import scala.collection.mutable.Map
 import scala.collection.parallel.CollectionConverters._
 import com.core.cipherdata.CipherDataBlock
 
+/** A Trie is a tree data structure that is used to store a dynamic set of strings. It is used in string matching
+  * algorithms like Aho-Corasick.
+  *
+  * The Trie is built by inserting the strings one character at a time. The root node is empty, and each child node
+  * represents a character in the string.
+  *
+  * The Trie can be used to search for a string in a text. The search is done by traversing the Trie, following the
+  * characters in the text. If the search reaches a node that is not in the Trie, it backtracks to the last node that has
+  * a child with the current character.
+  *
+  * The Trie can also be used to search for multiple strings in a text. This is done by building a failure link between
+  * nodes. The failure link is a pointer to the longest suffix of the current node that is also a prefix of the Trie.
+  *
+  * @tparam T
+  *   The type of the characters in the Trie.
+  */
 class TrieNode[T] {
     var children: Map[T, TrieNode[T]] = Map()
     var fail: TrieNode[T] = uninitialized
     var output: List[Iterable[T]] = List()
 }
+
+/** Companion object for the TrieNode class. */
 object TrieNode {
     def buildTrie[T](phrases: Set[? <: Iterable[T]]): TrieNode[T] = {
         val root = new TrieNode[T]

@@ -7,8 +7,13 @@ import com.core.ciphers.VigenereCipher
 import com.core.evolutionaryalgorithms.FitnessFunctions.eriksWordFitness
 import com.core.progressbar.ProgressBar
 
+/** Breaker for the Vigenere cipher.
+  *
+  * Uses Kasiski's test to determine the key for the Vigenere cipher, and then tests all possible key lengths to
+  * determine the best key.
+  */
 object VigenereCipherBreaker extends CipherBreaker[Char, Seq[Char]] {
-    // The vulnerability of the Vigenere cipher lies in the fact that if we know the key length 'n', we know that every nth letter has been encrypted with the same shift value. This means that we can treat each column as a Caesar cipher, and solve it using frequency analysis. 
+    // The vulnerability of the Vigenere cipher lies in the fact that if we know the key length 'n', we know that every nth letter has been encrypted with the same shift value. This means that we can treat each column as a Caesar cipher, and solve it using frequency analysis.
     def break(data: String) = {
         break(CipherDataBlock.create(data))
     }
@@ -30,7 +35,7 @@ object VigenereCipherBreaker extends CipherBreaker[Char, Seq[Char]] {
                 .toVector
                 .dropRight(1) // drop in case the last group is not full length, otherwise transpose won't work
                 .transpose // Convert to a list of columns. Now, all elements of a column have been encrypted with the same shift value, so we can treat each column as a Caesar cipher, and is susceptible to frequency analysis.
-                //.map(x => CipherDataBlock.create(x, data.alphabet))
+            // .map(x => CipherDataBlock.create(x, data.alphabet))
 
             // Get the shift value for each column by solving the Caesar cipher
             val shiftValues = columns.map { group =>

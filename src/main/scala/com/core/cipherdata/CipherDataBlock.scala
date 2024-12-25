@@ -152,7 +152,7 @@ object CipherDataBlock {
         new CipherDataBlock[T](data, alphabet)
     }
     def create(
-        data: Seq[Char],
+        data: Seq[Char]
     ): CipherDataBlock[Char] = {
         new CipherDataBlock[Char](data, Alphabet.default)
     }

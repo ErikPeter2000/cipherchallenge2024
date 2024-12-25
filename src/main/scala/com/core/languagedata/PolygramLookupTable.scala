@@ -1,5 +1,7 @@
 package com.core.languagedata
 
+/** Trait for quickly looking up the frequency of polygrams using an array.
+  */
 trait PolygramLookupTable(val table: Vector[Double]) {
     def lookup(index: Int): Double = table(index)
     def lookup(polygram: Seq[Char]): Double

@@ -5,6 +5,8 @@ import scala.util.Random
 import scala.annotation.switch
 import com.core.collections.BiMap
 
+/** Extensions for BiMap instances.
+  */
 object BiMapExtensions {
     val MAX_DISPLAY_LINES = 10
     lazy val rng = new Random(0)

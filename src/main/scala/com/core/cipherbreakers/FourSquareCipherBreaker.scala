@@ -7,8 +7,17 @@ import com.core.extensions.BiMapExtensions._
 import com.core.evolutionaryalgorithms._
 import com.core.alphabets.UppercaseLetters
 
+/** A breaker for the Four Square Cipher.
+  *
+  * Uses an evolutionary hill-climbing algorithm to determine the key for the Four Square Cipher.
+  */
 object FourSquareCipherBreaker extends CipherBreaker[Char, Vector[BiMap[Int, Char]]] {
-    def break(data: CipherDataBlock[Char], startTemperature: Double, generations: Int = 3000, children: Int = 10): BreakerResult[Char, Char, Vector[BiMap[Int, Char]]] = {
+    def break(
+        data: CipherDataBlock[Char],
+        startTemperature: Double,
+        generations: Int = 3000,
+        children: Int = 10
+    ): BreakerResult[Char, Char, Vector[BiMap[Int, Char]]] = {
         val breaker = new BaseEvolutionaryAlgorithm[Char, Char, Vector[BiMap[Int, Char]]](
             FourSquareCipher,
             FitnessFunctions.ngramFitness(2),
@@ -38,7 +47,7 @@ object FourSquareCipherBreaker extends CipherBreaker[Char, Vector[BiMap[Int, Cha
             },
             ChildSelectionPolicy.expDfOverT(startTemperature, 0)
         );
-        
+
         val alphabet = data.alphabet
         if (alphabet.size != 25) {
             throw new IllegalArgumentException("FourSquareCipherBreaker requires an alphabet of size 25")

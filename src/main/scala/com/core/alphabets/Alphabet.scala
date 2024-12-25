@@ -1,6 +1,6 @@
 package com.core.alphabets
 
-/** Trait for all alphabets.
+/** Trait for all alphabets. Alphabets are used to map characters to integers and vice versa.
   */
 trait Alphabet[T] extends Iterable[(Int, T)] {
     def values: Iterable[T]
@@ -12,5 +12,5 @@ trait Alphabet[T] extends Iterable[(Int, T)] {
 }
 
 object Alphabet {
-  val default: Alphabet[Char] = FastUppercaseLetters
+    val default: Alphabet[Char] = FastUppercaseLetters
 }

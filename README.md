@@ -15,7 +15,7 @@ Deciphered Story: [Submissions](submissions/Submissions.md).
 - [Matrix Transposition Cipher](src/main/java/unyxe/main/ciphers/transposition/MatrixTranspositionCipher.java)
 - [Periodic Affine Cipher](src/main/java/unyxe/main/ciphers/periodicpolyalphabetic/PeriodicAffineCipher.java)
 - [Periodic Poly-alphabetic Substitution Cipher](src/main/java/unyxe/main/ciphers/periodicpolyalphabetic/PeriodicPolyAlphabeticSubstitutionCipher.java)
-- [Permutation Cipher](src/main/java/unyxe/main/ciphers/transposition/PermutationCipher.java)
+- [Permutation Cipher](./src/main/scala/com/core/ciphers/PermutationCipher.scala)
 - [Polybius Square Cipher](./src/main/scala/com/core/ciphers/PolybiusCipher.scala)
 - [Porta Cipher](src/main/java/unyxe/main/ciphers/periodicpolyalphabetic/PortaCipher.java)
 - [Quagmire1 Cipher](src/main/java/unyxe/main/ciphers/periodicpolyalphabetic/Quagmire1Cipher.java)
@@ -23,7 +23,6 @@ Deciphered Story: [Submissions](submissions/Submissions.md).
 - [Quagmire3 Cipher](src/main/java/unyxe/main/ciphers/periodicpolyalphabetic/Quagmire3Cipher.java)
 - [Quagmire4 Cipher](src/main/java/unyxe/main/ciphers/periodicpolyalphabetic/Quagmire4Cipher.java)
 - [Substitution Cipher](./src/main/scala/com/core/ciphers/SubstitutionCipher.scala)
-- [Transposition Cipher](./src/main/scala/com/core/ciphers/TranspositionCipher.scala)
 - [Variant Beaufort Cipher](src/main/java/unyxe/main/ciphers/periodicpolyalphabetic/VariantBeaufortCipher.java)
 - [Vigenère Cipher](./src/main/scala/com/core/ciphers/VigenereCipher.scala)
 
@@ -35,14 +34,13 @@ Deciphered Story: [Submissions](submissions/Submissions.md).
 - [Matrix Transposition Breaker](src/main/java/unyxe/main/breakers/transposition/MatrixTranspositionCipherBreaker.java)
 - [Periodic Affine Breaker](src/main/java/unyxe/main/breakers/periodicpolyalphabetic/PeriodicAffineCipherBreaker.java)
 - [Periodic Poly-alphabetic Substitution Breaker](src/main/java/unyxe/main/breakers/periodicpolyalphabetic/PeriodicPolyAlphabeticSubstitutionCipherBreaker.java)
-- [Permutation Breaker](src/main/java/unyxe/main/breakers/transposition/PermutationCipherBreaker.java)
+- [Permutation Breaker](/src/main/scala/com/core/cipherbreakers/PermutationCipherBreaker.scala)
 - [Porta Breaker](src/main/java/unyxe/main/breakers/periodicpolyalphabetic/PortaCipherBreaker.java)
 - [Quagmire1 Breaker](src/main/java/unyxe/main/breakers/periodicpolyalphabetic/Quagmire1CipherBreaker.java)
 - [Quagmire2 Breaker](src/main/java/unyxe/main/breakers/periodicpolyalphabetic/Quagmire2CipherBreaker.java)
 - [Quagmire3 Breaker](src/main/java/unyxe/main/breakers/periodicpolyalphabetic/Quagmire3CipherBreaker.java)
 - [Quagmire4 Breaker](src/main/java/unyxe/main/breakers/periodicpolyalphabetic/Quagmire4CipherBreaker.java)
 - [Substitution Breaker](./src/main/scala/com/core/cipherbreakers/SubstitutionCipherBreaker.scala)
-- [Transposition Breaker](./src/main/scala/com/core/cipherbreakers/TranspositionCipherBreaker.scala)
 - [Vigenère Breaker](./src/main/scala/com/core/cipherbreakers/VigenereCipherBreaker.scala)
 - [Variant Beaufort Breaker](src/main/java/unyxe/main/breakers/periodicpolyalphabetic/VariantBeaufortCipherBreaker.java)
 
@@ -84,4 +82,4 @@ Scala is a statically-typed language that runs on the Java Virtual Machine (JVM)
  - **Comments**: Use them, and make the most of docstrings. "Intuition" is unfortunately not always possible.
  - **Unit Tests**: They are your friends, and AI does a good job writing the structure for them. Aim to have anything in `core` covered. VSCode has good support for tests.
  - **Imports**: Third-party imports should go before project imports.
- - **Error Handling**: Add comments explaining what error could be thrown, but handling is not required.
+ - **Error Handling**: Handle errors where possible. If for performance reasons you've decided not to, please document the possible error and how to avoid it.

@@ -11,7 +11,10 @@ import com.core.cipherdata._
   * Like all transposition ciphers, the index of coincidence is the same as the plaintext. The frequency distribution is
   * also the same as the plaintext.
   */
-object TranspositionCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
+object PermutationCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
+
+    /** Encrypt the data using the Permutation cipher.
+      */
     def encrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherDataBlock[Char] = {
         val groups = data.grouped(key.size)
         val encrypted = groups.map { group =>
@@ -20,6 +23,8 @@ object TranspositionCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
         new CipherDataBlock(encrypted.flatten.toSeq, data.alphabet)
     }
 
+    /** Decrypt the data using the Permutation cipher.
+      */
     def decrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherDataBlock[Char] = {
         val groups = data.grouped(key.size)
         println("check")

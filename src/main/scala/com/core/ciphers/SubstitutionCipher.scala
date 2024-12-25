@@ -10,11 +10,17 @@ import com.core.collections.BiMap
   * different.
   */
 object SubstitutionCipher extends BaseCipher[Char, Char, BiMap[Char, Char]] {
+
+    /** Decrypt the data using the Substitution cipher.
+      */
     def decrypt(data: CipherDataBlock[Char], key: BiMap[Char, Char]): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val ciphertext = data.map(x => key.getReverse(x, x))
         CipherDataBlock.create(ciphertext, alphabet)
     }
+
+    /** Encrypt the data using the Substitution cipher.
+      */
     def encrypt(data: CipherDataBlock[Char], key: BiMap[Char, Char]): CipherDataBlock[Char] = {
         val alphabet = data.alphabet
         val ciphertext = data.map(x => key.get(x, x))

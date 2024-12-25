@@ -6,6 +6,6 @@ class DataTablesTests extends munit.FunSuite {
         val bigrams = DataTable.bigramFrequencies.take(5).toSeq
         val trigrams = DataTable.trigramFrequencies.take(5).toSeq
         val tetragrams = DataTable.tetragramFrequencies.take(5).toSeq
-        val commonWords = DataTable.iterateCommonWords.take(5).toSeq
+        val commonWords = DataTable.iteratorCommonWords.take(5).toSeq
     }  
 }
