@@ -10,5 +10,5 @@ class FrequencyCounterTests extends munit.FunSuite {
         val resultData = result.map { case (k, v) => (k.mkString, v) }
         assertEquals(resultData("AB"), 4)
         assertEquals(resultData("CD"), 4)
-    }  
+    }
 }

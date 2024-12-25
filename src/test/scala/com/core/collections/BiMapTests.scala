@@ -1,6 +1,5 @@
 package com.core.collections
 
-// test file for the BiMap class
 class BiMapTest extends munit.FunSuite {
 
     test("BiMap should have correct mappings") {

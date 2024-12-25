@@ -1,6 +1,5 @@
 package com.core.alphabets
 
-// test file for the Alphabets classes
 class AlphabetTests extends munit.FunSuite {
 
     test("UppercaseAlphabet should have correct mappings") {

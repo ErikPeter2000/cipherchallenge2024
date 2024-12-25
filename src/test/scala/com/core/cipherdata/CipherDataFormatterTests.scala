@@ -12,7 +12,7 @@ class CipherDataFormatterTests extends munit.FunSuite {
         val formatResult = creation._2
         val reinserted = formatResult.revertFormat(formattedData)
 
-        assertEquals(formattedData.mkString, formattedString)        
+        assertEquals(formattedData.mkString, formattedString)
         assertEquals(reinserted.mkString, original)
     }
 }
