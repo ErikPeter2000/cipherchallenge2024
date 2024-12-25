@@ -20,6 +20,9 @@ public class TextUtilities {
         }
         return formatted.toString();
     }
+    public static byte[] filterAndConvertToBytes(String text, String alphabet){
+        return convertToByteArray(filterText(text, alphabet), alphabet);
+    }
     public static byte[] formatAndConvertToBytes(String text){
         return convertToByteArray(formatText(text), Constants.alphabet);
     }

@@ -30,6 +30,9 @@ public class MonoAlphabeticCipherBreaker {
         return randomKey;
     }
 
+    public static CipherBreakerOutput<byte[]> evolutionaryHillClimbingAttack(byte[] cipherText){
+        return evolutionaryHillClimbingAttack(cipherText, 400, 400);
+    }
     public static CipherBreakerOutput<byte[]> evolutionaryHillClimbingAttack(byte[] cipherText, int genLimit, int keysPerGen){
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("MonoAlphabeticCipher", cipherText);
         byte[] bestKey = null;
