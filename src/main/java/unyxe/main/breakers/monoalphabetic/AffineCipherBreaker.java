@@ -7,14 +7,16 @@ import main.utils.FitnessCalculator;
 import java.util.ArrayList;
 
 public class AffineCipherBreaker {
+
+    private static final int ALPHABET_LENGTH = 26;
     public static CipherBreakerOutput<Integer> bruteforceTF(byte[] cipherText){
         CipherBreakerOutput<Integer> output = new CipherBreakerOutput<>("AffineCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
         int[] keys = new int[2];
 
-        for(int a = 0; a < 26;a++){
+        for(int a = 0; a < ALPHABET_LENGTH;a++){
             if(AffineCipher.isKeyInvalid(a)) continue;
-            for(int b = 0; b < 26;b++){
+            for(int b = 0; b < ALPHABET_LENGTH;b++){
                 byte[] text = AffineCipher.decipher(cipherText, a, b);
                 double newFitness = FitnessCalculator.TetragramFitness(text);
                 if(newFitness > output.fitness){output.fitness = newFitness;keys[0]=a;keys[1]=b;output.plainText = text;}
@@ -34,9 +36,9 @@ public class AffineCipherBreaker {
         output.fitness = FitnessCalculator.MonogramABVFitness(cipherText);
         int[] keys = new int[2];
 
-        for(int a = 0; a < 26;a++){
+        for(int a = 0; a < ALPHABET_LENGTH;a++){
             if(AffineCipher.isKeyInvalid(a)) continue;
-            for(int b = 0; b < 26;b++){
+            for(int b = 0; b < ALPHABET_LENGTH;b++){
                 byte[] text = AffineCipher.decipher(cipherText, a, b);
                 double newFitness = FitnessCalculator.MonogramABVFitness(text);
                 if(newFitness > output.fitness){output.fitness = newFitness;keys[0]=a;keys[1]=b;output.plainText = text;}

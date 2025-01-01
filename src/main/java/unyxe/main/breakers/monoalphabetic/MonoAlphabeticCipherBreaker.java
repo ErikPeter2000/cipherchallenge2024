@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MonoAlphabeticCipherBreaker {
+
+    private static final int INITIAL_FITNESS = -9999999;
+
     public static byte[] swapRandomInKey(byte[] key){
         byte[] newKey = Arrays.copyOf(key, key.length);
         int x = Random.random.nextInt(key.length);
@@ -22,6 +25,7 @@ public class MonoAlphabeticCipherBreaker {
         newKey[y] = key[x];
         return newKey;
     }
+
     public static byte[] generateRandomKey(){
         byte[] randomKey = TextUtilities.convertToByteArray(Constants.alphabet, Constants.alphabet);
         for(int i = 0; i < 1000;i++){
@@ -33,10 +37,11 @@ public class MonoAlphabeticCipherBreaker {
     public static CipherBreakerOutput<byte[]> evolutionaryHillClimbingAttack(byte[] cipherText){
         return evolutionaryHillClimbingAttack(cipherText, 400, 400);
     }
+
     public static CipherBreakerOutput<byte[]> evolutionaryHillClimbingAttack(byte[] cipherText, int genLimit, int keysPerGen){
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("MonoAlphabeticCipher", cipherText);
         byte[] bestKey = null;
-        output.fitness = -9999999;
+        output.fitness = INITIAL_FITNESS;
         byte[][] generation = new byte[keysPerGen][];
         for(int i = 0; i < keysPerGen/10; i++){
             generation[i] = generateRandomKey();
@@ -47,7 +52,7 @@ public class MonoAlphabeticCipherBreaker {
             }
             double[] topFitness = new double[keysPerGen/10];
             byte[][] topKeys = new byte[keysPerGen/10][];
-            Arrays.fill(topFitness, -9999999);
+            Arrays.fill(topFitness, INITIAL_FITNESS);
             int lowestIndex = 0;
             for(int j = 0; j < keysPerGen; j++){
                 byte[] text = MonoAlphabeticCipher.decipher(cipherText, generation[j]);
@@ -58,7 +63,7 @@ public class MonoAlphabeticCipherBreaker {
                     topKeys[lowestIndex] = Arrays.copyOf(generation[j], generation[j].length);
                     double lowestFitness = 9999999;
                     for(int h = 0; h < topFitness.length; h++){
-                        if(topFitness[h] == -9999999){
+                        if(topFitness[h] == INITIAL_FITNESS){
                             lowestIndex = h;
                             break;
                         }
@@ -71,6 +76,7 @@ public class MonoAlphabeticCipherBreaker {
             }
             System.arraycopy(topKeys, 0, generation, 0, topFitness.length);
         }
+
         output.isSuccessful = (output.plainText!=null);
         output.key = new ArrayList<>();
         output.key.add(bestKey);
@@ -81,7 +87,7 @@ public class MonoAlphabeticCipherBreaker {
     public static CipherBreakerOutput<byte[]> evolutionaryHillClimbingAttackMF(byte[] cipherText, int genLimit, int keysPerGen){
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("MonoAlphabeticCipher", cipherText);
         byte[] bestKey = null;
-        output.fitness = -9999999;
+        output.fitness = INITIAL_FITNESS;
         byte[][] generation = new byte[keysPerGen][];
         for(int i = 0; i < keysPerGen/10; i++){
             generation[i] = generateRandomKey();
@@ -92,7 +98,7 @@ public class MonoAlphabeticCipherBreaker {
             }
             double[] topFitness = new double[keysPerGen/10];
             byte[][] topKeys = new byte[keysPerGen/10][];
-            Arrays.fill(topFitness, -9999999);
+            Arrays.fill(topFitness, INITIAL_FITNESS);
             int lowestIndex = 0;
             for(int j = 0; j < keysPerGen; j++){
                 byte[] text = MonoAlphabeticCipher.decipher(cipherText, generation[j]);
@@ -103,7 +109,7 @@ public class MonoAlphabeticCipherBreaker {
                     topKeys[lowestIndex] = Arrays.copyOf(generation[j], generation[j].length);
                     double lowestFitness = 9999999;
                     for(int h = 0; h < topFitness.length; h++){
-                        if(topFitness[h] == -9999999){
+                        if(topFitness[h] == INITIAL_FITNESS){
                             lowestIndex = h;
                             break;
                         }
@@ -116,6 +122,7 @@ public class MonoAlphabeticCipherBreaker {
             }
             System.arraycopy(topKeys, 0, generation, 0, topFitness.length);
         }
+
         output.isSuccessful = (output.plainText!=null);
         output.key = new ArrayList<>();
         output.key.add(bestKey);

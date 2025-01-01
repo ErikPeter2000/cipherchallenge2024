@@ -6,6 +6,7 @@ import main.utils.TextUtilities;
 public class MonoAlphabeticCipher {
     public static boolean isLikely(byte[] text){
         double ioc = Analyser.getIndexOfCoincedence(text, true);
+        // This is the range of index of coincidence in natural english text.
         return (ioc >= 0.85) || (ioc <= 0.93);
     }
 
