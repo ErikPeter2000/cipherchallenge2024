@@ -17,7 +17,7 @@ class AlphabetTests extends munit.FunSuite {
         assertEquals(MorseAlphabet.getReverse(".-"), Some(0))
         assertEquals(MorseAlphabet.getReverse("--.."), Some(25))
     }
-    
+
     test("CreateLetterMapAgainst should map correctly") {
         val map = UppercaseLetters.createLetterMapAgainst(LowercaseLetters)
         assertEquals(map.size, 26)

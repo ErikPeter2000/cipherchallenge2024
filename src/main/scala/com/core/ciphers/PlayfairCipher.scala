@@ -11,7 +11,7 @@ object PlayfairCipher extends BaseCipher[Char, Char, Seq[Char]] {
       *
       * @param data
       * @param key
-      *  25 unique characters to use as the 5x5 grid.
+      *   25 unique characters to use as the 5x5 grid.
       * @param padChars
       *   The two distinct characters to use for padding.
       * @return
@@ -66,7 +66,7 @@ object PlayfairCipher extends BaseCipher[Char, Char, Seq[Char]] {
       *
       * @param data
       * @param key
-      *  25 unique characters to use as the 5x5 grid.
+      *   25 unique characters to use as the 5x5 grid.
       * @return
       */
     def encrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherDataBlock[Char] = {
@@ -77,7 +77,7 @@ object PlayfairCipher extends BaseCipher[Char, Char, Seq[Char]] {
       *
       * @param data
       * @param key
-      *  25 unique characters to use as the 5x5 grid.
+      *   25 unique characters to use as the 5x5 grid.
       * @return
       */
     def decrypt(data: CipherDataBlock[Char], key: Seq[Char]): CipherDataBlock[Char] = {

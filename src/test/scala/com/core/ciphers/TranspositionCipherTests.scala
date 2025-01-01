@@ -1,7 +1,7 @@
 package com.core.ciphers
 
+import com.core.cipherdata.CipherDataBlock
 import com.core.ciphers.PermutationCipher
-import com.core.cipherdata._
 
 class TranspositionCipherTest extends munit.FunSuite {
 

@@ -19,7 +19,7 @@ class CipherDataBlockTest extends munit.FunSuite {
 
     test("CipherDataBlock should be initialized with the default UppercaseAlphabet") {
         val cipherDataBlock = CipherDataBlock.empty()
-        assertEquals(cipherDataBlock.alphabet, Alphabet.default)
+        assertEquals(cipherDataBlock.alphabet, BaseAlphabet.default)
         assertEquals(cipherDataBlock.length, 0)
     }
 

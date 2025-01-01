@@ -58,7 +58,7 @@ class ProgressBar {
         val spinnerChar = spinnerChars(spinner)
         spinner = (spinner + 1) % spinnerChars.length
 
-        val sb = new StringBuilder()        
+        val sb = new StringBuilder()
         sb.append(s"$spinnerChar")
         sb.append(" ")
         sb.append(s"[$name]")

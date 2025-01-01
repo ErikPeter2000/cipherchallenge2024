@@ -21,9 +21,9 @@ object IterableExtensions {
           * @param padding
           *   The padding between column pairs when displayed across the page.
           * @param columnLimit
-          *  The maximum number of column pairs to display.
+          *   The maximum number of column pairs to display.
           * @param roundTo
-          *  The number of decimal places to round the values to. Only applicable to Double values.
+          *   The number of decimal places to round the values to. Only applicable to Double values.
           * @return
           *   A string representation of the table.
           */
@@ -44,13 +44,15 @@ object IterableExtensions {
                 case KeyPairOrder.Value     => pairs = pairs.sortBy(_._2)
                 case KeyPairOrder.ValueDesc => pairs = pairs.sortBy(_._2).reverse
                 case _                      =>
-            
+
             // Round the pairs if necessary
-            var pairsStringIter = pairs.map { case (k, v) => (s"$k",s"$v") }
+            var pairsStringIter = pairs.map { case (k, v) => (s"$k", s"$v") }
             if roundTo.isDefined && roundTo.get > 0 && pairs.head._2.isInstanceOf[Double] then {
-                pairsStringIter = pairs.map { case (k, v) => (k.toString, v.asInstanceOf[Double].formatted(s"%.${roundTo.get}f")) }
+                pairsStringIter = pairs.map { case (k, v) =>
+                    (k.toString, v.asInstanceOf[Double].formatted(s"%.${roundTo.get}f"))
+                }
             }
-            val pairsString=pairsStringIter.toSeq
+            val pairsString = pairsStringIter.toSeq
 
             // Separate the pairs into paired columns to fit the display
             val pairColumns = pairsString.grouped(MAX_DISPLAY_LINES).toSeq
@@ -81,8 +83,7 @@ object IterableExtensions {
                         sb.append("\u252C") // ┬
                         sb.append("─" * (valueWidth + 2))
                         sb.append("\u2510") // ┐
-                    }
-                    else if (y == -2) { // Header
+                    } else if (y == -2) { // Header
                         val keyHeader = header._1.reverse.padTo(keyWidth, ' ').reverse // right-align key
                         val valueHeader = header._2.padTo(valueWidth, ' ')
                         sb.append("\u2502 ") // │

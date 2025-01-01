@@ -1,6 +1,6 @@
 package com.core.ciphers
 
-import com.core.cipherdata._
+import com.core.cipherdata.CipherDataBlock
 
 /** Base class for all ciphers.
   * @tparam T

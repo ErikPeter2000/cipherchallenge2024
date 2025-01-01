@@ -1,6 +1,6 @@
 package com.core.cipherbreakers
 
-import com.core.alphabets.Alphabet
+import com.core.alphabets.BaseAlphabet
 
 class CaesarCipherBreakerTests extends munit.FunSuite {
     test("CaesarCipher.break") {
@@ -15,7 +15,7 @@ class CaesarCipherBreakerTests extends munit.FunSuite {
         val ciphertext = "EBJHRUJHRUZHOOSDUWRQHLWZDVDEULJKWFROGGDBLQDSULODQGWKHFORFNVZHUHVWULNLQJWKLUWHHQ"
         val expectedKey = 3
 
-        val givenKey = CaesarCipherBreaker.getKey(ciphertext, Alphabet.default)._1
+        val givenKey = CaesarCipherBreaker.getKey(ciphertext, BaseAlphabet.default)._1
         assertEquals(givenKey, expectedKey)
     }
 }

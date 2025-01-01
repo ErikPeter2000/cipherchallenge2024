@@ -1,19 +1,14 @@
 package com.core.cipherbreakers
 
-import scala.collection.mutable
-
-import com.core.cipherdata.CipherDataBlock
-import com.core.alphabets.FastUppercaseLetters
 import com.core.alphabets.PosIntAlphabet
+import com.core.cipherdata.CipherDataBlock
 import com.core.ciphers.PolybiusCipher
-import com.core.analysers.FrequencyAnalysis
-import com.core.evolutionaryalgorithms.BaseEvolutionaryAlgorithm
-import com.core.alphabets.UppercaseLetters
-import com.core.evolutionaryalgorithms.FitnessFunctions
-import com.core.extensions.SeqExtensions._
-import com.core.evolutionaryalgorithms.ChildSelectionPolicy
-import com.core.keys.KeyFactory
+import com.core.evolutionaryalgorithms.*
+import com.core.extensions.SeqExtensions.swapRandom
+import com.core.cipherkeys.KeyFactory
 import com.core.languagedata.DataTable
+
+import scala.collection.mutable
 
 /** Breaker for the Polybius cipher.
   *

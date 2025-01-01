@@ -1,7 +1,6 @@
 package com.core.ciphers
 
-import scala.math._
-import com.core.cipherdata._
+import com.core.cipherdata.CipherDataBlock
 
 /** The Column cipher is a transposition cipher that encrypts data by writing it into a grid, transposing the columns,
   * and then reading the data back out in columns.

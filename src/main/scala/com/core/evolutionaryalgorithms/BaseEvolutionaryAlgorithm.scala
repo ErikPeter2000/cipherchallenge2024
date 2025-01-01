@@ -1,11 +1,10 @@
 package com.core.evolutionaryalgorithms
 
-import scala.collection.parallel.CollectionConverters._
-
-import com.core.ciphers.BaseCipher
 import com.core.cipherdata.CipherDataBlock
-import com.core.cipherdata.CipherResult
+import com.core.ciphers.BaseCipher
 import com.core.progressbar.ProgressBar
+
+import scala.collection.parallel.CollectionConverters.*
 
 /** Base evolutionary "1 + λ" algorithm for breaking ciphers.
   *
@@ -16,12 +15,12 @@ import com.core.progressbar.ProgressBar
   * @param cipher
   *   The cipher to break. `Cipher.decrypt` will be called with a key, and the plaintext data evaluated for a score.
   * @param evaluationFunction
-  *   A function that takes a `CipherResult` and returns a score for how close the key is to the correct key. This
+  *   A function that takes a `CipherDataBlock` and returns a score for how close the key is to the correct key. This
   *   function could be the number of english words in the deciphered data, or the number of common frequent bigrams,
   *   etc.
   * @param randomiser
-  *   A function that takes the current key and some other information, and should return a new mutated key. The current key is
-  *   passed **by reference** and should be **cloned** before modification.
+  *   A function that takes the current key and some other information, and should return a new mutated key. The current
+  *   key is passed **by reference** and should be **cloned** before modification.
   *
   * @tparam T
   *   The type of the **plaintext** data; what comes out of the algorithm.
@@ -41,7 +40,8 @@ class BaseEvolutionaryAlgorithm[T, K, V](
         maxGenerations: Int,
         maxChildren: Int
     ) => V,
-    selectionPolicy: (currentScore: Double, newScore: Double, generation: Int, maxGeneration: Int) => Boolean = ChildSelectionPolicy.bestScore
+    selectionPolicy: (currentScore: Double, newScore: Double, generation: Int, maxGeneration: Int) => Boolean =
+        ChildSelectionPolicy.bestScore
 ) {
 
     /** Run the evolutionary algorithm to break the cipher.
@@ -56,7 +56,13 @@ class BaseEvolutionaryAlgorithm[T, K, V](
       * @return
       *   The key that was found to be the best.
       */
-    def run(data: CipherDataBlock[K], initialKey: V, generations: Int, children: Int, progressBarName: Option[String] = None): EvolutionaryAlgorithmResult[T, V] = {
+    def run(
+        data: CipherDataBlock[K],
+        initialKey: V,
+        generations: Int,
+        children: Int,
+        progressBarName: Option[String] = None
+    ): EvolutionaryAlgorithmResult[T, V] = {
         // Initial key, plaintext, and score
         var currentKey = initialKey
         var currentPlaintext = cipher.decrypt(data, currentKey)

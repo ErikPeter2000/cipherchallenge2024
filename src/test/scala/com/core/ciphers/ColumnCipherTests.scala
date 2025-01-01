@@ -1,7 +1,7 @@
 package com.core.ciphers
 
-import com.core.cipherdata.CipherDataBlock
 import com.core.alphabets.UppercaseLetters
+import com.core.cipherdata.CipherDataBlock
 
 class ColumnCipherTests extends munit.FunSuite {
     test("ColumnCipher encrypt") {

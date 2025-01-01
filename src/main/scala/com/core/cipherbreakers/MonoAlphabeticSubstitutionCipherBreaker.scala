@@ -1,13 +1,12 @@
 package com.core.cipherbreakers
 
-import com.core.cipherdata.CipherDataBlock
 import com.core.analysers.FrequencyAnalysis
-import com.core.keys.KeyFactory
+import com.core.cipherdata.CipherDataBlock
 import com.core.ciphers.MonoAlphabeticSubstitutionCipher
 import com.core.collections.BiMap
-import com.core.evolutionaryalgorithms._
+import com.core.evolutionaryalgorithms.*
 import com.core.extensions.BiMapExtensions.swapElements
-import breeze.linalg.max
+import com.core.cipherkeys.KeyFactory
 
 /** Breaker for the mono-alphabetic substitution cipher.
   *

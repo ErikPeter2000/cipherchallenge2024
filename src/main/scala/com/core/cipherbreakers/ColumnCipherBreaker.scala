@@ -1,11 +1,9 @@
 package com.core.cipherbreakers
 
 import com.core.cipherdata.CipherDataBlock
-import com.core.ciphers.PermutationCipher
-import com.core.analysers.IndexOfCoincidence
+import com.core.ciphers.ColumnCipher
 import com.core.evolutionaryalgorithms.FitnessFunctions
 import com.core.progressbar.ProgressBar
-import com.core.ciphers.ColumnCipher
 
 /** Breaker for the Columnar Transposition cipher.
   *

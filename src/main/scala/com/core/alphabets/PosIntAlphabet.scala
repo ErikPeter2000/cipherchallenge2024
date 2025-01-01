@@ -2,7 +2,7 @@ package com.core.alphabets
 
 /** Alphabet for all non-negative integers (includes 0).
   */
-object PosIntAlphabet extends Alphabet[Int] {
+object PosIntAlphabet extends BaseAlphabet[Int] {
     def iterator: Iterator[(Int, Int)] = Iterator.from(0).map(x => (x, x))
     override def values: Iterable[Int] = new Iterable[Int] {
         def iterator: Iterator[Int] = Iterator.from(0)

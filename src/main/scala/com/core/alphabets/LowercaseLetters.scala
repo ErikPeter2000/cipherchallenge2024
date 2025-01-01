@@ -1,6 +1,6 @@
 package com.core.alphabets
 
-import com.core.collections._
+import com.core.collections.BiMap
 
 /** Represents the lowercase alphabet. a-z (0-25).
   */

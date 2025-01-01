@@ -1,7 +1,7 @@
 package com.core.cipherbreakers
 
-import com.core.ciphers.BaseCipher
 import com.core.cipherdata.CipherDataBlock
+import com.core.ciphers.BaseCipher
 import com.core.collections.BiMap
 
 /** Represents the result of a cipher breaker.

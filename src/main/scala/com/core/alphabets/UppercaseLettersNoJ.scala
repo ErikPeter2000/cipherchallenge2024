@@ -1,6 +1,6 @@
 package com.core.alphabets
 
-import com.core.collections._
+import com.core.collections.BiMap
 
 /** Represents the uppercase letters of the English alphabet, excluding the letter J. A-I, K-Z (0-8, 9-24).
   *

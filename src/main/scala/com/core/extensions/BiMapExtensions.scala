@@ -1,9 +1,9 @@
 package com.core.extensions
 
 import com.core.alphabets.BiMapAlphabet
-import scala.util.Random
-import scala.annotation.switch
 import com.core.collections.BiMap
+
+import scala.util.Random
 
 /** Extensions for BiMap instances.
   */

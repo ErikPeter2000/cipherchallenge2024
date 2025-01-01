@@ -4,7 +4,7 @@ package com.core.alphabets
   *
   * This may be faster than using a BiMap.
   */
-object FastUppercaseLetters extends Alphabet[Char] {
+object FastUppercaseLetters extends BaseAlphabet[Char] {
     def iterator: Iterator[(Int, Char)] = (0 until 26).iterator.map(i => (i, ('A' + i).toChar))
     def values: Iterable[Char] = ('A' to 'Z')
     def apply(index: Int): Char = ('A' + index).toChar

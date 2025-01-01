@@ -1,9 +1,9 @@
 package com.core.cipherdata
 
-import com.core.alphabets._
-import com.core.extensions._
-import scala.collection.mutable.ArrayBuffer
+import com.core.alphabets.BaseAlphabet
 import com.core.cipherdata.CipherDataBlockFormatExtensions.format
+
+import scala.collection.mutable.ArrayBuffer
 
 /** Represents the plaintext or ciphertext data for a cipher. This class is mutable, and most methods will modify the
   * data in place.
@@ -12,12 +12,12 @@ import com.core.cipherdata.CipherDataBlockFormatExtensions.format
   */
 class CipherDataBlock[T](
     var data: ArrayBuffer[T],
-    var alphabet: Alphabet[T]
+    var alphabet: BaseAlphabet[T]
 ) extends Seq[T] {
-    def this(data: Seq[T], alphabet: Alphabet[T]) = {
+    def this(data: Seq[T], alphabet: BaseAlphabet[T]) = {
         this(ArrayBuffer(data*), alphabet)
     }
-    def this(alphabet: Alphabet[T]) = {
+    def this(alphabet: BaseAlphabet[T]) = {
         this(ArrayBuffer(), alphabet)
     }
     def apply(index: Int): T = data(index)
@@ -125,7 +125,7 @@ object CipherDataBlock {
       * @return
       *   A new CipherDataBlock with the given alphabet and data.
       */
-    def empty[T](alphabet: Alphabet[T]): CipherDataBlock[T] = {
+    def empty[T](alphabet: BaseAlphabet[T]): CipherDataBlock[T] = {
         new CipherDataBlock[T](alphabet)
     }
 
@@ -134,7 +134,7 @@ object CipherDataBlock {
       *   A new CipherDataBlock with the default UppercaseAlphabet.
       */
     def empty(): CipherDataBlock[Char] = {
-        new CipherDataBlock[Char](Alphabet.default)
+        new CipherDataBlock[Char](BaseAlphabet.default)
     }
 
     /** Creates a new CipherDataBlock with the given data and alphabet.
@@ -147,24 +147,24 @@ object CipherDataBlock {
       */
     def create[T](
         data: Seq[T],
-        alphabet: Alphabet[T]
+        alphabet: BaseAlphabet[T]
     ): CipherDataBlock[T] = {
         new CipherDataBlock[T](data, alphabet)
     }
     def create(
         data: Seq[Char]
     ): CipherDataBlock[Char] = {
-        new CipherDataBlock[Char](data, Alphabet.default)
+        new CipherDataBlock[Char](data, BaseAlphabet.default)
     }
 
     /** Creates a new CipherDataBlock with the given data and alphabet.
       */
-    def create(data: String, alphabet: Alphabet[Char]): CipherDataBlock[Char] = {
+    def create(data: String, alphabet: BaseAlphabet[Char]): CipherDataBlock[Char] = {
         new CipherDataBlock(data, alphabet)
     }
 
     def create(data: String): CipherDataBlock[Char] = {
-        new CipherDataBlock(data, Alphabet.default)
+        new CipherDataBlock(data, BaseAlphabet.default)
     }
 
     /** Creates a new CipherDataBlock with the given data and the default UppercaseAlphabet. Formats the data to remove
@@ -176,7 +176,7 @@ object CipherDataBlock {
       *   A tuple containing the new CipherDataBlock and the result of the formatting operation.
       */
     def formatAndCreate(data: String): (CipherDataBlock[Char], CipherFormatResult) = {
-        formatAndCreate(data, Alphabet.default)
+        formatAndCreate(data, BaseAlphabet.default)
     }
 
     /** Creates a new CipherDataBlock with the given data and the default UppercaseAlphabet. Formats the data to remove
@@ -187,8 +187,8 @@ object CipherDataBlock {
       * @return
       *   A tuple containing the new CipherDataBlock and the result of the formatting operation.
       */
-    def formatAndCreate(data: String, alphabet: Alphabet[Char]): (CipherDataBlock[Char], CipherFormatResult) = {
-        val instance = new CipherDataBlock(data, Alphabet.default)
+    def formatAndCreate(data: String, alphabet: BaseAlphabet[Char]): (CipherDataBlock[Char], CipherFormatResult) = {
+        val instance = new CipherDataBlock(data, BaseAlphabet.default)
         val formatResult = instance.format(alphabet)
         (instance, formatResult)
     }

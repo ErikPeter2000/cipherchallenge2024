@@ -9,6 +9,7 @@ import com.core.collections.BiMap
   * right, then top to bottom.
   *
   * Encryption is as follows:
+  * 
   * 1. The plaintext is split into bigrams.
   *
   * 2. The coordinate of the first letter is found in the first grid and the coordinate of the second letter is found in
@@ -16,8 +17,8 @@ import com.core.collections.BiMap
   *
   * 3. The letters are encrypted by mixing their coordinates: A' = (x2, y1) and B' = (x1, y2).
   *
-  * 4. The letters at A' in the second grid and B' in the third are the encrypted letters. They are concatenated to
-  * form the ciphertext.
+  * 4. The letters at A' in the second grid and B' in the third are the encrypted letters. They are concatenated to form
+  * the ciphertext.
   */
 object FourSquareCipher extends BaseCipher[Char, Char, Vector[BiMap[Int, Char]]] {
     def encrypt(data: CipherDataBlock[Char], key: Vector[BiMap[Int, Char]]): CipherDataBlock[Char] = {

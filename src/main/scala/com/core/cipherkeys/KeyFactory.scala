@@ -1,18 +1,15 @@
-package com.core.keys
+package com.core.cipherkeys
+
+import com.core.alphabets.BiMapAlphabet
+import com.core.collections.BiMap
+import com.core.languagedata.DataTable
 
 import scala.util.Random
-
-import com.core.alphabets._
-import com.core.collections.BiMap
-import com.core.alphabets.UppercaseLetters
-import com.core.languagedata.DataTable
-import scala.collection.mutable.ListBuffer
-import scala.collection.mutable.Stack
 
 /** Utility functions for keys based on characters.
   */
 object KeyFactory {
-    lazy val random = new Random(0)
+    lazy private val random = new Random(0)
 
     /** Combines a phrase with an alphabet, to create a sequence of distinct letters.
       *

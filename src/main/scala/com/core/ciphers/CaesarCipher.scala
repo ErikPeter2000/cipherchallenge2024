@@ -1,6 +1,6 @@
 package com.core.ciphers
 
-import com.core.cipherdata._
+import com.core.cipherdata.CipherDataBlock
 
 /** The Caesar cipher is a substitution cipher where each letter in the plaintext is shifted by a certain number of
   * places down the alphabet. It is the most primitive form of encryption.

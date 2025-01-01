@@ -1,16 +1,15 @@
 package com.core.evolutionaryalgorithms
 
-import scala.compiletime.uninitialized
-
 import com.core.cipherdata.CipherDataBlock
 
-/**
-  * Represents the result of an evolutionary algorithm, after an attempt at breaking a cipher.
-  * 
+import scala.compiletime.uninitialized
+
+/** Represents the result of an evolutionary algorithm, after an attempt at breaking a cipher.
+  *
   * @tparam T
-  *  The type of the input data in the cipher.
+  *   The type of the input data in the cipher.
   * @tparam V
-  * The type of the key used in the cipher.
+  *   The type of the key used in the cipher.
   */
 class EvolutionaryAlgorithmResult[T, V] {
     var key: V = uninitialized

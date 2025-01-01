@@ -1,14 +1,14 @@
 package com.core.cipherdata
 
+import com.core.alphabets.BaseAlphabet
 import com.core.cipherdata.CipherDataBlock
 import com.core.cipherdata.CipherFormatResult
-import com.core.alphabets.Alphabet
 
 /** Extensions for formatting cipher data blocks.
   */
 object CipherDataBlockFormatExtensions {
     extension (cipherDataBlock: CipherDataBlock[Char]) {
-        def format(alphabet: Alphabet[Char]): CipherFormatResult = {
+        def format(alphabet: BaseAlphabet[Char]): CipherFormatResult = {
             val removedElements = scala.collection.mutable.TreeMap[Int, Char]()
             val caseSwapped = scala.collection.mutable.ListBuffer[Int]()
             var data = cipherDataBlock.data
@@ -22,11 +22,11 @@ object CipherDataBlockFormatExtensions {
                     data.remove(i)
                 }
             }
-            cipherDataBlock.alphabet = Alphabet.default
+            cipherDataBlock.alphabet = BaseAlphabet.default
             new CipherFormatResult(removedElements, caseSwapped.toList, cipherDataBlock.alphabet)
         }
         def format(): CipherFormatResult = {
-            format(Alphabet.default)
+            format(BaseAlphabet.default)
         }
     }
 }

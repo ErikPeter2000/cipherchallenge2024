@@ -1,8 +1,9 @@
 package com.core.languagedata
 
+import com.core.alphabets.{BaseAlphabet, FastUppercaseLetters}
+
 import java.nio.file.Paths
 import scala.collection.immutable.WrappedString
-import com.core.alphabets._
 
 /** Object containing data tables for language analysis.
   */
@@ -43,7 +44,7 @@ object DataTable {
         .toSet
 
     // slow method to get the index of any n-gram
-    private def getPolygramIndex(polygram: Seq[Char], alphabet: Alphabet[Char]): Int = {
+    private def getPolygramIndex(polygram: Seq[Char], alphabet: BaseAlphabet[Char]): Int = {
         val length = polygram.length
         if (length < 1 || length > 4)
             throw new IllegalArgumentException("Only n-grams of size 1-4 are supported")
@@ -58,7 +59,7 @@ object DataTable {
     private def generatePolygramLogTable(
         n: Int,
         frequencies: Map[String, Double],
-        alphabet: Alphabet[Char],
+        alphabet: BaseAlphabet[Char],
         default: Double = -10
     ): Vector[Double] = {
         val table = Array.fill(math.pow(alphabet.size, n).toInt)(default)

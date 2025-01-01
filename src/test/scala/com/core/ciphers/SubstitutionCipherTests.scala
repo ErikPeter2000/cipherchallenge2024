@@ -1,10 +1,9 @@
 package com.core.ciphers
 
-import munit.FunSuite
-
+import com.core.cipherdata.CipherDataBlock
 import com.core.ciphers.MonoAlphabeticSubstitutionCipher
-import com.core.cipherdata._
 import com.core.collections.BiMap
+import munit.FunSuite
 
 class SubstitutionCipherTest extends FunSuite {
 

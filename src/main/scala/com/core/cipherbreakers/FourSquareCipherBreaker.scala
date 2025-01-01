@@ -1,11 +1,11 @@
 package com.core.cipherbreakers
 
-import com.core.collections.BiMap
+import com.core.alphabets.UppercaseLetters
 import com.core.cipherdata.CipherDataBlock
 import com.core.ciphers.FourSquareCipher
-import com.core.extensions.BiMapExtensions._
-import com.core.evolutionaryalgorithms._
-import com.core.alphabets.UppercaseLetters
+import com.core.collections.BiMap
+import com.core.evolutionaryalgorithms.*
+import com.core.extensions.BiMapExtensions.*
 
 /** A breaker for the Four Square Cipher.
   *

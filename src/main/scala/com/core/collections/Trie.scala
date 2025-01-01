@@ -1,9 +1,7 @@
 package com.core.collections
 
-import scala.compiletime.uninitialized
 import scala.collection.mutable.Map
-import scala.collection.parallel.CollectionConverters._
-import com.core.cipherdata.CipherDataBlock
+import scala.compiletime.uninitialized
 
 /** A Trie is a tree data structure that is used to store a dynamic set of strings. It is used in string matching
   * algorithms like Aho-Corasick.
@@ -12,8 +10,8 @@ import com.core.cipherdata.CipherDataBlock
   * represents a character in the string.
   *
   * The Trie can be used to search for a string in a text. The search is done by traversing the Trie, following the
-  * characters in the text. If the search reaches a node that is not in the Trie, it backtracks to the last node that has
-  * a child with the current character.
+  * characters in the text. If the search reaches a node that is not in the Trie, it backtracks to the last node that
+  * has a child with the current character.
   *
   * The Trie can also be used to search for multiple strings in a text. This is done by building a failure link between
   * nodes. The failure link is a pointer to the longest suffix of the current node that is also a prefix of the Trie.

@@ -1,12 +1,12 @@
 package com.core.alphabets
 
-import com.core.collections._
+import com.core.collections.BiMap
 
 /** Base class for all alphabets that use a bidirectional map between the indices and the letters of the alphabet.
   * @tparam T
   *   The type of the letters in the alphabet.
   */
-class BiMapAlphabet[T] extends Alphabet[T] {
+class BiMapAlphabet[T] extends BaseAlphabet[T] {
     protected val biMap: BiMap[Int, T] = BiMap.empty[Int, T]
 
     def this(pairs: Seq[T]) = {

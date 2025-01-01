@@ -1,9 +1,8 @@
 package com.core.ciphers
 
-import com.core.cipherdata.CipherDataBlock
-import com.core.cipherdata.CipherResult
-import com.core.alphabets.Alphabet
+import com.core.alphabets.BaseAlphabet
 import com.core.alphabets.PosIntAlphabet
+import com.core.cipherdata.CipherDataBlock
 
 /** A Polybius cipher maps the letters of the alphabet to a coordinate in a 5x5 grid. The result is then given as a flat
   * list of coordinates.
@@ -55,7 +54,7 @@ object PolybiusCipher extends BaseCipher[Char, Int, IndexedSeq[Char]] {
                 result += key(x(0) * gridWidth + x(1))
             }
         }
-        CipherDataBlock.create(result.toSeq, Alphabet.default)
+        CipherDataBlock.create(result.toSeq, BaseAlphabet.default)
     }
 
     /** Encrypt the data using the Polybius cipher.

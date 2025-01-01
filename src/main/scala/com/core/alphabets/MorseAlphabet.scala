@@ -1,6 +1,6 @@
 package com.core.alphabets
 
-import com.core.collections._
+import com.core.collections.BiMap
 
 /** Represents the International Morse alphabet. A-Z are represented by 0-25, and 1-9, 0 are represented by 26-35.
   */

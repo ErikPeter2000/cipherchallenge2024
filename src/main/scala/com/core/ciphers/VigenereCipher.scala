@@ -1,7 +1,6 @@
 package com.core.ciphers
 
 import com.core.cipherdata.CipherDataBlock
-import com.core.cipherdata.CipherResult
 
 /** The Vigenere cipher is a polyalphabetic substitution cipher that uses a repeating keyword to shift the plaintext.
   *

@@ -1,9 +1,9 @@
 package com.core.analysers
 
+import com.core.alphabets.BaseAlphabet
 import com.core.cipherdata.CipherDataBlock
-import scala.compiletime.ops.double
+
 import scala.collection.MapView
-import com.core.alphabets.Alphabet
 
 object FrequencyAnalysis {
 
@@ -46,7 +46,7 @@ object FrequencyAnalysis {
       * Uses an alphabet to ensure all possible values have a corresponding frequency. Letters in the alphabet that do
       * not appear in the data will have a frequency of 0.
       */
-    def relative[T](data: Iterable[T], alphabet: Alphabet[T]): MapView[T, Double] = {
+    def relative[T](data: Iterable[T], alphabet: BaseAlphabet[T]): MapView[T, Double] = {
         val counts =
             scala.collection.mutable.Map[T, Int](alphabet.values.map(x => x -> 0).toSeq*).withDefaultValue(0)
         data.foreach { x =>

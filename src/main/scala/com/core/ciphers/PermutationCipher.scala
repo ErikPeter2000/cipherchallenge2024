@@ -1,6 +1,6 @@
 package com.core.ciphers
 
-import com.core.cipherdata._
+import com.core.cipherdata.CipherDataBlock
 
 /** The Transposition cipher is a simple form of encryption where the positions of the characters are changed based on a
   * key of indices.

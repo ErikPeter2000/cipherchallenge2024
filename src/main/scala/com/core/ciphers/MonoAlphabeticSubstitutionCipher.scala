@@ -1,6 +1,6 @@
 package com.core.ciphers
 
-import com.core.cipherdata._
+import com.core.cipherdata.CipherDataBlock
 import com.core.collections.BiMap
 
 /** The Substitution cipher is a simple form of encryption where each character in the plaintext is replaced by another

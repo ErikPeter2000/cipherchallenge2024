@@ -1,8 +1,7 @@
 package com.core.ciphers
 
-import breeze.linalg._
+import breeze.linalg.{DenseMatrix, inv}
 import com.core.cipherdata.CipherDataBlock
-import com.core.cipherdata.CipherResult
 
 /** A Hill cipher is a polygraphic substitution cipher that uses a matrix.
   *

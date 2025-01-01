@@ -1,9 +1,9 @@
 package com.core.evolutionaryalgorithms
 
-import com.core.cipherdata.CipherDataBlock
 import com.core.analysers.FrequencyCounter
-import com.core.languagedata.DataTable
+import com.core.cipherdata.CipherDataBlock
 import com.core.collections.TrieNode
+import com.core.languagedata.DataTable
 
 /** Contains fitness functions that can be used to evaluate the English-ness of decoded ciphertext.
   *
@@ -32,9 +32,7 @@ object FitnessFunctions {
         val polygramFrequencies = DataTable.polygramFrequenciesLog(n)
         (data: CipherDataBlock[Char]) => {
             val ngrams = data.sliding(n)
-            val score = ngrams.map(
-                polygram => polygramFrequencies.lookup(polygram)
-            ).sum
+            val score = ngrams.map(polygram => polygramFrequencies.lookup(polygram)).sum
             score
         }
     }

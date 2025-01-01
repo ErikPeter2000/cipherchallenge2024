@@ -1,12 +1,10 @@
 package com.core.cipherbreakers
 
+import com.core.alphabets.BaseAlphabet
 import com.core.analysers.FrequencyAnalysis
 import com.core.cipherdata.CipherDataBlock
-import com.core.languagedata.DataTable
 import com.core.ciphers.CaesarCipher
-import com.core.alphabets.Alphabet
-import com.core.evolutionaryalgorithms.FitnessFunctions
-import com.core.extensions.IterableExtensions.pretty
+import com.core.languagedata.DataTable
 
 /** Breaker for the Caesar cipher.
   *
@@ -46,7 +44,7 @@ object CaesarCipherBreaker extends CipherBreaker[Char, Int] {
       * @param alphabet
       *   The alphabet to use for the analysis.
       */
-    def getKey(data: Seq[Char], alphabet: Alphabet[Char]) = {
+    def getKey(data: Seq[Char], alphabet: BaseAlphabet[Char]) = {
         val dataAnalysis = FrequencyAnalysis.relative(data, alphabet)
         val dataFrequencies = dataAnalysis.toVector.sortBy(x => alphabet.reverse(x._1)).map(x => x._2)
         val englishAnalysis = DataTable.unigramFrequenciesChar

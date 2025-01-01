@@ -1,7 +1,7 @@
 package com.core.ciphers
 
 import com.core.cipherdata.CipherDataBlock
-import com.core.keys.KeyFactory
+import com.core.cipherkeys.KeyFactory
 import com.core.alphabets.UppercaseLettersNoJ
 
 class PlayfairCipherTests extends munit.FunSuite {
@@ -16,7 +16,7 @@ class PlayfairCipherTests extends munit.FunSuite {
         val key = KeyFactory.combinePhraseWithAlphabet("KEYWORD", UppercaseLettersNoJ)
         val decrypted = PlayfairCipher.decrypt(data, key)
         assertEquals(decrypted.mkString, "BYGEORGEORWELXLPARTONEITWASABRIGHTCOLDDAYINAPRILANDX")
-    }    
+    }
     test("PlayfairCipher.encrypt pads bigrams correctly") {
         val data = CipherDataBlock.create("CAABCAABXXXXAAAAAAXXAXQQ")
         val key = KeyFactory.combinePhraseWithAlphabet("", UppercaseLettersNoJ)
