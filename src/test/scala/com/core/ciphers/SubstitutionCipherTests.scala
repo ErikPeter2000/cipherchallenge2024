@@ -2,7 +2,7 @@ package com.core.ciphers
 
 import munit.FunSuite
 
-import com.core.ciphers.SubstitutionCipher
+import com.core.ciphers.MonoAlphabeticSubstitutionCipher
 import com.core.cipherdata._
 import com.core.collections.BiMap
 
@@ -16,7 +16,7 @@ class SubstitutionCipherTest extends FunSuite {
             'L' -> 'O',
             'O' -> 'R'
         )
-        val result = SubstitutionCipher.encrypt(data, key)
+        val result = MonoAlphabeticSubstitutionCipher.encrypt(data, key)
         assertEquals(result.mkString, "KHOOR")
     }
 
@@ -28,15 +28,15 @@ class SubstitutionCipherTest extends FunSuite {
             'L' -> 'O',
             'O' -> 'R'
         )
-        val result = SubstitutionCipher.decrypt(data, key)
+        val result = MonoAlphabeticSubstitutionCipher.decrypt(data, key)
         assertEquals(result.mkString, "HELLO")
     }
 
     test("SubstitutionCipher handles empty input") {
         val data = CipherDataBlock.create("")
         val key = new BiMap[Char, Char]()
-        val encryptedResult = SubstitutionCipher.encrypt(data, key)
-        val decryptedResult = SubstitutionCipher.decrypt(data, key)
+        val encryptedResult = MonoAlphabeticSubstitutionCipher.encrypt(data, key)
+        val decryptedResult = MonoAlphabeticSubstitutionCipher.decrypt(data, key)
         assertEquals(encryptedResult.mkString, "")
         assertEquals(decryptedResult.mkString, "")
     }
@@ -48,7 +48,7 @@ class SubstitutionCipherTest extends FunSuite {
             'E' -> 'H'
             // 'L' and 'O' are not in the key
         )
-        val result = SubstitutionCipher.encrypt(data, key)
+        val result = MonoAlphabeticSubstitutionCipher.encrypt(data, key)
         assertEquals(result.mkString, "KHLLO") // 'L' and 'O' remain unchanged
     }
 
@@ -59,7 +59,7 @@ class SubstitutionCipherTest extends FunSuite {
             'E' -> 'H'
             // 'L' and 'O' are not in the key
         )
-        val result = SubstitutionCipher.decrypt(data, key)
+        val result = MonoAlphabeticSubstitutionCipher.decrypt(data, key)
         assertEquals(result.mkString, "HEOOR") // 'O' and 'R' remain unchanged
     }
 }

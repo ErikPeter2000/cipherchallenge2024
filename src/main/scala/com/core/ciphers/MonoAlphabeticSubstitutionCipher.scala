@@ -9,7 +9,7 @@ import com.core.collections.BiMap
   * The Substitution cipher has the same index of coincidence as the plaintext, but the frequency distribution is
   * different.
   */
-object SubstitutionCipher extends BaseCipher[Char, Char, BiMap[Char, Char]] {
+object MonoAlphabeticSubstitutionCipher extends BaseCipher[Char, Char, BiMap[Char, Char]] {
 
     /** Decrypt the data using the Substitution cipher.
       */
