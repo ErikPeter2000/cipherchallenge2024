@@ -21,7 +21,7 @@ object ColumnCipherBreaker extends CipherBreaker[Char, IndexedSeq[Int]] {
         var bestScore = 0.0
         var bestKey: IndexedSeq[Int] = null
         var bestDecryption: CipherDataBlock[Char] = null
-        val progressBar = new ProgressBar(maxKeyLength - 1, "TranspositionCipherBreaker")
+        val progressBar = new ProgressBar(maxKeyLength - 1, "ColumnCipherBreaker")
         for (keyLength <- 1 to maxKeyLength) {
             (0 until keyLength).permutations.foreach { permutation =>
                 val padded = data.clone().padToMultiple(permutation.length, 'X')

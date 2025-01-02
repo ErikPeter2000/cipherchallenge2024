@@ -27,7 +27,6 @@ object PermutationCipher extends BaseCipher[Char, Char, IndexedSeq[Int]] {
       */
     def decrypt(data: CipherDataBlock[Char], key: IndexedSeq[Int]): CipherDataBlock[Char] = {
         val groups = data.grouped(key.size)
-        println("check")
         val decrypted = groups.map { group =>
             key.indices.map(i => group(key.indexOf(i)))
         }
