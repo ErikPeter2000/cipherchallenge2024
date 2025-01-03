@@ -10,26 +10,64 @@ import java.util.Arrays;
 
 import static java.lang.Double.parseDouble;
 
+/**
+ * Constants class contains all the constants used in the project.
+ * It also initializes the monograms and polygrams.
+ */
 public class Constants {
+    /**
+     * The alphabet used in the project.
+     */
     public static final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    /**
+     * The number of monograms in the alphabet.
+     */
     public static final int monogramCount = 26;
     //public static final int bigramCount = 676;
     //public static final int trigramCount = 17556;
     //public static final int tetragramCount = 274397;
 
+    /**
+     * The project directory.
+     */
     public static final String projectDir = System.getProperty("user.dir") + "/";
 
+    /**
+     * The tetragram map.
+     */
     public static double[] tetragramMapFast = new double[475254];
 
+    /**
+     * The full wordlist.
+     */
     public static byte[][] wordlist;
+
+    /**
+     * The small wordlist.
+     */
     public static byte[][] smallWordlist;
 
-    public static byte[][][] wordlistSplitted;
-    public static byte[][][] smallWordlistSplitted;
+    /**
+     * The wordlist split by length.
+     */
+    public static byte[][][] wordlistSplit;
+    /**
+     * The small wordlist split by length.
+     */
+    public static byte[][][] smallWordlistSplit;
 
+    /**
+     * The monogram statistics.
+     */
     public static double[] monogramStatistics = new double[monogramCount];
+    /**
+     * The monogram signature.
+     */
     public static double[] monogramSignature = new double[monogramCount];
 
+    /**
+     * Initializes the monograms and polygrams.
+     */
     public static void initialize() {
         try {
             System.out.print("Initializing monograms...");
@@ -43,13 +81,16 @@ public class Constants {
             return;
         }
         initializeWordlist();
-        wordlistSplitted = splitWordlistByLength(wordlist, 16);
+        wordlistSplit = splitWordlistByLength(wordlist, 16);
         initializeSmallerWordlist();
-        smallWordlistSplitted = splitWordlistByLength(smallWordlist, 19);
+        smallWordlistSplit = splitWordlistByLength(smallWordlist, 19);
 
         PortaCipher.generateTableU();
     }
 
+    /**
+     * Initializes the smaller wordlist.
+     */
     static void initializeSmallerWordlist() {
         System.out.print("Initializing small wordlist...");
         String filepath = (projectDir + "resources/englishwords/google-10000-english-no-swears.txt");
@@ -62,6 +103,12 @@ public class Constants {
         System.out.println("Done.");
     }
 
+    /**
+     * Splits the wordlist by length.
+     * @param wordlist The wordlist to split.
+     * @param maxLength The maximum length of the wordlist.
+     * @return The split wordlist.
+     */
     static byte[][][] splitWordlistByLength(byte[][] wordlist, int maxLength) {
         byte[][][] splitWordlist = new byte[maxLength][][];
         ArrayList<byte[]>[] list = new ArrayList[maxLength];
@@ -77,6 +124,11 @@ public class Constants {
         return splitWordlist;
     }
 
+    /**
+     * Puts words from a file into a list.
+     * @param filepath The path of the file.
+     * @param stringList The list to put the words into.
+     */
     private static void putWordsFromFile(String filepath, ArrayList<String> stringList) {
         try (FileReader fr = new FileReader(filepath)) {
             BufferedReader br = new BufferedReader(fr);
@@ -89,6 +141,9 @@ public class Constants {
         }
     }
 
+    /**
+     * Initializes the wordlist.
+     */
     static void initializeWordlist() {
         ArrayList<String> stringList = new ArrayList<>();
         for (int i = 3; i < 16; i++) {
@@ -101,6 +156,10 @@ public class Constants {
         }
     }
 
+    /**
+     * Initializes the polygrams.
+     * @throws IOException If the file is not found.
+     */
     static void InitializePolygrams() throws IOException {
         initializePolygram(projectDir + "resources/polygrams/Tetragram.csv", 4);
         for (int i = 0; i < tetragramMapFast.length; i++) {
@@ -110,15 +169,30 @@ public class Constants {
         }
     }
 
+    /**
+     * Gets the tetragram frequency.
+     * @param tetragramCA The tetragram to get the frequency of.
+     * @return The frequency of the tetragram.
+     */
     static double getTetragramFrequency(byte[] tetragramCA) {
         int i = getTetragramIndex(tetragramCA);
         return tetragramMapFast[i];
     }
 
+    /**
+     * Gets the index of a tetragram.
+     * @param tetragramCA The tetragram to get the index of.
+     * @return The index of the tetragram.
+     */
     static int getTetragramIndex(byte[] tetragramCA) {
         return tetragramCA[0] * 26 * 26 * 26 + tetragramCA[1] * 26 * 26 + tetragramCA[2] * 26 + tetragramCA[3];
     }
 
+    /**
+     * Initializes the polygram.
+     * @param path The path of the polygram.
+     * @param n The number of polygrams.
+     */
     static void initializePolygram(String path, int n) {
         {
             try (FileReader fr = new FileReader(path)) {

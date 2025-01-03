@@ -11,14 +11,29 @@ import main.utils.maths.Random;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class that contains methods to break MonoAlphabeticCipher
+ */
 public class MonoAlphabeticCipherBreaker {
 
-    private static final int INITIAL_FITNESS = -9999999;
+    /**
+     * Initial fitness value set to the lowest possible value
+     */
+    private static final int INITIAL_FITNESS = -2147483648;
 
+    /**
+     * Swaps two random digits in the key
+     * @param key key to swap digits in
+     * @return key with two random digits swapped
+     */
     public static byte[] swapRandomInKey(byte[] key) {
         return Permutations.swapTwoRandomDigits(key);
     }
 
+    /**
+     * Generates a random key
+     * @return random key
+     */
     public static byte[] generateRandomKey() {
         byte[] randomKey = TextUtilities.convertToByteArray(Constants.alphabet, Constants.alphabet);
         for (int i = 0; i < 1000; i++) {
@@ -27,10 +42,22 @@ public class MonoAlphabeticCipherBreaker {
         return randomKey;
     }
 
+    /**
+     * Performs a hill climbing attack on a cipher text with default parameters
+     * @param cipherText cipher text to break
+     * @return output of the attack
+     */
     public static CipherBreakerOutput<byte[]> evolutionaryHillClimbingAttack(byte[] cipherText) {
         return evolutionaryHillClimbingAttack(cipherText, 400, 400);
     }
 
+    /**
+     * Performs a hill climbing attack on a cipher text
+     * @param cipherText cipher text to break
+     * @param genLimit number of generations to run the attack for
+     * @param keysPerGen number of keys to generate per generation
+     * @return output of the attack
+     */
     public static CipherBreakerOutput<byte[]> evolutionaryHillClimbingAttack(byte[] cipherText, int genLimit, int keysPerGen) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("MonoAlphabeticCipher", cipherText);
         byte[] bestKey = null;
@@ -80,7 +107,13 @@ public class MonoAlphabeticCipherBreaker {
         return output;
     }
 
-
+    /**
+     * Performs a hill climbing attack on a cipher text using monogram fitness
+     * @param cipherText cipher text to break
+     * @param genLimit number of generations to run the attack for
+     * @param keysPerGen number of keys to generate per generation
+     * @return output of the attack
+     */
     public static CipherBreakerOutput<byte[]> evolutionaryHillClimbingAttackMF(byte[] cipherText, int genLimit, int keysPerGen) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("MonoAlphabeticCipher", cipherText);
         byte[] bestKey = null;

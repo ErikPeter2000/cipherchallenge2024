@@ -7,7 +7,16 @@ import main.utils.maths.ModularArithmetics;
 
 import java.util.ArrayList;
 
+/**
+ * Class to break Twisted Scytale cipher.
+ */
 public class TwistedScytaleCipherBreaker {
+    /**
+     * Method to break Twisted Scytale cipher.
+     *
+     * @param cipherText The cipher text to break.
+     * @return The output of the breaker.
+     */
     public static CipherBreakerOutput<int[]> bruteforce(byte[] cipherText) {
         CipherBreakerOutput<int[]> output = new CipherBreakerOutput<>("TwistedScytale", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);

@@ -7,7 +7,16 @@ import main.utils.FitnessCalculator;
 
 import java.util.ArrayList;
 
+/**
+ * Class to break Caesar Cipher
+ */
 public class CaesarCipherBreaker {
+    /**
+     * Breaks Caesar Cipher using brute force attack with tetragram fitness
+     *
+     * @param cipherText Cipher text
+     * @return Output of the breaker
+     */
     public static CipherBreakerOutput<Integer> bruteforceTF(byte[] cipherText) {
         CipherBreakerOutput<Integer> output = new CipherBreakerOutput<>("CaesarCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -27,6 +36,12 @@ public class CaesarCipherBreaker {
         return output;
     }
 
+    /**
+     * Breaks Caesar Cipher with a crib using brute force attack with tetragram fitness
+     *
+     * @param cipherText Cipher text
+     * @return Output of the breaker
+     */
     public static CipherBreakerOutput<Integer> bruteforceWithCrib(byte[] cipherText, byte[] crib) {
         CipherBreakerOutput<Integer> output = new CipherBreakerOutput<>("CaesarCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -56,6 +71,12 @@ public class CaesarCipherBreaker {
         return output;
     }
 
+    /**
+     * Breaks Caesar Cipher with multiple cribs using brute force attack with tetragram fitness
+     *
+     * @param cipherText Cipher text
+     * @return Output of the breaker
+     */
     public static CipherBreakerOutput<Integer> bruteforceWithCribs(byte[] cipherText, byte[][] cribs) {
         CipherBreakerOutput<Integer> output = new CipherBreakerOutput<>("CaesarCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -72,6 +93,12 @@ public class CaesarCipherBreaker {
         return output;
     }
 
+    /**
+     * Breaks Caesar Cipher using brute force attack with monogram fitness
+     *
+     * @param cipherText Cipher text
+     * @return Output of the breaker
+     */
     public static CipherBreakerOutput<Integer> bruteforceMFC(byte[] cipherText) {
         CipherBreakerOutput<Integer> output = new CipherBreakerOutput<>("CaesarCipher", cipherText);
         output.fitness = FitnessCalculator.MonogramChiFitness(cipherText);
@@ -93,6 +120,12 @@ public class CaesarCipherBreaker {
         return output;
     }
 
+    /**
+     * Breaks Caesar Cipher using brute force attack with monogram fitness
+     *
+     * @param cipherText Cipher text
+     * @return Output of the breaker
+     */
     public static CipherBreakerOutput<Integer> bruteforceMFA(byte[] cipherText) {
         CipherBreakerOutput<Integer> output = new CipherBreakerOutput<>("CaesarCipher", cipherText);
         output.fitness = FitnessCalculator.MonogramABVFitness(cipherText);

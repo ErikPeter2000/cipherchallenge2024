@@ -8,7 +8,18 @@ import main.utils.maths.Random;
 
 import java.util.ArrayList;
 
+/**
+ * A class that contains methods to break the Permutation Cipher.
+ */
 public class PermutationCipherBreaker {
+    /**
+     * A method that uses brute force to break the Permutation Cipher.
+     *
+     * @param cipherText          The cipher text to be broken.
+     * @param maxBlockSize        The maximum block size to be considered.
+     * @param checkDivisibility    A boolean that indicates whether the block size should be divisible by the length of the cipher text.
+     * @return                    A CipherBreakerOutput object that contains the key, plain text and fitness of the deciphered text.
+     */
     public static CipherBreakerOutput<byte[]> bruteforce(byte[] cipherText, int maxBlockSize, boolean checkDivisibility) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("PermutationCipher", cipherText);
         byte[] bestKey = null;
@@ -31,6 +42,14 @@ public class PermutationCipherBreaker {
         return output;
     }
 
+    /**
+     * Performs a hill climbing attack on the Permutation Cipher.
+     * @param cipherText The cipher text to be broken.
+     * @param blockLength The block length of the cipher.
+     * @param marginOfError The margin of error to be considered.
+     * @param probabilityOfDescent The probability of descending to a lower fitness.
+     * @return A CipherBreakerOutput object that contains the key, plain text and fitness of the deciphered text.
+     */
     public static CipherBreakerOutput<byte[]> hillClimberAttack(byte[] cipherText, int blockLength, double marginOfError, double probabilityOfDescent) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("PermutationCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -60,10 +79,23 @@ public class PermutationCipherBreaker {
         return output;
     }
 
+    /**
+     * Performs a hill climbing attack on the Permutation Cipher.
+     * @param cipherText The cipher text to be broken.
+     * @param blockLength The block length of the cipher.
+     * @return A CipherBreakerOutput object that contains the key, plain text and fitness of the deciphered text.
+     */
     public static CipherBreakerOutput<byte[]> hillClimberAttack(byte[] cipherText, int blockLength) {
         return hillClimberAttack(cipherText, blockLength, 0.15, 0.05);
     }
 
+    /**
+     * A method that uses brute force to break the Permutation Cipher by trying all possible block sizes.
+     *
+     * @param cipherText          The cipher text to be broken.
+     * @param maxBlockSize        The maximum block size to be considered.
+     * @return                    A CipherBreakerOutput object that contains the key, plain text and fitness of the deciphered text.
+     */
     public static CipherBreakerOutput<byte[]> bruteforceBlockSizeUsingHillClimb(byte[] cipherText, int maxBlockSize, double marginOfError, double probabilityOfDescent) {
         CipherBreakerOutput<byte[]> bestCBO = hillClimberAttack(cipherText, 2, marginOfError, probabilityOfDescent);
         for (int i = 3; i <= maxBlockSize; i++) {
@@ -75,6 +107,13 @@ public class PermutationCipherBreaker {
         return bestCBO;
     }
 
+    /**
+     * A method that uses brute force to break the Permutation Cipher by trying all possible block sizes.
+     *
+     * @param cipherText          The cipher text to be broken.
+     * @param maxBlockSize        The maximum block size to be considered.
+     * @return                    A CipherBreakerOutput object that contains the key, plain text and fitness of the deciphered text.
+     */
     public static CipherBreakerOutput<byte[]> bruteforceBlockSizeUsingHillClimb(byte[] cipherText, int maxBlockSize) {
         return bruteforceBlockSizeUsingHillClimb(cipherText, maxBlockSize, 0.15, 0.05);
     }

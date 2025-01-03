@@ -9,14 +9,26 @@ import main.utils.TextUtilities;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class to break Quagmire4Cipher cipher.
+ */
 public class Quagmire4CipherBreaker {
+    /**
+     * Method to break Quagmire4Cipher cipher using dictionary attack.
+     *
+     * @param cipherText Encrypted text.
+     * @param alphabetKeyKnown Known part of the alphabet key.
+     * @param alphabetCiphetextKeyLength Length of the alphabet ciphertext key.
+     * @param shiftsKeyLength Length of the shifts key.
+     * @return Output of the cipher breaker.
+     */
     public static CipherBreakerOutput<byte[]> dictionaryAttack(byte[] cipherText, byte[] alphabetKeyKnown, int alphabetCiphetextKeyLength, int shiftsKeyLength) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("Quagmire4Cipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
         byte[] bestSKey = new byte[0];
         byte[] bestCKey = new byte[0];
-        byte[][] alphabetCiphertextKeyWordlist = Constants.smallWordlistSplitted[alphabetCiphetextKeyLength];
-        byte[][] shiftsKeyWordlist = Constants.smallWordlistSplitted[shiftsKeyLength];
+        byte[][] alphabetCiphertextKeyWordlist = Constants.smallWordlistSplit[alphabetCiphetextKeyLength];
+        byte[][] shiftsKeyWordlist = Constants.smallWordlistSplit[shiftsKeyLength];
         int n = 0;
         for (byte[] alphabetCiphertextKey : alphabetCiphertextKeyWordlist) {
             for (byte[] shiftsKey : shiftsKeyWordlist) {
@@ -42,15 +54,24 @@ public class Quagmire4CipherBreaker {
         return output;
     }
 
+    /**
+     * Method to break Quagmire4Cipher cipher using dictionary attack.
+     *
+     * @param cipherText Encrypted text.
+     * @param alphabetKeyLength Length of the alphabet key.
+     * @param alphabetCiphetextKeyLength Length of the alphabet ciphertext key.
+     * @param shiftsKeyLength Length of the shifts key.
+     * @return Output of the cipher breaker.
+     */
     public static CipherBreakerOutput<byte[]> dictionaryAttack(byte[] cipherText, int alphabetKeyLength, int alphabetCiphetextKeyLength, int shiftsKeyLength) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("Quagmire4Cipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
         byte[] bestAKey = new byte[0];
         byte[] bestSKey = new byte[0];
         byte[] bestCKey = new byte[0];
-        byte[][] alphabetKeyWordlist = Constants.smallWordlistSplitted[alphabetKeyLength];
-        byte[][] alphabetCiphertextKeyWordlist = Constants.smallWordlistSplitted[alphabetCiphetextKeyLength];
-        byte[][] shiftsKeyWordlist = Constants.smallWordlistSplitted[shiftsKeyLength];
+        byte[][] alphabetKeyWordlist = Constants.smallWordlistSplit[alphabetKeyLength];
+        byte[][] alphabetCiphertextKeyWordlist = Constants.smallWordlistSplit[alphabetCiphetextKeyLength];
+        byte[][] shiftsKeyWordlist = Constants.smallWordlistSplit[shiftsKeyLength];
         int n = 0;
         for (byte[] alphabetCiphertextKey : alphabetCiphertextKeyWordlist) {
             for (byte[] alphabetKey : alphabetKeyWordlist) {

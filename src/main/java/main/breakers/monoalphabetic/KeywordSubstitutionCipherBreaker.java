@@ -8,7 +8,16 @@ import main.utils.FitnessCalculator;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class that provides a method to break a Keyword Substitution Cipher using a wordlist bruteforce attack.
+ */
 public class KeywordSubstitutionCipherBreaker {
+    /**
+     * Breaks a Keyword Substitution Cipher using a wordlist bruteforce attack.
+     *
+     * @param cipherText The cipher text to break.
+     * @return A CipherBreakerOutput object containing the key, plain text, fitness, and success status.
+     */
     public static CipherBreakerOutput<byte[]> wordlistBruteforce(byte[] cipherText) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("KeywordSubstitutionCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);

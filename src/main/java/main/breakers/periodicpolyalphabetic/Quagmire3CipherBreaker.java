@@ -8,14 +8,25 @@ import main.utils.FitnessCalculator;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * A class that provides a method to break a Quagmire3 cipher using a dictionary attack.
+ */
 public class Quagmire3CipherBreaker {
+    /**
+     * Breaks a Quagmire3 cipher using a dictionary attack.
+     *
+     * @param cipherText       the cipher text to break
+     * @param alphabetKeyLength the length of the alphabet key
+     * @param shiftsKeyLength   the length of the shifts key
+     * @return a {@link CipherBreakerOutput} object containing the results of the break
+     */
     public static CipherBreakerOutput<byte[]> dictionaryAttack(byte[] cipherText, int alphabetKeyLength, int shiftsKeyLength) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("Quagmire3Cipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
         byte[] bestAKey = null;
         byte[] bestSKey = null;
-        byte[][] alphabetKeyWordlist = Constants.smallWordlistSplitted[alphabetKeyLength];
-        byte[][] shiftsKeyWordlist = Constants.smallWordlistSplitted[shiftsKeyLength];
+        byte[][] alphabetKeyWordlist = Constants.smallWordlistSplit[alphabetKeyLength];
+        byte[][] shiftsKeyWordlist = Constants.smallWordlistSplit[shiftsKeyLength];
         int n = 0;
         for (byte[] alphabetKey : alphabetKeyWordlist) {
             for (byte[] shiftsKey : shiftsKeyWordlist) {

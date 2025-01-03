@@ -2,8 +2,16 @@ package main.utils.maths;
 
 import java.util.Arrays;
 
+/**
+ * This class provides functions for operations or generation of permutations.
+ */
 public class Permutations {
 
+    /**
+     * Generates all possible permutations of a given length.
+     * @param length the length of the permutations
+     * @return an array of all possible permutations
+     */
     public static byte[][] generateAllPossiblePermutations(int length) { //based on Heap's algorithm
         byte[] A = new byte[length];
         byte[][] result = new byte[FactoradicNumbers.factorial(length)][];
@@ -39,6 +47,11 @@ public class Permutations {
         return result;
     }
 
+    /**
+     * Generates all possible permutations of a given length.
+     * @param length the length of the permutations
+     * @return an array of all possible permutations
+     */
     public static byte[] getBasePermutation(int length) {
         byte[] basePermutation = new byte[length];
         for (int i = 0; i < length; i++) {
@@ -47,6 +60,11 @@ public class Permutations {
         return basePermutation;
     }
 
+    /**
+     * Generates a permutation from a factoradic number.
+     * @param factoradic the factoradic number
+     * @return the permutation
+     */
     public static byte[] getPermutationFromFactoradic(byte[] factoradic) {
         int length = factoradic.length;
         byte[] basePermutation = getBasePermutation(length);
@@ -68,6 +86,11 @@ public class Permutations {
         return permutation;
     }
 
+    /**
+     * Generates a factoradic number from a permutation.
+     * @param permutation the permutation
+     * @return the factoradic number
+     */
     public static byte[] getFactoradicFromPermutation(byte[] permutation) {
         int length = permutation.length;
         byte[] factoradic = new byte[length];
@@ -89,6 +112,12 @@ public class Permutations {
         return factoradic;
     }
 
+    /**
+     * Composes two permutations.
+     * @param permutationA the first permutation
+     * @param permutationB the second permutation
+     * @return the composition of the two permutations
+     */
     public static byte[] permutationComposition(byte[] permutationA, byte[] permutationB) {
         if (permutationA.length != permutationB.length)
             throw new IllegalArgumentException("Permutations must have equal length to be able to form a composition.");
@@ -99,6 +128,11 @@ public class Permutations {
         return product;
     }
 
+    /**
+     * Inverts a permutation.
+     * @param permutation the permutation
+     * @return the inverse of the permutation
+     */
     public static byte[] permutationInverse(byte[] permutation) {
         byte[] inverse = new byte[permutation.length];
         for (int i = 0; i < inverse.length; i++) {
@@ -107,18 +141,39 @@ public class Permutations {
         return inverse;
     }
 
+    /**
+     * Generates the nth permutation of m objects.
+     * @param n the index of the permutation
+     * @param m the number of objects
+     * @return the nth permutation of m objects
+     */
     public static byte[] getNthPermutationOfMObjects(int n, int m) {
         return getPermutationFromFactoradic(FactoradicNumbers.toFactoradicForm(n, m));
     }
 
+    /**
+     * Finds the index of a permutation.
+     * @param permutation the permutation
+     * @return the index of the permutation
+     */
     public static int findNOfPermutation(byte[] permutation) {
         return FactoradicNumbers.toInteger(getFactoradicFromPermutation(permutation));
     }
 
+    /**
+     * Generates a random permutation of m objects.
+     * @param m the number of objects
+     * @return a random permutation of m objects
+     */
     public static byte[] getRandomPermutation(int m) {
         return getNthPermutationOfMObjects(Random.random.nextInt(FactoradicNumbers.factorial(m)), m);
     }
 
+    /**
+     * Swaps two random digits of a permutation.
+     * @param permutation the permutation
+     * @return the permutation with two random digits swapped
+     */
     public static byte[] swapTwoRandomDigits(byte[] permutation) {
         byte[] newPermutation = Arrays.copyOf(permutation, permutation.length);
         int x = Random.random.nextInt(permutation.length);
@@ -131,6 +186,12 @@ public class Permutations {
         return newPermutation;
     }
 
+    /**
+     * Rolls a permutation by a given number of steps.
+     * @param permutation the permutation
+     * @param numberOfSteps the number of steps
+     * @return the rolled permutation
+     */
     public static byte[] rollPermutation(byte[] permutation, int numberOfSteps) {
         if (numberOfSteps >= permutation.length) numberOfSteps %= permutation.length;
         byte[] newPermutation = new byte[permutation.length];
@@ -140,6 +201,11 @@ public class Permutations {
         return newPermutation;
     }
 
+    /**
+     * Rolls a permutation randomly.
+     * @param permutation the permutation
+     * @return the rolled permutation
+     */
     public static byte[] rollPermutationRandomly(byte[] permutation) {
         return rollPermutation(permutation, Random.random.nextInt(permutation.length));
     }

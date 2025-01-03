@@ -1,7 +1,10 @@
 package main;
 
+import main.ciphers.transposition.PermutationCipher;
 import main.utils.Constants;
 import main.cipherchallengebreakers.Challenge10B;
+import main.utils.TextUtilities;
+import main.utils.maths.Permutations;
 
 public class Main {
     public static void main(String[] args) {

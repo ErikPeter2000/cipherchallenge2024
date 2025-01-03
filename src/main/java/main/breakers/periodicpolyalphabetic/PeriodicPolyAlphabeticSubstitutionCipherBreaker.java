@@ -11,7 +11,18 @@ import main.utils.maths.Random;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Breaks a periodic polyalphabetic substitution cipher using a hill climbing algorithm.
+ */
 public class PeriodicPolyAlphabeticSubstitutionCipherBreaker {
+    /**
+     * Breaks a periodic polyalphabetic substitution cipher using a hill climbing algorithm.
+     *
+     * @param cipherText The cipher text to break.
+     * @param period     The period of the cipher.
+     * @param limit      The maximum number of iterations to run the hill climbing algorithm.
+     * @return A {@link CipherBreakerOutput} object containing the key and plain text.
+     */
     public static CipherBreakerOutput<byte[][]> hillClimber(byte[] cipherText, int period, int limit) {
         CipherBreakerOutput<byte[][]> output = new CipherBreakerOutput<>("PeriodicPolyAlphabeticSubstitutionCipher", cipherText);
 
@@ -65,6 +76,13 @@ public class PeriodicPolyAlphabeticSubstitutionCipherBreaker {
         return output;
     }
 
+    /**
+     * Initializes the keys for the hill climbing algorithm.
+     *
+     * @param cipherText The cipher text to break.
+     * @param period     The period of the cipher.
+     * @return An array of keys to use for the hill climbing algorithm.
+     */
     public static byte[][] initializeKeys(byte[] cipherText, int period) {
         byte[][] parentKey = new byte[period][26];
         for (int i = 0; i < period; i++) {

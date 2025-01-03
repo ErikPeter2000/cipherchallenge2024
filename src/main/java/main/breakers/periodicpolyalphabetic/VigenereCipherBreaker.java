@@ -10,8 +10,17 @@ import main.utils.periodanalysers.IOCPeriodAnalyser;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class to break Vigenere cipher
+ */
 public class VigenereCipherBreaker {
 
+    /**
+     * Generates all possible keys of given length
+     *
+     * @param length length of the key
+     * @return all possible keys
+     */
     public static byte[][] generateKeys(int length) {
         byte[][] keys = new byte[(int) Math.pow(Constants.monogramCount, length)][length];
         for (int i = 0; i < keys.length; i++) {
@@ -27,6 +36,12 @@ public class VigenereCipherBreaker {
         return keys;
     }
 
+    /**
+     * Brute force attack on Vigenere cipher
+     * @param cipherText cipher text
+     * @param maxLength maximum length of the key
+     * @return output of the attack
+     */
     public static CipherBreakerOutput<byte[]> bruteforce(byte[] cipherText, double maxLength) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("VigenereCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -52,6 +67,11 @@ public class VigenereCipherBreaker {
 
     //TODO: Attack with cribs
 
+    /**
+     * Brute force attack on Vigenere cipher with wordlist
+     * @param cipherText cipher text
+     * @return output of the attack
+     */
     public static CipherBreakerOutput<byte[]> bruteforceWithWordlist(byte[] cipherText) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("VigenereCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -72,6 +92,12 @@ public class VigenereCipherBreaker {
         return output;
     }
 
+    /**
+     * Hill climber attack on Vigenere cipher
+     * @param cipherText cipher text
+     * @param period period of the cipher
+     * @return output of the attack
+     */
     public static CipherBreakerOutput<byte[]> hillClimberAttack(byte[] cipherText, int period) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("VigenereCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -108,6 +134,12 @@ public class VigenereCipherBreaker {
         return output;
     }
 
+    /**
+     * Attack on Vigenere cipher using monogram frequency
+     * @param cipherText cipher text
+     * @param period period of the cipher
+     * @return output of the attack
+     */
     public static CipherBreakerOutput<byte[]> monogramFreqAttack(byte[] cipherText, int period) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("VigenereCipher", cipherText);
         output.fitness = FitnessCalculator.MonogramABVFitness(cipherText);

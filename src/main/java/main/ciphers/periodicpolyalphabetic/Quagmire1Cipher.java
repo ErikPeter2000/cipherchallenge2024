@@ -5,7 +5,17 @@ import main.ciphers.monoalphabetic.KeywordSubstitutionCipher;
 import main.ciphers.monoalphabetic.MonoAlphabeticCipher;
 import main.utils.TextUtilities;
 
+/**
+ * Quagmire I Cipher class that provides methods to encipher and decipher text using Quagmire I Cipher.
+ */
 public class Quagmire1Cipher {
+    /**
+     * Method to get the polyalphabetic keys for Quagmire I Cipher.
+     *
+     * @param keywordAlphabet The keyword alphabet.
+     * @param keywordShifts   The keyword shifts.
+     * @return The polyalphabetic keys.
+     */
     public static byte[][] getPolyKeys(byte[] keywordAlphabet, byte[] keywordShifts) {
         keywordAlphabet = KeywordSubstitutionCipher.generateKey(keywordAlphabet, KeywordSubstitutionCipher.KeyFiller.NORMAL, false);
         int beginShift = TextUtilities.indexOf(keywordAlphabet, (byte) 0);
@@ -27,6 +37,13 @@ public class Quagmire1Cipher {
         return polyKeys;
     }
 
+    /**
+     * Method to get the mono substitution and Vigenere keys for Quagmire I Cipher.
+     *
+     * @param keywordAlphabet The keyword alphabet.
+     * @param keywordShifts   The keyword shifts.
+     * @return The mono substitution and Vigenere keys.
+     */
     public static byte[][] getMonoSubstitutionAndVigenereKeys(byte[] keywordAlphabet, byte[] keywordShifts) {
         keywordAlphabet = KeywordSubstitutionCipher.generateKey(keywordAlphabet, KeywordSubstitutionCipher.KeyFiller.NORMAL, false);
         byte[] monoSubstitutionKey = MonoAlphabeticCipher.inverseKey(keywordAlphabet);
@@ -34,10 +51,26 @@ public class Quagmire1Cipher {
         return new byte[][]{monoSubstitutionKey, vigenereKey};
     }
 
+    /**
+     * Method to encipher text using Quagmire I Cipher.
+     *
+     * @param plainText       The plain text.
+     * @param keywordAlphabet The keyword alphabet.
+     * @param keywordShifts   The keyword shifts.
+     * @return The enciphered text.
+     */
     public static byte[] encipher(byte[] plainText, byte[] keywordAlphabet, byte[] keywordShifts) {
         return PeriodicPolyAlphabeticSubstitutionCipher.encipher(plainText, getPolyKeys(keywordAlphabet, keywordShifts));
     }
 
+    /**
+     * Method to decipher text using Quagmire I Cipher.
+     *
+     * @param cipherText      The cipher text.
+     * @param keywordAlphabet The keyword alphabet.
+     * @param keywordShifts   The keyword shifts.
+     * @return The deciphered text.
+     */
     public static byte[] decipher(byte[] cipherText, byte[] keywordAlphabet, byte[] keywordShifts) {
         return MonoAlphabeticCipher.encipher(
                 VigenereCipher.decipher(

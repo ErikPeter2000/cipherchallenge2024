@@ -6,7 +6,17 @@ import main.utils.TextUtilities;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * PermutationCipher class is used to generate permutation from keyword, guess keyword from permutation, encipher and decipher text using permutation.
+ */
 public class PermutationCipher {
+    /**
+     * generatePermutationFromKeyword method is used to generate permutation from keyword.
+     *
+     * @param keyword         byte[] keyword
+     * @param excludeRepeated boolean excludeRepeated
+     * @return byte[] permutation
+     */
     public static byte[] generatePermutationFromKeyword(byte[] keyword, boolean excludeRepeated) {
         boolean[] usedLetters = new boolean[26];
         byte[] permutation;
@@ -43,6 +53,13 @@ public class PermutationCipher {
         return actualPermutation;
     }
 
+    /**
+     * guessKeyword method is used to guess keyword from permutation.
+     *
+     * @param permutation     byte[] permutation
+     * @param excludeRepeated boolean excludeRepeated
+     * @return byte[][] possibleKeyword
+     */
     public static byte[][] guessKeyword(byte[] permutation, boolean excludeRepeated) {
         ArrayList<byte[]> possibleKeyword = new ArrayList<>();
         for (byte[] keyword : Constants.wordlist) {
@@ -52,6 +69,13 @@ public class PermutationCipher {
         return possibleKeyword.toArray(new byte[0][]);
     }
 
+    /**
+     * encipher method is used to encipher text using permutation.
+     *
+     * @param plainText    byte[] plainText
+     * @param permutation  byte[] permutation
+     * @return byte[] cipherText
+     */
     public static byte[] encipher(byte[] plainText, byte[] permutation) {
         plainText = TranspositionCipher.appendToPlaintext(plainText, permutation.length);
         byte[] cipherText = new byte[plainText.length];
@@ -61,6 +85,13 @@ public class PermutationCipher {
         return cipherText;
     }
 
+    /**
+     * decipher method is used to decipher text using permutation.
+     *
+     * @param cipherText   byte[] cipherText
+     * @param permutation  byte[] permutation
+     * @return byte[] plainText
+     */
     public static byte[] decipher(byte[] cipherText, byte[] permutation) {
         if (cipherText.length % permutation.length != 0)
             cipherText = TranspositionCipher.appendToPlaintext(cipherText, permutation.length);

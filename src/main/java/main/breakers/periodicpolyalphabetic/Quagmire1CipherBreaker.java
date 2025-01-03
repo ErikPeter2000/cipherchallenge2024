@@ -15,8 +15,17 @@ import main.utils.periodanalysers.IOCPeriodAnalyser;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Quagmire1CipherBreaker class is used to break Quagmire1Cipher.
+ */
 public class Quagmire1CipherBreaker {
 
+    /**
+     * This method is used to check if the keyword is in the wordlist.
+     *
+     * @param keyword the keyword to be checked.
+     * @return true if the keyword is in the wordlist, false otherwise.
+     */
     public static boolean checkTheKeyword(byte[] keyword) {
         for (int i = 0; i < Constants.wordlist.length; i++) {
             if (TextUtilities.isEqual(keyword, Constants.wordlist[i])) {
@@ -26,13 +35,21 @@ public class Quagmire1CipherBreaker {
         return false;
     }
 
+    /**
+     * This method is used to break Quagmire1Cipher using dictionary attack.
+     *
+     * @param cipherText the cipher text to be broken.
+     * @param alphabetKeyLength the length of the alphabet key.
+     * @param shiftsKeyLength the length of the shifts key.
+     * @return the output of the breaking process.
+     */
     public static CipherBreakerOutput<byte[]> dictionaryAttack(byte[] cipherText, int alphabetKeyLength, int shiftsKeyLength) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("Quagmire1Cipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
         byte[] bestAKey = null;
         byte[] bestSKey = null;
-        byte[][] alphabetKeyWordlist = Constants.smallWordlistSplitted[alphabetKeyLength];
-        byte[][] shiftsKeyWordlist = Constants.smallWordlistSplitted[shiftsKeyLength];
+        byte[][] alphabetKeyWordlist = Constants.smallWordlistSplit[alphabetKeyLength];
+        byte[][] shiftsKeyWordlist = Constants.smallWordlistSplit[shiftsKeyLength];
         int n = 0;
         for (byte[] alphabetKey : alphabetKeyWordlist) {
             for (byte[] shiftsKey : shiftsKeyWordlist) {
@@ -55,6 +72,10 @@ public class Quagmire1CipherBreaker {
         return output;
     }
 
+    /**
+     * Shifts the elements of the array to the left.
+     * @param array the array to be shifted.
+     */
     static void shiftLeft(double[] array) {
         double temp = array[0];
         for (int i = 1; i < array.length; i++) {
@@ -63,6 +84,13 @@ public class Quagmire1CipherBreaker {
         array[array.length - 1] = temp;
     }
 
+    /**
+     * This method is used to break Quagmire1Cipher using two-stage attack.
+     *
+     * @param cipherText the cipher text to be broken.
+     * @param period the period of the cipher.
+     * @return the output of the breaking process.
+     */
     public static CipherBreakerOutput<byte[]> twoStageAttack(byte[] cipherText, int period) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("Quagmire1Cipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);

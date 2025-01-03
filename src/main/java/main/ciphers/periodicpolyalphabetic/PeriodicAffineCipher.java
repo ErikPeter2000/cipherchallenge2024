@@ -4,7 +4,16 @@ import main.ciphers.monoalphabetic.AffineCipher;
 import main.utils.Constants;
 import main.utils.maths.ModularArithmetics;
 
+/**
+ * Periodic Affine Cipher class for enciphering and deciphering text using periodic affine cipher
+ */
 public class PeriodicAffineCipher {
+    /**
+     * Checks if the keys are invalid
+     *
+     * @param keys keys to be checked
+     * @return true if keys are invalid, false otherwise
+     */
     public static boolean areKeysInvalid(int[][] keys) {
         for (int[] key : keys) {
             if (AffineCipher.isKeyInvalid(key[0])) return true;
@@ -12,6 +21,13 @@ public class PeriodicAffineCipher {
         return false;
     }
 
+    /**
+     * Enciphers the given plain text using the given keys
+     *
+     * @param plainText plain text to be enciphered
+     * @param keys      keys to be used for enciphering
+     * @return enciphered text
+     */
     public static byte[] encipher(byte[] plainText, int[][] keys) {
         if (areKeysInvalid(keys)) {
             throw new IllegalArgumentException("Keys are not valid");
@@ -24,6 +40,13 @@ public class PeriodicAffineCipher {
         return cipherText;
     }
 
+    /**
+     * Deciphers the given cipher text using the given keys
+     *
+     * @param cipherText cipher text to be deciphered
+     * @param keys       keys to be used for deciphering
+     * @return deciphered text
+     */
     public static byte[] decipher(byte[] cipherText, int[][] keys) {
         if (areKeysInvalid(keys)) {
             throw new IllegalArgumentException("Keys are not valid");

@@ -8,7 +8,17 @@ import main.utils.FitnessCalculator;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class to break Variant Beaufort Cipher
+ */
 public class VariantBeaufortCipherBreaker {
+    /**
+     * Method to brute force Variant Beaufort Cipher
+     *
+     * @param cipherText The cipher text
+     * @param maxLength  The maximum length of the key
+     * @return The output of the brute force attack
+     */
     public static CipherBreakerOutput<byte[]> bruteforce(byte[] cipherText, double maxLength) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("VariantBeaufortCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -26,6 +36,15 @@ public class VariantBeaufortCipherBreaker {
         return output;
     }
 
+    /**
+     * Method to update the best key
+     *
+     * @param cipherText   The cipher text
+     * @param output       The output of the attack
+     * @param bestKey      The best key
+     * @param possibleKey  The possible key
+     * @return The updated best key
+     */
     private static byte[] updateBestKey(byte[] cipherText, CipherBreakerOutput<byte[]> output, byte[] bestKey, byte[] possibleKey) {
         byte[] text = VariantBeaufortCipher.decipher(cipherText, possibleKey);
         double newFitness = FitnessCalculator.TetragramFitness(text);
@@ -37,6 +56,12 @@ public class VariantBeaufortCipherBreaker {
         return bestKey;
     }
 
+    /**
+     * Method to brute force Variant Beaufort Cipher with a wordlist
+     *
+     * @param cipherText The cipher text
+     * @return The output of the brute force attack
+     */
     public static CipherBreakerOutput<byte[]> bruteforceWithWordlist(byte[] cipherText) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("VariantBeaufortCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -51,6 +76,13 @@ public class VariantBeaufortCipherBreaker {
         return output;
     }
 
+    /**
+     * Method to perform a hill climber attack on Variant Beaufort Cipher
+     *
+     * @param cipherText The cipher text
+     * @param period     The period of the cipher
+     * @return The output of the attack
+     */
     public static CipherBreakerOutput<byte[]> hillClimberAttack(byte[] cipherText, int period) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("VariantBeaufortCipher", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);

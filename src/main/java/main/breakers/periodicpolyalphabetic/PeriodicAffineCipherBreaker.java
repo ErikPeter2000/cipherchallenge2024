@@ -10,7 +10,17 @@ import main.utils.periodanalysers.IOCPeriodAnalyser;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class to break periodic affine cipher.
+ */
 public class PeriodicAffineCipherBreaker {
+    /**
+     * Method to break periodic affine cipher using monogram frequency attack.
+     *
+     * @param cipherText cipher text to break.
+     * @param period     period of the cipher.
+     * @return output of the breaker.
+     */
     public static CipherBreakerOutput<int[][]> monogramFreqAttack(byte[] cipherText, int period) {
         CipherBreakerOutput<int[][]> output = new CipherBreakerOutput<>("PeriodicAffineCipher", cipherText);
 
@@ -36,6 +46,11 @@ public class PeriodicAffineCipherBreaker {
         return output;
     }
 
+    /**
+     * Shifts the array by p.
+     * @param array array to shift.
+     * @param p shift value.
+     */
     public static void shift(byte[] array, int p) {
         for (int i = 0; i < array.length; i++) {
             array[i]++;
@@ -43,6 +58,11 @@ public class PeriodicAffineCipherBreaker {
         }
     }
 
+    /**
+     * Checks if the word is in the wordlist.
+     * @param word word to check.
+     * @return true if word is in the wordlist, false otherwise.
+     */
     public static boolean isInWorlist(byte[] word) {
         for (int i = 0; i < Constants.wordlist.length; i++) {
             if (Constants.wordlist[i].length != word.length) {
@@ -60,6 +80,11 @@ public class PeriodicAffineCipherBreaker {
         return false;
     }
 
+    /**
+     * Extracts the vigenere keyword from the keys.
+     * @param keys keys to extract from.
+     * @return extracted keyword.
+     */
     public static byte[] extractVigenereKeyword(int[][] keys) {
         for (int i = 1; i < keys.length; i++) {
             if (keys[i][0] != keys[0][0]) throw new IllegalArgumentException("Multipliers are not the same.");

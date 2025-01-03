@@ -7,7 +7,15 @@ import main.utils.maths.ModularArithmetics;
 
 import java.util.ArrayList;
 
+/**
+ * Class for breaking the Matrix Transposition cipher.
+ */
 public class MatrixTranspositionCipherBreaker {
+    /**
+     * Performs a brute-force attack on the Matrix Transposition cipher.
+     * @param cipherText The cipher text to break.
+     * @return A CipherBreakerOutput object containing the key and plain text.
+     */
     public static CipherBreakerOutput<int[]> bruteforce(byte[] cipherText) {
         CipherBreakerOutput<int[]> output = new CipherBreakerOutput<>("MatrixTransposition", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);

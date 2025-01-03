@@ -8,8 +8,16 @@ import main.utils.FitnessCalculator;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class that contains methods to break the Porta Cipher.
+ */
 public class PortaCipherBreaker {
 
+    /**
+     * Method that tries to guess the keyword used to encrypt the text.
+     * @param keyword The keyword used to encrypt the text.
+     * @return An array of possible keywords.
+     */
     public static byte[][] guessTheKeyword(byte[] keyword) {
         ArrayList<byte[]> potentialKeywords = new ArrayList<>();
         for (int i = 0; i < Constants.wordlist.length; i++) {
@@ -35,6 +43,11 @@ public class PortaCipherBreaker {
         return potentialKeywords.toArray(new byte[0][]);
     }
 
+    /**
+     * Method that generates all possible keys for the Porta Cipher.
+     * @param length The length of the key.
+     * @return An array of possible keys.
+     */
     public static byte[][] generateKeysPorta(int length) {
         byte[][] keys = new byte[(int) Math.pow(13, length)][length];
         for (int i = 0; i < keys.length; i++) {
@@ -50,6 +63,12 @@ public class PortaCipherBreaker {
         return keys;
     }
 
+    /**
+     * Method that tries to break the Porta Cipher Bellaso 1552 version using a brute force attack.
+     * @param cipherText The text to be decrypted.
+     * @param maxLength The maximum length of the key.
+     * @return A CipherBreakerOutput object containing the results of the attack.
+     */
     public static CipherBreakerOutput<byte[]> bruteforceBellaso1552(byte[] cipherText, double maxLength) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("PortaCipherBellaso1552", cipherText);
         byte[] bestKey = null;
@@ -67,6 +86,14 @@ public class PortaCipherBreaker {
         return output;
     }
 
+    /**
+     * Method that updates the best key found so far.
+     * @param cipherText The text to be decrypted.
+     * @param output The output object containing the results of the attack.
+     * @param bestKey The best key found so far.
+     * @param possibleKey The possible key to be tested.
+     * @return The best key found so far.
+     */
     private static byte[] updateBestKey(byte[] cipherText, CipherBreakerOutput<byte[]> output, byte[] bestKey, byte[] possibleKey) {
         byte[] text = PortaCipher.decipherBellaso1552(cipherText, possibleKey);
         double newFitness = FitnessCalculator.TetragramFitness(text);
@@ -78,6 +105,11 @@ public class PortaCipherBreaker {
         return bestKey;
     }
 
+    /**
+     * Method that tries to break the Porta Cipher Bellaso 1552 version using a brute force attack with a wordlist.
+     * @param cipherText The text to be decrypted.
+     * @return A CipherBreakerOutput object containing the results of the attack.
+     */
     public static CipherBreakerOutput<byte[]> bruteforceWithWordlistBellaso1552(byte[] cipherText) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("PortaCipherBellaso1552", cipherText);
         byte[] bestKey = null;
@@ -92,6 +124,12 @@ public class PortaCipherBreaker {
         return output;
     }
 
+    /**
+     * Method that tries to break the Porta Cipher Bellaso 1552 version using a hill climber attack.
+     * @param cipherText The text to be decrypted.
+     * @param period The period of the key.
+     * @return A CipherBreakerOutput object containing the results of the attack.
+     */
     public static CipherBreakerOutput<byte[]> hillClimberAttackBellaso1552(byte[] cipherText, int period) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("PortaCipherBellaso1552", cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -128,6 +166,13 @@ public class PortaCipherBreaker {
         return output;
     }
 
+    /**
+     * Method that tries to break the Porta Cipher using a brute force attack.
+     * @param cipherText The text to be decrypted.
+     * @param maxLength The maximum length of the key.
+     * @param version The version of the Porta Cipher.
+     * @return A CipherBreakerOutput object containing the results of the attack.
+     */
     public static CipherBreakerOutput<byte[]> bruteforce(byte[] cipherText, double maxLength, int version) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("PortaCipher" + version, cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -145,6 +190,15 @@ public class PortaCipherBreaker {
         return output;
     }
 
+    /**
+     * Method that updates the best key found so far.
+     * @param cipherText The text to be decrypted.
+     * @param version The version of the Porta Cipher.
+     * @param output The output object containing the results of the attack.
+     * @param bestKey The best key found so far.
+     * @param possibleKey The possible key to be tested.
+     * @return The best key found so far.
+     */
     private static byte[] updateBestBruteforceKey(byte[] cipherText, int version, CipherBreakerOutput<byte[]> output, byte[] bestKey, byte[] possibleKey) {
         byte[] text = PortaCipher.decipher(cipherText, possibleKey, version);
         double newFitness = FitnessCalculator.TetragramFitness(text);
@@ -156,6 +210,12 @@ public class PortaCipherBreaker {
         return bestKey;
     }
 
+    /**
+     * Method that tries to break the Porta Cipher using a brute force attack with a wordlist.
+     * @param cipherText The text to be decrypted.
+     * @param version The version of the Porta Cipher.
+     * @return A CipherBreakerOutput object containing the results of the attack.
+     */
     public static CipherBreakerOutput<byte[]> bruteforceWithWordlist(byte[] cipherText, int version) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("PortaCipher" + version, cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
@@ -170,6 +230,13 @@ public class PortaCipherBreaker {
         return output;
     }
 
+    /**
+     * Method that tries to break the Porta Cipher using a hill climber attack.
+     * @param cipherText The text to be decrypted.
+     * @param period The period of the key.
+     * @param version The version of the Porta Cipher.
+     * @return A CipherBreakerOutput object containing the results of the attack.
+     */
     public static CipherBreakerOutput<byte[]> hillClimberAttack(byte[] cipherText, int period, int version) {
         CipherBreakerOutput<byte[]> output = new CipherBreakerOutput<>("PortaCipher" + version, cipherText);
         output.fitness = FitnessCalculator.TetragramFitness(cipherText);
