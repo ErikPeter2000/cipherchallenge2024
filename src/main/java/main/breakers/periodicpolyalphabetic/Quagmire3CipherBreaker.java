@@ -15,7 +15,7 @@ public class Quagmire3CipherBreaker {
     /**
      * Breaks a Quagmire3 cipher using a dictionary attack.
      *
-     * @param cipherText       the cipher text to break
+     * @param cipherText        the cipher text to break
      * @param alphabetKeyLength the length of the alphabet key
      * @param shiftsKeyLength   the length of the shifts key
      * @return a {@link CipherBreakerOutput} object containing the results of the break

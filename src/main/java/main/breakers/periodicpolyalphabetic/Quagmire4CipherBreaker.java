@@ -16,10 +16,10 @@ public class Quagmire4CipherBreaker {
     /**
      * Method to break Quagmire4Cipher cipher using dictionary attack.
      *
-     * @param cipherText Encrypted text.
-     * @param alphabetKeyKnown Known part of the alphabet key.
+     * @param cipherText                 Encrypted text.
+     * @param alphabetKeyKnown           Known part of the alphabet key.
      * @param alphabetCiphetextKeyLength Length of the alphabet ciphertext key.
-     * @param shiftsKeyLength Length of the shifts key.
+     * @param shiftsKeyLength            Length of the shifts key.
      * @return Output of the cipher breaker.
      */
     public static CipherBreakerOutput<byte[]> dictionaryAttack(byte[] cipherText, byte[] alphabetKeyKnown, int alphabetCiphetextKeyLength, int shiftsKeyLength) {
@@ -57,10 +57,10 @@ public class Quagmire4CipherBreaker {
     /**
      * Method to break Quagmire4Cipher cipher using dictionary attack.
      *
-     * @param cipherText Encrypted text.
-     * @param alphabetKeyLength Length of the alphabet key.
+     * @param cipherText                 Encrypted text.
+     * @param alphabetKeyLength          Length of the alphabet key.
      * @param alphabetCiphetextKeyLength Length of the alphabet ciphertext key.
-     * @param shiftsKeyLength Length of the shifts key.
+     * @param shiftsKeyLength            Length of the shifts key.
      * @return Output of the cipher breaker.
      */
     public static CipherBreakerOutput<byte[]> dictionaryAttack(byte[] cipherText, int alphabetKeyLength, int alphabetCiphetextKeyLength, int shiftsKeyLength) {

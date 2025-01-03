@@ -11,9 +11,9 @@ public class Quagmire4Cipher {
     /**
      * This method generates the polyalphabetic keys for Quagmire IV Cipher.
      *
-     * @param keywordAlphabet         The keyword alphabet.
+     * @param keywordAlphabet           The keyword alphabet.
      * @param keywordCiphertextAlphabet The keyword ciphertext alphabet.
-     * @param keywordShifts           The keyword shifts.
+     * @param keywordShifts             The keyword shifts.
      * @return The polyalphabetic keys.
      */
     public static byte[][] getPolyKeys(byte[] keywordAlphabet, byte[] keywordCiphertextAlphabet, byte[] keywordShifts) {
@@ -32,9 +32,9 @@ public class Quagmire4Cipher {
     /**
      * This method generates the monoalphabetic substitution and Vigenere keys for Quagmire IV Cipher.
      *
-     * @param keywordAlphabet         The keyword alphabet.
+     * @param keywordAlphabet           The keyword alphabet.
      * @param keywordCiphertextAlphabet The keyword ciphertext alphabet.
-     * @param keywordShifts           The keyword shifts.
+     * @param keywordShifts             The keyword shifts.
      * @return The monoalphabetic substitution and Vigenere keys.
      */
     public static byte[][] getMonoSubstitutionAndVigenereKeys(byte[] keywordAlphabet, byte[] keywordCiphertextAlphabet, byte[] keywordShifts) {
@@ -47,10 +47,10 @@ public class Quagmire4Cipher {
     /**
      * This method enciphers the given plain text using Quagmire IV Cipher.
      *
-     * @param plainText                The plain text.
-     * @param keywordAlphabet          The keyword alphabet.
+     * @param plainText                 The plain text.
+     * @param keywordAlphabet           The keyword alphabet.
      * @param keywordCiphertextAlphabet The keyword ciphertext alphabet.
-     * @param keywordShifts            The keyword shifts.
+     * @param keywordShifts             The keyword shifts.
      * @return The enciphered text.
      */
     public static byte[] encipher(byte[] plainText, byte[] keywordAlphabet, byte[] keywordCiphertextAlphabet, byte[] keywordShifts) {
@@ -60,10 +60,10 @@ public class Quagmire4Cipher {
     /**
      * This method deciphers the given cipher text using Quagmire IV Cipher.
      *
-     * @param cipherText               The cipher text.
-     * @param keywordAlphabet          The keyword alphabet.
+     * @param cipherText                The cipher text.
+     * @param keywordAlphabet           The keyword alphabet.
      * @param keywordCiphertextAlphabet The keyword ciphertext alphabet.
-     * @param keywordShifts            The keyword shifts.
+     * @param keywordShifts             The keyword shifts.
      * @return The deciphered text.
      */
     public static byte[] decipher(byte[] cipherText, byte[] keywordAlphabet, byte[] keywordCiphertextAlphabet, byte[] keywordShifts) {

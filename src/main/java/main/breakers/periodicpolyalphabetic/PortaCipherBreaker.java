@@ -15,6 +15,7 @@ public class PortaCipherBreaker {
 
     /**
      * Method that tries to guess the keyword used to encrypt the text.
+     *
      * @param keyword The keyword used to encrypt the text.
      * @return An array of possible keywords.
      */
@@ -45,6 +46,7 @@ public class PortaCipherBreaker {
 
     /**
      * Method that generates all possible keys for the Porta Cipher.
+     *
      * @param length The length of the key.
      * @return An array of possible keys.
      */
@@ -65,8 +67,9 @@ public class PortaCipherBreaker {
 
     /**
      * Method that tries to break the Porta Cipher Bellaso 1552 version using a brute force attack.
+     *
      * @param cipherText The text to be decrypted.
-     * @param maxLength The maximum length of the key.
+     * @param maxLength  The maximum length of the key.
      * @return A CipherBreakerOutput object containing the results of the attack.
      */
     public static CipherBreakerOutput<byte[]> bruteforceBellaso1552(byte[] cipherText, double maxLength) {
@@ -88,9 +91,10 @@ public class PortaCipherBreaker {
 
     /**
      * Method that updates the best key found so far.
-     * @param cipherText The text to be decrypted.
-     * @param output The output object containing the results of the attack.
-     * @param bestKey The best key found so far.
+     *
+     * @param cipherText  The text to be decrypted.
+     * @param output      The output object containing the results of the attack.
+     * @param bestKey     The best key found so far.
      * @param possibleKey The possible key to be tested.
      * @return The best key found so far.
      */
@@ -107,6 +111,7 @@ public class PortaCipherBreaker {
 
     /**
      * Method that tries to break the Porta Cipher Bellaso 1552 version using a brute force attack with a wordlist.
+     *
      * @param cipherText The text to be decrypted.
      * @return A CipherBreakerOutput object containing the results of the attack.
      */
@@ -126,8 +131,9 @@ public class PortaCipherBreaker {
 
     /**
      * Method that tries to break the Porta Cipher Bellaso 1552 version using a hill climber attack.
+     *
      * @param cipherText The text to be decrypted.
-     * @param period The period of the key.
+     * @param period     The period of the key.
      * @return A CipherBreakerOutput object containing the results of the attack.
      */
     public static CipherBreakerOutput<byte[]> hillClimberAttackBellaso1552(byte[] cipherText, int period) {
@@ -168,9 +174,10 @@ public class PortaCipherBreaker {
 
     /**
      * Method that tries to break the Porta Cipher using a brute force attack.
+     *
      * @param cipherText The text to be decrypted.
-     * @param maxLength The maximum length of the key.
-     * @param version The version of the Porta Cipher.
+     * @param maxLength  The maximum length of the key.
+     * @param version    The version of the Porta Cipher.
      * @return A CipherBreakerOutput object containing the results of the attack.
      */
     public static CipherBreakerOutput<byte[]> bruteforce(byte[] cipherText, double maxLength, int version) {
@@ -192,10 +199,11 @@ public class PortaCipherBreaker {
 
     /**
      * Method that updates the best key found so far.
-     * @param cipherText The text to be decrypted.
-     * @param version The version of the Porta Cipher.
-     * @param output The output object containing the results of the attack.
-     * @param bestKey The best key found so far.
+     *
+     * @param cipherText  The text to be decrypted.
+     * @param version     The version of the Porta Cipher.
+     * @param output      The output object containing the results of the attack.
+     * @param bestKey     The best key found so far.
      * @param possibleKey The possible key to be tested.
      * @return The best key found so far.
      */
@@ -212,8 +220,9 @@ public class PortaCipherBreaker {
 
     /**
      * Method that tries to break the Porta Cipher using a brute force attack with a wordlist.
+     *
      * @param cipherText The text to be decrypted.
-     * @param version The version of the Porta Cipher.
+     * @param version    The version of the Porta Cipher.
      * @return A CipherBreakerOutput object containing the results of the attack.
      */
     public static CipherBreakerOutput<byte[]> bruteforceWithWordlist(byte[] cipherText, int version) {
@@ -232,9 +241,10 @@ public class PortaCipherBreaker {
 
     /**
      * Method that tries to break the Porta Cipher using a hill climber attack.
+     *
      * @param cipherText The text to be decrypted.
-     * @param period The period of the key.
-     * @param version The version of the Porta Cipher.
+     * @param period     The period of the key.
+     * @param version    The version of the Porta Cipher.
      * @return A CipherBreakerOutput object containing the results of the attack.
      */
     public static CipherBreakerOutput<byte[]> hillClimberAttack(byte[] cipherText, int period, int version) {

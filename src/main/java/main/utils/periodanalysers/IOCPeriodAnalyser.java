@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class IOCPeriodAnalyser {
     /**
      * splitText method is used to split the cipher text into n slices.
+     *
      * @param text The cipher text to be split.
      * @param n    The number of slices to split the cipher text into.
      * @return byte[][] The cipher text split into n slices.
@@ -32,6 +33,7 @@ public class IOCPeriodAnalyser {
 
     /**
      * averageIOCOfSlices method is used to calculate the average Index of Coincidence of the slices.
+     *
      * @param slices The slices of the cipher text.
      * @return double The average Index of Coincidence of the slices.
      */
@@ -45,7 +47,8 @@ public class IOCPeriodAnalyser {
 
     /**
      * guessPeriod method is used to guess the period of the cipher text.
-     * @param cipherText The cipher text to guess the period of.
+     *
+     * @param cipherText  The cipher text to guess the period of.
      * @param periodLimit The maximum period to guess.
      * @return int[] The guessed period of the cipher text.
      */

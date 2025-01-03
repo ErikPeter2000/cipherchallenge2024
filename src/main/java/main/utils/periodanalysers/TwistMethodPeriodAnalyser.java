@@ -12,6 +12,7 @@ import java.util.Arrays;
 public class TwistMethodPeriodAnalyser {
     /**
      * This method is used to get the signature of a given text.
+     *
      * @param text The text to get the signature of.
      * @return An array of doubles, each representing the frequency of a letter in the text.
      */
@@ -23,6 +24,7 @@ public class TwistMethodPeriodAnalyser {
 
     /**
      * This method is used to calculate the twist between two signatures.
+     *
      * @param sig1 The first signature.
      * @param sig2 The second signature.
      * @return A double representing the twist between the two signatures.
@@ -40,6 +42,7 @@ public class TwistMethodPeriodAnalyser {
 
     /**
      * This method is used to calculate the average signature of a given set of slices.
+     *
      * @param slices The slices to calculate the average signature of.
      * @return An array of doubles, each representing the average signature of a slice.
      */
@@ -56,7 +59,8 @@ public class TwistMethodPeriodAnalyser {
 
     /**
      * This method is used to guess the period of a given text.
-     * @param text The text to guess the period of.
+     *
+     * @param text        The text to guess the period of.
      * @param outputLimit The maximum number of periods to output.
      * @param periodLimit The maximum period to consider.
      * @return A 2D array of doubles, each representing a period and its twist.

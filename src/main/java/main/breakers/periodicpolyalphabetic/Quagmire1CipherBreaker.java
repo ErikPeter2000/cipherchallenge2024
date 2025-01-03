@@ -38,9 +38,9 @@ public class Quagmire1CipherBreaker {
     /**
      * This method is used to break Quagmire1Cipher using dictionary attack.
      *
-     * @param cipherText the cipher text to be broken.
+     * @param cipherText        the cipher text to be broken.
      * @param alphabetKeyLength the length of the alphabet key.
-     * @param shiftsKeyLength the length of the shifts key.
+     * @param shiftsKeyLength   the length of the shifts key.
      * @return the output of the breaking process.
      */
     public static CipherBreakerOutput<byte[]> dictionaryAttack(byte[] cipherText, int alphabetKeyLength, int shiftsKeyLength) {
@@ -74,6 +74,7 @@ public class Quagmire1CipherBreaker {
 
     /**
      * Shifts the elements of the array to the left.
+     *
      * @param array the array to be shifted.
      */
     static void shiftLeft(double[] array) {
@@ -88,7 +89,7 @@ public class Quagmire1CipherBreaker {
      * This method is used to break Quagmire1Cipher using two-stage attack.
      *
      * @param cipherText the cipher text to be broken.
-     * @param period the period of the cipher.
+     * @param period     the period of the cipher.
      * @return the output of the breaking process.
      */
     public static CipherBreakerOutput<byte[]> twoStageAttack(byte[] cipherText, int period) {

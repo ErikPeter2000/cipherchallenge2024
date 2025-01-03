@@ -11,6 +11,7 @@ import main.utils.TextUtilities;
 public class MonoAlphabeticCipher {
     /**
      * Generates a random key for the monoalphabetic cipher.
+     *
      * @return a random key for the monoalphabetic cipher.
      */
     public static boolean isLikely(byte[] text) {
@@ -21,6 +22,7 @@ public class MonoAlphabeticCipher {
 
     /**
      * Generates an inverse key for the given key.
+     *
      * @param key the key to generate the inverse key for.
      * @return the inverse key for the given key.
      */
@@ -34,8 +36,9 @@ public class MonoAlphabeticCipher {
 
     /**
      * Enciphers the given plain text using the given key.
+     *
      * @param plainText the plain text to encipher.
-     * @param key the key to use for enciphering.
+     * @param key       the key to use for enciphering.
      * @return the enciphered text.
      */
     public static byte[] encipher(byte[] plainText, byte[] key) {
@@ -48,8 +51,9 @@ public class MonoAlphabeticCipher {
 
     /**
      * Deciphers the given cipher text using the given key.
+     *
      * @param cipherText the cipher text to decipher.
-     * @param key the key to use for deciphering.
+     * @param key        the key to use for deciphering.
      * @return the deciphered text.
      */
     public static byte[] decipher(byte[] cipherText, byte[] key) {

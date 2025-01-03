@@ -23,6 +23,7 @@ public class MonoAlphabeticCipherBreaker {
 
     /**
      * Swaps two random digits in the key
+     *
      * @param key key to swap digits in
      * @return key with two random digits swapped
      */
@@ -32,6 +33,7 @@ public class MonoAlphabeticCipherBreaker {
 
     /**
      * Generates a random key
+     *
      * @return random key
      */
     public static byte[] generateRandomKey() {
@@ -44,6 +46,7 @@ public class MonoAlphabeticCipherBreaker {
 
     /**
      * Performs a hill climbing attack on a cipher text with default parameters
+     *
      * @param cipherText cipher text to break
      * @return output of the attack
      */
@@ -53,8 +56,9 @@ public class MonoAlphabeticCipherBreaker {
 
     /**
      * Performs a hill climbing attack on a cipher text
+     *
      * @param cipherText cipher text to break
-     * @param genLimit number of generations to run the attack for
+     * @param genLimit   number of generations to run the attack for
      * @param keysPerGen number of keys to generate per generation
      * @return output of the attack
      */
@@ -109,8 +113,9 @@ public class MonoAlphabeticCipherBreaker {
 
     /**
      * Performs a hill climbing attack on a cipher text using monogram fitness
+     *
      * @param cipherText cipher text to break
-     * @param genLimit number of generations to run the attack for
+     * @param genLimit   number of generations to run the attack for
      * @param keysPerGen number of keys to generate per generation
      * @return output of the attack
      */

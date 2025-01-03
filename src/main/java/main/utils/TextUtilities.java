@@ -7,6 +7,7 @@ package main.utils;
 public class TextUtilities {
     /**
      * formatText method formats the text by removing all non-alphabetic characters and converting the text to uppercase.
+     *
      * @param text The text to be formatted.
      * @return The formatted text.
      */
@@ -23,7 +24,8 @@ public class TextUtilities {
 
     /**
      * filterText method filters the text by removing all characters that are not present in the given alphabet.
-     * @param text The text to be filtered.
+     *
+     * @param text     The text to be filtered.
      * @param alphabet The alphabet to be used for filtering.
      * @return The filtered text.
      */
@@ -40,7 +42,8 @@ public class TextUtilities {
     /**
      * filterAndConvertToBytes method filters the text by removing all characters that are not present in the given alphabet
      * and converts the filtered text to byte array.
-     * @param text The text to be filtered and converted.
+     *
+     * @param text     The text to be filtered and converted.
      * @param alphabet The alphabet to be used for filtering.
      * @return The byte array of the filtered text.
      */
@@ -51,6 +54,7 @@ public class TextUtilities {
     /**
      * formatAndConvertToBytes method formats the text by removing all non-alphabetic characters and converting the text to uppercase
      * and converts the formatted text to byte array.
+     *
      * @param text The text to be formatted and converted.
      * @return The byte array of the formatted text.
      */
@@ -60,7 +64,8 @@ public class TextUtilities {
 
     /**
      * convertToByteArray method converts the text to byte array using the given alphabet.
-     * @param text The text to be converted.
+     *
+     * @param text     The text to be converted.
      * @param alphabet The alphabet to be used for conversion.
      * @return The byte array of the text.
      */
@@ -74,7 +79,8 @@ public class TextUtilities {
 
     /**
      * convertToByteArrays method converts the array of texts to array of byte arrays using the given alphabet.
-     * @param texts The array of texts to be converted.
+     *
+     * @param texts    The array of texts to be converted.
      * @param alphabet The alphabet to be used for conversion.
      * @return The array of byte arrays of the texts.
      */
@@ -88,7 +94,8 @@ public class TextUtilities {
 
     /**
      * convertToString method converts the byte array to string using the given alphabet.
-     * @param bytes The byte array to be converted.
+     *
+     * @param bytes    The byte array to be converted.
      * @param alphabet The alphabet to be used for conversion.
      * @return The string of the byte array.
      */
@@ -102,6 +109,7 @@ public class TextUtilities {
 
     /**
      * printBytes method prints the byte array using the given alphabet.
+     *
      * @param bytes The byte array to be printed.
      */
     public static void printBytes(byte[] bytes) {
@@ -110,6 +118,7 @@ public class TextUtilities {
 
     /**
      * printBytes method prints the array of byte arrays using the given alphabet.
+     *
      * @param bytes The array of byte arrays to be printed.
      */
     public static void printBytes(byte[][] bytes) {
@@ -120,6 +129,7 @@ public class TextUtilities {
 
     /**
      * printIntegers method prints the array of integers.
+     *
      * @param integers The array of integers to be printed.
      */
     public static void printIntegers(int[] integers) {
@@ -131,6 +141,7 @@ public class TextUtilities {
 
     /**
      * printIntegers method prints the two-dimensional array of integers.
+     *
      * @param integers The two-dimensional array of integers to be printed.
      */
     public static void printIntegers(int[][] integers) {
@@ -141,6 +152,7 @@ public class TextUtilities {
 
     /**
      * isEqual method checks if the two byte arrays are equal.
+     *
      * @param text1 The first byte array.
      * @param text2 The second byte array.
      * @return True if the two byte arrays are equal, false otherwise.
@@ -155,7 +167,8 @@ public class TextUtilities {
 
     /**
      * indexOf method returns the index of the target byte in the byte array.
-     * @param array The byte array.
+     *
+     * @param array      The byte array.
      * @param targetByte The target byte.
      * @return The index of the target byte in the byte array.
      */

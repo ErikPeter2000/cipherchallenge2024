@@ -12,6 +12,7 @@ public class TranspositionCipher {
     /**
      * isLikely method is used to identify if the given
      * cipher text is a transposition cipher or not.
+     *
      * @param cipherText byte[] - cipher text to be identified.
      * @return boolean - true if the given
      * cipher text is likely a transposition cipher, false otherwise.
@@ -25,6 +26,7 @@ public class TranspositionCipher {
 
     /**
      * appendToPlaintext method is used to append a padding to the given plain text.
+     *
      * @param plainText byte[] - plain text to be padded.
      * @param blockSize int - block size to be used for padding.
      * @return byte[] - padded plain text.

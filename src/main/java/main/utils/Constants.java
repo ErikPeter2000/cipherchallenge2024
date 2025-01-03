@@ -105,7 +105,8 @@ public class Constants {
 
     /**
      * Splits the wordlist by length.
-     * @param wordlist The wordlist to split.
+     *
+     * @param wordlist  The wordlist to split.
      * @param maxLength The maximum length of the wordlist.
      * @return The split wordlist.
      */
@@ -126,7 +127,8 @@ public class Constants {
 
     /**
      * Puts words from a file into a list.
-     * @param filepath The path of the file.
+     *
+     * @param filepath   The path of the file.
      * @param stringList The list to put the words into.
      */
     private static void putWordsFromFile(String filepath, ArrayList<String> stringList) {
@@ -158,6 +160,7 @@ public class Constants {
 
     /**
      * Initializes the polygrams.
+     *
      * @throws IOException If the file is not found.
      */
     static void InitializePolygrams() throws IOException {
@@ -171,6 +174,7 @@ public class Constants {
 
     /**
      * Gets the tetragram frequency.
+     *
      * @param tetragramCA The tetragram to get the frequency of.
      * @return The frequency of the tetragram.
      */
@@ -181,6 +185,7 @@ public class Constants {
 
     /**
      * Gets the index of a tetragram.
+     *
      * @param tetragramCA The tetragram to get the index of.
      * @return The index of the tetragram.
      */
@@ -190,8 +195,9 @@ public class Constants {
 
     /**
      * Initializes the polygram.
+     *
      * @param path The path of the polygram.
-     * @param n The number of polygrams.
+     * @param n    The number of polygrams.
      */
     static void initializePolygram(String path, int n) {
         {

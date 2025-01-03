@@ -15,8 +15,9 @@ import java.util.Arrays;
 public class BeaufortCipherBreaker {
     /**
      * This method is used to bruteforce the key of the Beaufort cipher.
+     *
      * @param cipherText The cipher text to be decrypted.
-     * @param maxLength The maximum length of the key.
+     * @param maxLength  The maximum length of the key.
      * @return The output of the bruteforce attack.
      */
     public static CipherBreakerOutput<byte[]> bruteforce(byte[] cipherText, double maxLength) {
@@ -38,9 +39,10 @@ public class BeaufortCipherBreaker {
 
     /**
      * This method is used to update the best key found during the bruteforce attack.
-     * @param cipherText The cipher text to be decrypted.
-     * @param output The output of the bruteforce attack.
-     * @param best_key The best key found so far.
+     *
+     * @param cipherText  The cipher text to be decrypted.
+     * @param output      The output of the bruteforce attack.
+     * @param best_key    The best key found so far.
      * @param possibleKey The possible key to be checked.
      * @return The updated best key.
      */
@@ -57,6 +59,7 @@ public class BeaufortCipherBreaker {
 
     /**
      * This method is used to bruteforce the key of the Beaufort cipher using a wordlist.
+     *
      * @param cipherText The cipher text to be decrypted.
      * @return The output of the bruteforce attack.
      */
@@ -77,8 +80,9 @@ public class BeaufortCipherBreaker {
 
     /**
      * This method is used to perform a hill climber attack on the Beaufort cipher.
+     *
      * @param cipherText The cipher text to be decrypted.
-     * @param period The period of the key.
+     * @param period     The period of the key.
      * @return The output of the hill climber attack.
      */
     public static CipherBreakerOutput<byte[]> hillClimberAttack(byte[] cipherText, int period) {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Class to store the output of a cipher breaker
+ *
  * @param <T> The type of the key
  */
 public class CipherBreakerOutput<T> {
@@ -37,6 +38,7 @@ public class CipherBreakerOutput<T> {
 
     /**
      * Constructor
+     *
      * @param cipherType The type of the cipher
      * @param cipherText The cipher text
      */
@@ -54,6 +56,7 @@ public class CipherBreakerOutput<T> {
 
     /**
      * Gets the plaintext as a string
+     *
      * @return The plaintext as a string
      */
     public String getStringPlaintext() {

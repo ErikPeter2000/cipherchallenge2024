@@ -14,6 +14,7 @@ public class KasiskiExamination {
     /**
      * This method performs a Kasiski examination on a given cipher text.
      * It returns an array of integers, each representing a possible key length.
+     *
      * @param cipherText The cipher text to perform the examination on.
      * @return An array of integers, each representing a possible key length.
      */
@@ -45,6 +46,7 @@ public class KasiskiExamination {
 
     /**
      * This method is used to find the gaps between repeated patterns in a given cipher text.
+     *
      * @param cipherText The cipher text to find the gaps in.
      * @return An array list of integers, each representing a gap between repeated patterns.
      */

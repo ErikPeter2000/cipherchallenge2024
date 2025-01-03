@@ -9,6 +9,7 @@ public class Permutations {
 
     /**
      * Generates all possible permutations of a given length.
+     *
      * @param length the length of the permutations
      * @return an array of all possible permutations
      */
@@ -49,6 +50,7 @@ public class Permutations {
 
     /**
      * Generates all possible permutations of a given length.
+     *
      * @param length the length of the permutations
      * @return an array of all possible permutations
      */
@@ -62,6 +64,7 @@ public class Permutations {
 
     /**
      * Generates a permutation from a factoradic number.
+     *
      * @param factoradic the factoradic number
      * @return the permutation
      */
@@ -88,6 +91,7 @@ public class Permutations {
 
     /**
      * Generates a factoradic number from a permutation.
+     *
      * @param permutation the permutation
      * @return the factoradic number
      */
@@ -114,6 +118,7 @@ public class Permutations {
 
     /**
      * Composes two permutations.
+     *
      * @param permutationA the first permutation
      * @param permutationB the second permutation
      * @return the composition of the two permutations
@@ -130,6 +135,7 @@ public class Permutations {
 
     /**
      * Inverts a permutation.
+     *
      * @param permutation the permutation
      * @return the inverse of the permutation
      */
@@ -143,6 +149,7 @@ public class Permutations {
 
     /**
      * Generates the nth permutation of m objects.
+     *
      * @param n the index of the permutation
      * @param m the number of objects
      * @return the nth permutation of m objects
@@ -153,6 +160,7 @@ public class Permutations {
 
     /**
      * Finds the index of a permutation.
+     *
      * @param permutation the permutation
      * @return the index of the permutation
      */
@@ -162,6 +170,7 @@ public class Permutations {
 
     /**
      * Generates a random permutation of m objects.
+     *
      * @param m the number of objects
      * @return a random permutation of m objects
      */
@@ -171,6 +180,7 @@ public class Permutations {
 
     /**
      * Swaps two random digits of a permutation.
+     *
      * @param permutation the permutation
      * @return the permutation with two random digits swapped
      */
@@ -188,7 +198,8 @@ public class Permutations {
 
     /**
      * Rolls a permutation by a given number of steps.
-     * @param permutation the permutation
+     *
+     * @param permutation   the permutation
      * @param numberOfSteps the number of steps
      * @return the rolled permutation
      */
@@ -203,6 +214,7 @@ public class Permutations {
 
     /**
      * Rolls a permutation randomly.
+     *
      * @param permutation the permutation
      * @return the rolled permutation
      */

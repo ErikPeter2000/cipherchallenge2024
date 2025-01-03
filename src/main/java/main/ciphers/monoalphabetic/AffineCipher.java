@@ -9,6 +9,7 @@ import main.utils.maths.ModularArithmetics;
 public class AffineCipher {
     /**
      * Checks if the key is invalid
+     *
      * @param a key a
      * @return true if key is invalid, false otherwise
      */
@@ -18,6 +19,7 @@ public class AffineCipher {
 
     /**
      * Converts a and b to a key
+     *
      * @param a key a
      * @param b key b
      * @return key
@@ -35,9 +37,10 @@ public class AffineCipher {
 
     /**
      * Enciphers the plain text using the key a and b
+     *
      * @param plainText plain text
-     * @param a key a
-     * @param b key b
+     * @param a         key a
+     * @param b         key b
      * @return cipher text
      */
     public static byte[] encipher(byte[] plainText, int a, int b) {
@@ -53,9 +56,10 @@ public class AffineCipher {
 
     /**
      * Deciphers the cipher text using the key a and b
+     *
      * @param cipherText cipher text
-     * @param a key a
-     * @param b key b
+     * @param a          key a
+     * @param b          key b
      * @return plain text
      */
     public static byte[] decipher(byte[] cipherText, int a, int b) {

@@ -48,8 +48,9 @@ public class PeriodicAffineCipherBreaker {
 
     /**
      * Shifts the array by p.
+     *
      * @param array array to shift.
-     * @param p shift value.
+     * @param p     shift value.
      */
     public static void shift(byte[] array, int p) {
         for (int i = 0; i < array.length; i++) {
@@ -60,6 +61,7 @@ public class PeriodicAffineCipherBreaker {
 
     /**
      * Checks if the word is in the wordlist.
+     *
      * @param word word to check.
      * @return true if word is in the wordlist, false otherwise.
      */
@@ -82,6 +84,7 @@ public class PeriodicAffineCipherBreaker {
 
     /**
      * Extracts the vigenere keyword from the keys.
+     *
      * @param keys keys to extract from.
      * @return extracted keyword.
      */

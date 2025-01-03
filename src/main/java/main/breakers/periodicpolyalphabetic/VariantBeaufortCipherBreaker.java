@@ -39,10 +39,10 @@ public class VariantBeaufortCipherBreaker {
     /**
      * Method to update the best key
      *
-     * @param cipherText   The cipher text
-     * @param output       The output of the attack
-     * @param bestKey      The best key
-     * @param possibleKey  The possible key
+     * @param cipherText  The cipher text
+     * @param output      The output of the attack
+     * @param bestKey     The best key
+     * @param possibleKey The possible key
      * @return The updated best key
      */
     private static byte[] updateBestKey(byte[] cipherText, CipherBreakerOutput<byte[]> output, byte[] bestKey, byte[] possibleKey) {

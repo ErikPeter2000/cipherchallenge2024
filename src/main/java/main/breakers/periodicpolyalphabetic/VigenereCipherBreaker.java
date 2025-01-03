@@ -38,8 +38,9 @@ public class VigenereCipherBreaker {
 
     /**
      * Brute force attack on Vigenere cipher
+     *
      * @param cipherText cipher text
-     * @param maxLength maximum length of the key
+     * @param maxLength  maximum length of the key
      * @return output of the attack
      */
     public static CipherBreakerOutput<byte[]> bruteforce(byte[] cipherText, double maxLength) {
@@ -69,6 +70,7 @@ public class VigenereCipherBreaker {
 
     /**
      * Brute force attack on Vigenere cipher with wordlist
+     *
      * @param cipherText cipher text
      * @return output of the attack
      */
@@ -94,8 +96,9 @@ public class VigenereCipherBreaker {
 
     /**
      * Hill climber attack on Vigenere cipher
+     *
      * @param cipherText cipher text
-     * @param period period of the cipher
+     * @param period     period of the cipher
      * @return output of the attack
      */
     public static CipherBreakerOutput<byte[]> hillClimberAttack(byte[] cipherText, int period) {
@@ -136,8 +139,9 @@ public class VigenereCipherBreaker {
 
     /**
      * Attack on Vigenere cipher using monogram frequency
+     *
      * @param cipherText cipher text
-     * @param period period of the cipher
+     * @param period     period of the cipher
      * @return output of the attack
      */
     public static CipherBreakerOutput<byte[]> monogramFreqAttack(byte[] cipherText, int period) {

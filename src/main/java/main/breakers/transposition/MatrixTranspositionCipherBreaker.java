@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class MatrixTranspositionCipherBreaker {
     /**
      * Performs a brute-force attack on the Matrix Transposition cipher.
+     *
      * @param cipherText The cipher text to break.
      * @return A CipherBreakerOutput object containing the key and plain text.
      */

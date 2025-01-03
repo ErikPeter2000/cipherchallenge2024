@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class AffineCipherBreaker {
     /**
      * Perform brute force attack on Affine Cipher using Tetragram Fitness
+     *
      * @param cipherText cipher text
      * @return output of the attack
      */
@@ -45,6 +46,7 @@ public class AffineCipherBreaker {
 
     /**
      * Perform brute force attack on Affine Cipher using Monogram ABV Fitness
+     *
      * @param cipherText cipher text
      * @return output of the attack
      */

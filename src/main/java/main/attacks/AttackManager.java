@@ -22,6 +22,7 @@ public class AttackManager {
 
     /**
      * Constructor for the AttackManager class.
+     *
      * @param cipherText The ciphertext that is being attacked.
      */
     public AttackManager(String cipherText) {
@@ -37,6 +38,7 @@ public class AttackManager {
 
     /**
      * Performs period analysis on the current ciphertext.
+     *
      * @param maxPeriod The maximum period to be tested.
      */
     public void performPeriodTesting(int maxPeriod) {

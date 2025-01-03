@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class ModularArithmetics {
     /**
      * Returns the greatest common divisor of two numbers.
+     *
      * @param a the first number
      * @param b the second number
      * @return the greatest common divisor of two numbers
@@ -29,6 +30,7 @@ public class ModularArithmetics {
 
     /**
      * Returns the least common multiple of two numbers.
+     *
      * @param a the first number
      * @param b the second number
      * @return the least common multiple of two numbers
@@ -39,6 +41,7 @@ public class ModularArithmetics {
 
     /**
      * Returns true if two numbers are coprime.
+     *
      * @param a the first number
      * @param b the second number
      * @return true if two numbers are coprime
@@ -49,6 +52,7 @@ public class ModularArithmetics {
 
     /**
      * Returns the modular multiplicative inverse of x modulo m.
+     *
      * @param x the number
      * @param m the modulo
      * @return the modular multiplicative inverse of x modulo m
@@ -76,6 +80,7 @@ public class ModularArithmetics {
 
     /**
      * Returns all factor pairs of a number.
+     *
      * @param n the number
      * @return all factor pairs of a number
      */

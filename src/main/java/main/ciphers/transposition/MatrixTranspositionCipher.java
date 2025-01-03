@@ -72,10 +72,10 @@ public class MatrixTranspositionCipher {
     /**
      * Enciphers the text using matrix transposition cipher.
      *
-     * @param plainText     the plain text
-     * @param width         the width of the matrix
-     * @param height        the height of the matrix
-     * @param fillTheNulls  the fill the nulls
+     * @param plainText    the plain text
+     * @param width        the width of the matrix
+     * @param height       the height of the matrix
+     * @param fillTheNulls the fill the nulls
      * @return the enciphered text
      */
     public static byte[] encipher(byte[] plainText, int width, int height, boolean fillTheNulls) {

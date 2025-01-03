@@ -72,8 +72,8 @@ public class PermutationCipher {
     /**
      * encipher method is used to encipher text using permutation.
      *
-     * @param plainText    byte[] plainText
-     * @param permutation  byte[] permutation
+     * @param plainText   byte[] plainText
+     * @param permutation byte[] permutation
      * @return byte[] cipherText
      */
     public static byte[] encipher(byte[] plainText, byte[] permutation) {
@@ -88,8 +88,8 @@ public class PermutationCipher {
     /**
      * decipher method is used to decipher text using permutation.
      *
-     * @param cipherText   byte[] cipherText
-     * @param permutation  byte[] permutation
+     * @param cipherText  byte[] cipherText
+     * @param permutation byte[] permutation
      * @return byte[] plainText
      */
     public static byte[] decipher(byte[] cipherText, byte[] permutation) {

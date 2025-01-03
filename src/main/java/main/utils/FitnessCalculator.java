@@ -11,6 +11,7 @@ public class FitnessCalculator {
 
     /**
      * This method calculates the fitness of a given text using the monogram chi fitness function.
+     *
      * @param text The text for which the fitness is to be calculated.
      * @return The fitness of the given text.
      */
@@ -20,6 +21,7 @@ public class FitnessCalculator {
 
     /**
      * This method calculates the fitness of a given text using the angle between vectors fitness function.
+     *
      * @param text The text for which the fitness is to be calculated.
      * @return The fitness of the given text.
      */
@@ -29,6 +31,7 @@ public class FitnessCalculator {
 
     /**
      * This method calculates the fitness of a given text using the tetragram fitness function.
+     *
      * @param text The text for which the fitness is to be calculated.
      * @return The fitness of the given text.
      */

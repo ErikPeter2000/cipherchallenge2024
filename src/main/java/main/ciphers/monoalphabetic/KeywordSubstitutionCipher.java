@@ -23,6 +23,7 @@ public class KeywordSubstitutionCipher {
 
     /**
      * Generate the key for the Keyword Substitution Cipher
+     *
      * @param keyword    The keyword to generate the key from
      * @param filler     The filler type to use
      * @param inverseKey Whether to generate the inverse key
@@ -66,6 +67,7 @@ public class KeywordSubstitutionCipher {
 
     /**
      * Encipher the plaintext using the Keyword Substitution Cipher
+     *
      * @param plainText  The plaintext to encipher
      * @param keyword    The keyword to generate the key from
      * @param filler     The filler type to use
@@ -79,6 +81,7 @@ public class KeywordSubstitutionCipher {
 
     /**
      * Decipher the ciphertext using the Keyword Substitution Cipher
+     *
      * @param cipherText The ciphertext to decipher
      * @param keyword    The keyword to generate the key from
      * @param filler     The filler type to use
