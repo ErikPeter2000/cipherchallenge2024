@@ -1,0 +1,36 @@
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codered}{rgb}{0.68,0,0.12}
+\definecolor{codelightblue}{rgb}{0,0.7,0.95}
+\definecolor{framegray}{rgb}{0.8,0.8,0.8} % Define frame color
+\definecolor{lightgray}{rgb}{0.98,0.98,0.98} % Define background color
+
+\lstset{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codered},
+    basicstyle=\ttfamily,
+    breaklines=true,
+    keepspaces=true,
+    numbers=left,
+    numbersep=8pt,
+    frame=single,
+    rulecolor=\color{framegray},
+    backgroundcolor=\color{lightgray},
+    basewidth=0.5em,
+    escapeinside={(*}{*)}
+}
+
+\newcounter{codecounter}
+
+\newcommand{\clabel}[1]{
+\textcolor{red}{\hspace{-1ex}\textsuperscript{[\refstepcounter{codecounter}\thecodecounter\label{#1}]}}
+}
+
+\newcommand{\cref}[1]{
+    \hspace{-0.5ex}\textsuperscript{\textcolor{red}{[\ref{#1}]}}
+}
+
+\setlist[enumerate]{noitemsep, itemsep=0.5ex}
+\setlist[itemize]{noitemsep, itemsep=0.5ex}

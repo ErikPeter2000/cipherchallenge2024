@@ -1,4 +1,4 @@
-package com.core.cipherdata
+package com.core.extensions
 
 import com.core.alphabets.BaseAlphabet
 import com.core.cipherdata.CipherDataBlock

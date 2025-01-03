@@ -1,7 +1,7 @@
 package com.core.cipherdata
 
 import com.core.alphabets.BaseAlphabet
-import com.core.cipherdata.CipherDataBlockFormatExtensions.format
+import com.core.extensions.CipherDataBlockFormatExtensions.format
 
 import scala.collection.mutable.ArrayBuffer
 
