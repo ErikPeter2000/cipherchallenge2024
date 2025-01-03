@@ -1,12 +1,12 @@
 \section*{Challenge Solving Procedure}
 
-Before describing the process of breaking the cipher found in challenge 10B, it is necessary to detail how we broke the previous cipher in challenge 9B, as both shared similar steps.
+Before describing the process of breaking the cipher found in challenge 10B, we feel it is necessary to detail how we broke the previous cipher in challenge 9B, as both shared similar steps. Our solution to 9B should also help clarify some thoughts and deductions made in 10B.
 
 \subsection*{Challenge 9B}
 
-Our initial thought was that the cipher could be a transposed Polybius cipher that uses Roman numerals. This was because the Polybius cipher was frequently used in previous challenges, and Roman numerals were related to the story. However, we deemed the use of Roman numerals unlikely because of their ambiguity. For example, it is unclear whether the numerals \texttt{IV} represent the single digit \texttt{4} or both digits \texttt{1} and \texttt{5}. This led us to investigate other possibilities.
+Our initial thought was that the cipher could be a transposed Polybius cipher that uses Roman numerals. This was because the Polybius cipher was frequently used in previous challenges and Roman numerals were related to the story. However, we deemed the use of Roman numerals unlikely because of their ambiguity. For example, it is unclear whether the numerals \texttt{IV} represent the single digit \texttt{4} or both digits \texttt{1} and \texttt{5}. This led us to investigate other possibilities.
 
-We performed frequency analysis on the ciphertext and obtained the following results:
+We performed frequency analysis of the ciphertext and obtained the following results:
 
 \begin{figure}[H]
 \centering
@@ -31,9 +31,9 @@ Frequency analysis revealed that there are four times as many vertical bars as b
 I understand that Wheatstone has now completed the installation and testing of his telegraphic apparatus at all our homes, and so we are expecting your reply by means of that machine.    
 \end{quote}
 
-The mention of a \enquote{machine} led us to consider a systematic encoding, where short sequences of characters corresponded to a single English character, something along the lines of Morse code or ASCII. For example, Morse code is formed by a combination of dits (.), dahs (-) and pauses; similar to how this ciphertext uses forward, back and vertical slashes. This could mean that the text is encrypted with a substitution cipher, where each English character is substituted with a combination of slashes. Unfortunately, the frequency of slashes did not match that of Morse code, and ASCII is too modern to have been used in the 19th century. But the possibility of a substitution cipher remained promising.
+The mention of a \enquote{machine} led us to consider a systematic encoding, where short sequences of characters corresponded to a single English character, something along the lines of Morse code or ASCII. For example, Morse code is formed by a combination of dits (.), dahs (-), and pauses; similar to how this ciphertext uses forward, back, and vertical slashes. This could mean that the text is encrypted with a substitution cipher, where each English character is substituted with a combination of slashes. Unfortunately, the frequency of slashes did not match that of Morse code, and ASCII is too modern to have been used in the 19th century. However, the possibility of a substitution cipher remained promising.
 
-We further considered the character counts, and how they could relate to a substitution cipher. Since for every forward-slash there is one backslash and four bars, we thought it would be possible for the plaintext letters to be substituted by combinations of 6 slashes (\(1+1+4=6\)). We performed frequency analysis on blocks of six characters and received the following:
+We further considered the character counts and how they could relate to a substitution cipher. Since for every forward slash there is one backslash and four bars, we thought it would be possible for the plaintext letters to be substituted by combinations of 6 slashes (\(1+1+4=6\)). We performed a frequency analysis on blocks of six characters and received the following:
 
 \begin{figure}[H]
 \centering
@@ -59,32 +59,31 @@ We further considered the character counts, and how they could relate to a subst
 \caption{A snippet of our terminal displaying the result of frequency analysis for blocks of six characters in challenge 9B.}
 \end{figure}
 
-This looked very promising, as the number of combinations of 6 slashes was 24, which is close to the number of letters in the English alphabet. Our guess that six ciphertext characters represented one letter was correct. We performed our usual decryption method for substitution ciphers: a hill-climbing attack using tetragram fitness. This was successful.
+This looked very promising, as the number of combinations of 6 slashes was 24, which is close to the number of letters in the English alphabet. Our guess that six ciphertext characters represented one letter was correct. We then performed our usual decryption method for substitution ciphers: a hill-climbing attack using tetragram fitness. This was successful.
 
 \subsection*{Hill-Climbing Attacks}
 
 Hill-climbing attacks are very powerful methods for breaking a variety of classical ciphers. Our team used this method to break most ciphers throughout the 2024 Cipher Challenge, including 9B and 10B. A simple overview is as follows:
 
 \begin{enumerate}
-    \item Generate a starting key for the cipher. This key is usually random, but for a substitution cipher, it can inferred from frequency analysis of characters.
+    \item Generate a starting key for the cipher. This key is usually random, but for a substitution cipher, it can be inferred from the frequency analysis of characters.
     \item Slightly alter the key by swapping two characters. This is called a mutation.
     \item Decrypt the ciphertext using the original key and mutated key.
-    \item Compare the plaintexts of the original key and the mutated key. We can use a fitness function to determine how "English" the plaintext looks. We used a tetragram fitness function, which compares the frequencies of four-letter sequences in the plaintext to those in the English language. The closer the frequency distribution of the plaintext is to that of English, the higher the fitness score.
-    \item Select the key with the highest fitness score and repeat the process until the fitness score stops improving. Hopefully, the key you are left with will now be the correct key for the cipher.
+    \item Compare the plaintexts of the original key and the mutated key. We can use a fitness function to determine how "English" the plaintext looks. We used a tetragram fitness function that compares the frequencies of four-letter sequences in the plaintext to those in the English language. The closer the frequency distribution of the plaintext is to that of English, the higher the fitness score.
+    \item Select the key with the highest fitness score and repeat the process until the fitness score stops improving. Hopefully, you are now left with the correct key.
 \end{enumerate}
 
 This approach is similar to \enquote{trial-and-improvement} or evolution. Note that this is a high-level overview of a very simple hill-climbing attack. In practice, there are methods to improve the accuracy and efficiency of this approach that are beyond the scope of this document, but are worth researching if you are interested in cryptography.
 
-% The following section needs proofing.
 \subsection*{Challenge 10B}
-The ciphertext in challenge 10B consisted of the same characters as that in 9B, indicating that a similar substitution cipher was used. From the casenotes released, we now knew that the members of the story were communicating via Wheatstone's Telegram. In the plaintext of challenge 9B, Ada Lovelace mentioned an extra layer of encryption on top of the telegram transmission.
+The ciphertext in challenge 10B consisted of the same characters as in 9B, indicating that a similar substitution cipher was used. From Casefile 9.2, we now knew that the members of the story were communicating via Wheatstone's Telegram. In the plaintext of challenge 9B, Ada Lovelace mentioned an extra layer of encryption with the telegram transmission.
 
 \begin{quote}\ttfamily
     P.S. Now I realise that I should have taken care to encypher this message before 
     encoding it on the new telegraphy system.
 \end{quote}
 
-After frequency analysis of individual characters, we found that the ciphertext follows a similar distribution to that of 9B: there were still four times as many bars as forward-slashes or backslashes. This implied that a transposition cipher may have been used, as the frequency distributions of characters was preserved. Our first guess was a permutation cipher. We decided that the simplest approach would be to brute-force possible permutation keys. A key that produced around 26 combinations of 6 slashes was likely to be the correct permutation key.
+A team member suggested that a transposition cipher could have been applied, the simplest being a permutation cipher. They stated that their reasoning was that a transposition cipher was the next simplest cipher after substitution. In retrospect, we do not think that this was the intended method. If we had investigated further, we would have found that the frequency distribution of 10B was different to that of 9B. This would make a permutation cipher unlikely. Regardless, we went straight ahead with brute-forcing possible permutation keys. We thought if we found a key that produced around 26 combinations of 6 slashes, then it was likely to be the correct permutation key.
 
 Listing \ref{lst:code10b} shows some code to brute-force permutations less than length 8. It is written in Scala, a functional programming language intended for manipulating data. 
 
@@ -93,29 +92,31 @@ Listing \ref{lst:code10b} shows some code to brute-force permutations less than 
     \item Generate all possible permutation keys for each length.\cref{perm_gen}
     \item Apply a permutation cipher to the ciphertext for each possible key\ldots\cref{decipher_perm}
     \item \ldots and for each result of the permutation cipher, count the number of distinct blocks of six characters.\cref{distinct_blocks} We also sort these results by the number of distinct blocks in ascending order.
-    \item For debugging, output the ten permutation keys that produced the fewest number of distinct blocks of 6. We found that the key, \texttt{[6,2,1,3,5,4,0]}, produced 25 distinct blocks, making it the most likely candidate.
+    \item For debugging, output the ten permutation keys that produced the fewest number of distinct blocks of 6. This is shown in Figure \ref{lst:terminalkeys}. We found that the key, \texttt{[6,2,1,3,5,4,0]}, produced 25 distinct blocks, making it the most likely candidate.
 \end{enumerate}
 
 \begin{figure}[H]
 \centering
-\begin{minipage}{37ex}
+\begin{minipage}{38ex}
     \begin{verbatim}
-1.  (Vector(6, 2, 1, 3, 5, 4, 0),25) 
-2.  (Vector(6, 2, 1, 3, 4, 5, 0),123)
-3.  (Vector(2, 6, 1, 3, 5, 4, 0),124)
-4.  (Vector(6, 1, 2, 3, 5, 4, 0),127)
-5.  (Vector(6, 2, 1, 3, 5, 0, 4),129)
-6.  (Vector(6, 2, 1, 5, 3, 4, 0),130)
-7.  (Vector(6, 2, 3, 1, 5, 4, 0),139)
-8.  (Vector(2, 6, 1, 3, 5, 0, 4),158)
-9.  (Vector(6, 1, 2, 5, 3, 4, 0),161)
-10. (Vector(6, 2, 1, 5, 3, 0, 4),161)
+1.  (List(6, 2, 1, 3, 5, 4, 0), 25) 
+2.  (List(6, 2, 1, 3, 4, 5, 0), 123)
+3.  (List(2, 6, 1, 3, 5, 4, 0), 124)
+4.  (List(6, 1, 2, 3, 5, 4, 0), 127)
+5.  (List(6, 2, 1, 3, 5, 0, 4), 129)
+6.  (List(6, 2, 1, 5, 3, 4, 0), 130)
+7.  (List(6, 2, 3, 1, 5, 4, 0), 139)
+8.  (List(2, 6, 1, 3, 5, 0, 4), 158)
+9.  (List(6, 1, 2, 5, 3, 4, 0), 161)
+10. (List(6, 2, 1, 5, 3, 0, 4), 161)
     \end{verbatim}
 \end{minipage}
+\caption{A terminal snippet displaying possible permutation keys, and how many distinct blocks of 6 characters they produce.}
+\label{lst:terminalkeys}
 \end{figure}
 
 \begin{enumerate}[resume]
-    \item Take the ciphertext for this permutation, and decrypt it in the same way as challenge 10B. Since we only coded a mono-alphabetic substitution cipher breaker, we converted Wheatstone's encoding that used slashes to English letters\cref{conv_subst}, before running the substitution breaker on that\cref{subst_breaker}.
+    \item Take the ciphertext for this permutation, and decrypt it in the same way as challenge 9B. Since we only coded a monoalphabetic substitution cipher breaker, we converted Wheatstone's encoding that used slashes to arbitrary English letters\cref{conv_subst}, before running the substitution breaker on that\cref{subst_breaker}.
 \end{enumerate}
 
-This produced the correct plaintext.
+This produced the correct plaintext and concludes our solution to challenge 10B.
