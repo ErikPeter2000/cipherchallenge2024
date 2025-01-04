@@ -83,7 +83,7 @@ The ciphertext in challenge 10B consisted of the same characters as in 9B, indic
     encoding it on the new telegraphy system.
 \end{quote}
 
-A team member suggested that a transposition cipher could have been applied, the simplest being a permutation cipher. They stated that their reasoning was that a transposition cipher was the next simplest cipher after substitution. In retrospect, we do not think that this was the intended method. If we had investigated further, we would have found that the frequency distribution of 10B was different to that of 9B. This would make a permutation cipher unlikely. Regardless, we went straight ahead with brute-forcing possible permutation keys. We thought if we found a key that produced around 26 combinations of 6 slashes, then it was likely to be the correct permutation key.
+A team member proposed that a transposition cipher, such as a permutation cipher, might have been applied after Wheatstone's encoding. Their reasoning was that a transposition cipher is typically the next simplest cipher after substitution. In retrospect, we are uncertain whether this was the intended solution for this challenge. Had we investigated further, we would have found that the frequency distribution of 10B was different to that of 9B. Additionally, Ada mentioned that she should encipher the message \textit{before} encoding it via Wheatstone's telegram, rather than after. This made the use of a permutation cipher in this manner less plausible. Regardless, we proceeded with brute-forcing potential permutation keys. We thought that if we found a key that resulted in around 26 combinations of 6 slashes, it could be the correct permutation key.
 
 Listing \ref{lst:code10b} shows some code to brute-force permutations less than length 8. It is written in Scala, a functional programming language intended for manipulating data. 
 
@@ -91,7 +91,7 @@ Listing \ref{lst:code10b} shows some code to brute-force permutations less than 
     \item Find all possible lengths of permutation keys less than 8.\cref{perm_length_finder} Note that for a typical permutation cipher, the length of the key is a factor of the length of the ciphertext.
     \item Generate all possible permutation keys for each length.\cref{perm_gen}
     \item Apply a permutation cipher to the ciphertext for each possible key\ldots\cref{decipher_perm}
-    \item \ldots and for each result of the permutation cipher, count the number of distinct blocks of six characters.\cref{distinct_blocks} We also sort these results by the number of distinct blocks in ascending order.
+    \item \ldots and for each result of the permutation cipher, count the number of distinct blocks of six characters.\cref{distinct_blocks} We sorted these results by the number of distinct blocks in ascending order.
     \item For debugging, output the ten permutation keys that produced the fewest number of distinct blocks of 6. This is shown in Figure \ref{lst:terminalkeys}. We found that the key, \texttt{[6,2,1,3,5,4,0]}, produced 25 distinct blocks, making it the most likely candidate.
 \end{enumerate}
 
@@ -111,7 +111,7 @@ Listing \ref{lst:code10b} shows some code to brute-force permutations less than 
 10. (List(6, 2, 1, 5, 3, 0, 4), 161)
     \end{verbatim}
 \end{minipage}
-\caption{A terminal snippet displaying possible permutation keys, and how many distinct blocks of 6 characters they produce.}
+\caption{A terminal snippet displaying possible permutation keys, and the number of distinct six-character blocks they produce.}
 \label{lst:terminalkeys}
 \end{figure}
 
@@ -119,4 +119,4 @@ Listing \ref{lst:code10b} shows some code to brute-force permutations less than 
     \item Take the ciphertext for this permutation, and decrypt it in the same way as challenge 9B. Since we only coded a monoalphabetic substitution cipher breaker, we converted Wheatstone's encoding that used slashes to arbitrary English letters\cref{conv_subst}, before running the substitution breaker on that\cref{subst_breaker}.
 \end{enumerate}
 
-This produced the correct plaintext and concludes our solution to challenge 10B.
+This produced the correct plaintext and concludes our solution for challenge 10B.
