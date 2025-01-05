@@ -4,7 +4,7 @@ Before describing the process of breaking the cipher found in challenge 10B, we 
 
 \subsection*{Challenge 9B}
 
-Our initial thought was that the cipher could be a transposed Polybius cipher that uses Roman numerals. This was because the Polybius cipher was frequently used in previous challenges and Roman numerals were related to the story. However, we deemed the use of Roman numerals unlikely because of their ambiguity. For example, it is unclear whether the numerals \texttt{IV} represent the single digit \texttt{4} or both digits \texttt{1} and \texttt{5}. This led us to investigate other possibilities.
+Our initial thought was that the cipher could be a transposed Polybius cipher that uses Roman numerals. This was because the Polybius cipher was frequently used in previous challenges, and Roman numerals were related to the story. However, we deemed the use of Roman numerals unlikely because of their ambiguity. For example, it is unclear whether the numerals \texttt{IV} represent the single digit \texttt{4} or both digits \texttt{1} and \texttt{5}. This led us to investigate other possibilities.
 
 We performed frequency analysis of the ciphertext and obtained the following results:
 
@@ -73,7 +73,7 @@ Hill-climbing attacks are very powerful methods for breaking a variety of classi
     \item Select the key with the highest fitness score and repeat the process until the fitness score stops improving. Hopefully, you are now left with the correct key.
 \end{enumerate}
 
-This approach is similar to \enquote{trial-and-improvement} or evolution. Note that this is a high-level overview of a very simple hill-climbing attack. In practice, there are methods to improve the accuracy and efficiency of this approach that are beyond the scope of this document, but are worth researching if you are interested in cryptography.
+This approach is similar to \enquote{trial-and-improvement} or evolution. Note that this is a high-level overview of a very simple hill-climbing attack. In practice, there are methods to improve the accuracy and efficiency of this approach that are beyond the scope of this document. You may want to research simulated annealing or genetic algorithms for more information.
 
 \subsection*{Challenge 10B}
 The ciphertext in challenge 10B consisted of the same characters as in 9B, indicating that a similar substitution cipher was used. From Casefile 9.2, we now knew that the members of the story were communicating via Wheatstone's Telegram. In the plaintext of challenge 9B, Ada Lovelace mentioned an extra layer of encryption with the telegram transmission.
@@ -85,7 +85,7 @@ The ciphertext in challenge 10B consisted of the same characters as in 9B, indic
 
 A team member proposed that a transposition cipher, such as a permutation cipher, might have been applied after Wheatstone's encoding. Their reasoning was that a transposition cipher is typically the next simplest cipher after substitution. In retrospect, we are uncertain whether this was the intended solution for this challenge. Had we investigated further, we would have found that the frequency distribution of 10B was different to that of 9B. Additionally, Ada mentioned that she should encipher the message \textit{before} encoding it via Wheatstone's telegram, rather than after. This made the use of a permutation cipher in this manner less plausible. Regardless, we proceeded with brute-forcing potential permutation keys. We thought that if we found a key that resulted in around 26 combinations of 6 slashes, it could be the correct permutation key.
 
-Listing \ref{lst:code10b} shows some code to brute-force permutations less than length 8. It is written in Scala, a functional programming language intended for manipulating data. 
+Listing \ref{lst:code10b} shows some code to brute-force permutations less than length 8. It is written in Scala, a functional programming language intended for manipulating data. A breakdown of the code is as follows:
 
 \begin{enumerate}
     \item Find all possible lengths of permutation keys less than 8.\cref{perm_length_finder} Note that for a typical permutation cipher, the length of the key is a factor of the length of the ciphertext.
@@ -119,4 +119,4 @@ Listing \ref{lst:code10b} shows some code to brute-force permutations less than 
     \item Take the ciphertext for this permutation, and decrypt it in the same way as challenge 9B. Since we only coded a monoalphabetic substitution cipher breaker, we converted Wheatstone's encoding that used slashes to arbitrary English letters\cref{conv_subst}, before running the substitution breaker on that\cref{subst_breaker}.
 \end{enumerate}
 
-This produced the correct plaintext and concludes our solution for challenge 10B.
+This algorithm produced the correct plaintext and concludes our solution for challenge 10B.
