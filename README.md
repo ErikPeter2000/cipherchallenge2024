@@ -2,7 +2,8 @@
 
 Cipher challenge 2024 repository by Cambridge Maths School students.
 
-Deciphered Story: [Submissions](submissions/Submissions.md).
+Deciphered Story: [Submissions](submissions/Submissions.md)  
+Challenge 10B Submission: [AESAlchemists10BSubmission](postchallenge/AESAlchemists10BSubmission.pdf)
 
 ## Ciphers Written:
 - [Affine Cipher](src/main/java/main/ciphers/monoalphabetic/AffineCipher.java)
@@ -46,7 +47,7 @@ Deciphered Story: [Submissions](submissions/Submissions.md).
 
 ## Getting Started
 
-1. Download a Java Development Kit (JDK) from [Oracle](https://www.oracle.com/uk/java/technologies/downloads/). Version 21 is the latest version supported by Scala.
+1. Download a Java Development Kit (JDK) from [Oracle](https://www.oracle.com/uk/java/technologies/downloads/). Version 21 is the latest version supported by Scala at the time of writing.
 2. Download and install [Scala](https://www.scala-lang.org/download/).
 3. In Visual Studio Code, install the Scala (Metals) and Code Runner extensions.
 4. You should be able to run any file with the `.scala` extension by pressing `Ctrl + F5`.
