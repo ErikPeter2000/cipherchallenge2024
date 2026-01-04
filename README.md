@@ -60,8 +60,7 @@ Scala is a statically-typed language that runs on the Java Virtual Machine (JVM)
 
 #### Structure
 
-- Shared code across challenges: [src/main/scala/com/core](./src/main/scala/com/core/)
-- Scala or Java code for individual team members: [src/main/scala/com/team/](./src/main/scala/com/team/)
+- Shared code across challenges: [src/main/scala/com/core/](./src/main/scala/com/core/)
 - Unit tests: [src/test/scala/com/](./src/test/scala/com)
 - Data, texts and tables: [resources/](./resources/)
 - Submissions: [submissions/](./submissions/)
@@ -79,6 +78,6 @@ Scala is a statically-typed language that runs on the Java Virtual Machine (JVM)
    - Folders and packages: `lowercaseconcatenation`
    - Files: `PascalCase`
  - **Comments**: Use them, and make the most of docstrings. "Intuition" is unfortunately not always possible.
- - **Unit Tests**: They are your friends, and AI does a good job writing the structure for them. Aim to have anything in `core` covered. Visual Studio Code has good support for tests.
+ - **Unit Tests**: They are your friends. Aim to have anything in `core` covered. Visual Studio Code has good support for tests.
  - **Imports**: Third-party imports should go before project imports.
  - **Error Handling**: Handle errors where possible. If for performance reasons you've decided not to, please document the possible error and how to avoid it.
